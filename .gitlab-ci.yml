@@ -1,0 +1,50 @@
+stages:
+  - lint
+  - quality
+  - build
+  - deploy
+
+.all_branches: &all_branches
+  only:
+    - /^feature\/+[0-9](-[a-zA-Z0-9_]+)*/
+    - /^bugfix\/+[0-9](-[a-zA-Z0-9_]+)*/
+    - master
+    - develop
+    - tags
+
+.protected_branches: &protected_branches
+  only:
+    - master
+    - develop
+
+linting:
+  stage: lint
+  image: node:11
+  before_script:
+    - npm install @vue/cli
+  script:
+    - npm run lint
+  <<: *all_branches
+
+build image:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:stable-dind
+  variables:
+    VERSION: $CI_COMMIT_SHORT_SHA
+  before_script:
+    - docker login $DOCKER_USER $DOCKER_PASS
+    - |
+      if [ "#CI_COMMIT_REF_NAME" = "master" ];
+      then
+        export VERSION=stable
+      elif [ "$CI_COMMIT_REF_NAME" = "develop" ];
+      then
+        export VERSION=hm
+      fi
+  script:
+    - export IMAGE=$DOCKER_USER/$VERSION
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
+  <<: *protected_branches
