@@ -36,7 +36,7 @@ build image:
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS
     - |
-      if [ "#CI_COMMIT_REF_NAME" = "master" ];
+      if [ "$CI_COMMIT_REF_NAME" = "master" ];
       then
         export VERSION=stable
       elif [ "$CI_COMMIT_REF_NAME" = "develop" ];
