@@ -34,7 +34,7 @@ build image:
   variables:
     VERSION: $CI_COMMIT_SHORT_SHA
   before_script:
-    - docker login $DOCKER_USER $DOCKER_PASS
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS
     - |
       if [ "#CI_COMMIT_REF_NAME" = "master" ];
       then
@@ -44,7 +44,7 @@ build image:
         export VERSION=hm
       fi
   script:
-    - export IMAGE=$DOCKER_USER/$VERSION
+    - export IMAGE=$DOCKER_USER/$CI_PROJECT_NAME:$VERSION
     - docker build -t $IMAGE .
     - docker push $IMAGE
   <<: *protected_branches
