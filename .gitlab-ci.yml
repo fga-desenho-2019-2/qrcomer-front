@@ -1,0 +1,27 @@
+stages:
+  - lint
+  - quality
+  - build
+  - deploy
+
+.all_branches: &all_branches
+  only:
+    - /^feature\/+[0-9](-[a-zA-Z0-9_]+)*/
+    - /^bugfix\/+[0-9](-[a-zA-Z0-9_]+)*/
+    - master
+    - develop
+    - tags
+
+.protected_branches: &protected_branches
+  only:
+    - master
+    - develop
+
+linting:
+  stage: lint
+  image: node:11
+  before_script:
+    - npm install @vue/cli
+  script:
+    - npm run lint
+  <<: *all_branches
