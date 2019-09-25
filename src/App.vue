@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="teste">
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>Vuetify</span>
@@ -16,8 +16,16 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <hello-world/>
     </v-content>
+
+    <!-- <div id="app">
+      <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link>
+      </div>
+      <router-view/>
+    </div> -->
   </v-app>
 </template>
 
@@ -27,10 +35,18 @@ import HelloWorld from './components/HelloWorld';
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    "hello-world": HelloWorld,
   },
   data: () => ({
     //
   }),
 };
 </script>
+
+<style lang="scss">
+  #teste {
+    .v-content {
+      //background: $c-white !important;
+    }
+  }
+</style>
