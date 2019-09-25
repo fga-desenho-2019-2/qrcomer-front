@@ -46,7 +46,7 @@ export default {
 <style lang="scss">
   #teste {
     .v-content {
-      //background: $c-white !important;
+      background: $c-white !important;
     }
   }
 </style>
