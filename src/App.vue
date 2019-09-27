@@ -1,52 +1,39 @@
 <template>
-  <v-app id="teste">
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
+    <v-app id="qrcomer">
+        <router-view name="LandingPageHeader"></router-view>
 
-    <v-content>
-      <hello-world/>
-    </v-content>
+        <router-view></router-view>
 
-    <!-- <div id="app">
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-      </div>
-      <router-view/>
-    </div> -->
-  </v-app>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-  components: {
-    "hello-world": HelloWorld,
-  },
-  data: () => ({
-    //
-  }),
+    name: 'App',
+    components: {},
+    data: () => ({
+        //
+    }),
 };
 </script>
 
 <style lang="scss">
-  #teste {
-    .v-content {
-      background: $c-white !important;
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Palanquin:100,300,400,500,700&display=swap');
+
+$main-font: 'Palanquin', 'Roboto', sans-serif;
+$second-font: 'Lexend Deca', 'Roboto', sans-serif;
+
+#qrcomer {
+    font-family: $main-font !important;
+
+    // .v-content { }
+
+    .v-btn {
+        border-radius: 0 15px;
+        &.primary {
+            background: $main-color !important;
+            border-color: $main-color !important;
+        }
     }
-  }
+}
 </style>
