@@ -26,6 +26,12 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
 #qrcomer {
     font-family: $main-font !important;
 
+    @media screen and (max-width:1920px) {
+        .container {
+            max-width: 1300px !important;
+        }
+    }
+
     // .v-content { }
 
     .v-btn {
