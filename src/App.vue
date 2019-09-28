@@ -35,24 +35,27 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
     // .v-content { }
 
     .v-btn {
-        border-radius: 0 15px;
-        text-transform: initial;
 
-        &.primary {
-            background: $main-color !important;
-            border-color: $main-color !important;
-        }
-        &.secondary {
-            background: $second-color !important;
-            border-color: $second-color !important;
-        }
-        &.white {
-            background: $c-white !important;
-            border-color: $c-white !important;
-            color: $main-color !important;
-        }
-        &--tile {
-            border-radius: 0;
+        &.qrc-btn {
+            border-radius: 0 15px;
+            text-transform: initial;
+
+            &.primary {
+                background: $main-color !important;
+                border-color: $main-color !important;
+            }
+            &.secondary {
+                background: $second-color !important;
+                border-color: $second-color !important;
+            }
+            &.white {
+                background: $c-white !important;
+                border-color: $c-white !important;
+                color: $main-color !important;
+            }
+            &--tile {
+                border-radius: 0;
+            }
         }
     }
 }

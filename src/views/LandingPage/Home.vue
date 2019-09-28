@@ -2,8 +2,8 @@
     <v-content class="d-flex flex-column pt-0">
         <div>
             <QrcBanner/>
+            <QrcTime/>
         </div>
-
         <QrcFooter/>
     </v-content>
 </template>
@@ -11,11 +11,13 @@
 <script>
 import Footer from './Footer.vue'
 import Banner from './Banner.vue'
+import Time from './Time.vue'
 
 export default {
     components: {
+        "QrcBanner": Banner,
+        "QrcTime": Time,
         "QrcFooter": Footer,
-        "QrcBanner": Banner
     }
 }
 </script>

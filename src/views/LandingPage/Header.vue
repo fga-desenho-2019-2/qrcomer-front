@@ -4,9 +4,18 @@
         elevate-on-scroll 
         v-scroll="floatingNav"
         id="landing-page-header">
-        <img v-if="white" src="~@/assets/images/QRComer.png" alt="Logo" class="brand pr-5">
-        <img v-else src="~@/assets/images/logo.svg" alt="Logo" class="brand pr-5">
-        <v-toolbar-title class="text-uppercase">
+        <v-app-bar-nav-icon class="d-flex d-sm-flex d-md-none d-lg-none text-shadow"></v-app-bar-nav-icon>
+        <img 
+            v-if="white" 
+            src="~@/assets/images/QRComer.png" 
+            alt="Logo" 
+            class="brand pr-5 d-none d-sm-none d-md-flex d-lg-flex">
+        <img 
+            v-else 
+            src="~@/assets/images/logo.svg" 
+            alt="Logo" 
+            class="brand pr-5 d-none d-sm-none d-md-flex d-lg-flex">
+        <v-toolbar-title class="text-uppercase d-none d-sm-none d-md-flex d-lg-flex text-shadow">
             <span>QR</span>
             <span class="font-weight-light">Comer</span>
         </v-toolbar-title>
@@ -15,7 +24,13 @@
             text
             tile
             href="#">
-            <span class="mr-2">Login</span>
+            <span class="mr-2 text-shadow">Login</span>
+        </v-btn>
+        <v-btn
+            text
+            tile
+            href="#">
+            <span class="mr-2 text-shadow">Cadastrar</span>
         </v-btn>
     </v-app-bar>
 </template>
@@ -29,7 +44,6 @@ export default {
     },
     methods: {
         floatingNav() {
-            let headerElement = document.getElementById('landing-page-header')
             if (window.scrollY > 5) {
                 this.white = true
             } else {
@@ -53,20 +67,38 @@ export default {
         color: $c-gray90;
 
         .v-btn {
-            color: $c-gray90;
+            color: $c-gray90;   
+        }
+
+        .text-shadow {
+            text-shadow: none;
+        }
+
+        .brand {
+            filter: none;
         }
     }
+    
     .brand {
         height: 50%;
         object-fit: contain;
+        filter: drop-shadow(1px 2px 1px $c-gray70)
     }
+    
     .v-toolbar__title {
         font-size: 24px;
         font-weight: 400;
         line-height: 2rem;
     }
+    
     .v-btn {
         color: $c-white;
+        text-transform: initial;
     }
+
+    .text-shadow {
+        text-shadow: 1px 2px 4px $c-gray70;
+    }
+
 }
 </style>

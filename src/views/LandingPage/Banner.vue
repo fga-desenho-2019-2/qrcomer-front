@@ -3,17 +3,17 @@
         <v-container>
             <v-row>
                 <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">
-                    <img src="~@/assets/images/logo_shadow.svg" alt="Logo Qrcomer" class="banner-img mx-auto">
+                    <img src="~@/assets/images/logo2.svg" alt="Logo Qrcomer" class="banner-img mx-auto">
                     <v-btn
                         href="#"
-                        min-width="150px"
-                        class="white mx-auto font-weigth-bold my-2">
+                        min-width="250px"
+                        class="qrc-btn white mx-auto font-weigth-bold my-2">
                         <span class="mr-2">Login</span>
                     </v-btn>
                     <v-btn
                         href="#"
-                        min-width="150px"
-                        class="primary my-2 mx-auto">
+                        min-width="250px"
+                        class="qrc-btn primary my-2 mx-auto">
                         <span class="mr-2">Cadastrar</span>
                     </v-btn>
                 </v-col>
@@ -49,6 +49,7 @@
         .banner-img {
             width: 250px;
             height: 250px;
+            filter: drop-shadow(0px 4px 4px $c-gray70)
         }
     }
 }
