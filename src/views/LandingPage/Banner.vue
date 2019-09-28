@@ -2,10 +2,20 @@
     <section id="banner">
         <v-container>
             <v-row>
-                <v-col cols=12 sm=12 md=12 lg=12>
-                    <h2 class="white--text banner--title">Seu pedido sem estresse. Sem filas.</h2>
-                    <h3 class="white--text banner--subtitle">Cadastre-se e aproveite todas as vantagens do Qrcomer. </h3>
-                    <h3 class="white--text banner--subtitle">O shopping em suas mãos.</h3>
+                <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">
+                    <img src="~@/assets/images/logo_shadow.svg" alt="Logo Qrcomer" class="banner-img mx-auto">
+                    <v-btn
+                        href="#"
+                        min-width="150px"
+                        class="white mx-auto font-weigth-bold my-2">
+                        <span class="mr-2">Login</span>
+                    </v-btn>
+                    <v-btn
+                        href="#"
+                        min-width="150px"
+                        class="primary my-2 mx-auto">
+                        <span class="mr-2">Cadastrar</span>
+                    </v-btn>
                 </v-col>
             </v-row>
         </v-container>
@@ -14,26 +24,13 @@
 
 <style lang="scss">
 #banner {
-    background: url('~@/assets/images/banner2.jpg');
-    background-position: center 80%;
-    background-size: cover;
+    background: linear-gradient(135deg, #eb4476, #e18855);
     min-height: 55vh;
     position: relative;
     z-index: 99;
     display: flex;
     align-items: center;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, #eb4476, #e18855);
-        opacity: 0.75;
-        z-index: -1;
-    }
+    padding-top: 64px;
 
     .banner {
         &--title {
@@ -42,6 +39,16 @@
         &--subtitle {
             font-size: 36px;
             line-height: 36px;
+        }
+    }
+    .col-banner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .banner-img {
+            width: 250px;
+            height: 250px;
         }
     }
 }
