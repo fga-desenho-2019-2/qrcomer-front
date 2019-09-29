@@ -25,7 +25,7 @@
 <style lang="scss">
 #banner {
     background: linear-gradient(135deg, #eb4476, #e18855);
-    min-height: 55vh;
+    min-height: 85vh;
     position: relative;
     z-index: 99;
     display: flex;
@@ -47,8 +47,9 @@
         justify-content: center;
 
         &--img {
-            width: 250px;
-            height: 250px;
+            width: 50vw;
+            height: 200px;
+            margin-bottom: 5vh;
             filter: drop-shadow(0px 4px 4px $c-gray70)
         }
     }

@@ -41,10 +41,22 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
         font-family: $second-font !important;
     }
 
+    b {
+        color: $main-color;
+    }
+
     @media screen and (max-width:1920px) {
         .container {
             max-width: 1300px !important;
         }
+    }
+
+    .main-color {
+        color: $main-color;
+    }
+
+    .second-color {
+        color: $second-color;
     }
 
     .v-btn {

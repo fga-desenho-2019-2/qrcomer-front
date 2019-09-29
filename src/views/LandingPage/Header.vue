@@ -67,7 +67,7 @@ export default {
         color: $c-gray90;
 
         .v-btn {
-            color: $c-gray90;   
+            color: $main-color;   
         }
 
         .text-shadow {

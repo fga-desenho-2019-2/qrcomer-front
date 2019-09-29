@@ -34,16 +34,18 @@ export default {
 
 <style lang="scss">
 .qrc-membro {
-    height: 250px;
+    height: 125px;
+    width: 125px;
     display: flex;
     justify-content: center;
     background: transparent !important;
+    margin: 20px;
+    transition: all 0.5s;
     
     .qrc-membro-link {
         height: 100%;
         width: 100%;
         position: relative;
-        max-width: 275px;
         z-index: 99;
         display: flex;
         align-items: center;
@@ -76,7 +78,7 @@ export default {
 
         img {
             object-fit: cover;
-            border-radius: 0 30px;
+            border-radius: 0 20px;
             position: absolute;
             top: 0;
             left: 0;
@@ -88,6 +90,7 @@ export default {
 
         .qrc-membro-text {
             text-decoration: none;
+            text-align: center;
             position: relative;
             opacity: 0;
             transition: all 0.25s 0.15s;
@@ -105,6 +108,42 @@ export default {
                 
             }
         }
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .qrc-membro {
+        height: 140px;
+        width: 140px;
+
+        .qrc-membro-text {
+            font-size: 12px;
+        }
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .qrc-membro {
+        height: 160px;
+        width: 160px;
+
+        .qrc-membro-text {
+            font-size: 15px;
+        }
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .qrc-membro {
+        height: 180px;
+        width: 180px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .qrc-membro {
+        height: 200px;
+        width: 200px;
     }
 }
 
