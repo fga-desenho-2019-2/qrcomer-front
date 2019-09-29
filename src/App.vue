@@ -24,15 +24,28 @@ $main-font: 'Palanquin', 'Roboto', sans-serif;
 $second-font: 'Lexend Deca', 'Roboto', sans-serif;
 
 #qrcomer {
-    font-family: $main-font !important;
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: $main-font !important;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    h1 { font-size: 48px}
+    h2 { font-size: 42px}
+    h3 { font-size: 36px}
+    h4 { font-size: 30px}
+    h5 { font-size: 24px}
+    h6 { font-size: 18px}
+
+    p, span, a {
+        font-family: $second-font !important;
+    }
 
     @media screen and (max-width:1920px) {
         .container {
             max-width: 1300px !important;
         }
     }
-
-    // .v-content { }
 
     .v-btn {
 
@@ -53,7 +66,7 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
                 border-color: $c-white !important;
                 color: $main-color !important;
             }
-            &--tile {
+            &.tile {
                 border-radius: 0;
             }
         }

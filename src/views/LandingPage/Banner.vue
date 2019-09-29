@@ -3,7 +3,7 @@
         <v-container>
             <v-row>
                 <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">
-                    <img src="~@/assets/images/logo2.svg" alt="Logo Qrcomer" class="banner-img mx-auto">
+                    <img src="~@/assets/images/logo2.svg" alt="Logo Qrcomer" class="col-banner--img mx-auto">
                     <v-btn
                         href="#"
                         min-width="250px"
@@ -46,7 +46,7 @@
         flex-direction: column;
         justify-content: center;
 
-        .banner-img {
+        &--img {
             width: 250px;
             height: 250px;
             filter: drop-shadow(0px 4px 4px $c-gray70)

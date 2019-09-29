@@ -3,9 +3,10 @@
         class="mt-auto"
         min-height="56"
         id="qrc-footer">
-        <p class="mb-0">© QRComer. Todos os direitos reservados</p>
-        <div class="flex-grow-1"></div>
-        <div>&copy; {{ new Date().getFullYear() }}</div>
+        <v-container>
+          <p class="mb-0">© QRComer {{ new Date().getFullYear() }}. Todos os direitos reservados</p>
+            <div class="flex-grow-1"></div>
+        </v-container>
     </v-footer>
 </template>
 

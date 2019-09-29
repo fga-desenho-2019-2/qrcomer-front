@@ -78,6 +78,8 @@ export default {
             filter: none;
         }
     }
+
+    
     
     .brand {
         height: 50%;
@@ -98,6 +100,13 @@ export default {
 
     .text-shadow {
         text-shadow: 1px 2px 4px $c-gray70;
+    }
+
+    @media screen and (max-width: 1920px) {
+        .v-toolbar__content {
+            max-width: 1300px;
+            margin: 0px auto;
+        }
     }
 
 }

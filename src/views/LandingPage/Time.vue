@@ -1,7 +1,7 @@
 <template>
     <section id="nosso-time" class="nosso-time">
         <v-container>
-            <h2 class="">Conheça nosso time:</h2>
+            <h2 class="text-center">Conheça nosso time:</h2>
             <v-row>
                 <v-col 
                     cols=12
@@ -97,5 +97,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+#nosso-time {
+    padding: 40px 0;
+}
 </style>
