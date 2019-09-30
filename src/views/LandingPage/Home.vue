@@ -3,6 +3,8 @@
         <div>
             <QrcBanner/>
 
+            <QrcSobre/>
+
             <QrcFuncionamento/>
             
             <QrcTime/>
@@ -16,6 +18,7 @@ import Footer from './Footer.vue'
 import Banner from './Banner.vue'
 import Time from './Time.vue'
 import Funcionamento from './Funcionamento.vue'
+import Sobre from './Sobre.vue'
 
 export default {
     components: {
@@ -23,6 +26,7 @@ export default {
         "QrcFuncionamento": Funcionamento,
         "QrcTime": Time,
         "QrcFooter": Footer,
+        "QrcSobre": Sobre,
     }
 }
 </script>
@@ -30,7 +34,6 @@ export default {
 <style lang="scss">
 .v-content__wrap {
     display: flex;
-    min-height: 120vh; // Temporário, remover
     flex-direction: column;
 }
 </style>

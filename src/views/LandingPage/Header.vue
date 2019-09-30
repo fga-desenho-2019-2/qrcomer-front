@@ -4,7 +4,7 @@
         elevate-on-scroll 
         v-scroll="floatingNav"
         id="landing-page-header">
-        <v-app-bar-nav-icon class="d-flex d-sm-flex d-md-none d-lg-none text-shadow"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"></v-app-bar-nav-icon>
         <img 
             v-if="white" 
             src="~@/assets/images/QRComer.png" 
@@ -67,7 +67,11 @@ export default {
         color: $c-gray90;
 
         .v-btn {
-            color: $main-color;   
+            color: $c-gray90;  
+            
+            &.landing-page-header--icon {
+                color: $main-color;
+            }
         }
 
         .text-shadow {

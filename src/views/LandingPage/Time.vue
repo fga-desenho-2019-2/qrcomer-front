@@ -3,9 +3,9 @@
         <v-container>
             <div class="time-section">
                 <QrcMembro 
-                    :class="'membro-' + membro.id"
                     v-for="membro in time"
                     :key="membro.id"
+                    :class="`membro-${membro.id}`"
                     :github="membro.github"
                     :img="membro.img"
                     :name="membro.name"/>
@@ -99,7 +99,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-right: -20px;
-        margin-left: -20px;
+        margin-right: -10px;
+        margin-left: -10px;
     }
 </style>
