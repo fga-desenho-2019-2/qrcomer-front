@@ -1,52 +1,63 @@
 <template>
-  <v-app id="teste">
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
+    <v-app id="qrcomer">
+        <router-view name="LandingPageHeader"></router-view>
 
-    <v-content>
-      <hello-world/>
-    </v-content>
+        <router-view></router-view>
 
-    <!-- <div id="app">
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-      </div>
-      <router-view/>
-    </div> -->
-  </v-app>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-  components: {
-    "hello-world": HelloWorld,
-  },
-  data: () => ({
-    //
-  }),
+    name: 'App',
+    components: {},
+    data: () => ({
+        //
+    }),
 };
 </script>
 
 <style lang="scss">
-  #teste {
-    .v-content {
-      background: $c-white !important;
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Palanquin:100,300,400,500,700&display=swap');
+@import "~@/assets/styles/buttons.scss";
+
+$main-font: 'Palanquin', 'Roboto', sans-serif;
+$second-font: 'Lexend Deca', 'Roboto', sans-serif;
+
+#qrcomer {
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: $main-font !important;
+        font-weight: bold;
+        margin-bottom: 20px;
     }
-  }
+    h1 { font-size: 48px}
+    h2 { font-size: 42px}
+    h3 { font-size: 36px}
+    h4 { font-size: 30px}
+    h5 { font-size: 24px}
+    h6 { font-size: 18px}
+
+    p, span, a {
+        font-family: $second-font !important;
+    }
+
+    b {
+        color: $main-color;
+    }
+
+    @media screen and (max-width:1920px) {
+        .container {
+            max-width: 1300px !important;
+        }
+    }
+
+    .main-color {
+        color: $main-color;
+    }
+
+    .second-color {
+        color: $second-color;
+    }    
+}
 </style>
