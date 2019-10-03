@@ -1,18 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/LandingPage/Home.vue'
-import LandingPageHeader from '../views/LandingPage/Header.vue'
+import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
 
 Vue.use(Router)
 
 export default new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
             name: 'home',
             components: {
-                default: Home,
-                LandingPageHeader
+                default: Home
+            }
+        },
+        {
+            path: '/restaurants',
+            name: 'restaurants',
+            components: {
+                default: ShoppingPage
             }
         },
     ]
