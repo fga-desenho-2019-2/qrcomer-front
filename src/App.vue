@@ -2,6 +2,8 @@
     <v-app id="qrcomer">
         <router-view name="LandingPageHeader"></router-view>
 
+        <router-view name="UserProfileHeader"></router-view>
+
        
         <router-view></router-view>
 
