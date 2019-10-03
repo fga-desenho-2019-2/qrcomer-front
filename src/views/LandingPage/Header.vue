@@ -23,12 +23,14 @@
         <v-btn
             text
             tile
+            @click="routeTo('/auth')"
             href="#">
             <span class="mr-2 text-shadow">Login</span>
         </v-btn>
         <v-btn
             text
             tile
+            @click="routeTo('/auth')"
             href="#">
             <span class="mr-2 text-shadow">Cadastrar</span>
         </v-btn>
@@ -50,6 +52,9 @@ export default {
                 this.white = false
             }
 
+        },
+        routeTo(route) {
+            this.$router.push(route);
         }
     }
 }

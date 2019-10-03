@@ -2,7 +2,9 @@
     <v-app id="qrcomer">
         <router-view name="LandingPageHeader"></router-view>
 
-        <router-view></router-view>
+        <transition name="scroll-x-transition" mode="out-in">
+            <router-view></router-view>
+        </transition>
 
     </v-app>
 </template>
@@ -20,6 +22,8 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Palanquin:100,300,400,500,700&display=swap');
 @import "~@/assets/styles/buttons.scss";
+@import "~@/assets/styles/forms.scss";
+
 
 $main-font: 'Palanquin', 'Roboto', sans-serif;
 $second-font: 'Lexend Deca', 'Roboto', sans-serif;
