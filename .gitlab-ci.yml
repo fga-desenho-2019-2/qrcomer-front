@@ -57,3 +57,4 @@ deploy image:
     - rancher context switch "$CONTEXT_HOMOLOG"
     - rancher kubectl -n homolog scale --current-replicas=1 --replicas=0 deployment/qrcomer-front
     - rancher kubectl -n homolog scale --current-replicas=0 --replicas=1 deployment/qrcomer-front
+  <<: *protected_branches
