@@ -1,0 +1,45 @@
+<template>
+    <section id="banner">
+        <v-container>
+            <v-row>
+                <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">
+                    
+                </v-col>
+            </v-row>
+        </v-container>
+    </section>
+</template>
+
+<style lang="scss">
+#banner {
+    background: linear-gradient(135deg, #eb4476, #e18855);
+    min-height: 85vh;
+    position: relative;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+
+    .banner {
+        &--title {
+            font-size: 48px;
+        }
+        &--subtitle {
+            font-size: 36px;
+            line-height: 36px;
+        }
+    }
+    .col-banner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &--img {
+            width: 50vw;
+            height: 200px;
+            margin-bottom: 5vh;
+            filter: drop-shadow(0px 4px 4px $c-gray70)
+        }
+    }
+}
+</style>
