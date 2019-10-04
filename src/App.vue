@@ -2,9 +2,9 @@
     <v-app id="qrcomer">
         <router-view name="LandingPageHeader"></router-view>
 
-        <transition name="scroll-x-transition" mode="out-in">
+        <v-scroll-x-transition hide-on-leave mode="out-in" >
             <router-view></router-view>
-        </transition>
+        </v-scroll-x-transition>
 
     </v-app>
 </template>
@@ -29,6 +29,7 @@ $main-font: 'Palanquin', 'Roboto', sans-serif;
 $second-font: 'Lexend Deca', 'Roboto', sans-serif;
 
 #qrcomer {
+    background: linear-gradient(135deg, #eb4476, #e18855);
     
     h1, h2, h3, h4, h5, h6 {
         font-family: $main-font !important;

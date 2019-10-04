@@ -32,8 +32,13 @@ export default {
 </script>
 
 <style lang="scss">
-.v-content__wrap {
-    display: flex;
-    flex-direction: column;
+.v-content {
+    background: $c-white;
+    
+    .v-content__wrap {
+        display: flex;
+        flex-direction: column;
+    }
 }
+
 </style>
