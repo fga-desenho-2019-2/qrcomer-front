@@ -20,18 +20,6 @@
             <span class="font-weight-light">Comer</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn
-            text
-            tile
-            href="#">
-            <span class="mr-2 text-shadow">Login</span>
-        </v-btn>
-        <v-btn
-            text
-            tile
-            href="#">
-            <span class="mr-2 text-shadow">Cadastrar</span>
-        </v-btn>
     </v-app-bar>
 </template>
 

@@ -4,7 +4,6 @@
 
         <router-view name="UserProfileHeader"></router-view>
 
-       
         <router-view></router-view>
 
     </v-app>
