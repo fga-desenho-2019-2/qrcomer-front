@@ -13,13 +13,13 @@
 <script>
 import Footer from './Footer.vue'
 import Banner from './Banner.vue'
-// import CardUsuario from './CardUsuario.vue'
+import CardUsuario from './CardUsuario.vue'
 
 export default {
     components: {
         "QrcBanner": Banner,
         "QrcFooter": Footer,
-//        "QrcCardUsuario": CardUsuario,
+        "QrcCardUsuario": CardUsuario,
     }
 }
 </script>
