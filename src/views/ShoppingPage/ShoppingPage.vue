@@ -1,18 +1,21 @@
 <template>
     <div class="shopping">
-        <Card type="shopping" :title="shopping.name"  image='https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg' ></Card>
+        <ShoppingCard type="shopping" :title="shopping.name"  image='https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg' />
         <div class="shopping__restaurants">
-            <Card v-for="restaurant in restaurants" :key="restaurant.cnpj" :image='restaurant.image' :title="restaurant.name" :description="restaurant.description" ></Card>
+            <RestaurantCard v-for="restaurant in restaurants" :key="restaurant.cnpj" :image='restaurant.image' :title="restaurant.name" :description="restaurant.description" />
         </div>
     </div>
 </template>
 
 <script>
-import Card from '../../components/Card'
+import ShoppingCard from '../../components/Cards/ShoppingCard'
+import RestaurantCard from '../../components/Cards/RestaurantCard'
+
 
 export default {
     components: {
-        'Card': Card
+        'ShoppingCard': ShoppingCard,
+        'RestaurantCard': RestaurantCard
     },
     data() {
         return {
@@ -70,7 +73,7 @@ export default {
                 },
                 {
                     "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-                    "cnpj": "12345675",
+                    "cnpj": "12345674",
                     "name": "Mcdonalds",
                     "description": "$$ - Burguers"
                 },
@@ -80,7 +83,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .shopping {
     
