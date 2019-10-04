@@ -1,12 +1,12 @@
 <template>
     <div class="card" >
-        <div class='card-image'>
-            <img class='image-content' :src='image' >
+        <div class='card__image'>
+            <img class='card__image__content' :src='image' >
         </div>
-        <div class="card-content">
-            <p class='card-title'>{{ title }}</p>
-            <p class='card-desc'>{{ description }}</p>
-            <p class='order-time'>{{ type }}</p>
+        <div class="card__content">
+            <p class='card__content__title'>{{ title }}</p>
+            <p class='card__content__desc'>{{ description }}</p>
+            <p class='card__content__order-time'>{{ orderTime }}</p>
         </div>
     </div>
 </template>
@@ -21,11 +21,15 @@ export default {
         },
         title: {
             type: String,
-            default: "Title"
+            default: "Nome restaurante"
         },
         description: {
             type: String,
-            default: ""
+            default: "$ - Categoria"
+        },
+        orderTime: {
+            type: String,
+            default: "15-20 min"
         },
         image: {
             type: String
@@ -35,68 +39,58 @@ export default {
 </script>
 
 <style lang="scss">
+
+$title-size: 14px;
+$desc-size: 12px;
+
 .card {
-    width: 18em;
-    height: 18em;
-    border: 1px solid purple;
-    background-color: $c-gray10;
+    width: 45vw;
+    max-width: 200px;
+    height: 45vw;
+    max-height: 200px;
+    background-color: $c-white;
     border-radius: 0 15px 0 15px;
     contain: content;
+    box-shadow: 0 4px 10px $c-shadow;
 
-    .card-image, .card-content {
-        height: 50%;
+    &__image {
+        height: 45%;
         width: 100%;
         contain: content;
 
-        .image-content {
+        &__content{
             max-width: 100%;
         }
     }
 
-    .card-content {
+    &__content {
+        height: 55%;
+        width: 100%;
+        contain: content;
         box-shadow: 0 -1px 15px 1px $c-gray80;
-        .card-title {
-            font-weight: bold;
-            font-size: 1.2em;
+        padding: 5%;
+        
+        &__title {
+            font-size: $title-size;
+            contain: content;
+        }
+
+        &__desc {
+            font-size: $desc-size;
+            color: $c-gray70;
+            contain: content;
+        }
+
+        &__order-time {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            font-size: $desc-size;
+            color: $c-gray70;
+            text-align: end;        
         }
     }
 }
 
-
-@media screen and (min-width: 360px) {
-    .qrc-membro {
-        height: 140px;
-        width: 140px;
-
-        .qrc-membro-text {
-            font-size: 12px;
-        }
-    }
-}
-
-@media screen and (min-width: 400px) {
-    .qrc-membro {
-        height: 160px;
-        width: 160px;
-
-        .qrc-membro-text {
-            font-size: 15px;
-        }
-    }
-}
-
-@media screen and (min-width: 640px) {
-    .qrc-membro {
-        height: 180px;
-        width: 180px;
-    }
-}
-
-@media screen and (min-width: 900px) {
-    .qrc-membro {
-        height: 200px;
-        width: 200px;
-    }
-}
 
 </style>

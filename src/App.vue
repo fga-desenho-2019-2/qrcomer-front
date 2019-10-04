@@ -27,7 +27,7 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
     h1, h2, h3, h4, h5, h6 {
         font-family: $main-font !important;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin: 0;
     }
     h1 { font-size: 48px}
     h2 { font-size: 42px}
@@ -38,6 +38,7 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
 
     p, span, a {
         font-family: $second-font !important;
+        margin: 0;
     }
 
     b {
