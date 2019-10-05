@@ -1,13 +1,12 @@
 <template>
     <v-content class="d-flex flex-column pt-0">
-            <div>
-                <QrcBanner/>
+        <div>
+            <QrcBanner/>
 
-                <QrcCardUsuario/>
-
-            </div>
-            <QrcFooter/>
-        </v-content>
+             <QrcUsuario/>
+        </div>
+        <QrcFooter/>
+    </v-content>
 </template>
 
 <script>
@@ -19,7 +18,7 @@ export default {
     components: {
         "QrcBanner": Banner,
         "QrcFooter": Footer,
-        "QrcCardUsuario": CardUsuario,
+        "QrcUsuario": CardUsuario,
     }
 }
 </script>

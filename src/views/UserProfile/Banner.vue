@@ -1,9 +1,17 @@
 <template>
     <section id="banner">
         <v-container>
+            <div class="card-usuario-section">
+                <QrcUsuario 
+                        v-for="usuario in cardusuario"
+                        :key="usuario.id"
+                        :class="`usuario-${usuario.id}`"
+                        :github="usuario.github"
+                        :img="usuario.img"
+                        :name="usuario.name"/>
+            </div>
             <v-row>
-                <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">
-                    
+                <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">    
                 </v-col>
             </v-row>
         </v-container>

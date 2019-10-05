@@ -2,11 +2,11 @@
     <div class="qrc-usuario">
         <a
             :href="github"
-            target="_blank" >
+            target="_blank"
+            class="qrc-usuario-link">
             <img
                 :src="img"
                 :alt="name">
-            <p class="qrc-usuario-text">{{name}}</p>
         </a>
     </div>
 </template>
@@ -39,22 +39,24 @@ export default {
     justify-content: center;
     background: transparent !important;
     margin: 20px;
-    transition: all 0.5s;
 
-        &:hover {
-            transform: translate(0, -10px);
-            img {
-                filter: brightness(0.25);
-                box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-            }
-            .qrc-usuario-text {
-                opacity: 1;
-                &::before {
-                    background: linear-gradient(135deg, #eb4476, #e18855);
-                    transform: translateX(-50%) scale(1);
-                }
-            }
-        }
+    .qrc-usuario-link {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: $c-white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 30px;
+        box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        background: transparent ;
+
+        
 
         img {
             object-fit: cover;
@@ -63,30 +65,10 @@ export default {
             top: 0;
             left: 0;
             z-index: -1;
-            height: 100%;
-            width: 100%;
-            transition: all 0.25s;
+            height: 125%;
+            width: 125%;
         }
-
-        .qrc-usuario-text {
-            text-decoration: none;
-            text-align: center;
-            position: relative;
-            opacity: 0;
-            transition: all 0.25s 0.15s;
-
-            &::before {
-                position: absolute;
-                content: "";
-                background: transparent;
-                height: 3px;
-                width: 100%;
-                bottom: 0px;
-                left: 50%;
-                transition: all 0.25s 0.15s;
-                transform: translateX(-50%) scale(0.2);
-            }
-        }
+    }
 }
 
 @media screen and (min-width: 360px) {
