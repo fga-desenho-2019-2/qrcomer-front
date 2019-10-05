@@ -5,6 +5,7 @@ import LandingPageHeader from '../views/LandingPage/Header.vue'
 import EditUser from '../views/EditUserProfile/EditUser.vue'
 import User from '../views/UserProfile/User.vue'
 import LoggedUserHeader from '../components/LoggedUserHeader.vue'
+import Menu from '../views/MenuPage/Menu.vue'
 
 Vue.use(Router)
 
@@ -35,5 +36,12 @@ export default new Router({
                 LoggedUserHeader
             }
         },
+        {
+            path: '/menu-page',
+            name: 'menu',
+            components:{
+                default: Menu
+            }
+        }
     ]
 })
