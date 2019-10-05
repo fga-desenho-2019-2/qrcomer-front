@@ -8,7 +8,8 @@
                     :description="item.description"
                     :img="item.img"
                     :name="item.name"
-                    :details="item.details"/>
+                    :details="item.details"
+                    :value="item.value"/>
         </div>
     </v-content>
 </template>
@@ -26,6 +27,7 @@ data() {
                     name: 'Combo Big Mac',
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+                    value: 22.19,
                     img: require('@/assets/images/bigmac.svg')
                 },
                 {
@@ -33,6 +35,7 @@ data() {
                     name: 'Quarteirão',
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+                    value: 22.10,
                     img: require('@/assets/images/bigmac.svg')
                 }
             ]

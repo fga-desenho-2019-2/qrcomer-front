@@ -1,40 +1,41 @@
 <template>
-    <div class="qrc-item">
-        <a 
-            :href="description" 
-            target="_blank" 
-            class="qrc-item-link">
-            <img 
-                :src="img" 
-                :alt="name">
-            <p class="qrc-item-name">{{name}}</p>
-            <p class="qrc-item-description"> {{details}}</p>
-        </a>
-    </div>
+  <div class="qrc-item">
+    <a :href="description" target="_blank" class="qrc-item-link">
+      <img :src="img" :alt="name" />
+      <div class="qrc-item-details">
+        <p class="qrc-item-name">{{name}}</p>
+        <p class="qrc-item-description">{{details}}</p>
+        <p class="qrc-item-value">R$ {{value}}</p>
+      </div>
+    </a>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "Membro",
-    props: {
-        description: {
-            required: true,
-            type: String,
-        },
-        name: {
-            required: true,
-            type: String,
-        },
-        img: {
-            required: true,
-            type: String,
-        },
-        details: {
-            required: true,
-            type: String,
-        }
+  name: "Membro",
+  props: {
+    description: {
+      required: true,
+      type: String
+    },
+    name: {
+      required: true,
+      type: String
+    },
+    img: {
+      required: true,
+      type: String
+    },
+    value: {
+      required: true
+    },
+    details: {
+      required: true,
+      type: String
     }
-}
+  }
+};
 </script>
 
 <style lang="scss">
@@ -48,7 +49,7 @@ export default {
     transition: all 0.5s;
     border-radius: 0 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    
+
     .qrc-item-link {
         height: 100%;
         width: 100%;
@@ -56,12 +57,9 @@ export default {
         z-index: 99;
         display: flex;
         justify-content: center;
-        text-decoration: none;
-        color: $c-black;
-        font-size: 18px;
-        font-weight: bold;
         align-items: flex-end;
-        background: transparent !important;
+        text-decoration: none;
+        margin-top: 0.3em;
         transition: all 0.25s;
 
         img {
@@ -74,59 +72,87 @@ export default {
             transition: all 0.25s;
         }
 
-        .qrc-item-name{
-            position: relative;
-            display: flex;
-            align-self: center;
-            margin-top: 3em;
+        .qrc-item-details {
+            margin-left: 0.5em;
+
+            .qrc-item-name {
+                position: relative;
+                display: flex;
+                align-self: center;
+                color: $c-black;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .qrc-item-description {
+                color: #797979;
+                margin-bottom: 0em;
+            }
         }
 
-        .qrc-item-description{
-            font-size: 10px;
-            color:#797979;
+        .qrc-item-value {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 1em;
+            color: $second-color;
         }
     }
 
-        &:hover {
-            transform: translate(0, -10px);
-        }
-
+    &:hover {
+    transform: translate(0, -10px);
+    }
 }
 
 @media screen and (min-width: 360px) {
-    .qrc-item {
-        height: 140px;
-        width: 140px;
+  .qrc-item {
+    height: 140px;
+    width: 140px;
 
-        .qrc-item-name {
-            font-size: 12px;
-        }
+    .qrc-item-name {
+        font-size: 10px;
     }
+    
+    .qrc-item-description{
+        font-size: 8px;
+    }
+
+    .qrc-item-value{
+        font-size: 10px;
+    }
+  }
 }
 
 @media screen and (min-width: 400px) {
-    .qrc-item {
-        height: 160px;
-        width: 160px;
+  .qrc-item {
+    height: 160px;
+    width: 160px;
 
-        .qrc-item-name {
-            font-size: 15px;
-        }
+    .qrc-item-name {
+      font-size: 15px;
     }
+
+    .qrc-item-description{
+        font-size: 13px;
+    }
+
+    .qrc-item-value{
+        font-size: 18px;
+    }
+  }
 }
 
 @media screen and (min-width: 640px) {
-    .qrc-item {
-        height: 180px;
-        width: 180px;
-    }
+  .qrc-item {
+    height: 180px;
+    width: 180px;
+  }
 }
 
 @media screen and (min-width: 900px) {
-    .qrc-item {
-        height: 200px;
-        width: 200px;
-    }
+  .qrc-item {
+    height: 200px;
+    width: 200px;
+  }
 }
-
 </style>
