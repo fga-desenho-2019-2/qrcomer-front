@@ -10,10 +10,6 @@
                         :img="usuario.img"
                         :name="usuario.name"/>
             </div>
-            <v-row>
-                <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">    
-                </v-col>
-            </v-row>
         </v-container>
     </section>
 </template>
