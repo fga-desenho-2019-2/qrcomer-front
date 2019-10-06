@@ -1,16 +1,23 @@
 <template>
     <section id="card-usuario" class="card-usuario">
-        <v-container>
             <div class="card-usuario-section">
-                <QrcUsuario 
+                <QrcUsuario
                     v-for="usuario in cardusuario"
                     :key="usuario.id"
                     :class="`usuario-${usuario.id}`"
-                    :github="usuario.github"
                     :img="usuario.img"
                     :name="usuario.name"/>
+                <v-btn
+                    href="#"
+                    min-width="30px"
+                    class="qrc-circle primary" fab>
+                    <span class="mb-1">
+                        <font size="+3.5">
+                            +
+                        </font>
+                    </span>
+                </v-btn>
             </div>
-        </v-container>
     </section>
 </template>
 
@@ -23,9 +30,8 @@ export default {
             cardusuario: [
                 {
                     id:1,
-                    name: 'Alan Ronison',
-                    github: 'https://github.com/alanrslima',
-                    img: require('@/assets/images/membros/alan.jpeg')
+                    name: 'Blank',
+                    img: require('@/assets/images/profile/blank-profile-picture-.png')
                 },
             ]
         }
@@ -39,19 +45,19 @@ export default {
 <style lang="scss">
     #card-usuario {
         padding: 40px 0;
-        border-radius: 0 20px;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin-left: 18em;
     }
 
-    .usuario-section {
+    .card-usuario-section {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         margin-right: -10px;
         margin-left: -10px;
+        align-items: center;
     }
+
+    .card-usuario-section:first-child{
+        z-index: -1;
+    }
+
 </style>

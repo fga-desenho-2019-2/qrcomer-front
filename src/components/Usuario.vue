@@ -1,7 +1,6 @@
 <template>
     <div class="qrc-usuario">
         <a
-            :href="github"
             target="_blank"
             class="qrc-usuario-link">
             <img
@@ -15,10 +14,6 @@
 export default {
     name: "Usuario",
     props: {
-        github: {
-            required: true,
-            type: String,
-        },
         name: {
             required: true,
             type: String,
@@ -53,7 +48,7 @@ export default {
         font-size: 18px;
         font-weight: bold;
         padding: 30px;
-        box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        //box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         background: transparent ;
 
         
@@ -67,6 +62,7 @@ export default {
             z-index: -1;
             height: 125%;
             width: 125%;
+            box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         }
     }
 }
@@ -75,10 +71,6 @@ export default {
     .qrc-usuario {
         height: 140px;
         width: 140px;
-
-        .qrc-usuario-text {
-            font-size: 12px;
-        }
     }
 }
 

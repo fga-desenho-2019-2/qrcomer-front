@@ -6,7 +6,6 @@
                         v-for="usuario in cardusuario"
                         :key="usuario.id"
                         :class="`usuario-${usuario.id}`"
-                        :github="usuario.github"
                         :img="usuario.img"
                         :name="usuario.name"/>
             </div>
@@ -21,7 +20,9 @@
 <style lang="scss">
 #banner {
     background: linear-gradient(135deg, #eb4476, #e18855);
-    min-height: 85vh;
+//    background: url(@/assets/images/Rectangle.svg);
+    
+    min-height: 1vh;
     position: relative;
     z-index: 99;
     display: flex;
@@ -48,6 +49,14 @@
             margin-bottom: 5vh;
             filter: drop-shadow(0px 4px 4px $c-gray70)
         }
+    }
+
+    svg {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 10vw;
+        /* set height to pixels if you want angle to change with screen width */
     }
 }
 </style>

@@ -3,7 +3,9 @@
         <div>
             <QrcBanner/>
 
-             <QrcUsuario/>
+            <QrcUsuario/>
+
+            <QrcInfo/>
         </div>
         <QrcFooter/>
     </v-content>
@@ -13,12 +15,14 @@
 import Footer from './Footer.vue'
 import Banner from './Banner.vue'
 import CardUsuario from './CardUsuario.vue'
+import ProfileInfo from './ProfileInfo.vue'
 
 export default {
     components: {
         "QrcBanner": Banner,
         "QrcFooter": Footer,
         "QrcUsuario": CardUsuario,
+        "QrcInfo": ProfileInfo,
     }
 }
 </script>
