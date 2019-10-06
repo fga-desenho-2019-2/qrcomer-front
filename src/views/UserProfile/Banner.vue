@@ -1,20 +1,60 @@
 <template>
-    <section id="banner">
-
+    <section id="banner" class="banner">
+        <v-container>
+            <v-row>
+                <v-col cols=12 sm=12 md=12 lg=12 class="col-banner">
+                    <div class="card-usuario-section">
+                        <v-btn
+                            href="#"
+                            min-width="30px"
+                            class="qrc-circle primary" fab>
+                            <span class="mb-1">
+                                <font size="+3.5">
+                                    +
+                                </font>
+                            </span>
+                        </v-btn>
+                        <QrcUsuario
+                            v-for="usuario in cardusuario"
+                            :key="usuario.id"
+                            :class="`usuario-${usuario.id}`"
+                            :img="usuario.img"
+                            :name="usuario.name"/>
+                    </div>
+                </v-col>
+            </v-row>
+        </v-container>
     </section>
 </template>
 
-<style lang="scss">
+<script>
+import Usuario from '../../components/Usuario.vue'
+
+export default {
+    data() {
+        return {
+            cardusuario: [
+                {
+                    id:1,
+                    name: 'Blank',
+                    img: require('@/assets/images/profile/blank-profile-picture-.png')
+                },
+            ]
+        }
+    },
+    components: {
+        'QrcUsuario': Usuario,
+    }
+}
+</script>
+
+<style lang="scss" scoped>
 #banner {
-    background: linear-gradient(135deg, #eb4476, #e18855);
-//    background: url(@/assets/images/Rectangle.svg);
-    
-    min-height: 1vh;
-    position: relative;
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    padding-top: 64px;
+        margin:0;
+        min-height: 45vh;
+        background: linear-gradient(to bottom right, transparent 50%, #fafafa 40%), linear-gradient(40deg, #eb4476, #e18855) #fafafa;
+        background-size:100% auto;
+        transition:0.5s;
 
     .banner {
         &--title {
@@ -38,12 +78,10 @@
         }
     }
 
-    svg {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 10vw;
-        /* set height to pixels if you want angle to change with screen width */
+  /* extra test*/
+    &:hover {
+        background-size: 125% auto;/* add some extra tunning to deg direction and size ?*/
     }
+
 }
 </style>

@@ -1,24 +1,5 @@
 <template>
-    <section id="card-usuario" class="card-usuario">
-            <div class="card-usuario-section">
-                <QrcUsuario
-                    v-for="usuario in cardusuario"
-                    :key="usuario.id"
-                    :class="`usuario-${usuario.id}`"
-                    :img="usuario.img"
-                    :name="usuario.name"/>
-                <v-btn
-                    href="#"
-                    min-width="30px"
-                    class="qrc-circle primary" fab>
-                    <span class="mb-1">
-                        <font size="+3.5">
-                            +
-                        </font>
-                    </span>
-                </v-btn>
-            </div>
-    </section>
+
 </template>
 
 <script>
