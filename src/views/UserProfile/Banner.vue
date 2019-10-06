@@ -1,15 +1,6 @@
 <template>
     <section id="banner">
-        <v-container>
-            <div class="card-usuario-section">
-                <QrcUsuario 
-                        v-for="usuario in cardusuario"
-                        :key="usuario.id"
-                        :class="`usuario-${usuario.id}`"
-                        :img="usuario.img"
-                        :name="usuario.name"/>
-            </div>
-        </v-container>
+
     </section>
 </template>
 

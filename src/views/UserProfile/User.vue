@@ -2,11 +2,11 @@
     <v-content class="d-flex flex-column pt-0">
         <div>
             <QrcBanner/>        
-            <QrcCardUsuario/>
+            <QrcUsuario/>
                 <form>
                     <div>
                         <label for="name">Seu nome</label>
-                        <input type="text" id="name" name="name">
+                        <input type="name" id="name" name="name">
                     </div>    
                     <div>
                         <label for="email">Seu e-mail</label>
@@ -17,8 +17,8 @@
                         <input type="password" id="password" name="password">
                     </div>
                     <div>
-                        <label for="telephone">Seu telefone</label>
-                        <input type="telephone" id="telephone" name="telephone">
+                        <label for="phone">Seu telefone</label>
+                        <input type="phone" id="phone" name="phone">
                     </div>
                      <div>
                         <label for="cpf">Seu CPF</label>
@@ -35,14 +35,12 @@
 import Footer from '../LandingPage/Footer.vue'
 import Banner from './Banner.vue'
 import CardUsuario from './CardUsuario.vue'
-// import ProfileInfo from './ProfileInfo.vue'
 
 export default {
     components: {
         "QrcBanner": Banner,
         "QrcFooter": Footer,
         "QrcUsuario": CardUsuario,
-        // "QrcInfo": ProfileInfo,
         }
 }
 </script>

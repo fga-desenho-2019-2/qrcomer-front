@@ -45,12 +45,7 @@ export default {
 <style lang="scss">
     #card-usuario {
         padding: 40px;
-        border-radius: 0 20px;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin-inline: 2em;
+        
     }
 
     .card-usuario-section {
