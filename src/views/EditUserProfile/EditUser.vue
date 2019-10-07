@@ -2,7 +2,7 @@
     <v-content class="d-flex flex-column pt-0">
         <div>
             <QrcBanner/>
-            <QrcCardUsuario/>
+            <QrcEditUsuario/>
             <v-row align="center">
                     <v-row justify="space-around">
                     <v-form
@@ -46,21 +46,21 @@
                     ></v-text-field>
 
                     <v-btn
-                        :disabled="!valid"
                         color="success"
                         class="qrc-btn primary my-2 "
                         @click="validate"
                     >
-                        Atualizar
+                        Confirmar
                     </v-btn>
 
                     <v-btn
-                      color="error"
-                      class="qrc-btn primary my-2"
-                      @click="delet"
+                        color="error"
+                        class="qrc-btn primary my-2 "
+                        @click="reset"
                     >
-                      Deletar
+                        Apagar dados
                     </v-btn>
+
 
                     </v-form>
                     </v-row>
@@ -73,21 +73,41 @@
 <script>
 import Footer from '../LandingPage/Footer.vue'
 import Banner from './Banner.vue'
-import CardUsuario from './CardUsuario.vue'
+import EditUsuario from './EditUsuario.vue'
 
 export default {
     components: {
         "QrcBanner": Banner,
         "QrcFooter": Footer,
-        "QrcCardUsuario": CardUsuario,
+        "QrcEditUsuario": EditUsuario,
     },
     data: () => ({
       valid: true,
       name: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 50) || 'Name must be less than 10 characters',
+      ],
       email: '',
+      emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
       password: '',
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => (v && v.length >= 8) || 'Password must be bigger than 8 characters',
+      ],
       telephone: '',
+      telefoneRules: [
+        v => !!v || 'Telephone is required',
+        v => /.+@.+\..+/.test(v) || 'Telephone must be valid',
+      ],
       cpf: '',
+      cpfRules: [
+        v => !!v || 'CPF is required',
+        v => /.+@.+\..+/.test(v) || 'CPF must be valid',
+      ],
     }),
 
     methods: {
@@ -96,8 +116,8 @@ export default {
           this.snackbar = true
         }
       },
-      delet () {
-        this.$refs.delete()
+      reset () {
+        this.$refs.form.reset()
       },
     },
 }
@@ -108,4 +128,18 @@ export default {
     display: flex;
     flex-direction: column;
 }
+
+ #card-usuario {
+        padding: 40px;
+    }
+
+    .card-usuario-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-right: -10px;
+        margin-left: -10px;
+        align-items: center;
+    }
+
 </style>

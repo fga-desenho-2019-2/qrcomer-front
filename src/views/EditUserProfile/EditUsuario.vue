@@ -4,7 +4,7 @@ import Usuario from '../../components/Usuario.vue'
 export default {
     data() {
         return {
-            cardusuario: [
+            editusuario: [
                 {
                     id:1,
                     name: 'Blank',
@@ -14,7 +14,7 @@ export default {
         }
     },
     components: {
-        'QrcCardUsuario': Usuario,
+        'QrcEditUsuario': Usuario,
     }
 }
 </script>
