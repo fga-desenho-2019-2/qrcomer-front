@@ -17,7 +17,7 @@ export default {
     props: {
         title: {
             type: String,
-            default: "Nome shopping"
+            required: true
         },
         city: {
             type: String,

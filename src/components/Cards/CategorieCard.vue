@@ -14,15 +14,12 @@ export default {
     name: "ShoppingCard",
     props: {
         icon: {
-            type: String
+            type: String,
+            required: true
         },
         title: {
             type: String,
-            default: "Nome shopping"
-        },
-        description: {
-            type: String,
-            default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+            required: true
         }
     }
 }
@@ -31,13 +28,12 @@ export default {
 <style lang="scss" scoped>
     .categorie-card {
         width: 50%;
-        max-width: 400px;
+        max-width: 200px;
         height: 60vw;
-        max-height: 400px;
+        max-height: 240px;
         contain: content;
         display: flex;
         padding: 10px;
-        margin: auto;
     
         &__image {
             position: absolute;
@@ -61,12 +57,11 @@ export default {
                 height: 35%;
                 width: 100%;
                 align-self: flex-end;
-                margin-top: 1.5em;
                 margin-right: 1em;
-                margin-bottom: 1em;
                 margin-left: 1em;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                vertical-align: middle;
 
                 &__title {
                     font-size: 18px;
@@ -76,6 +71,10 @@ export default {
                     text-align: center;
                 }
             }
+        }
+
+        &:active {
+            opacity: 0.6;
         }
     }
 </style>

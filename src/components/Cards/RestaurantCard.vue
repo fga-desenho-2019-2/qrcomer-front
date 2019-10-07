@@ -19,18 +19,19 @@ export default {
     props: {
         title: {
             type: String,
-            default: "Nome restaurante"
+            required: true
         },
         description: {
             type: String,
-            default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+            required: true
         },
         orderTime: {
             type: String,
-            default: "15-20 min"
+            required: true
         },
         image: {
-            type: String
+            type: String,
+            required: true
         }
     }
 }
@@ -51,6 +52,7 @@ $desc-size: 12px;
     contain: content;
     box-shadow: 0 4px 10px $c-shadow;
     margin: 2vw;
+    align-self: flex-start;
 
     &__image {
         height: 45%;
@@ -88,6 +90,10 @@ $desc-size: 12px;
             color: $c-gray70;
             text-align: end;        
         }
+    }
+
+    &:active {
+        opacity: 0.6;
     }
 }
 

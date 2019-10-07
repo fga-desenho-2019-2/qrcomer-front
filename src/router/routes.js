@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/LandingPage/Home.vue'
-import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
-import ShoppingCategories from '../views/ShoppingPage/Categories.vue'
+import ShoppingPage from '../views/ShoppingPage.vue'
+import ShoppingCategories from '../views/CategoriesPage.vue'
 
 Vue.use(Router)
 

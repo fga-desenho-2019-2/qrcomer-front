@@ -4,9 +4,9 @@
         <v-input aria-placeholder="Pesquisar Categoria"></v-input>
         <div class="restaurantCategories__cards">
             <CategorieCard
-            v-for="category in categories"
-            :key="category.name" 
-            :nome="category.name"
+            v-for="(category, index) in categories"
+            :key="category.name + index" 
+            :title="category.name"
             :icon="category.icon"
             />
         </div>
@@ -15,9 +15,10 @@
 
 <script>
 
-import CategorieCard from '../../components/Cards/CategorieCard.vue'
+import CategorieCard from '../components/Cards/CategorieCard.vue'
 
 export default {
+        name: "CategoriesPage",
         components: {
             'CategorieCard': CategorieCard
         },
@@ -36,27 +37,27 @@ export default {
                 this.categories = [
                     {
                         name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        icon: require('../assets/images/icon_fastfood.png')
                     },
                     {
                         name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        icon: require('../assets/images/icon_fastfood.png')
                     },
                     {
                         name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        icon: require('../assets/images/icon_fastfood.png')
                     },
                     {
                         name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        icon: require('../assets/images/icon_fastfood.png')
                     },
                     {
                         name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        icon: require('../assets/images/icon_fastfood.png')
                     },
                     {
                         name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        icon: require('../assets/images/icon_fastfood.png')
                     },
                 ]
             }
@@ -67,6 +68,7 @@ export default {
 
 <style lang="scss" scoped>
     .restaurantCategories {
+
         h1 {
             padding-top: .5em;
             padding-bottom: .5em;
@@ -76,6 +78,7 @@ export default {
         &__cards {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
         }
     }
 </style>
