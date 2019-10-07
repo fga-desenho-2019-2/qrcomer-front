@@ -45,7 +45,7 @@ export default {
         }
 
         &__card {
-            width: 50%;
+            width: 100%;
             height: 80%;
             background-color: #ffffff;
             bottom: 0;
