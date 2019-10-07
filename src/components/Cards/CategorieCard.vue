@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
     .categorie-card {
         width: 50%;
-        max-width: 1000px;
+        max-width: 400px;
         height: 60vw;
         max-height: 400px;
         contain: content;
@@ -73,6 +73,7 @@ export default {
                     padding-bottom: 2%;
                     contain: content;
                     font-weight: bold;
+                    text-align: center;
                 }
             }
         }

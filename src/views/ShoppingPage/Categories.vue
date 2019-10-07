@@ -1,6 +1,6 @@
 <template>
     <div class='restaurantCategories'>
-        <h1>Cateorias</h1>
+        <h1>Categorias</h1>
         <v-input aria-placeholder="Pesquisar Categoria"></v-input>
         <div class="restaurantCategories__cards">
             <CategorieCard
