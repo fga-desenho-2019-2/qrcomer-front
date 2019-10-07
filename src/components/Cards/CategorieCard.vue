@@ -41,8 +41,9 @@ export default {
     
         &__image {
             position: absolute;
+            left: 50%;
+            transform: translate(-50%);
             height: 70%;
-            right: 10px;
             z-index: 1;
         }
 

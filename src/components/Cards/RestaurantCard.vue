@@ -42,15 +42,15 @@ $title-size: 14px;
 $desc-size: 12px;
 
 .card-restaurant {
-    width: 44vw;
+    width: 45vw;
     max-width: 200px;
-    height: 44vw;
+    height: 45vw;
     max-height: 200px;
     background-color: #ffffff;
     border-radius: 0 15px;
     contain: content;
     box-shadow: 0 4px 10px $c-shadow;
-    margin: 10px;
+    margin: 2vw;
 
     &__image {
         height: 45%;

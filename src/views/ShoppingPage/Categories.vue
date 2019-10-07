@@ -3,30 +3,12 @@
         <h1>Cateorias</h1>
         <v-input aria-placeholder="Pesquisar Categoria"></v-input>
         <div class="restaurantCategories__cards">
-            <CategorieCard 
-            nome='Fast Food'
-            :icon='icon'
-        />
-        <CategorieCard 
-            nome='Fast Food'
-            :icon='icon'
-        />
-        <CategorieCard 
-            nome='Fast Food'
-            :icon='icon'
-        />
-        <CategorieCard 
-            nome='Fast Food'
-            :icon='icon'
-        />
-        <CategorieCard 
-            nome='Fast Food'
-            :icon='icon'
-        />
-        <CategorieCard 
-            nome='Fast Food'
-            :icon='icon'
-        />
+            <CategorieCard
+            v-for="category in categories"
+            :key="category.name" 
+            :nome="category.name"
+            :icon="category.icon"
+            />
         </div>
     </div>
 </template>
@@ -41,7 +23,42 @@ export default {
         },
         data() {
             return {
-                icon: require('../../assets/images/icon_fastfood.png')
+                categories: {
+                    type: Array
+                }
+            }
+        },
+        created () {
+            this.getCategories();
+        },
+        methods: {
+            getCategories: function () {
+                this.categories = [
+                    {
+                        name: "Fast Food",
+                        icon: require('../../assets/images/icon_fastfood.png')
+                    },
+                    {
+                        name: "Fast Food",
+                        icon: require('../../assets/images/icon_fastfood.png')
+                    },
+                    {
+                        name: "Fast Food",
+                        icon: require('../../assets/images/icon_fastfood.png')
+                    },
+                    {
+                        name: "Fast Food",
+                        icon: require('../../assets/images/icon_fastfood.png')
+                    },
+                    {
+                        name: "Fast Food",
+                        icon: require('../../assets/images/icon_fastfood.png')
+                    },
+                    {
+                        name: "Fast Food",
+                        icon: require('../../assets/images/icon_fastfood.png')
+                    },
+                ]
             }
         }
 }

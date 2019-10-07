@@ -4,7 +4,8 @@
         <div class="card-shopping__card">
             <div class="card-shopping__card__text">
                 <p class="card-shopping__card__text__title">Você está no {{ title }}</p>
-                <p class="card-shopping__card__text__desc">{{ description }}</p>
+                <p class="card-shopping__card__text__desc">{{ city }} - {{ state }}</p>
+                <p class="card-shopping__card__text__desc">{{ neighborhood }}</p>
             </div>
         </div>
     </div>
@@ -18,9 +19,14 @@ export default {
             type: String,
             default: "Nome shopping"
         },
-        description: {
+        city: {
             type: String,
-            default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+        },
+        state: {
+            type: String,
+        },
+        neighborhood: {
+            type: String,
         }
     }
 }
@@ -30,8 +36,8 @@ export default {
     .card-shopping {
         width: 100vw;
         max-width: 1000px;
-        height: 95vw;
-        max-height: 400px;
+        height: 80vw;
+        max-height: 300px;
         contain: content;
         display: flex;
         padding: 10px;
@@ -39,13 +45,13 @@ export default {
     
         &__image {
             position: absolute;
-            height: 50%;
+            height: 55%;
             right: 10px;
             z-index: 1;
         }
 
         &__card {
-            width: 50%;
+            width: 100%;
             height: 80%;
             background-color: #ffffff;
             bottom: 0;
@@ -55,10 +61,9 @@ export default {
             display: flex;
 
             &__text {
-                height: 50%;
+                height: 35%;
                 width: 100%;
                 align-self: flex-end;
-                margin-top: 1.5em;
                 margin-right: 1em;
                 margin-bottom: 1em;
                 margin-left: 1em;
