@@ -14,7 +14,7 @@ export default {
         }
     },
     components: {
-        'QrcEditUsuario': Usuario,
+        'QrcUsuario': Usuario,
     }
 }
 </script>

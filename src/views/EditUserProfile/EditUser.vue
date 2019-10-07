@@ -46,6 +46,7 @@
                     ></v-text-field>
 
                     <v-btn
+                        :disabled="!valid"
                         color="success"
                         class="qrc-btn primary my-2 "
                         @click="validate"

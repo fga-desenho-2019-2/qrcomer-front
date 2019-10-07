@@ -3,77 +3,89 @@
         <div>
             <QrcBanner/>
             <QrcCardUsuario/>
-            <v-row align="center">
+              <v-card
+                class="mx-auto"
+                max-width="350"
+              >
+                <v-card-text>
+                  <p class="display-1 text--accent">
+                    Nome
+                  </p>
+                </v-card-text>
+              </v-card>
+              <br />
+              <v-card
+                class="mx-auto"
+                max-width="350"
+              >
+                <v-card-text>
+                  <p class="display-1 text--accent">
+                    email@email.com
+                  </p>
+                </v-card-text>
+              </v-card>
+              <br />
+              <v-card
+                class="mx-auto"
+                max-width="350"
+              >
+                <v-card-text>
+                  <p class="display-1 text--accent">
+                    (XX) XXXXX-XXXX
+                  </p>
+                </v-card-text>
+              </v-card>
+              <br />
+              <v-card
+                class="mx-auto"
+                max-width="350"
+              >
+                <v-card-text>
+                  <p class="display-1 text--accent">
+                    XXX.XXX.XXX-XX
+                  </p>
+                </v-card-text>
+              </v-card>
+              <br />
+                <v-row align="center">
                     <v-row justify="space-around">
-                    <v-form
-                    ref="form"
-                    v-model="valid"
-                    >
-                    <v-text-field
-                        v-model="name"
-                        :counter="50"
-                        :rules="nameRules"
-                        label="Nome"
-                        required
-                    ></v-text-field>
-
-                    <v-text-field
-                        v-model="email"
-                        :rules="emailRules"
-                        label="E-mail"
-                        required
-                    ></v-text-field>
-
-                        <v-text-field
-                        v-model="password"
-                        :rules="passwordRules"
-                        label="Senha"
-                        required
-                    ></v-text-field>
-
-                    <v-text-field
-                        v-model="telephone"
-                        :rules="telephoneRules"
-                        label="Telefone"
-                        required
-                    ></v-text-field>
-
-                    <v-text-field
-                        v-model="cpf"
-                        :rules="cpfRules"
-                        label="CPF"
-                        required
-                    ></v-text-field>
 
                     <v-btn
-                        :disabled="!valid"
                         color="success"
                         class="qrc-btn primary my-2 "
                         @click="validate"
                     >
-                        Atualizar
+                        <a href="./edit-user" style="text-decoration:none">Editar dados</a>
                     </v-btn>
 
-                    <v-btn
-                      color="error"
-                      class="qrc-btn primary my-2"
-                      @click="delet"
-                    >
-                      Deletar
-                    </v-btn>
-
-                    </v-form>
+                      <v-dialog v-model="dialog" persistent max-width="290">
+                        <template v-slot:activator="{ on }">
+                          <v-btn color="success"
+                        class="qrc-btn primary my-2 " v-on="on">Apagar conta</v-btn>
+                          </template>
+                          <v-card>
+                            <v-card-title class="headline">Apagar a conta?</v-card-title>
+                              <v-card-text>Se a conta for apagada, registros de compras serão deletados. Esta não poderá ser recuperada.</v-card-text>
+                                <v-card-actions>
+                                  <div class="flex-grow-1"></div>
+                                  <v-btn color="success"
+                        class="qrc-btn primary my-2 "  @click=none>Cancelar</v-btn>
+                                  <v-btn color="success"
+                        class="qrc-btn primary my-2 " @click=vueDelete>Confirmar</v-btn>
+                                </v-card-actions>
+                              </v-card>
+                            </v-dialog>
+                          </v-row>
                     </v-row>
-                </v-row>
-        </div>
-            <QrcFooter/>
+          </div>
+        <QrcFooter/>
     </v-content>
 </template>
 
 <script>
-import Footer from '../LandingPage/Footer.vue'
 import Banner from './Banner.vue'
 import CardUsuario from './CardUsuario.vue'
+import Footer from '../LandingPage/Footer.vue'
 
 export default {
     components: {
@@ -81,22 +93,27 @@ export default {
         "QrcFooter": Footer,
         "QrcCardUsuario": CardUsuario,
     },
-    data: () => ({
-      valid: true,
-      name: '',
-      email: '',
-      password: '',
-      telephone: '',
-      cpf: '',
-    }),
+    // data: () => ({
+    //   valid: true,
+    //   name: '',
+    //   email: '',
+    //   password: '',
+    //   telephone: '',
+    //   cpf: '',
+    // }),
 
+    data () {
+      return {
+        dialog:false,
+      }
+    },
     methods: {
-      validate () {
-        if (this.$refs.form.validate()) {
+      edit () {
+        if (this.$refs.form.edit()) {
           this.snackbar = true
         }
       },
-      delet () {
+      vueDelete () {
         this.$refs.delete()
       },
     },
@@ -108,4 +125,12 @@ export default {
     display: flex;
     flex-direction: column;
 }
+
+.form{
+  justify-content: space-around;
+  margin-left: 3%;
+  margin-right: 3%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 </style>

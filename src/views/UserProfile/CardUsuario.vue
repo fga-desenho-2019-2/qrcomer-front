@@ -14,24 +14,22 @@ export default {
         }
     },
     components: {
-        'QrcCardUsuario': Usuario,
+        'QrcUsuario': Usuario,
     }
 }
 </script>
 
 <style lang="scss">
     #card-usuario {
-        padding: 40px;
-        
+        padding: 10% 20%; 
     }
 
     .card-usuario-section {
-        display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        margin-right: -10px;
-        margin-left: -10px;
         align-items: center;
     }
 
+    .card-usuario-section:first-child{
+        z-index: -1;
+    }
 </style>
