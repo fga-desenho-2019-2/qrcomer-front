@@ -4,7 +4,7 @@
             <QrcBanner/>
             <QrcUsuario/>
             <v-row align="center">
-                    <v-row justify="space-around">
+                    <v-row class="form">
                     <v-form
                     ref="form"
                     v-model="valid"
@@ -14,35 +14,35 @@
                         v-model="name"
                         :counter="50"
                         :rules="nameRules"
-                        label="Nome"
+                        label="Seu nome"
                         required
                     ></v-text-field>
 
                     <v-text-field
                         v-model="email"
                         :rules="emailRules"
-                        label="E-mail"
+                        label="Seu e-mail"
                         required
                     ></v-text-field>
 
                         <v-text-field
                         v-model="password"
                         :rules="passwordRules"
-                        label="Senha"
+                        label="Sua senha"
                         required
                     ></v-text-field>
 
                     <v-text-field
                         v-model="telephone"
                         :rules="telephoneRules"
-                        label="Telefone"
+                        label="Seu telefone"
                         required
                     ></v-text-field>
 
                     <v-text-field
                         v-model="cpf"
                         :rules="cpfRules"
-                        label="CPF"
+                        label="Seu CPF"
                         required
                     ></v-text-field>
 
@@ -62,35 +62,21 @@
                     >
                         Apagar dados
                     </v-btn>
-
-                    <v-btn
-                        color="warning"
-                        class="qrc-btn primary my-2 mx-auto"
-                        @click="resetValidation"
-                    >
-                        Apagar validação
-                    </v-btn>
-
                     </v-form>
                     </v-row>
                 </v-row>
         </div>
-            <QrcFooter/>
     </v-content>
 </template>
 
 <script>
-import Footer from '../LandingPage/Footer.vue'
 import Banner from './Banner.vue'
 import CardUsuario from './CardUsuario.vue'
-import TextInput from '../../components/TextInput.vue';
 
 export default {
     components: {
         "QrcBanner": Banner,
-        "QrcFooter": Footer,
         "QrcUsuario": CardUsuario,
-        TextInput,
     },
     data: () => ({
       valid: true,
@@ -130,9 +116,6 @@ export default {
       reset () {
         this.$refs.form.reset()
       },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      },
     },
 }
 </script>
@@ -141,5 +124,12 @@ export default {
 .v-content__wrap {
     display: flex;
     flex-direction: column;
+}
+
+.form{
+  justify-content: space-around;
+  margin-left: 3%;
+  margin-right: 3%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 </style>

@@ -64,7 +64,6 @@ export default {
         font-size: 18px;
         font-weight: bold;
         padding: 30px;
-        //box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         background: transparent ;
 
         
