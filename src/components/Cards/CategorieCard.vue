@@ -1,10 +1,9 @@
 <template>
-    <div class="card-shopping" >
-        <img class="card-shopping__image" src="../../assets/images/shopping-img.png">
-        <div class="card-shopping__card">
-            <div class="card-shopping__card__text">
-                <p class="card-shopping__card__text__title">Você está no {{ title }}</p>
-                <p class="card-shopping__card__text__desc">{{ description }}</p>
+    <div class="categorie-card" >
+        <img class="categorie-card__image" :src='icon'>
+        <div class="categorie-card__card">
+            <div class="categorie-card__card__text">
+                <p class="categorie-card__card__text__title">{{ title }}</p>
             </div>
         </div>
     </div>
@@ -14,6 +13,9 @@
 export default {
     name: "ShoppingCard",
     props: {
+        icon: {
+            type: String
+        },
         title: {
             type: String,
             default: "Nome shopping"
@@ -27,10 +29,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .card-shopping {
-        width: 100vw;
+    .categorie-card {
+        width: 50%;
         max-width: 1000px;
-        height: 95vw;
+        height: 60vw;
         max-height: 400px;
         contain: content;
         display: flex;
@@ -39,13 +41,13 @@ export default {
     
         &__image {
             position: absolute;
-            height: 50%;
+            height: 70%;
             right: 10px;
             z-index: 1;
         }
 
         &__card {
-            width: 50%;
+            width: 100%;
             height: 80%;
             background-color: #ffffff;
             bottom: 0;
@@ -55,7 +57,7 @@ export default {
             display: flex;
 
             &__text {
-                height: 50%;
+                height: 35%;
                 width: 100%;
                 align-self: flex-end;
                 margin-top: 1.5em;
@@ -66,16 +68,10 @@ export default {
                 text-overflow: ellipsis;
 
                 &__title {
-                    font-size: 16px;
+                    font-size: 18px;
                     padding-bottom: 2%;
                     contain: content;
                     font-weight: bold;
-                }
-
-                &__desc {
-                    font-size: 12px;
-                    color: $c-gray70;
-                    word-wrap: break-word;
                 }
             }
         }

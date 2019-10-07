@@ -1,5 +1,6 @@
 <template>
     <div class="shopping">
+        <a href='/restaurants/categories'>Categorias</a>
         <ShoppingCard type="shopping" :title="shopping.name"  image='https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg' />
         <div class="shopping__restaurants">
             <RestaurantCard v-for="restaurant in restaurants" :key="restaurant.cnpj" :image='restaurant.image' :title="restaurant.name" :description="restaurant.description" />
