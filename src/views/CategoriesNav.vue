@@ -5,7 +5,6 @@
             <p class="filter-nav__text">FILTRO</p>
         </div>
         <div class='restaurantCategories'>
-            <h1>Categorias</h1>
             <v-input aria-placeholder="Pesquisar Categoria"></v-input>
             <div class="restaurantCategories__cards">
                 <CategorieCard
