@@ -1,6 +1,6 @@
 <template>
     <div class="shopping">
-        <categories-nav :navStatus="navStatus"/>
+        <categories-nav :navStatus="navStatus" :handleNav="handleNav" />
         <v-btn
             @click="handleNav"
             min-width="250px"

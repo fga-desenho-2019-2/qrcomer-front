@@ -1,8 +1,8 @@
 <template>
     <div class="overlay" :class="navStatus">
         <div class="filter-nav">
-            <img/>
-            <p>FILTRO</p>
+            <img @click="handleNav" class="filter-nav__arrow" src="../assets/images/arrow.svg" />
+            <p class="filter-nav__text">FILTRO</p>
         </div>
         <div class='restaurantCategories'>
             <h1>Categorias</h1>
@@ -39,6 +39,10 @@ export default {
             navStatus: {
                 required: true,
                 type: String
+            },
+            handleNav: {
+                required: true,
+                type: Function
             }
         },
         created () {
@@ -88,11 +92,22 @@ export default {
         box-shadow: 0 4px 20px #0000001A;
         display: flex;
         align-items: center;
+        justify-content: center;
+
+        &__text {
+            font-size: 15px;
+        }
+
+        &__arrow {
+            position: absolute;
+            left: 10px;
+            transform: rotate(180deg);
+        }
     }
 
     .restaurantCategories {
-        height: calc(100% - 56px);
-        margin-top: 56px;
+        height: calc(100% - 50px);
+        margin-top: 50px;
 
         h1 {
             padding-top: .5em;
