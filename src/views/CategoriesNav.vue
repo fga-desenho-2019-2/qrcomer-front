@@ -5,7 +5,9 @@
             <p class="filter-nav__text">FILTRO</p>
         </div>
         <div class='restaurantCategories'>
-            <v-input aria-placeholder="Pesquisar Categoria"></v-input>
+            <div class="restaurantCategories__inputArea">
+                <v-text-field class="restaurantCategories__inputArea__input" color="#000000" single-line label="O que você está procurando?" prepend-inner-icon="mdi-magnify"></v-text-field>
+            </div>
             <div class="restaurantCategories__cards">
                 <CategorieCard
                 v-for="(category, index) in categories"
@@ -21,6 +23,7 @@
 <script>
 
 import CategorieCard from '../components/Cards/CategorieCard.vue'
+import place from '../assets/images/search.svg'
 
 export default {
         name: "CategoriesNav",
@@ -29,9 +32,8 @@ export default {
         },
         data() {
             return {
-                categories: {
-                    type: Array
-                }
+                categories: [],
+                icon: place
             }
         },
         props: {
@@ -118,6 +120,16 @@ export default {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+        }
+
+        &__inputArea {
+            padding-top: 40px;
+
+            &__input {
+                width: 90vw;
+                margin: auto;
+                font-family: 'Lexend Deca', 'Roboto', sans-serif;
+            }
         }
     }
 
