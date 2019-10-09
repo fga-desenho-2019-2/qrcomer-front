@@ -35,7 +35,7 @@
                     sm=12
                     md=6
                     lg=6>
-                    <v-form v-model="valid" ref="form">
+                    <v-form v-model="valid" ref="form" @submit.prevent="login">
                         <transition name="slide-x-transition" mode="out-in">
                             <div v-if="loginType" key="login">
                                 <v-text-field
@@ -130,6 +130,15 @@ export default {
     methods: {
         routeTo(route) {
             this.$router.push(route);
+        }, 
+        login: function() {
+            if (this.loginType) {
+                const { username, password } = this
+                this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+                    this.$router.push('/') //Todo: redirecionar para outra página
+                })
+            }
+            
         }
     }
 }
