@@ -29,7 +29,7 @@
           </v-row>
         </v-container>
       </v-form>
-      <v-col cols="12" justify-content="space-between">
+      <v-col cols="12" justify-content="center">
         <v-row justify="center">
           <v-btn
             :disabled="!valid"
@@ -38,9 +38,9 @@
             @click="validate"
           >Confirmar</v-btn>
 
-          <div class="divider"></div>
+          <!-- <div class="divider"></div> -->
 
-          <v-btn color="error" class="qrc-btn primary my-2" @click="reset">Apagar dados</v-btn>
+          <!-- <v-btn color="error" class="qrc-btn primary my-2" @click="reset">Apagar dados</v-btn> -->
         </v-row>
       </v-col>
     </div>
