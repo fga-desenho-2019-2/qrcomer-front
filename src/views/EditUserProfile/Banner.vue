@@ -3,18 +3,13 @@
     <v-container>
       <v-row>
         <v-col cols="12" sm="12" md="12" lg="12" class="col-banner">
-          <div class="card-usuario-section">
-            <!-- <v-btn href="#" min-width="30px" class="qrc-circle primary" fab>
-              <span class="mb-1">
-                <font size="6.5">+</font>
-              </span>
-            </v-btn>-->
-            <QrcEditUsuario
-              v-for="usuario in usuario"
-              :key="usuario.id"
-              :class="`usuario-${usuario.id}`"
-              :img="usuario.img"
-              :name="usuario.name"
+          <div class="card-membro-section">
+            <QrcEditMembro
+              v-for="membro in membro"
+              :key="membro.id"
+              :class="`membro-${membro.id}`"
+              :img="membro.img"
+              :name="membro.name"
             />
           </div>
         </v-col>
@@ -24,22 +19,22 @@
 </template>
 
 <script>
-import Usuario from "../../components/Usuario.vue";
+import Membro from "../../components/Membro.vue";
 
 export default {
   data() {
     return {
-      usuario: [
+      membro: [
         {
-          id: 1,
-          name: "Blank",
-          img: require("@/assets/images/profile/blank-profile-picture-.png")
+          id: 1 /** {{ user.id }}*/,
+          name: "UserName" /*{{ user.name }}*/,
+          img: require("@/assets/images/profile/blank-profile-picture-.png") /*(@assets/images/profile/{{ user.image }}.png)*/
         }
       ]
     };
   },
   components: {
-    QrcEditUsuario: Usuario
+    QrcEditMembro: Membro
   }
 };
 </script>
@@ -50,7 +45,7 @@ export default {
   min-height: 45vh;
   background: linear-gradient(to bottom right, transparent 50%, #fafafa 40%),
     linear-gradient(-40deg, #eb4476, #e18855) #fafafa;
-  background-size: 100% auto;
+  background-size: 125% auto;
   transition: 0.5s;
 
   .banner {
@@ -74,10 +69,13 @@ export default {
       filter: drop-shadow(0px 4px 4px $c-gray70);
     }
   }
+}
 
-  /* extra test*/
-  &:hover {
-    background-size: 125% auto; /* add some extra tunning to deg direction and size ?*/
-  }
+.card-membro-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
 }
 </style>
