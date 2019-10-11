@@ -3,29 +3,21 @@
     <div>
       <QrcBanner />
       <QrcCardUsuario />
-      <v-card class="mx-auto" max-width="350">
-        <v-card-text>
-          <p class="display-1 text--accent">Nome</p>
-        </v-card-text>
-      </v-card>
+      <p class="card">
+        <span style="width: 50px;">{{ user.name }}</span>
+      </p>
       <br />
-      <v-card class="mx-auto" max-width="350">
-        <v-card-text>
-          <p class="display-1 text--accent">email@email.com</p>
-        </v-card-text>
-      </v-card>
+      <p class="card">
+        <span style="width: 50px;">{{ user.email }}</span>
+      </p>
       <br />
-      <v-card class="mx-auto" max-width="350">
-        <v-card-text>
-          <p class="display-1 text--accent">(XX) XXXXX-XXXX</p>
-        </v-card-text>
-      </v-card>
+      <p class="card">
+        <span style="width: 50px;">{{ user.telephone }}</span>
+      </p>
       <br />
-      <v-card class="mx-auto" max-width="350">
-        <v-card-text>
-          <p class="display-1 text--accent">XXX.XXX.XXX-XX</p>
-        </v-card-text>
-      </v-card>
+      <p class="card">
+        <span style="width: 50px;">{{ user.cpf }}</span>
+      </p>
       <br />
 
       <v-col cols="12" justify-content="space-between">
@@ -60,27 +52,25 @@
 
 <script>
 import Banner from "./Banner.vue";
-import CardUsuario from "./CardUsuario.vue";
+import CardMembro from "./CardUsuario.vue";
 import Footer from "../LandingPage/Footer.vue";
 
 export default {
   components: {
     QrcBanner: Banner,
     QrcFooter: Footer,
-    QrcCardUsuario: CardUsuario
+    QrcCardUsuario: CardMembro
   },
-  // data: () => ({
-  //   valid: true,
-  //   name: '',
-  //   email: '',
-  //   password: '',
-  //   telephone: '',
-  //   cpf: '',
-  // }),
 
   data() {
     return {
-      dialog: false
+      dialog: false,
+      user: {
+        name: "username",
+        email: "user@email.com",
+        telephone: "(XX) XXXXX-XXXX",
+        cpf: "XXX.XXX.XXX-XX"
+      }
     };
   },
   methods: {
@@ -117,5 +107,13 @@ export default {
 
 .divider {
   width: 30px;
+}
+
+.card {
+  width: 350px;
+  border-bottom: solid 1px black;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  margin: auto;
 }
 </style>

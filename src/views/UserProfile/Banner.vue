@@ -45,7 +45,7 @@ export default {
   min-height: 45vh;
   background: linear-gradient(to bottom right, transparent 50%, #fafafa 40%),
     linear-gradient(-40deg, #eb4476, #e18855) #fafafa;
-  background-size: 100% auto;
+  background-size: 125% auto;
   transition: 0.5s;
 
   .banner {
@@ -70,9 +70,9 @@ export default {
     }
   }
 
-  /* extra test*/
-  &:hover {
-    background-size: 125% auto; /* add some extra tunning to deg direction and size ?*/
-  }
+  // /* extra test*/
+  // &:hover {
+  //   background-size: 125% auto; /* add some extra tunning to deg direction and size ?*/
+  // }
 }
 </style>
