@@ -84,11 +84,6 @@ export default {
             this.getCategories();
         },
         methods: {
-            goToCategorie: function (categorie) {
-                console.log('a');
-                // let url = "/categorie/" + categorie;
-                // this.$router.push(url);
-            },
             filterRestaurants: function (search) {
                 if(this.restaurants) {
                     this.filteredRestaurants = this.restaurants.filter(restaurant => {

@@ -28,7 +28,7 @@ export default {
     },
     created () {
         const shoppingCNPJ = this.$route.params.cnpj;
-        //save shoppingCNPJ to store
+        localStorage.setItem('shoppingCNPJ', shoppingCNPJ )
         this.getShopping(shoppingCNPJ); 
         this.getRestaurants(shoppingCNPJ);
     },

@@ -19,8 +19,8 @@ export default {
         }
     },
     created () {
-        //get shoppingCNPJ from store
-        this.getRestaurants();
+        const shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
+        this.getRestaurants(shoppingCNPJ);
     },
     methods: {
         getRestaurants: function (shoppingCNPJ) {
