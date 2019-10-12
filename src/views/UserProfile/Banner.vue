@@ -3,13 +3,13 @@
     <v-container>
       <v-row>
         <v-col cols="12" sm="12" md="12" lg="12" class="col-banner">
-          <div class="card-usuario-section">
-            <QrcUsuario
-              v-for="usuario in cardusuario"
-              :key="usuario.id"
-              :class="`usuario-${usuario.id}`"
-              :img="usuario.img"
-              :name="usuario.name"
+          <div class="card-membro-section">
+            <QrcMembro
+              v-for="membro in membro"
+              :key="membro.id"
+              :class="`membro-${membro.id}`"
+              :img="membro.img"
+              :name="membro.name"
             />
           </div>
         </v-col>
@@ -19,22 +19,22 @@
 </template>
 
 <script>
-import Usuario from "../../components/Usuario.vue";
+import Membro from "../../components/Membro.vue";
 
 export default {
   data() {
     return {
-      cardusuario: [
+      membro: [
         {
-          id: 1,
-          name: "Blank",
-          img: require("@/assets/images/profile/blank-profile-picture-.png")
+          id: 1 /** {{ user.id }}*/,
+          name: "UserName" /*{{ user.name }}*/,
+          img: require("@/assets/images/profile/blank-profile-picture-.png") /*(@assets/images/profile/{{ user.image }}.png)*/
         }
       ]
     };
   },
   components: {
-    QrcUsuario: Usuario
+    QrcMembro: Membro
   }
 };
 </script>
@@ -69,10 +69,13 @@ export default {
       filter: drop-shadow(0px 4px 4px $c-gray70);
     }
   }
+}
 
-  // /* extra test*/
-  // &:hover {
-  //   background-size: 125% auto; /* add some extra tunning to deg direction and size ?*/
-  // }
+.card-membro-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
 }
 </style>
