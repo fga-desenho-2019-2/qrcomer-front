@@ -3,18 +3,46 @@
     <div>
       <QrcBanner />
       <QrcCardUsuario />
+      <!-- <p class="card" id="app">
+        <div 
+          v-for="name in user"
+          class="name">
+          <span style="width: 50px;">{{ user.name }}</span>
+        </div>
+      </p>-->
       <p class="card">
         <span style="width: 50px;">{{ user.name }}</span>
       </p>
       <br />
+      <!-- <p class="card" id="app">
+        <div 
+          v-for="email in user"
+          class="email">
+          <span style="width: 50px;">{{ user.email }}</span>
+        </div>
+      </p>-->
       <p class="card">
         <span style="width: 50px;">{{ user.email }}</span>
       </p>
       <br />
+      <!-- <p class="card" id="app">
+        <div 
+          v-for="telephone in user"
+          class="telephone">
+          <span style="width: 50px;">{{ user.telephone }}</span>
+        </div>
+      </p>-->
       <p class="card">
         <span style="width: 50px;">{{ user.telephone }}</span>
       </p>
       <br />
+      <!-- <p class="card" id="app">
+        <div 
+          v-for="cpf in user"
+          class="cpf">
+          <span style="width: 50px;">{{ user.cpf }}</span>
+        </div>
+      </p>-->
       <p class="card">
         <span style="width: 50px;">{{ user.cpf }}</span>
       </p>
@@ -52,18 +80,22 @@
 
 <script>
 import Banner from "./Banner.vue";
-import CardMembro from "./CardUsuario.vue";
+import CardUsuario from "./CardUsuario.vue";
 import Footer from "../LandingPage/Footer.vue";
 
 export default {
   components: {
     QrcBanner: Banner,
     QrcFooter: Footer,
-    QrcCardUsuario: CardMembro
+    QrcCardUsuario: CardUsuario
   },
 
+  // el: "#app",
   data() {
     return {
+      // user: null,
+      // loading: true,
+      // errored: false,
       dialog: false,
       user: {
         name: "username",
@@ -83,6 +115,18 @@ export default {
       this.$refs.delete();
     }
   }
+  // mounted () {
+  //   axios
+  //     .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+  //     .then(response => {
+  //       this.user = response.data.bpi
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //       this.errored = true
+  //     })
+  //     .finally(() => this.loading = false)
+  // }
 };
 </script>
 

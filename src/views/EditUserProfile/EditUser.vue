@@ -59,6 +59,12 @@ export default {
     QrcFooter: Footer,
     QrcEditUsuario: EditUsuario
   },
+  // el: "#app",
+  // data() {
+  //     // user: null,
+  //     // loading: true,
+  //     // errored: false,
+  // },
   data: () => ({
     valid: true,
     name: "",
@@ -89,6 +95,18 @@ export default {
       this.$refs.form.reset();
     }
   }
+  // mounted () {
+  //   axios
+  //     .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+  //     .then(response => {
+  //       this.user = response.data.bpi
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //       this.errored = true
+  //     })
+  //     .finally(() => this.loading = false)
+  // }
 };
 </script>
 
