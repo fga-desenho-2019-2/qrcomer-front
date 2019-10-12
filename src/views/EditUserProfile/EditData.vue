@@ -103,11 +103,11 @@ export default {
   flex-direction: column;
 }
 
-#card-usuario {
+#card-membro {
   padding: 40px;
 }
 
-.card-usuario-section {
+.card-membro-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

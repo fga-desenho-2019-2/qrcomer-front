@@ -14,6 +14,10 @@
           </div>
         </v-col>
       </v-row>
+      <p class="username">
+        <!-- {{ user.name }} -->
+        UserName
+      </p>
     </v-container>
   </section>
 </template>
@@ -69,6 +73,16 @@ export default {
       filter: drop-shadow(0px 4px 4px $c-gray70);
     }
   }
+}
+
+.username {
+  margin: auto;
+  font-family: Palanquin Dark;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
 }
 
 .card-membro-section {

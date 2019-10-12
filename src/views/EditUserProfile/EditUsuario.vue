@@ -32,4 +32,8 @@ export default {
   margin-left: -10px;
   align-items: center;
 }
+
+.card-membro-section:first-child {
+  z-index: -1;
+}
 </style>

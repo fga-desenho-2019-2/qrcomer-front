@@ -1,11 +1,10 @@
-
 <script>
-import Usuario from "../../components/Usuario.vue";
+import Membro from "../../components/Membro.vue";
 
 export default {
   data() {
     return {
-      cardusuario: [
+      cardmembro: [
         {
           id: 1,
           name: "Blank",
@@ -15,22 +14,26 @@ export default {
     };
   },
   components: {
-    QrcUsuario: Usuario
+    QrcMembro: Membro
   }
 };
 </script>
 
 <style lang="scss">
-#card-usuario {
+#card-membro {
   padding: 10% 20%;
 }
 
-.card-usuario-section {
+.card-membro-section {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  margin-right: -10px;
+  margin-left: -10px;
   align-items: center;
 }
 
-.card-usuario-section:first-child {
+.card-membro-section:first-child {
   z-index: -1;
 }
 </style>
