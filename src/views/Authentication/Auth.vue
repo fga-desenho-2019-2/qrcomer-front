@@ -2,9 +2,9 @@
     <v-content class="d-flex flex-column pt-0" id="auth">
         <div class="box-login pa-4 pa-sm-4 pa-md-6 pa-lg-8">
             <div class="d-flex" style="width: 100%;">
-                <v-btn 
-                    class="mx-2 mb-n3 second-color" 
-                    fab 
+                <v-btn
+                    class="mx-2 mb-n3 second-color"
+                    fab
                     text
                     @click="routeTo('/')">
                     <v-icon >mdi-arrow-left</v-icon>
@@ -14,9 +14,9 @@
                     <h2 v-else key="cadastroText" class="main-color mb-0 mt-n2 text-center" style="width: 100%;">Cadastrar novo usuário</h2>
                 </transition>
             </div>
-            
-            <v-row 
-                class="box-login-internal" 
+
+            <v-row
+                class="box-login-internal"
                 align="center"
                 justify="center">
                 <v-col
@@ -25,9 +25,9 @@
                     sm=12
                     md=6
                     lg=6>
-                    <img 
-                        src="~@/assets/images/QRComer.png" 
-                        alt="Logo" 
+                    <img
+                        src="~@/assets/images/QRComer.png"
+                        alt="Logo"
                         class="form-image ma-auto">
                 </v-col>
                 <v-col
@@ -35,14 +35,15 @@
                     sm=12
                     md=6
                     lg=6>
-                    <v-form v-model="valid" ref="form" @submit.prevent="login">
+                    <v-form v-model="valid" ref="form">
                         <transition name="slide-x-transition" mode="out-in">
-                            <div v-if="loginType" key="login">
+
+                            <div class="flex-column">
                                 <v-text-field
-                                    v-model="username"
-                                    label="Nome de usuário"
+                                    v-model="cpf"
+                                    label="CPF"
                                     required
-                                    hide-details
+                                    :rules="emptyRule"
                                     outlined
                                     background-color="#efefef"
                                     class="input-shadow mb-4"
@@ -52,40 +53,44 @@
                                     v-model="password"
                                     label="Senha"
                                     required
+                                    :rules="emptyRule"
                                     outlined
                                     type="password"
-                                    background-color="#efefef"
-                                    hide-details
-                                    class="input-shadow mb-4"
-                                ></v-text-field>
-
-                                <v-btn
-                                    href="#"
-                                    block
-                                    x-large
-                                    class="qrc-btn primary my-2 mx-auto">
-                                    <span class="mr-2">Cadastrar</span>
-                                </v-btn>
-                            </div>
-                            <div v-else key="cadastro" class="flex-column">
-                                <v-text-field
-                                    v-model="username"
-                                    label="Nome de usuário"
-                                    required
-                                    hide-details
-                                    outlined
                                     background-color="#efefef"
                                     class="input-shadow mb-4"
                                 ></v-text-field>
 
+                                <v-dialog
+                                    ref="dialog"
+                                    v-model="modal"
+                                    :return-value.sync="date"
+                                    persistent
+                                    width="290px">
+                                    <template v-slot:activator="{ on }">
+                                        <v-text-field
+                                            v-model="date"
+                                            label="Picker in dialog"
+                                            readonly
+                                            outlined
+                                            background-color="#efefef"
+                                            class="input-shadow mb-4"
+                                            v-on="on"
+                                        ></v-text-field>
+                                    </template>
+                                    <v-date-picker v-model="date" type="date" scrollable>
+                                        <div class="flex-grow-1"></div>
+                                        <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                                        <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                                    </v-date-picker>
+                                </v-dialog>
+
                                 <v-text-field
-                                    v-model="password"
-                                    label="Senha"
+                                    v-model="sexo"
+                                    label="Sexo"
                                     required
+                                    :rules="emptyRule"
                                     outlined
-                                    type="password"
                                     background-color="#efefef"
-                                    hide-details
                                     class="input-shadow mb-4"
                                 ></v-text-field>
 
@@ -93,16 +98,36 @@
                                     v-model="email"
                                     label="E-mail"
                                     required
+                                    :rules="emptyRule"
                                     outlined
-                                    hide-details
                                     background-color="#efefef"
                                     class="input-shadow mb-4"
                                 ></v-text-field>
 
+                                <v-text-field
+                                    v-model="first_name"
+                                    label="First Name"
+                                    required
+                                    :rules="emptyRule"
+                                    outlined
+                                    background-color="#efefef"
+                                    class="input-shadow mb-4"
+                                ></v-text-field>
+
+                                <v-text-field
+                                    v-model="last_name"
+                                    label="Last Name"
+                                    required
+                                    :rules="emptyRule"
+                                    outlined
+                                    background-color="#efefef"
+                                    class="input-shadow mb-4"
+                                ></v-text-field>
                                 <v-btn
                                     href="#"
                                     block
                                     x-large
+                                    @click="login"
                                     class="qrc-btn primary my-2 mx-auto">
                                     <span class="mr-2">Cadastrar</span>
                                 </v-btn>
@@ -117,28 +142,58 @@
 </template>
 
 <script>
+import AuthService from '../../services/auth'
+
+let auth = new AuthService();
+
 export default {
     data() {
         return {
             valid: false,
-            username: '',
+            cpf: '',
             password: '',
+            birth_date: '',
+            sexo: '',
             email: '',
-            loginType: true,
+            first_name: '',
+            last_name: '',
+            emptyRule: [
+                v => !!v || 'Name is required',
+            ],
+            username: '',
+            loginType: false,
+            date: new Date().toISOString().substr(0, 7),
+            menu: false,
+            modal: false,
         }
     },
     methods: {
         routeTo(route) {
             this.$router.push(route);
-        }, 
-        login: function() {
-            if (this.loginType) {
-                const { username, password } = this
-                this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
-                    this.$router.push('/') //Todo: redirecionar para outra página
-                })
+        },
+        login: async function() {
+
+            if (this.$refs.form.validate()) {
+                if (this.loginType) {
+                    const { username, password } = this
+                    this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+                        this.$router.push('/') //Todo: redirecionar para outra página
+                    })
+                } else {
+                    console.log('teste')
+                    let response = await auth.signUser({
+                        cpf: this.cpf,
+                        password: this.password,
+                        birth_date: this.birth_date,
+                        sex: this.sex,
+                        email: this.email,
+                        first_name: this.first_name,
+                        last_name: this.last_name,
+                    })
+
+                    console.log(response)
+                }
             }
-            
         }
     }
 }
@@ -148,7 +203,7 @@ export default {
 #auth {
     min-height: 100vh;
     background: linear-gradient(135deg, #eb4476, #e18855) !important;
-    
+
     .v-content__wrap {
         align-items: center;
         justify-content: center;
@@ -169,7 +224,7 @@ export default {
             }
 
             .form-image {
-                width: 190px;   
+                width: 190px;
             }
         }
 
@@ -180,6 +235,6 @@ export default {
                 min-width: auto;
             }
         }
-    }    
+    }
 }
 </style>

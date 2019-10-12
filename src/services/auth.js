@@ -1,4 +1,4 @@
-import HttpClientBuilder from "../../infra/client/HttpClientBuilder.js";
+import HttpClientBuilder from "../infra/HttpClientBuilder.js";
 
 export default class AuthService {
     constructor() {
