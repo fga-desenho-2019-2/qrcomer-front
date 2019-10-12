@@ -84,6 +84,11 @@ export default {
             this.getCategories();
         },
         methods: {
+            goToCategorie: function (categorie) {
+                console.log('a');
+                // let url = "/categorie/" + categorie;
+                // this.$router.push(url);
+            },
             filterRestaurants: function (search) {
                 if(this.restaurants) {
                     this.filteredRestaurants = this.restaurants.filter(restaurant => {
@@ -98,27 +103,19 @@ export default {
                 this.categories = [
                     {
                         name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        icon: require('../../assets/images/categories/fastfood.png')
                     },
                     {
-                        name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        name: "Japonesa",
+                        icon: require('../../assets/images/categories/japones.png')
                     },
                     {
-                        name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        name: "Mexicana",
+                        icon: require('../../assets/images/categories/mexicana.png')
                     },
                     {
-                        name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
-                    },
-                    {
-                        name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
-                    },
-                    {
-                        name: "Fast Food",
-                        icon: require('../../assets/images/icon_fastfood.png')
+                        name: "Pizza",
+                        icon: require('../../assets/images/categories/pizzas.png')
                     },
                 ]
             }

@@ -1,5 +1,5 @@
 <template>
-    <div class="categorie-card" >
+    <div @click="goToPage()" class="categorie-card" >
         <img class="categorie-card__image" :src='icon'>
         <div class="categorie-card__card">
             <div class="categorie-card__card__text">
@@ -20,6 +20,12 @@ export default {
         title: {
             type: String,
             required: true
+        }
+    },
+    methods: {
+        goToPage: function () {
+            let url = "/categorie/" + this.title;
+            this.$router.push(url);
         }
     }
 }
@@ -67,7 +73,6 @@ export default {
                     font-size: 18px;
                     padding-bottom: 2%;
                     contain: content;
-                    font-weight: bold;
                     text-align: center;
                 }
             }
