@@ -22,6 +22,8 @@ export default new Router({
             name: 'edit-user',
             components: {
                 default: EditUser,
+                LandingPageHeader
+
             }
         },
         {
@@ -29,6 +31,7 @@ export default new Router({
             name: 'user',
             components: {
                 default: User,
+                LandingPageHeader
             }
         },
     ]
