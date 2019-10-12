@@ -1,6 +1,6 @@
 <template>
     <div class="shopping">
-        <categories-nav :navStatus="navStatus" :handleNav="handleNav" />
+        <categories-nav :navStatus="navStatus" :handleNav="handleNav" :restaurants="restaurants" />
         <v-btn
             @click="handleNav"
             min-width="250px"
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import ShoppingCard from '../components/Cards/ShoppingCard'
-import RestaurantCard from '../components/Cards/RestaurantCard'
+import ShoppingCard from '../../components/Cards/ShoppingCard'
+import RestaurantCard from '../../components/Cards/RestaurantCard'
 import CategoriesNav from './CategoriesNav'
 
 export default {
@@ -68,21 +68,21 @@ export default {
                 {
                     "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
                     "cnpj": "12345677",
-                    "name": "Mcdonalds",
+                    "name": "Burguer King",
                     "description": "$$ - Burguers",
                     "orderTime": "15-20 min"
                 },
                 {
                     "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
                     "cnpj": "12345676",
-                    "name": "Mcdonalds",
+                    "name": "Girrafas",
                     "description": "$$ - Burguers",
                     "orderTime": "15-20 min"
                 },
                 {
                     "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
                     "cnpj": "12345675",
-                    "name": "Mcdonalds",
+                    "name": "Geleia",
                     "description": "$$ - Burguers",
                     "orderTime": "15-20 min"
                 },
@@ -92,7 +92,7 @@ export default {
                     "name": "Mcdonalds",
                     "description": "$$ - Burguers",
                     "orderTime": "15-20 min"
-                },
+                }
             ]
         }
     },

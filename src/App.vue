@@ -29,9 +29,9 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
         font-weight: bold;
         margin: 0;
     }
-    h1 { font-size: 48px}
-    h2 { font-size: 42px}
-    h3 { font-size: 36px}
+    h1 { font-size: 45px}
+    h2 { font-size: 40px}
+    h3 { font-size: 34px}
     h4 { font-size: 30px}
     h5 { font-size: 24px}
     h6 { font-size: 18px}
@@ -43,6 +43,10 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
 
     b {
         color: $main-color;
+    }
+
+    body {
+        background-color: $c-white;
     }
 
     @media screen and (max-width:1920px) {

@@ -20,7 +20,7 @@
                     md=6
                     lg=6>
                     <h2 class="main-color text-center">Deixe as filas no passado</h2>
-                    <h4 class="text-center font-weight-light">Com o QrComer você não precisa mais se preocupar em perder tempo em pé. Todos os pedidos podem ser feitos apenas com seu celular. Muito mais praticidade e segurança na hora de pedir! </h4>
+                    <h5 class="text-center font-weight-light">Com o QrComer você não precisa mais se preocupar em perder tempo em pé. Todos os pedidos podem ser feitos apenas com seu celular. Muito mais praticidade e segurança na hora de pedir! </h5>
                 </v-col>
             </v-row>
             

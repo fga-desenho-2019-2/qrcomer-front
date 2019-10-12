@@ -39,7 +39,7 @@ export default {
     display: flex;
     justify-content: center;
     background: transparent !important;
-    margin: 20px;
+    margin: 10px;
     transition: all 0.5s;
     
     .qrc-membro-link {
@@ -113,8 +113,8 @@ export default {
 
 @media screen and (min-width: 360px) {
     .qrc-membro {
-        height: 140px;
-        width: 140px;
+        height: 130px;
+        width: 130px;
 
         .qrc-membro-text {
             font-size: 12px;

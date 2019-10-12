@@ -64,7 +64,7 @@
         &--text {
             margin-top: 10px;
             text-indent: 25px;
-            font-size: 20px;
+            font-size: 16px;
             padding: 0 20px;
             text-align: center; 
         }
