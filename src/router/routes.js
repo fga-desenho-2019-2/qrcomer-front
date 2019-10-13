@@ -4,7 +4,7 @@ import Home from '../views/LandingPage/Home.vue'
 import LandingPageHeader from '../views/LandingPage/Header.vue'
 import EditUser from '../views/EditUserProfile/EditUser.vue'
 import User from '../views/UserProfile/User.vue'
-import LogedUserHeader from '../views/UserProfile/LogedUserHeader.vue'
+import LogedUserHeader from '../components/LogedUserHeader.vue'
 
 Vue.use(Router)
 
