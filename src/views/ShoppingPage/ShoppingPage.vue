@@ -18,6 +18,7 @@
 import ShoppingCard from '../../components/Cards/ShoppingCard'
 import RestaurantCard from '../../components/Cards/RestaurantCard'
 import CategoriesNav from './CategoriesNav'
+import {getAllRestaurants, getRestaurant} from '../../services/restaurantService'
 
 export default {
     name: "ShoppingPage",
@@ -58,43 +59,19 @@ export default {
             }
         },
         getRestaurants: function (shoppingCNPJ) {
-            this.restaurants = [
-                {
-                    "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-                    "cnpj": "12345678",
-                    "name": "Mcdonalds",
-                    "description": "$$ - Burguers",
-                    "orderTime": "15-20 min"
-                },
-                {
-                    "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-                    "cnpj": "12345677",
-                    "name": "Burguer King",
-                    "description": "$$ - Burguers",
-                    "orderTime": "15-20 min"
-                },
-                {
-                    "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-                    "cnpj": "12345676",
-                    "name": "Girrafas",
-                    "description": "$$ - Burguers",
-                    "orderTime": "15-20 min"
-                },
-                {
-                    "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-                    "cnpj": "12345675",
-                    "name": "Geleia",
-                    "description": "$$ - Burguers",
-                    "orderTime": "15-20 min"
-                },
-                {
-                    "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-                    "cnpj": "12345674",
-                    "name": "Mcdonalds",
-                    "description": "$$ - Burguers",
-                    "orderTime": "15-20 min"
-                }
-            ]
+            this.restaurants = []
+
+            getAllRestaurants()
+                .then((restaurants) => {
+                    let all_restaurants = restaurants.data
+
+                    this.restaurants = all_restaurants.filter(item => {
+                        return item.shopping == shoppingCNPJ
+                    })
+                })
+                .catch(err => {
+                    this.restaurants = []
+                }) 
         }
     },
 }
