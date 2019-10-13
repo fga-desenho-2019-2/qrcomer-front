@@ -7,8 +7,8 @@
             class="qrc-btn white mx-auto font-weigth-bold my-2">
             <span class="mr-2">Categorias</span>
         </v-btn>
-        <shopping-card type="shopping" :title="shopping.name"  image='https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg' :city="shopping.city" :state="shopping.state" :neighborhood="shopping.neighborhood"/>
-        <div class="shopping__restaurants">
+        <shopping-card v-if="shopping" type="shopping" :title="shopping.name"  image='https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg' :city="shopping.city" :state="shopping.state" :neighborhood="shopping.neighborhood"/>
+        <div v-if="restaurants" class="shopping__restaurants">
             <restaurant-card v-for="restaurant in restaurants" :key="restaurant.cnpj" :image='restaurant.image' :title="restaurant.name" :description="restaurant.description" :orderTime="restaurant.orderTime"/>
         </div>
     </div>
