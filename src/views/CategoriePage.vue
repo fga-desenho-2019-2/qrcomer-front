@@ -6,6 +6,9 @@
 
 <script>
 import RestaurantCardExpand from '../components/Cards/RestaurantCardExpand'
+import {getAllRestaurants} from '../services/restaurantService'
+
+const placeholderImage = require('../assets/images/restaurant_placeholder.jpg')
 
 export default {
     name: "CategoriePage",
@@ -61,6 +64,23 @@ export default {
                     "orderTime": "15-20 min"
                 }
             ]
+
+            getAllRestaurants()
+                .then(restaurants => {
+                    const all_restaurants = restaurants.data
+                    
+                    this.restaurants = all_restaurants.filter(item => {
+                        return item.shopping == shoppingCNPJ
+                    })
+
+                    this.restaurants = this.restaurants.map(item => {
+                        if (!item.image) {
+                            item.image = placeholderImage
+                        }
+
+                        return item
+                    })
+                })
         }
     }
 }
