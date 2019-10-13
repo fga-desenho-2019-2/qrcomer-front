@@ -19,6 +19,7 @@ import ShoppingCard from '../../components/Cards/ShoppingCard'
 import RestaurantCard from '../../components/Cards/RestaurantCard'
 import CategoriesNav from './CategoriesNav'
 import {getAllRestaurants, getRestaurant} from '../../services/restaurantService'
+import {getShopping} from '../../services/shoppingService'
 
 export default {
     name: "ShoppingPage",
@@ -46,17 +47,12 @@ export default {
             else if(this.navStatus === "closed") this.navStatus = "open"
         },
         getShopping: function (shoppingCNPJ) {
-            this.shopping = {
-                "cnpj": 12345678,
-                "name": "Shop Brasília",
-                "city": "Brasília",
-                "state": "DF",
-                "country": "brasil", 
-                "neighborhood": "Asa suk",
-                "cep": "71605-300",
-                "number": 2,
-                "phone": 61982712626
-            }
+            this.shopping = {}
+
+            getShopping(shoppingCNPJ)
+                .then(shopping => {
+                    this.shopping = shopping.data
+                })
         },
         getRestaurants: function (shoppingCNPJ) {
             this.restaurants = []
