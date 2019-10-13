@@ -2,7 +2,7 @@
     <v-app id="qrcomer">
         <router-view name="LandingPageHeader"></router-view>
 
-        <router-view></router-view>
+        <router-view name="LogedUserHeader"></router-view>
 
     </v-app>
 </template>
@@ -11,10 +11,12 @@
 export default {
     name: 'App',
     components: {},
+    
     data: () => ({
         //
     }),
 };
+
 </script>
 
 <style lang="scss">

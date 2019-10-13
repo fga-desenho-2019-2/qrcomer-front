@@ -1,6 +1,6 @@
 <template>
-  <section id="banner">
-    <v-container class="banner">
+  <section id="banner" class="banner">
+    <v-container>
       <v-row>
         <v-col cols="12" sm="12" md="12" lg="12" class="col-banner">
           <div class="card-membro-section">

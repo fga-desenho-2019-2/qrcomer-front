@@ -37,7 +37,6 @@ export default {
             } else {
                 this.white = false
             }
-
         }
     }
 }
@@ -49,11 +48,9 @@ export default {
     transition: all 0.3s ease;
     z-index: 999;
     color: $c-white;
-
     &.v-app-bar--is-scrolled {
         background: white;
         color: $c-gray90;
-
         .v-btn {
             color: $c-gray90;  
             
@@ -61,16 +58,13 @@ export default {
                 color: $main-color;
             }
         }
-
         .text-shadow {
             text-shadow: none;
         }
-
         .brand {
             filter: none;
         }
     }
-
     
     
     .brand {
@@ -84,17 +78,14 @@ export default {
         font-weight: 400;
         line-height: 2rem;
     }
-
     .text-shadow {
         text-shadow: 1px 2px 4px $c-gray70;
     }
-
     @media screen and (max-width: 1920px) {
         .v-toolbar__content {
             max-width: 1300px;
             margin: 0px auto;
         }
     }
-
 }
 </style>
