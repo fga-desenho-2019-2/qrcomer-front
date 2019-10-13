@@ -6,8 +6,8 @@
             </div>
             <div class="card-restaurant__content">
                 <p class='card-restaurant__content__title'>{{ title }}</p>
-                <p class='card-restaurant__content__desc'>{{ description }}</p>
-                <p class='card-restaurant__content__order-time'>{{ orderTime }}</p>
+                <p class='card-restaurant__content__desc'>{{ description || 'No description provided' }}</p>
+                <p class='card-restaurant__content__order-time'>{{ orderTime || '---' }}</p>
             </div>
         </div>
     </div>
@@ -25,10 +25,7 @@ export default {
             type: String,
             required: true
         },
-        orderTime: {
-            type: String,
-            required: true
-        },
+        orderTime: '',
         image: {
             type: String,
             required: true

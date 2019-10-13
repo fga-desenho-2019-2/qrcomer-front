@@ -21,6 +21,8 @@ import CategoriesNav from './CategoriesNav'
 import {getAllRestaurants, getRestaurant} from '../../services/restaurantService'
 import {getShopping} from '../../services/shoppingService'
 
+const placeholderImage = require('../../assets/images/restaurant_placeholder.jpg')
+
 export default {
     name: "ShoppingPage",
     components: {
@@ -63,6 +65,14 @@ export default {
 
                     this.restaurants = all_restaurants.filter(item => {
                         return item.shopping == shoppingCNPJ
+                    })
+
+                    this.restaurants = this.restaurants.map(item => {
+                        if (!item.image) {
+                            item.image = placeholderImage
+                        }
+
+                        return item
                     })
                 })
                 .catch(err => {
