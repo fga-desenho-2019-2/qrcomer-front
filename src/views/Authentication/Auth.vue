@@ -68,7 +68,7 @@
                                     width="290px">
                                     <template v-slot:activator="{ on }">
                                         <v-text-field
-                                            v-model="date"
+                                            v-model="birth_date"
                                             label="Picker in dialog"
                                             readonly
                                             outlined
@@ -77,7 +77,7 @@
                                             v-on="on"
                                         ></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="date" type="date" scrollable>
+                                    <v-date-picker v-model="birth_date" type="date" scrollable>
                                         <div class="flex-grow-1"></div>
                                         <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
                                         <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
@@ -181,15 +181,17 @@ export default {
                     })
                 } else {
                     console.log('teste')
-                    let response = await auth.signUser({
+                    let body = {
                         cpf: this.cpf,
                         password: this.password,
                         birth_date: this.birth_date,
-                        sex: this.sex,
+                        sex: this.sexo,
                         email: this.email,
                         first_name: this.first_name,
                         last_name: this.last_name,
-                    })
+                    }
+                    console.log(body)
+                    let response = await auth.signUser(body)
 
                     console.log(response)
                 }
