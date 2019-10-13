@@ -4,6 +4,8 @@
 
         <router-view name="LogedUserHeader"></router-view>
 
+        <!-- router view default, do not remove it --> 
+        <router-view></router-view>
     </v-app>
 </template>
 
