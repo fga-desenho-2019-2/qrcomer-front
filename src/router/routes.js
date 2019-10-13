@@ -4,6 +4,7 @@ import Home from '../views/LandingPage/Home.vue'
 import LandingPageHeader from '../views/LandingPage/Header.vue'
 import EditUser from '../views/EditUserProfile/EditUser.vue'
 import User from '../views/UserProfile/User.vue'
+import LogedUserHeader from '../views/UserProfile/LogedUserHeader.vue'
 
 Vue.use(Router)
 
@@ -14,7 +15,7 @@ export default new Router({
             name: 'home',
             components: {
                 default: Home,
-                LandingPageHeader
+                LandingPageHeader, 
             }
         },
         {
@@ -22,7 +23,7 @@ export default new Router({
             name: 'edit-user',
             components: {
                 default: EditUser,
-                LandingPageHeader
+                LogedUserHeader
 
             }
         },
@@ -31,7 +32,7 @@ export default new Router({
             name: 'user',
             components: {
                 default: User,
-                LandingPageHeader
+                LogedUserHeader
             }
         },
     ]
