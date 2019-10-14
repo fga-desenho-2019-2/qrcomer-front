@@ -75,7 +75,8 @@
               <v-card-text>Se a conta for apagada, registros de compras serão deletados. Esta não poderá ser recuperada.</v-card-text>
               <v-card-actions>
                 <div class="flex-grow-1"></div>
-                <v-btn color="success" class="qrc-btn primary my-2" @click="none">Cancelar</v-btn>
+                <v-btn color="success" class="qrc-btn primary my-2" @click="dialog = false">Cancelar</v-btn>
+
                 <v-btn color="success" class="qrc-btn primary my-2" @click="vueDelete">Confirmar</v-btn>
               </v-card-actions>
             </v-card>
@@ -108,6 +109,9 @@ export default {
       if (this.$refs.form.edit()) {
         this.snackbar = true;
       }
+    },
+    close() {
+      this.$refs.close();
     },
     vueDelete() {
       this.$refs.delete();
