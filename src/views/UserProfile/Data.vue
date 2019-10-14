@@ -59,9 +59,7 @@
 
       <v-col cols="12" justify-content="space-between">
         <v-row justify="center">
-          <v-btn color="success" class="qrc-btn primary my-2">
-            <a href="./edit-user" class="a">Editar dados</a>
-          </v-btn>
+          <v-btn to="./edit-user" color="success" class="qrc-btn primary my-2">Editar dados</v-btn>
 
           <div class="divider"></div>
 
@@ -164,5 +162,16 @@ export default {
   padding-bottom: 8px;
   padding-top: 8px;
   margin: auto;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>
