@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "Membro",
+  name: "Menu",
   props: {
     description: {
       required: true,
@@ -40,12 +40,14 @@ export default {
 
 <style lang="scss">
 .qrc-item {
-    height: 125px;
-    width: 125px;
+    height: 45vw;
+    width: 45vw;
+    max-height: 200px;
+    max-width: 200px;
     display: flex;
     justify-content: center;
     background: #fff;
-    margin: 20px;
+    margin: 2vw;
     transition: all 0.5s;
     border-radius: 0 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
@@ -106,9 +108,6 @@ export default {
 
 @media screen and (min-width: 360px) {
   .qrc-item {
-    height: 140px;
-    width: 140px;
-
     .qrc-item-name {
         font-size: 10px;
     }
@@ -125,9 +124,6 @@ export default {
 
 @media screen and (min-width: 400px) {
   .qrc-item {
-    height: 160px;
-    width: 160px;
-
     .qrc-item-name {
       font-size: 15px;
     }
@@ -139,20 +135,6 @@ export default {
     .qrc-item-value{
         font-size: 18px;
     }
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .qrc-item {
-    height: 180px;
-    width: 180px;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  .qrc-item {
-    height: 200px;
-    width: 200px;
   }
 }
 </style>
