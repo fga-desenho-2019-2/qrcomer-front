@@ -18,7 +18,8 @@
 import ShoppingCard from '../../components/Cards/ShoppingCard'
 import RestaurantCard from '../../components/Cards/RestaurantCard'
 import CategoriesNav from './CategoriesNav'
-import {getAllRestaurants, getRestaurant} from '../../services/restaurantService'
+import {getAllRestaurants} from '../../services/restaurantService'
+//import {getRestaurant} from '../../services/restaurantService'
 import {getShopping} from '../../services/shoppingService'
 
 const placeholderImage = require('../../assets/images/restaurant_placeholder.jpg')
@@ -77,6 +78,7 @@ export default {
                 })
                 .catch(err => {
                     this.restaurants = []
+                    return err
                 }) 
         }
     },

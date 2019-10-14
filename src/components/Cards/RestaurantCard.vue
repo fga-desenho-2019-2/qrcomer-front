@@ -25,7 +25,10 @@ export default {
             type: String,
             required: true
         },
-        orderTime: '',
+        orderTime: {
+            type: String,
+            required: true
+        },
         image: {
             type: String,
             required: true

@@ -10,7 +10,6 @@ export async function getAllRestaurants() {
         const restaurantRoute = API_URL + BASE_PATH
         restaurants = await axios.get(restaurantRoute)
     } catch (err) {
-        console.log(err)
         return {
             status: 'error',
             payload: err
@@ -30,8 +29,6 @@ export async function getRestaurant(cnpjRestaurant) {
         restaurant = await axios.get(route)
 
     } catch(err) {
-        console.log(err)
-
         return {
             status: 'error',
             payload: err
