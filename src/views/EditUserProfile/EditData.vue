@@ -5,23 +5,28 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="6">
-              <v-text-field v-model="name" :rules="nameRules" label="Nome" required></v-text-field>
+              <v-text-field v-model="user.name" :rules="nameRules" label="Nome" required></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+              <v-text-field v-model="user.email" :rules="emailRules" label="E-mail" required></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="password" :rules="passwordRules" label="Senha" required></v-text-field>
+              <v-text-field v-model="user.password" :rules="passwordRules" label="Senha" required></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="telephone" :rules="telephoneRules" label="Telefone" required></v-text-field>
+              <v-text-field
+                v-model="user.telephone"
+                :rules="telephoneRules"
+                label="Telefone"
+                required
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="cpf" :rules="cpfRules" label="CPF" required></v-text-field>
+              <v-text-field v-model="user.cpf" :rules="cpfRules" label="CPF" required></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -53,25 +58,28 @@ export default {
   //     // errored: false,
   // },
   data: () => ({
+    user: {},
     valid: true,
-    name: "",
+    name: this.user.name,
     nameRules: [v => !!v || "Campo obrigatório"],
-    email: "",
+    email: this.user.email,
     emailRules: [
       v => !!v || "Campo obrigatório",
       v => /.+@.+\..+/.test(v) || "E-mail deve ser válido"
     ],
-    password: "",
+    password: this.user.password,
     passwordRules: [
       v => !!v || "Campo obrigatório",
       v => (v && v.length >= 8) || "Senha deve ser maior do que 8 caracteres"
     ],
-    telephone: "",
+    telephone: this.user.telephone,
     telephoneRules: [v => !!v || "Campo obrigatório"],
-    cpf: "",
+    cpf: this.user.cpf,
     cpfRules: [v => !!v || "Campo obrigatório"]
   }),
-
+  created() {
+    this.getUserInfo();
+  },
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
@@ -80,6 +88,15 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
+    },
+    getUserInfo() {
+      this.user = {
+        name: "username",
+        email: "email@email",
+        telephone: "1234",
+        password: "12345",
+        cpf: "123456"
+      };
     }
   }
   // mounted () {
