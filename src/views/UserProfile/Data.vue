@@ -45,6 +45,19 @@
           <v-col cols="12" md="6">
             <!-- <p class="card" id="app">
               <div 
+                v-for="password in user"
+                class="password">
+                <span style="width: 50px;">{{ user.password }}</span>
+              </div>
+            </p>-->
+            <p class="card">
+              <span style="width: 50px;">{{ user.password }}</span>
+            </p>
+          </v-col>
+
+          <v-col cols="12" md="6">
+            <!-- <p class="card" id="app">
+              <div 
                 v-for="cpf in user"
                 class="cpf">
                 <span style="width: 50px;">{{ user.cpf }}</span>
@@ -57,28 +70,26 @@
         </v-row>
       </v-container>
     </div>
-    <div class="fixed-bottom">
-      <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="$main-color">
-        <v-btn to="./edit-user">Atualizar</v-btn>
-        <v-dialog v-model="dialog" persistent max-width="290">
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on">Deletar</v-btn>
-          </template>
 
-          <v-card>
-            <v-card-title class="headline">Apagar a conta?</v-card-title>
-            <v-card-text>Se a conta for apagada, registros de compras serão deletados. Esta não poderá ser recuperada.</v-card-text>
-            <v-card-actions>
-              <div class="flex-grow-1"></div>
-              <v-btn color="success" class="qrc-btn primary my-2" @click="dialog = false">Cancelar</v-btn>
+    <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="white">
+      <v-btn to="./edit-user">Atualizar</v-btn>
+      <v-dialog v-model="dialog" persistent max-width="290">
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on">Deletar</v-btn>
+        </template>
 
-              <v-btn color="success" class="qrc-btn primary my-2" @click="vueDelete">Confirmar</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-bottom-navigation>
-    </div>
-    <div class="flex-grow-1"></div>
+        <v-card>
+          <v-card-title class="headline">Apagar a conta?</v-card-title>
+          <v-card-text>Se a conta for apagada, registros de compras serão deletados. Esta não poderá ser recuperada.</v-card-text>
+          <v-card-actions>
+            <div class="flex-grow-1"></div>
+            <v-btn color="success" class="qrc-btn primary my-2" @click="dialog = false">Cancelar</v-btn>
+
+            <v-btn color="success" class="qrc-btn primary my-2" @click="vueDelete">Confirmar</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-bottom-navigation>
   </v-content>
 </template>
 
@@ -97,6 +108,7 @@ export default {
         name: "username",
         email: "user@email.com",
         telephone: "(XX) XXXXX-XXXX",
+        password: "*********",
         cpf: "XXX.XXX.XXX-XX"
       }
     };
@@ -138,40 +150,11 @@ export default {
   flex-direction: column;
 }
 
-.a {
-  color: white;
-  text-decoration: none;
-}
-
-.form {
-  justify-content: space-around;
-  margin-left: 3%;
-  margin-right: 3%;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-}
-
-.divider {
-  width: 30px;
-}
-
 .card {
   width: auto;
   border-bottom: solid 1px black;
   padding-bottom: 8px;
   padding-top: 8px;
   margin: auto;
-}
-
-.v-item-group {
-  background: linear-gradient(120deg, #eb4476, #e18855);
-  font-size: 2em;
-  position: relative;
-  right: 20px;
-  bottom: 20px;
-}
-
-.v-btn__content {
-  color: $c-white;
 }
 </style>

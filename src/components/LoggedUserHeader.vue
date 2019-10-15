@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="loged-user-header">
+  <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="logged-user-page-header">
     <v-app-bar-nav-icon
-      class="d-flex d-sm-flex d-md-none d-lg-none text-shadow loged-user-header--icon"
+      class="d-flex d-sm-flex d-md-none d-lg-none text-shadow logged-user-page-header--icon"
     ></v-app-bar-nav-icon>
     <img
       v-if="white"
@@ -19,7 +19,6 @@
       <span>QR</span>
       <span class="font-weight-light">Comer</span>
     </v-toolbar-title>
-    <v-spacer></v-spacer>
   </v-app-bar>
 </template>
 
@@ -43,24 +42,28 @@ export default {
 </script>
 
 <style lang="scss">
-#loged-user-header {
+#logged-user-page-header {
   background: transparent;
   transition: all 0.3s ease;
   z-index: 999;
   color: $c-white;
+
   &.v-app-bar--is-scrolled {
     background: white;
     color: $c-gray90;
+
     .v-btn {
       color: $c-gray90;
 
-      &.loged-user-header--icon {
+      &.logged-user-page-header--icon {
         color: $main-color;
       }
     }
+
     .text-shadow {
       text-shadow: none;
     }
+
     .brand {
       filter: none;
     }
@@ -69,12 +72,7 @@ export default {
   .brand {
     height: 50%;
     object-fit: contain;
-    filter: drop-shadow(1px 2px 1px $c-white);
-  }
-
-  .v-btn {
-    color: $c-white;
-    text-transform: initial;
+    filter: drop-shadow(1px 2px 1px $c-gray70);
   }
 
   .v-toolbar__title {
@@ -82,9 +80,16 @@ export default {
     font-weight: 400;
     line-height: 2rem;
   }
+
+  .v-btn {
+    color: $c-white;
+    text-transform: initial;
+  }
+
   .text-shadow {
     text-shadow: 1px 2px 4px $c-gray70;
   }
+
   @media screen and (max-width: 1920px) {
     .v-toolbar__content {
       max-width: 1300px;

@@ -5,15 +5,33 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.name" :rules="nameRules" label="Nome" required></v-text-field>
+              <v-text-field
+                v-model="user.name"
+                :rules="nameRules"
+                label="Nome"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.email" :rules="emailRules" label="E-mail" required></v-text-field>
+              <v-text-field
+                v-model="user.email"
+                :rules="emailRules"
+                label="E-mail"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.password" :rules="passwordRules" label="Senha" required></v-text-field>
+              <v-text-field
+                v-model="user.password"
+                :rules="passwordRules"
+                label="Senha"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
@@ -22,20 +40,25 @@
                 :rules="telephoneRules"
                 label="Telefone"
                 required
+                color="#e18855"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.cpf" :rules="cpfRules" label="CPF" required></v-text-field>
+              <v-text-field
+                v-model="user.cpf"
+                :rules="cpfRules"
+                label="CPF"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
           </v-row>
         </v-container>
       </v-form>
-      <div class="fixed-bottom">
-        <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="$main-color">
-          <v-btn @click="validate">Confirmar</v-btn>
-        </v-bottom-navigation>
-      </div>
+      <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="white">
+        <v-btn @click="validate">Confirmar</v-btn>
+      </v-bottom-navigation>
     </div>
   </v-content>
 </template>
@@ -111,33 +134,7 @@ export default {
   flex-direction: column;
 }
 
-#card-membro {
-  padding: 40px;
-}
-
-.card-membro-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-right: -10px;
-  margin-left: -10px;
-  align-items: center;
-}
-
-.v-item-group {
-  background: linear-gradient(120deg, #eb4476, #e18855);
-  font-size: 2em;
-  position: relative;
-  right: 20px;
-  bottom: 20px;
-}
-
-.v-btn__content {
-  color: $c-white;
-  background: transparent;
-}
-
-.v-label--active {
+.v-text-field {
   color: #eb4476;
 }
 .v-input__control {
