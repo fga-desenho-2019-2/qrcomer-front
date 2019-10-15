@@ -56,32 +56,29 @@
           </v-col>
         </v-row>
       </v-container>
-
-      <v-col cols="12" justify-content="space-between">
-        <v-row justify="center">
-          <v-btn to="./edit-user" color="success" class="qrc-btn primary my-2">Editar dados</v-btn>
-
-          <div class="divider"></div>
-
-          <v-dialog v-model="dialog" persistent max-width="290">
-            <template v-slot:activator="{ on }">
-              <v-btn color="success" class="qrc-btn primary my-2" v-on="on">Apagar conta</v-btn>
-            </template>
-
-            <v-card>
-              <v-card-title class="headline">Apagar a conta?</v-card-title>
-              <v-card-text>Se a conta for apagada, registros de compras serão deletados. Esta não poderá ser recuperada.</v-card-text>
-              <v-card-actions>
-                <div class="flex-grow-1"></div>
-                <v-btn color="success" class="qrc-btn primary my-2" @click="dialog = false">Cancelar</v-btn>
-
-                <v-btn color="success" class="qrc-btn primary my-2" @click="vueDelete">Confirmar</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-row>
-      </v-col>
     </div>
+    <div class="fixed-bottom">
+      <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="$main-color">
+        <v-btn to="./edit-user">Atualizar</v-btn>
+        <v-dialog v-model="dialog" persistent max-width="290">
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on">Deletar</v-btn>
+          </template>
+
+          <v-card>
+            <v-card-title class="headline">Apagar a conta?</v-card-title>
+            <v-card-text>Se a conta for apagada, registros de compras serão deletados. Esta não poderá ser recuperada.</v-card-text>
+            <v-card-actions>
+              <div class="flex-grow-1"></div>
+              <v-btn color="success" class="qrc-btn primary my-2" @click="dialog = false">Cancelar</v-btn>
+
+              <v-btn color="success" class="qrc-btn primary my-2" @click="vueDelete">Confirmar</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-bottom-navigation>
+    </div>
+    <div class="flex-grow-1"></div>
   </v-content>
 </template>
 
@@ -93,6 +90,8 @@ export default {
       // user: null,
       // loading: true,
       // errored: false,
+      activeBtn: 1,
+      showNav: true,
       dialog: false,
       user: {
         name: "username",
@@ -164,14 +163,15 @@ export default {
   margin: auto;
 }
 
-a {
-  color: #ffffff;
-  text-decoration: none;
+.v-item-group {
+  background: linear-gradient(120deg, #eb4476, #e18855);
+  font-size: 2em;
+  position: relative;
+  right: 20px;
+  bottom: 20px;
 }
 
-a:hover {
-  color: #00a0c6;
-  text-decoration: none;
-  cursor: pointer;
+.v-btn__content {
+  color: $c-white;
 }
 </style>

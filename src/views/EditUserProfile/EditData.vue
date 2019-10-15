@@ -31,20 +31,11 @@
           </v-row>
         </v-container>
       </v-form>
-      <v-col cols="12" justify-content="center">
-        <v-row justify="center">
-          <v-btn
-            :disabled="!valid"
-            color="success"
-            class="qrc-btn primary my-2"
-            @click="validate"
-          >Confirmar</v-btn>
-
-          <!-- <div class="divider"></div> -->
-
-          <!-- <v-btn color="error" class="qrc-btn primary my-2" @click="reset">Apagar dados</v-btn> -->
-        </v-row>
-      </v-col>
+      <div class="fixed-bottom">
+        <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="$main-color">
+          <v-btn @click="validate">Confirmar</v-btn>
+        </v-bottom-navigation>
+      </div>
     </div>
   </v-content>
 </template>
@@ -133,7 +124,23 @@ export default {
   align-items: center;
 }
 
-.divider {
-  width: 30px;
+.v-item-group {
+  background: linear-gradient(120deg, #eb4476, #e18855);
+  font-size: 2em;
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+}
+
+.v-btn__content {
+  color: $c-white;
+  background: transparent;
+}
+
+.v-label--active {
+  color: #eb4476;
+}
+.v-input__control {
+  color: #eb4476;
 }
 </style>
