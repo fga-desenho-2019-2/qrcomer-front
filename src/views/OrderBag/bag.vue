@@ -1,6 +1,5 @@
 <template>
     <v-content class="d-flex flex-column pt-0">
-        <h1>jose</h1>
         <v-bottom-navigation  color="white">
             <v-btn><font color="white">Finalizar Pedido - Total: </font></v-btn>
         </v-bottom-navigation>

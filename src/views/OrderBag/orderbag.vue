@@ -1,7 +1,9 @@
 <template>
     <v-content class="d-flex flex-column pt-0">
         <div>
-            <QrcBag />
+            <qrc-header />
+
+            <!-- <QrcBag /> -->
         </div>
     </v-content>
 
@@ -11,10 +13,12 @@
 
 <script>
 import bag from './bag.vue';
+import header from './Header.vue'
 
 export default {
     components:{
         QrcBag: bag,
+        QrcHeader: header
     }
 };
 </script>

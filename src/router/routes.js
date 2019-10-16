@@ -21,7 +21,7 @@ export default new Router({
             name: 'order-bag',
             components: {
                 default: orderbag,
-                LandingPageHeader
+                // LandingPageHeader
             }
         },
     ]
