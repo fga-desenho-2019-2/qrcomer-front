@@ -1,9 +1,9 @@
 <template>
     <v-content class="d-flex flex-column pt-0">
         <div>
-            <qrc-header />
-
-            <!-- <QrcBag /> -->
+            <!-- <qrc-header /> -->
+            <!-- <h1>jose</h1> -->
+            <QrcBag />
         </div>
     </v-content>
 

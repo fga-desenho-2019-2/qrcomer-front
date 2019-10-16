@@ -2,12 +2,13 @@
     <v-app-bar 
         app
         elevate-on-scroll 
-        v-scroll="floatingNav"
         id="landing-page-header">
         <v-app-bar-nav-icon class="d-flex d-sm-flex d-md-none d-lg-none landing-page-header--icon"></v-app-bar-nav-icon>
         <!-- <v-spacer></v-spacer> -->
         <v-toolbar-title class="text-uppercase">
-            <font color="black"><span>sacola</span></font>
+            <!-- <font color="black"> -->
+                <span>sacola</span>
+            <!-- </font> -->
         </v-toolbar-title>
     </v-app-bar>
 
@@ -19,7 +20,7 @@
 export default {
     data() {
         return {
-            white: false,
+            white: true,
         }
     },
     methods: {
