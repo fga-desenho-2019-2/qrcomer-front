@@ -5,23 +5,23 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.name" label="Nome" required color="#e18855"></v-text-field>
+              <v-text-field v-model="name" label="Nome" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.email" label="E-mail" required color="#e18855"></v-text-field>
+              <v-text-field v-model="email" label="E-mail" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.password" label="Senha" required color="#e18855"></v-text-field>
+              <v-text-field type="password" v-model="password" label="Senha" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.telephone" label="Telefone" required color="#e18855"></v-text-field>
+              <v-text-field v-model="telephone" label="Telefone" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field v-model="user.cpf" label="CPF" required color="#e18855"></v-text-field>
+              <v-text-field v-model="cpf" label="CPF" required color="#e18855"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -48,21 +48,21 @@ export default {
   data: () => ({
     user: {},
     valid: true,
-    name: this.user.name,
+    name: '',
     nameRules: [v => !!v || "Campo obrigatório"],
-    email: this.user.email,
+    email: '',
     emailRules: [
       v => !!v || "Campo obrigatório",
       v => /.+@.+\..+/.test(v) || "E-mail deve ser válido"
     ],
-    password: this.user.password,
+    password: '',
     passwordRules: [
       v => !!v || "Campo obrigatório",
       v => (v && v.length >= 8) || "Senha deve ser maior do que 8 caracteres"
     ],
-    telephone: this.user.telephone,
+    telephone: '',
     telephoneRules: [v => !!v || "Campo obrigatório"],
-    cpf: this.user.cpf,
+    cpf: '',
     cpfRules: [v => !!v || "Campo obrigatório"]
   }),
   created() {
@@ -85,6 +85,11 @@ export default {
         password: "12345",
         cpf: "123456"
       };
+      this.name = this.user.name;
+      this.email = this.user.email;
+      this.password = this.user.password;
+      this.telephone = this.user.telephone;
+      this.cpf = this.user.cpf;
     }
   }
   // mounted () {
