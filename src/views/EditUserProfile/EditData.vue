@@ -29,7 +29,7 @@
       <v-bottom-navigation color="white">
         <v-btn @click="validate">
           <font color="white">
-            <strong>Confirmar</strong>
+            <strong>CONFIRMAR</strong>
           </font>
         </v-btn>
       </v-bottom-navigation>
@@ -103,6 +103,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Lexend+Deca|Palanquin:100,300,400,500,700&display=swap");
 .v-content__wrap {
   display: flex;
   flex-direction: column;
@@ -110,8 +111,10 @@ export default {
 
 .v-text-field {
   color: #eb4476;
+  font-family: "Palanquin", sans-serif;
 }
 .v-input__control {
   color: #eb4476;
+  font-family: "Palanquin", sans-serif;
 }
 </style>
