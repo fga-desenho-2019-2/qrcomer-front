@@ -9,16 +9,24 @@
                     :time="banner.time"
                     :img="banner.img"/>
         </div>
-        <div class="menu-itens">
-            <QrcCardItem 
-                    v-for="item in menu"
-                    :key="item.id"
-                    :class="`item-${item.id}`"
-                    :description="item.description"
-                    :img="item.img"
-                    :name="item.name"
-                    :details="item.details"
-                    :value="item.value"/>
+        <div>
+            <QrcCategoryItem @scrollCategory="scrollToPlace($event)" :categories="categories"/>
+        </div>
+        <div class="category-area" v-for="(category, index) in categories"
+                    :key="category.id"
+                    :id="category.name">
+            <h5 :id="category.name" class="category-title">{{category.name}}</h5>
+            <div class="menu-itens">
+                <QrcCardItem 
+                        v-for="item in categoriesData[index]"
+                        :key="item.id"
+                        :class="`item-${item.id}`"
+                        :description="item.description"
+                        :img="item.img"
+                        :name="item.name"
+                        :details="item.details"
+                        :value="item.value"/>
+            </div>
         </div>
     </v-content>
 </template>
@@ -27,22 +35,44 @@
 
 import CardItem from './CardItem.vue'
 import MenuBanner from './MenuBanner.vue'
+import CategoryItem from './CategoryItem.vue'
+// import { filter } from 'minimatch'
 
 export default {
 data() {
         return {
             menu: [],
-            banner: null
+            banner: null,
+            categories: [],
+            categoriesData: [],
+            scrollCategories: null
         }
     },
     components: {
         "QrcCardItem": CardItem,
-        "QrcMenuBanner": MenuBanner
+        "QrcCategoryItem": CategoryItem,
+        "QrcMenuBanner": MenuBanner,
     },
     created(){
-      this.getResult()  
+      this.getResult()
+      this.categories.forEach(category => {
+          let categoryList = this.filterItens(category.name)
+          this.categoriesData.push(categoryList)
+      });
+
+    //   console.log(this.categoriesData)
     },
     methods: {
+        scrollToPlace: function(id){
+            let elmnt = document.getElementById(id)
+            elmnt.scrollIntoView()
+        },
+        filterItens: function(category){
+            let filteredMenu = this.menu.filter( (item) => {
+                return item.category == category
+            })
+            return filteredMenu  
+        },
         getResult: function (){
             this.menu = [
                 {
@@ -51,7 +81,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.19,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Hamburguer"
                 },
                 {
                     id:2,
@@ -59,7 +90,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Hamburguer"
                 },
                 {
                     id:3,
@@ -67,7 +99,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Hamburguer"
                 },
                 
                 {
@@ -76,7 +109,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Hamburguer"
                 },
                 
                 {
@@ -85,7 +119,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Sorvete"
                 },
                 
                 {
@@ -94,7 +129,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Sorvete"
                 },
                 
                 {
@@ -103,7 +139,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Sorvete"
                 },
                 
                 {
@@ -112,7 +149,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Sorvete"
                 },
                 
                 {
@@ -121,7 +159,8 @@ data() {
                     description: 'http://localhost:8080/',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
-                    img: require('@/assets/images/bigmac.svg')
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Bebida"
                 }
 
             ]
@@ -134,6 +173,21 @@ data() {
                 type: "Burguer",
                 time: "15-40 min"
             }
+
+            this.categories = [
+                {
+                    id: 1,
+                    name: "Bebida"
+                },
+                {
+                    id: 2,
+                    name: "Hamburguer"
+                },
+                {
+                    id: 3,
+                    name: "Sorvete"
+                }
+            ]
         }
     }
 }
@@ -151,6 +205,12 @@ data() {
     justify-content: center;
     padding-top: 4vw;
 }
+.category-title{
+    margin-bottom: 0 !important;
+    margin-left: 4vw;
+}
 
-
+.category-area{
+    background-color: #EFEFEF;
+}
 </style>

@@ -20,9 +20,6 @@
 <script>
 export default {
   name: "Menu",
-  created(){
-    console.log(this.time)
-  },
   props: {
     img: {
       required: true,
