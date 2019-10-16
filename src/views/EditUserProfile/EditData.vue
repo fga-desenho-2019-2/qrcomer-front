@@ -1,63 +1,37 @@
 <template>
   <v-content class="d-flex flex-column pt-0">
     <div>
-      <v-form v-model="valid">
+      <v-form>
         <v-container>
           <v-row>
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="user.name"
-                :rules="nameRules"
-                label="Nome"
-                required
-                color="#e18855"
-              ></v-text-field>
+              <v-text-field v-model="user.name" label="Nome" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="user.email"
-                :rules="emailRules"
-                label="E-mail"
-                required
-                color="#e18855"
-              ></v-text-field>
+              <v-text-field v-model="user.email" label="E-mail" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="user.password"
-                :rules="passwordRules"
-                label="Senha"
-                required
-                color="#e18855"
-              ></v-text-field>
+              <v-text-field v-model="user.password" label="Senha" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="user.telephone"
-                :rules="telephoneRules"
-                label="Telefone"
-                required
-                color="#e18855"
-              ></v-text-field>
+              <v-text-field v-model="user.telephone" label="Telefone" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="user.cpf"
-                :rules="cpfRules"
-                label="CPF"
-                required
-                color="#e18855"
-              ></v-text-field>
+              <v-text-field v-model="user.cpf" label="CPF" required color="#e18855"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
       </v-form>
-      <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="white">
-        <v-btn @click="validate">Confirmar</v-btn>
+      <v-bottom-navigation color="white">
+        <v-btn @click="validate">
+          <font color="white">
+            <strong>Confirmar</strong>
+          </font>
+        </v-btn>
       </v-bottom-navigation>
     </div>
   </v-content>

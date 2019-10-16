@@ -3,8 +3,6 @@
     <div>
       <QrcBanner />
 
-      <QrcCardUsuario />
-
       <QrcData />
     </div>
   </v-content>
@@ -12,12 +10,10 @@
 
 <script>
 import Banner from "./Banner.vue";
-import CardUsuario from "./CardUsuario.vue";
 import Data from "./Data.vue";
 export default {
   components: {
     QrcBanner: Banner,
-    QrcCardUsuario: CardUsuario,
     QrcData: Data
   }
 };

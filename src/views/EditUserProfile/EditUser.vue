@@ -3,8 +3,6 @@
     <div>
       <QrcBanner />
 
-      <QrcEditUsuario />
-
       <QrcEditData />
     </div>
   </v-content>
@@ -12,13 +10,11 @@
 
 <script>
 import Banner from "./Banner.vue";
-import EditUsuario from "./EditUsuario.vue";
 import EditData from "./EditData.vue";
 
 export default {
   components: {
     QrcBanner: Banner,
-    QrcEditUsuario: EditUsuario,
     QrcEditData: EditData
   }
 };

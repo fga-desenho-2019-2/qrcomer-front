@@ -71,11 +71,19 @@
       </v-container>
     </div>
 
-    <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="white">
-      <v-btn to="./edit-user">Atualizar</v-btn>
+    <v-bottom-navigation color="white">
+      <v-btn to="./edit-user">
+        <font color="white">
+          <strong>Atualizar</strong>
+        </font>
+      </v-btn>
       <v-dialog v-model="dialog" persistent max-width="290">
         <template v-slot:activator="{ on }">
-          <v-btn v-on="on">Deletar</v-btn>
+          <v-btn v-on="on">
+            <font color="white">
+              <strong>Deletar</strong>
+            </font>
+          </v-btn>
         </template>
 
         <v-card>
@@ -101,8 +109,6 @@ export default {
       // user: null,
       // loading: true,
       // errored: false,
-      activeBtn: 1,
-      showNav: true,
       dialog: false,
       user: {
         name: "username",
