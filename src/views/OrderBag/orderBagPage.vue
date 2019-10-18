@@ -111,7 +111,7 @@
 <style lang="scss">
 .order-bag {
     .v-bottom-navigation {
-        position: absolute;
+        position: sticky;
         bottom: 0;
     }
 }
