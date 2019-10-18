@@ -24,7 +24,8 @@
 .v-item-group {
     background: linear-gradient(120deg, #eb4476, #e18855);
     font-size: 2em;
-    position: sticky;
+    position: fixed;
+    left: 0;
     bottom: 0;
 }
 
