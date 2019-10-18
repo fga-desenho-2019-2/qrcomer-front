@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../views/LandingPage/Home.vue'
 import Auth from '../views/Authentication/Auth.vue'
 import LandingPageHeader from '../views/LandingPage/Header.vue'
+import AuthHeader from '../views/Authentication/AuthHeader.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,7 @@ export default new Router({
             name: 'auth',
             components: {
                 default: Auth,
+                AuthHeader
             } 
         }
     ]

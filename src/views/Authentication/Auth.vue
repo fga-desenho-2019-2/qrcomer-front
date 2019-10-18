@@ -1,19 +1,9 @@
 <template>
     <v-content class="d-flex flex-column pt-0" id="auth">
-        <div class="box-login pa-4 pa-sm-4 pa-md-6 pa-lg-8">
-            <div class="d-flex" style="width: 100%;">
-                <v-btn
-                    class="mx-2 mb-n3 second-color"
-                    fab
-                    text
-                    @click="routeTo('/')">
-                    <v-icon >mdi-arrow-left</v-icon>
-                </v-btn>
-                <transition name="slide-x-transition" mode="out-in" hide-on-leave>
-                    <h2 v-if="loginType" key='loginText' class="main-color mb-0 mt-n2 text-center" style="width: 100%;">Faça o login</h2>
-                    <h2 v-else key="cadastroText" class="main-color mb-0 mt-n2 text-center" style="width: 100%;">Cadastrar novo usuário</h2>
-                </transition>
-            </div>
+            <transition name="slide-x-transition" mode="out-in" hide-on-leave>
+                <h3 v-if="loginType" key='loginText' class="main-color mb-0 mt-n2 text-center" style="width: 100%;">Faça o login</h3>
+                <h3 v-else key="cadastroText" class="mb-0 mt-n2 text-center" style="width: 100%;">Faça seu <span class="main-color">cadastro</span> =)</h3>
+            </transition>
 
             <v-row
                 class="box-login-internal"
@@ -44,9 +34,8 @@
                                     label="CPF"
                                     required
                                     :rules="emptyRule"
-                                    outlined
-                                    background-color="#efefef"
-                                    class="input-shadow mb-4"
+                                    background-color="#fff"
+                                    class="mb-4"
                                 ></v-text-field>
 
                                 <v-text-field
@@ -54,10 +43,9 @@
                                     label="Senha"
                                     required
                                     :rules="emptyRule"
-                                    outlined
                                     type="password"
-                                    background-color="#efefef"
-                                    class="input-shadow mb-4"
+                                    background-color="#fff"
+                                    class="mb-4"
                                 ></v-text-field>
 
                                 <v-dialog
@@ -71,9 +59,8 @@
                                             v-model="birth_date"
                                             label="Picker in dialog"
                                             readonly
-                                            outlined
-                                            background-color="#efefef"
-                                            class="input-shadow mb-4"
+                                            background-color="#fff"
+                                            class="mb-4"
                                             v-on="on"
                                         ></v-text-field>
                                     </template>
@@ -89,9 +76,8 @@
                                     label="Sexo"
                                     required
                                     :rules="emptyRule"
-                                    outlined
-                                    background-color="#efefef"
-                                    class="input-shadow mb-4"
+                                    background-color="#fff"
+                                    class="mb-4"
                                 ></v-text-field>
 
                                 <v-text-field
@@ -99,9 +85,8 @@
                                     label="E-mail"
                                     required
                                     :rules="emptyRule"
-                                    outlined
-                                    background-color="#efefef"
-                                    class="input-shadow mb-4"
+                                    background-color="#fff"
+                                    class="mb-4"
                                 ></v-text-field>
 
                                 <v-text-field
@@ -109,9 +94,8 @@
                                     label="First Name"
                                     required
                                     :rules="emptyRule"
-                                    outlined
-                                    background-color="#efefef"
-                                    class="input-shadow mb-4"
+                                    background-color="#fff"
+                                    class="mb-4"
                                 ></v-text-field>
 
                                 <v-text-field
@@ -119,9 +103,8 @@
                                     label="Last Name"
                                     required
                                     :rules="emptyRule"
-                                    outlined
-                                    background-color="#efefef"
-                                    class="input-shadow mb-4"
+                                    background-color="#fff"
+                                    class="mb-4"
                                 ></v-text-field>
                                 <v-btn
                                     href="#"
@@ -137,7 +120,6 @@
                     <p>Talvez você esteja querendo <a href="#" @click="loginType = false" v-if="loginType"> criar uma conta?</a> <a href="#" @click="loginType = true" v-else> fazer login?</a></p>
                 </v-col>
             </v-row>
-        </div>
     </v-content>
 </template>
 
@@ -203,10 +185,11 @@ export default {
 
 <style lang="scss">
 #auth {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #eb4476, #e18855) !important;
-
+    background: $c-true-white;
+    margin-top: 56px;
+    
     .v-content__wrap {
+        margin-top: 20px;
         align-items: center;
         justify-content: center;
 
