@@ -1,13 +1,13 @@
 <template>
-    <v-content class="d-flex flex-column pt-0">
+    <v-content class="order-bag d-flex flex-column pt-0">
         <div class="card">
             <div class="card__image-area">
                 <img class="card__image-area__image" src="@/assets/images/place.svg"/>
             </div>
             <div class="card__text-area">
                 <div class="card__text-area__text">
-                    <p id="shopping-name">Você ta no shopping do seu zé</p>
-                    <p id="localization">Av josé palmeiras</p>
+                    <p id="shopping-name">Você está no {{ shopping.name }}</p>
+                    <p id="localization">{{ shopping.address }}</p>
                 </div>
                 <div class="card__text-area__button">
                     <a href="#">Não, estou em outro lugar</a>
@@ -16,20 +16,19 @@
         </div>
         <div class="card" id="foods">
             <div class="card__restaurant" id="items">
-                <h5 id="restaurant-title">Mc Donnald's</h5>
-                <p>de 30 a 40 min</p>
-                <restaurantItem />
-                <restaurantItem />
-
+                <h5 class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
+                <p>{{ restaurant.time }}min</p>
+                <restaurantItem v-for="(item, index) in items" :key="index" :name="item.name" :ammount="item.ammount" @changeQtd="handleAmmount($event, index)" />
             </div>
+
             <div class="card__price">
-                <p><a href="#">Adicionar mais itens</a></p>
+                <p ><a class="palanquin" href="#"><b>Adicionar mais itens</b></a></p>
                 <div class="card__price__total">
                     <div class="card__price__total__text">
-                        <p>Total</p>
+                        <p class="palanquin">Total</p>
                     </div>
                     <div class="card__price__total__number">
-                        <p>R$ 29,40</p>
+                        <p class="palanquin">R${{ total }}</p>
                     </div>
                 </div>
             </div>
@@ -37,11 +36,11 @@
         <div class="card" id="payment">
             <div class="card__payment-method">
                 <div class="card__payment-method__title">
-                    <p class="mb-0">Forma de Pagamento</p>
+                    <h6 class="mb-2">Forma de Pagamento</h6>
                 </div>
                 <div class="card__payment-method__credit">
                     <p>Cartão no app <br> ****3387</p>
-                    <a href="#" class="mb-0 mt-0">ALTERAR</a>
+                    <a href="#" class="card__payment-method__credit__link mb-0 mt-0 ">ALTERAR</a>
                 </div>
                 <div class="card__payment-method__cpf">
                     <a href="#">Adicionar CPF</a>
@@ -49,7 +48,7 @@
             </div>
         </div>
         
-        <v-bottom-navigation  color="white">
+        <v-bottom-navigation color="white">
             <v-btn><font color="white">Finalizar Pedido - Total: </font></v-btn>
         </v-bottom-navigation>
     </v-content>
@@ -57,15 +56,66 @@
 </template>
 
 <script>
-    import restaurantItem from "@/components/BagItem.vue";
+    import restaurantItem from "./BagItem.vue";
     export default {
         components:{
             restaurantItem
+        },
+        data () {
+            return {
+                shopping: {},
+                restaurant: {},
+                items: []
+            }
+        },
+        created() {
+            this.getShopping();
+            this.getRestaurant();
+            this.getItems();
+        },
+        computed: {
+            total: function() {
+                let sum = 0;
+                if(this.items){
+                    this.items.forEach(item => {
+                        sum += item.value * item.ammount;
+                    });
+                }
+                return sum;
+            }
+        },
+        methods: {
+            handleAmmount(qtd, index) {
+                this.items[index].ammount = qtd;
+                window.localStorage.setItem('order-bag', JSON.stringify(this.items));
+            },
+            getItems() {
+                this.items = JSON.parse(window.localStorage.getItem('order-bag'));
+            },
+            getShopping() {
+                this.shopping = {
+                    name: "Shopping do seu zé",
+                    address: "Rua do seu zé"
+                }
+            },
+            getRestaurant() {
+                this.restaurant = {
+                    name: "McDonalds",
+                    time: "30-40"
+                }
+            }
         }
     };
 </script>
 
 <style lang="scss">
+.order-bag {
+    .v-bottom-navigation {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
 .v-content__wrap {
     display: flex;
     flex-direction: column;
@@ -87,7 +137,7 @@
         align-items: center;
         
         &__image {
-            height: 60px;
+            height: 40px;
         }
     }
 
@@ -98,7 +148,7 @@
         padding-right: 10px;
 
         &__text{
-            border-bottom: 1px solid #797979;
+            border-bottom: 1px solid #c7c7c7;
         }
 
         &__button{
@@ -117,8 +167,12 @@
     }
 
     &__restaurant {
-        border-bottom: 1px solid #797979;
+        border-bottom: 1px solid #c7c7c7;
         padding: 0 10px 25px 10px;
+
+        p {
+            font-size: 14px;
+        }
     }
 
     &__price{        
@@ -163,13 +217,15 @@
             p {
                 font-size: 12px;
                 color: #797979;
-                padding-top: 12px;
+                margin-top: 16px;
             }
 
             a:visited, a:link{
-                padding-top: 12px;
+                font-size: 12px;
                 text-decoration: none;
                 color: #000000;
+                display: flex;
+                align-items: center;
             }
             border-bottom: 1px solid#C7C7C7;
         }
@@ -204,7 +260,7 @@
 }
 
 #restaurant-title{
-    margin-bottom: 0px !important;
+    font-size: 22px !important;
 }
 
 #foods{

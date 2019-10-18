@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/LandingPage/Home.vue'
-import orderbag from '../views/OrderBag/orderbag.vue'
+import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
 import LandingPageHeader from '../views/LandingPage/Header.vue'
 
 Vue.use(Router)
@@ -20,7 +20,7 @@ export default new Router({
             path: '/orderbag',
             name: 'order-bag',
             components: {
-                default: orderbag,
+                default: OrderBagPage,
                 // LandingPageHeader
             }
         },

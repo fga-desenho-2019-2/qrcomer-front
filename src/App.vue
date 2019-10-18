@@ -52,6 +52,15 @@ $second-font: 'Lexend Deca', 'Roboto', sans-serif;
         }
     }
 
+    .palanquin {
+        font-family: $main-font !important;
+        font-weight: bold;
+    }
+
+    .lexend {
+        font-family: $second-font !important;
+    }
+
     .main-color {
         color: $main-color;
     }
