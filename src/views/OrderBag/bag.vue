@@ -14,6 +14,26 @@
                 </div>
             </div>
         </div>
+        <div class="shopping-info" id="foods">
+            <div class="shopping-info__restaurant" id="items">
+                <h5 id="restaurant-title">Mc Donnald's</h5>
+                <p>de 30 a 40 min</p>
+                <restaurantitem />
+                <restaurantitem />
+
+            </div>
+            <div class="shopping-info__price">
+                <p><a href="#">Adicionar mais itens</a></p>
+                <div class="shopping-info__price__total">
+                    <div class="shopping-info__price__total__text">
+                        <p>Total</p>
+                    </div>
+                    <div class="shopping-info__price__total__number">
+                        <p>R$ 29,40</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         
@@ -25,9 +45,10 @@
 </template>
 
 <script>
+    import restaurantitem from "@/components/BagItem.vue";
     export default {
         components:{
-
+            restaurantitem
         }
     };
 </script>
@@ -43,7 +64,7 @@
     background-color: $c-white;
     box-shadow: 0px 4px 10px #00000033;
     padding-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 
     &__image-area {
         width: 20%;
@@ -63,8 +84,6 @@
         float: right;
         box-sizing: border-box;
         padding-right: 10px;
-        // margin-right: 10px;
-        // border-bottom: 1px solid $c-gray50;
 
         &__text{
             border-bottom: 1px solid #797979;
@@ -84,6 +103,34 @@
             }
         }
     }
+
+    &__restaurant {
+        border-bottom: 1px solid #797979;
+        padding: 0 10px 25px 10px;
+    }
+
+    &__price{        
+
+        font-size: 14px;
+        font-weight: 25px;
+        padding: 5px 10px 0px 10px;
+
+        width: 100%;
+        text-align: center; 
+
+        a:link, a:visited {
+            text-decoration: none;
+            width: 100%;
+            color: #EF596B;
+        }
+
+        &__total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: normal;
+        }
+    }
 }
 
 #shopping-name {
@@ -95,5 +142,12 @@
     font-size: 12px;
     color: #797979;
 }
-</style>
 
+#restaurant-title{
+    margin-bottom: 0px !important;
+}
+
+#foods{
+    padding-top: 10px;
+}
+</style>
