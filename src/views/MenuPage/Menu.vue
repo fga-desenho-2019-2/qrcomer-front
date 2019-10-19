@@ -38,15 +38,15 @@ import MenuBanner from './MenuBanner.vue'
 import CategoryItem from './CategoryItem.vue'
 
 export default {
-data() {
-        return {
-            menu: [],
-            banner: null,
-            categories: [],
-            isIntersecting: false,
-            categoriesData: [],
-            takeIntersecting: null
-        }
+    data() {
+            return {
+                menu: [],
+                banner: null,
+                categories: [],
+                isIntersecting: false,
+                categoriesData: [],
+                takeIntersecting: null
+            }
     },
     components: {
         "QrcCardItem": CardItem,
@@ -64,7 +64,7 @@ data() {
         handleScroll() {
             this.$emit('scrollItemCategory', this.isIntersecting);
         },
-        onIntersect (entries, observer) {
+        onIntersect (entries) {
             this.isIntersecting = entries[0].target.id
         },
         scrollToPlace: function(id){
@@ -82,7 +82,7 @@ data() {
                 {
                     id:1,
                     name: 'Combo Big Mac',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.19,
                     img: require('@/assets/images/bigmac.svg'),
@@ -91,7 +91,7 @@ data() {
                 {
                     id:2,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
@@ -100,7 +100,7 @@ data() {
                 {
                     id:3,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
@@ -110,7 +110,7 @@ data() {
                 {
                     id:4,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
@@ -120,7 +120,7 @@ data() {
                 {
                     id:5,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
@@ -130,7 +130,7 @@ data() {
                 {
                     id:6,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
@@ -140,7 +140,7 @@ data() {
                 {
                     id:7,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
@@ -150,7 +150,7 @@ data() {
                 {
                     id:8,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
@@ -160,7 +160,7 @@ data() {
                 {
                     id:9,
                     name: 'Quarteirão',
-                    description: 'http://localhost:8080/',
+                    description: 'http://localhost:8080/item-page',
                     details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
