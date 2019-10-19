@@ -10,28 +10,39 @@
         </v-btn>
 
         <v-spacer></v-spacer>
-
+        <span>{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
         <v-btn
+            v-if="isAuthenticated"
             @click="logout"
-            icon>
+            text>
             <v-icon class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon">mdi-close</v-icon>
+            Deslogar
         </v-btn>
         
     </v-app-bar>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
     data() {
         return {
             white: false,
         }
     },
+    computed: mapGetters({
+        isAuthenticated: "auth/isAuthenticated"
+    }),
     methods: {
+        routeTo(route) {
+            this.$router.push(route).catch(err => {});;
+        },
         logout: function () {
+            console.log(this.state)
             this.$store.dispatch('auth/AUTH_LOGOUT')
                 .then(() => {
-                    this.$router.push('/auth')
+                    this.routeTo('/auth')
             })
         }
         

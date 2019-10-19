@@ -6,29 +6,17 @@
             </transition>
 
             <v-row
-                class="box-login-internal"
-                align="center"
-                justify="center">
+                class="box-login">
                 <v-col
-                    class="d-none d-sm-none d-md-flex d-lg-flex"
-                    cols=12
-                    sm=12
-                    md=6
-                    lg=6>
-                    <img
-                        src="~@/assets/images/QRComer.png"
-                        alt="Logo"
-                        class="form-image ma-auto">
-                </v-col>
-                <v-col
+                    class="d-flex flex-column"
                     cols=12
                     sm=12
                     md=6
                     lg=6>
                     <v-form v-model="valid" ref="form">
-                        <transition name="slide-x-transition" mode="out-in">
-                            <div class="flex-column">
-                                <div v-if="loginType">
+                        <div class="flex-column">
+                            <transition name="slide-x-transition" mode="out-in">
+                                <div v-if="loginType" key="login">
                                     <v-text-field
                                         v-model="email"
                                         label="E-mail"
@@ -47,12 +35,21 @@
                                         background-color="#fff"
                                         class="mb-4"
                                     ></v-text-field>
+
+                                    <v-btn
+                                        href="#"
+                                        block
+                                        x-large
+                                        @click="login"
+                                        class="qrc-btn primary my-2 mx-auto">
+                                        <span class="mr-2">Entrar</span>
+                                    </v-btn>
                                 </div>
 
-                                <div v-else>
+                                <div v-else key="cadastro">
                                     <v-text-field
-                                        v-model="cpf"
-                                        label="CPF"
+                                        v-model="email"
+                                        label="E-mail"
                                         required
                                         :rules="emptyRule"
                                         background-color="#fff"
@@ -65,6 +62,15 @@
                                         required
                                         :rules="emptyRule"
                                         type="password"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
+
+                                    <v-text-field
+                                        v-model="cpf"
+                                        label="CPF"
+                                        required
+                                        :rules="emptyRule"
                                         background-color="#fff"
                                         class="mb-4"
                                     ></v-text-field>
@@ -85,61 +91,36 @@
                                                 v-on="on"
                                             ></v-text-field>
                                         </template>
-                                        <v-date-picker v-model="birth_date" type="date" scrollable>
+                                        <v-date-picker v-model="birth_date" type="date" scrollable locale="pt-br">
                                             <div class="flex-grow-1"></div>
                                             <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
                                             <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
                                         </v-date-picker>
                                     </v-dialog>
 
-                                    <v-text-field
-                                        v-model="sexo"
-                                        label="Sexo"
-                                        required
-                                        :rules="emptyRule"
-                                        background-color="#fff"
-                                        class="mb-4"
-                                    ></v-text-field>
+                                    <v-select
+                                        v-model="selectedSexo"
+                                        :items="sexo"
+                                        label="Selecione o sexo"
+                                    ></v-select>
 
-                                    <v-text-field
-                                        v-model="email"
-                                        label="E-mail"
-                                        required
-                                        :rules="emptyRule"
-                                        background-color="#fff"
-                                        class="mb-4"
-                                    ></v-text-field>
-
-                                    <v-text-field
-                                        v-model="first_name"
-                                        label="First Name"
-                                        required
-                                        :rules="emptyRule"
-                                        background-color="#fff"
-                                        class="mb-4"
-                                    ></v-text-field>
-
-                                    <v-text-field
-                                        v-model="last_name"
-                                        label="Last Name"
-                                        required
-                                        :rules="emptyRule"
-                                        background-color="#fff"
-                                        class="mb-4"
-                                    ></v-text-field>
+                                    <v-btn
+                                        href="#"
+                                        block
+                                        x-large
+                                        @click="login"
+                                        class="qrc-btn primary my-2 mx-auto">
+                                        <span class="mr-2">Cadastrar</span>
+                                    </v-btn>
                                 </div>
-                                <v-btn
-                                    href="#"
-                                    block
-                                    x-large
-                                    @click="login"
-                                    class="qrc-btn primary my-2 mx-auto">
-                                    <span class="mr-2">Cadastrar</span>
-                                </v-btn>
-                            </div>
-                        </transition>
+                            </transition>
+                            
+                        </div>
                     </v-form>
-                    <p>Talvez você esteja querendo <a href="#" @click="loginType = false" v-if="loginType"> criar uma conta?</a> <a href="#" @click="loginType = true" v-else> fazer login?</a></p>
+                    <p class="mt-auto">Talvez você esteja querendo 
+                        <a href="#" @click="routeTo({ path: '/auth', query: { loginType: false }})" v-if="loginType"> criar uma conta?</a> 
+                        <a href="#" @click="routeTo({ path: '/auth', query: { loginType: true }})" v-else> fazer login? </a>
+                    </p>
                 </v-col>
             </v-row>
     </v-content>
@@ -157,12 +138,16 @@ export default {
             cpf: '',
             password: '',
             birth_date: '',
-            sexo: '',
+            selectedSexo: {},
+            sexo: [
+                {text: 'Masculino', value: 'm'},
+                {text: 'Feminino', value: 'f'}
+            ],
             email: '',
             first_name: '',
             last_name: '',
             emptyRule: [
-                v => !!v || 'Name is required',
+                v => !!v || 'Field is required',
             ],
             username: '',
             loginType: false,
@@ -173,34 +158,54 @@ export default {
     },
     methods: {
         routeTo(route) {
-            this.$router.push(route);
+            this.$router.push(route).catch(err => {});
         },
-        login: async function() {
-
+        async login() {
             if (this.$refs.form.validate()) {
                 if (this.loginType) {
-                    const { email, password } = this
-                    this.$store.dispatch('auth/AUTH_REQUEST', { email, password }).then(() => {
-                        this.$router.push('/auth_test') //Todo: redirecionar para outra página
-                    })
+                    this.loginUser();
                 } else {
-                    console.log('teste')
-                    let body = {
-                        cpf: this.cpf,
-                        password: this.password,
-                        birth_date: this.birth_date,
-                        sex: this.sexo,
-                        email: this.email,
-                        first_name: this.first_name,
-                        last_name: this.last_name,
-                    }
-                    console.log(body)
-                    let response = await auth.signUser(body)
-
-                    console.log(response)
+                    await this.registerUser();
+                    this.loginUser();
                 }
             }
+        },
+        loginUser() {
+            const { email, password } = this
+            this.$store.dispatch('auth/AUTH_REQUEST', { email, password }).then(() => {
+                this.$router.push('/auth_test') //Todo: redirecionar para outra página
+            })
+        },
+        async registerUser() {
+            let body = {
+                cpf: this.cpf,
+                password: this.password,
+                birth_date: this.birth_date,
+                sex: this.selectedSexo,
+                email: this.email,
+                first_name: this.first_name,
+                last_name: this.last_name,
+            }
+            console.log(body)
+            try {
+                await auth.signUser(body)
+                this.routeTo('/')
+            } catch(err) {
+                return
+            }
+            
+            
         }
+    },
+    watch: {
+        '$route.query.loginType': {
+            handler: function(loginType) {
+                this.loginType = loginType
+            },
+        }
+    },
+    created() {
+        this.$route.query.loginType ? this.loginType = true : this.loginType = false
     }
 }
 </script>
@@ -216,31 +221,12 @@ export default {
         justify-content: center;
 
         .box-login {
-            min-height: 400px;
-            min-width: 750px;
             display: flex;
+            width: 100%;
+            padding: 0 20px;
             flex-direction: column;
             align-items: center;
             background: $c-true-white;
-            border-radius: 0 20px;
-            box-shadow: 1px 1px 12px -3px $c-gray70;
-
-            .box-login-internal {
-                height: 100%;
-                width: 100%;
-            }
-
-            .form-image {
-                width: 190px;
-            }
-        }
-
-        @media screen and (max-width: 480px){
-            .box-login {
-                height: 95vh;
-                width: 95vw;
-                min-width: auto;
-            }
         }
     }
 }

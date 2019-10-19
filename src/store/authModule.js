@@ -13,16 +13,20 @@ const authModule = {
         AUTH_SUCCESS: (state, token) => {
             state.status = 'success'
             state.token = token
-            console.log('commit nas mutations', state.status)
         },
         AUTH_ERROR: (state) => {
             state.status = 'error'
         },
+        AUTH_LOGOUT: (state) => {
+            state.status = 'loggedOut'
+            state.token = ''
+        }
     },
     actions: {
         AUTH_REQUEST: ({commit, dispatch}, user) => {
             return new Promise((resolve, reject) => { 
                 commit('AUTH_REQUEST')
+                // A rota está hard coded, temos que arrumar isso depois. E usar o http client ao invés do axios aqui
                 axios({url: 'http://localhost:8000/api/token/', data: user, method: 'POST' })
                     .then(resp => {
                         const token = resp.data.access
