@@ -27,85 +27,107 @@
                     lg=6>
                     <v-form v-model="valid" ref="form">
                         <transition name="slide-x-transition" mode="out-in">
-
                             <div class="flex-column">
-                                <v-text-field
-                                    v-model="cpf"
-                                    label="CPF"
-                                    required
-                                    :rules="emptyRule"
-                                    background-color="#fff"
-                                    class="mb-4"
-                                ></v-text-field>
+                                <div v-if="loginType">
+                                    <v-text-field
+                                        v-model="email"
+                                        label="E-mail"
+                                        required
+                                        :rules="emptyRule"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
 
-                                <v-text-field
-                                    v-model="password"
-                                    label="Senha"
-                                    required
-                                    :rules="emptyRule"
-                                    type="password"
-                                    background-color="#fff"
-                                    class="mb-4"
-                                ></v-text-field>
+                                    <v-text-field
+                                        v-model="password"
+                                        label="Senha"
+                                        required
+                                        :rules="emptyRule"
+                                        type="password"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
+                                </div>
 
-                                <v-dialog
-                                    ref="dialog"
-                                    v-model="modal"
-                                    :return-value.sync="date"
-                                    persistent
-                                    width="290px">
-                                    <template v-slot:activator="{ on }">
-                                        <v-text-field
-                                            v-model="birth_date"
-                                            label="Picker in dialog"
-                                            readonly
-                                            background-color="#fff"
-                                            class="mb-4"
-                                            v-on="on"
-                                        ></v-text-field>
-                                    </template>
-                                    <v-date-picker v-model="birth_date" type="date" scrollable>
-                                        <div class="flex-grow-1"></div>
-                                        <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                                        <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
-                                    </v-date-picker>
-                                </v-dialog>
+                                <div v-else>
+                                    <v-text-field
+                                        v-model="cpf"
+                                        label="CPF"
+                                        required
+                                        :rules="emptyRule"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
 
-                                <v-text-field
-                                    v-model="sexo"
-                                    label="Sexo"
-                                    required
-                                    :rules="emptyRule"
-                                    background-color="#fff"
-                                    class="mb-4"
-                                ></v-text-field>
+                                    <v-text-field
+                                        v-model="password"
+                                        label="Senha"
+                                        required
+                                        :rules="emptyRule"
+                                        type="password"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
 
-                                <v-text-field
-                                    v-model="email"
-                                    label="E-mail"
-                                    required
-                                    :rules="emptyRule"
-                                    background-color="#fff"
-                                    class="mb-4"
-                                ></v-text-field>
+                                    <v-dialog
+                                        ref="dialog"
+                                        v-model="modal"
+                                        :return-value.sync="date"
+                                        persistent
+                                        width="290px">
+                                        <template v-slot:activator="{ on }">
+                                            <v-text-field
+                                                v-model="birth_date"
+                                                label="Data de nascimento"
+                                                readonly
+                                                background-color="#fff"
+                                                class="mb-4"
+                                                v-on="on"
+                                            ></v-text-field>
+                                        </template>
+                                        <v-date-picker v-model="birth_date" type="date" scrollable>
+                                            <div class="flex-grow-1"></div>
+                                            <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                                            <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                                        </v-date-picker>
+                                    </v-dialog>
 
-                                <v-text-field
-                                    v-model="first_name"
-                                    label="First Name"
-                                    required
-                                    :rules="emptyRule"
-                                    background-color="#fff"
-                                    class="mb-4"
-                                ></v-text-field>
+                                    <v-text-field
+                                        v-model="sexo"
+                                        label="Sexo"
+                                        required
+                                        :rules="emptyRule"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
 
-                                <v-text-field
-                                    v-model="last_name"
-                                    label="Last Name"
-                                    required
-                                    :rules="emptyRule"
-                                    background-color="#fff"
-                                    class="mb-4"
-                                ></v-text-field>
+                                    <v-text-field
+                                        v-model="email"
+                                        label="E-mail"
+                                        required
+                                        :rules="emptyRule"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
+
+                                    <v-text-field
+                                        v-model="first_name"
+                                        label="First Name"
+                                        required
+                                        :rules="emptyRule"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
+
+                                    <v-text-field
+                                        v-model="last_name"
+                                        label="Last Name"
+                                        required
+                                        :rules="emptyRule"
+                                        background-color="#fff"
+                                        class="mb-4"
+                                    ></v-text-field>
+                                </div>
                                 <v-btn
                                     href="#"
                                     block
@@ -157,9 +179,9 @@ export default {
 
             if (this.$refs.form.validate()) {
                 if (this.loginType) {
-                    const { username, password } = this
-                    this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
-                        this.$router.push('/') //Todo: redirecionar para outra página
+                    const { email, password } = this
+                    this.$store.dispatch('auth/AUTH_REQUEST', { email, password }).then(() => {
+                        this.$router.push('/auth_test') //Todo: redirecionar para outra página
                     })
                 } else {
                     console.log('teste')

@@ -8,6 +8,14 @@
             icon>
             <v-icon class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon">mdi-arrow-left</v-icon>
         </v-btn>
+
+        <v-spacer></v-spacer>
+
+        <v-btn
+            @click="logout"
+            icon>
+            <v-icon class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon">mdi-close</v-icon>
+        </v-btn>
         
     </v-app-bar>
 </template>
@@ -20,9 +28,13 @@ export default {
         }
     },
     methods: {
-        routeTo(route) {
-            this.$router.push(route);
+        logout: function () {
+            this.$store.dispatch('auth/AUTH_LOGOUT')
+                .then(() => {
+                    this.$router.push('/auth')
+            })
         }
+        
     }
 }
 </script>
