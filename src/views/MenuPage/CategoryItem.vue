@@ -1,8 +1,9 @@
 <template>
-  <v-tabs class="qrc-style" background-color="#EFEFEF" color="#e18855">
+  <v-tabs class="qrc-style" background-color="#EFEFEF" color="#e18855" :centered="true" v-model="active_tab">
     <v-tab v-for="category in categories"
             :key="category.id"
-            @click.prevent="handleClick(category.name)">{{category.name}}</v-tab>
+            @click.prevent="handleClick(category.name)"
+            >{{category.name}}</v-tab>
     </v-tabs>
 </template>
 
@@ -11,13 +12,25 @@
 
 export default {
   name: "Category",
+  data: () => ({
+    active_tab: null
+  }),
+  created() {
+    window.onscroll = this.scrollOnActive;    
+  },
   methods:{
       handleClick(name){
           this.$emit('scrollCategory', name)
+      },
+      scrollOnActive(){
+        this.active_tab = this.categoryTab;
       }
   },
   props: {
     categories: {
+      required: true
+    },
+    categoryTab: {
       required: true
     }
   }

@@ -1,5 +1,5 @@
 <template>
-    <v-content class="d-flex flex-column pt-0">
+    <v-content class="d-flex flex-column pt-0" @scroll="handleScroll(isIntersecting)">
         <div>
             <QrcMenuBanner 
                     :key="banner.id"
@@ -10,14 +10,14 @@
                     :img="banner.img"/>
         </div>
         <div>
-            <QrcCategoryItem @scrollCategory="scrollToPlace($event)" :categories="categories"/>
+            <QrcCategoryItem @scrollCategory="scrollToPlace($event)" :categories="categories" :categoryTab="isIntersecting"/>
         </div>
-        <div class="category-area" v-for="(category, index) in categories"
+        <div  class="category-area" v-for="(category, index) in categories"
                     :key="category.id"
                     :id="category.name">
-            <h5 :id="category.name" class="category-title">{{category.name}}</h5>
+            <h5 v-intersect="onIntersect" :id="category.id" class="category-title">{{category.name}}</h5>
             <div class="menu-itens">
-                <QrcCardItem 
+                <QrcCardItem
                         v-for="item in categoriesData[index]"
                         :key="item.id"
                         :class="`item-${item.id}`"
@@ -36,7 +36,6 @@
 import CardItem from './CardItem.vue'
 import MenuBanner from './MenuBanner.vue'
 import CategoryItem from './CategoryItem.vue'
-// import { filter } from 'minimatch'
 
 export default {
 data() {
@@ -44,8 +43,9 @@ data() {
             menu: [],
             banner: null,
             categories: [],
+            isIntersecting: false,
             categoriesData: [],
-            scrollCategories: null
+            takeIntersecting: null
         }
     },
     components: {
@@ -54,18 +54,22 @@ data() {
         "QrcMenuBanner": MenuBanner,
     },
     created(){
-      this.getResult()
-      this.categories.forEach(category => {
-          let categoryList = this.filterItens(category.name)
-          this.categoriesData.push(categoryList)
-      });
-
-    //   console.log(this.categoriesData)
+        this.getResult()
+        this.categories.forEach(category => {
+            let categoryList = this.filterItens(category.name)
+            this.categoriesData.push(categoryList)
+        });
     },
     methods: {
+        handleScroll() {
+            this.$emit('scrollItemCategory', this.isIntersecting);
+        },
+        onIntersect (entries, observer) {
+            this.isIntersecting = entries[0].target.id
+        },
         scrollToPlace: function(id){
             let elmnt = document.getElementById(id)
-            elmnt.scrollIntoView()
+            elmnt.scrollIntoView({behavior: "smooth"})
         },
         filterItens: function(category){
             let filteredMenu = this.menu.filter( (item) => {
@@ -176,20 +180,20 @@ data() {
 
             this.categories = [
                 {
-                    id: 1,
+                    id: 0,
                     name: "Bebida"
                 },
                 {
-                    id: 2,
+                    id: 1,
                     name: "Hamburguer"
                 },
                 {
-                    id: 3,
+                    id: 2,
                     name: "Sorvete"
                 }
             ]
         }
-    }
+    },
 }
 </script>
 
@@ -204,6 +208,7 @@ data() {
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 4vw;
+    justify-content: flex-start;
 }
 .category-title{
     margin-bottom: 0 !important;
