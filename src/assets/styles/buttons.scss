@@ -2,7 +2,6 @@
     &.qrc-btn {
         border-radius: 0 15px;
         text-transform: initial;
-
         &.primary {
             background: $main-color !important;
             border-color: $main-color !important;
@@ -20,4 +19,28 @@
             border-radius: 0;
         }
     }
+    &.qrc-circle {
+        border-radius: 50px;
+        text-transform: initial;
+        width: 47px;
+        height: 47px;
+        &.primary {
+            background: $second-color !important;
+            border-color: $second-color !important;
+        }
+        &.tile {
+            border-radius: 50px;
+        }
+    }
+}
+
+.v-item-group {
+    background: linear-gradient(120deg, #eb4476, #e18855);
+    font-size: 2em;
+    position: sticky;
+    bottom: 0;
+}
+
+.v-btn__content {
+    color: rgb(238, 236, 236);
 }
