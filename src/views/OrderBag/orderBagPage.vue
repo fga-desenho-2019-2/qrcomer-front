@@ -56,14 +56,39 @@
           <a href="#" class="card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
         <div class="card__payment-method__cpf">
-          <a href="#">Adicionar CPF</a>
+          <v-dialog v-model="dialog" persistent max-width="600px">
+            <template v-slot:activator="{ on }">
+              <v-btn text style=" font-size: 12px; color: #797979;" v-on="on">Adicionar CPF</v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">CPF</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6">
+                      <v-form ref="form" v-model="valid">
+                        <v-select :items="cpf" label="CPF" required color="#e18855">Adicionar</v-select>
+                      </v-form>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="#ef596b" text @click="dialog = false">Cancelar</v-btn>
+                <v-btn :disabled="!valid" color="#ef596b" text @click="validate">Adicionar</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </div>
       </div>
     </div>
 
     <v-bottom-navigation color="white">
       <v-btn>
-        <font color="white">Finalizar Pedido - Total:</font>
+        <font color="white">Finalizar Pedido - Total: R${{ total }}</font>
       </v-btn>
     </v-bottom-navigation>
   </v-content>
@@ -80,7 +105,10 @@ export default {
       shopping: {},
       restaurant: {},
       items: [],
-      cnpj: ""
+      cnpj: "",
+      dialog: false,
+      valid: true,
+      cpf: ["555.444.333-22"]
     };
   },
   created() {
@@ -92,6 +120,8 @@ export default {
     if (localStorage.cnpj) {
       this.cnpj = localStorage.cnpj;
     }
+
+    // axios.get("link-da-api").then(response => (this.cpf = response));
   },
   watch: {
     cnpj(newCnpj) {
@@ -110,6 +140,11 @@ export default {
     }
   },
   methods: {
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+      }
+    },
     handleAmmount(qtd, index) {
       this.items[index].ammount = qtd;
       window.localStorage.setItem("order-bag", JSON.stringify(this.items));
@@ -146,6 +181,21 @@ export default {
   flex-direction: column;
 }
 
+.v-list-item {
+  color: #eb4476;
+
+  &__title {
+    color: #eb4476;
+
+    &__content {
+      color: #eb4476;
+    }
+  }
+  &__v-application {
+    color: #eb4476 !important;
+    caret-color: #eb4476 !important;
+  }
+}
 .card {
   width: 100%;
   background-color: $c-white;
@@ -296,5 +346,10 @@ export default {
 
 #payment {
   padding-top: 5px;
+}
+
+.v-input__control {
+  color: #eb4476;
+  font-family: "Palanquin", sans-serif;
 }
 </style>
