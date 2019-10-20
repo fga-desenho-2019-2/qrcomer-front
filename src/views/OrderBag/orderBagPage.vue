@@ -29,7 +29,7 @@
 
       <div class="card__price">
         <p>
-          <a class="palanquin" v-bind:href="'/shopping/' +shopping.cnpj">
+          <a class="palanquin" v-bind:href="'/shopping/' + cnpj">
             <b>Adicionar mais itens</b>
           </a>
         </p>
@@ -78,24 +78,26 @@ export default {
   data() {
     return {
       shopping: {},
-      //  shopping: [],
       restaurant: {},
-      items: []
-      //    id: this.cnpj
+      items: [],
+      cnpj: ""
     };
   },
   created() {
     this.getShopping();
     this.getRestaurant();
     this.getItems();
-    //  this.getShoppingId();
   },
-  //   props: {
-  //     cnpj: {
-  //       required: true,
-  //       type: String
-  //     }
-  //   },
+  mounted() {
+    if (localStorage.cnpj) {
+      this.cnpj = localStorage.cnpj;
+    }
+  },
+  watch: {
+    cnpj(newCnpj) {
+      localStorage.cnpj = newCnpj;
+    }
+  },
   computed: {
     total: function() {
       let sum = 0;
@@ -112,23 +114,15 @@ export default {
       this.items[index].ammount = qtd;
       window.localStorage.setItem("order-bag", JSON.stringify(this.items));
     },
-    // handleCnpj(cnpj, index) {
-    //   this.shopping[index].cnpj = id;
-    //   window.localStorage.setItem("shopping", JSON.stringify(this.shopping));
-    // },
     getItems() {
       this.items = JSON.parse(window.localStorage.getItem("order-bag"));
     },
     getShopping() {
       this.shopping = {
         name: "Shopping do seu zé",
-        address: "Rua do seu zé",
-        cnpj: "123456789"
+        address: "Rua do seu zé"
       };
     },
-    // getShoppingId() {
-    //   this.shopping = JSON.parse(window.localStorage.getItem("shopping"));
-    // },
     getRestaurant() {
       this.restaurant = {
         name: "McDonalds",
