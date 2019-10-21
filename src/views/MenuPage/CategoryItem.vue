@@ -13,17 +13,17 @@
 export default {
   name: "Category",
   data: () => ({
-    active_tab: null
+    active_tab: 0
   }),
   created() {
-    window.onscroll = this.scrollOnActive;    
+    window.onscroll = this.scrollOnActive;
   },
   methods:{
       handleClick(name){
           this.$emit('scrollCategory', name)
       },
       scrollOnActive(){
-        this.active_tab = this.categoryTab;
+        this.active_tab = parseInt(this.categoryTab);
       }
   },
   props: {

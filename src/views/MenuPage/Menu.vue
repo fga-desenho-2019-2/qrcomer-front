@@ -165,7 +165,43 @@ export default {
                     value: 22.10,
                     img: require('@/assets/images/bigmac.svg'),
                     category: "Bebida"
-                }
+                },
+                                {
+                    id:10,
+                    name: 'Quarteirão',
+                    description: 'http://localhost:8080/item-page',
+                    details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+                    value: 22.10,
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Hamburguer"
+                },
+                                {
+                    id:11,
+                    name: 'Quarteirão',
+                    description: 'http://localhost:8080/item-page',
+                    details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+                    value: 22.10,
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Sorvete"
+                },
+                                {
+                    id:12,
+                    name: 'Quarteirão',
+                    description: 'http://localhost:8080/item-page',
+                    details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+                    value: 22.10,
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Sorvete"
+                },
+                                {
+                    id:13,
+                    name: 'Quarteirão',
+                    description: 'http://localhost:8080/item-page',
+                    details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+                    value: 22.10,
+                    img: require('@/assets/images/bigmac.svg'),
+                    category: "Sorvete"
+                },
 
             ]
 

@@ -85,34 +85,10 @@ export default {
         }
 ,
         {
-          id: 2,
-          name: "Molho Especial",
-          description: "Molho de Tomate",
-          value: 1.20,
-          qtd: 0
-        }
-,
-        {
-          id: 2,
-          name: "Molho Especial",
-          description: "Molho de Tomate",
-          value: 1.20,
-          qtd: 0
-        }
-,
-        {
-          id: 2,
-          name: "Molho Especial",
-          description: "Molho de Tomate",
-          value: 1.20,
-          qtd: 0
-        }
-,
-        {
-          id: 2,
-          name: "Molho Especial",
-          description: "Molho de Tomate",
-          value: 1.20,
+          id: 3,
+          name: "Salada",
+          description: "Sala de Tomate",
+          value: 10.20,
           qtd: 0
         }],
       };
