@@ -1,6 +1,6 @@
 <template>
   <div class="qrc-item">
-    <a :href="description" target="_blank" class="qrc-item-link">
+    <a :href="description" class="qrc-item-link">
       <img :src="img" :alt="name" />
       <div class="qrc-item-details">
         <p class="qrc-item-name">{{name}}</p>
