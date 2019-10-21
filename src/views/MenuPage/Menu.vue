@@ -9,7 +9,7 @@
                     :time="banner.time"
                     :img="banner.img"/>
         </div>
-        <div>
+        <div class="qrc-tabs-sticky">
             <QrcCategoryItem @scrollCategory="scrollToPlace($event)" :categories="categories" :categoryTab="isIntersecting"/>
         </div>
         <div class="category-area" v-for="(category, index) in categories"
@@ -214,7 +214,11 @@ export default {
     margin-bottom: 0 !important;
     margin-left: 4vw;
 }
-
+.qrc-tabs-sticky{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 .category-area{
     background-color: #EFEFEF;
 }

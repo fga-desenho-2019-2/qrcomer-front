@@ -1,27 +1,35 @@
 <template>
-  <div>
-      <div>
-        <QrcItemDescription
-          :key="item.id"
-          :img="item.img"
-          :name="item.name"
-          :details="item.details"
-          :value="item.value"
-        />
+  <div class="qrc-color">
+    <div>
+        <div>
+          <QrcItemDescription
+            :key="item.id"
+            :img="item.img"
+            :name="item.name"
+            :details="item.details"
+            :value="item.value"
+          />
+        </div>
+        <div class="qrc-acompanhamento-area">
+            <h6 class="qrc-acompanhamento-title">Adicionar Acompanhamento</h6>
+            <p class="qrc-acompanhamento-description">Escolha e selecione a quantidade</p>
+        </div>
+        <div>
+            <QrcSideDish :food="item.sidedish"/> 
+        </div>
+        <v-textarea class="qrc-input"
+          color="#E7E6E6"
+          label="Deixe uma observação"
+          rows="1"
+        ></v-textarea>
       </div>
-      <div class="qrc-acompanhamento-area">
-          <h6 class="qrc-acompanhamento-title">Adicionar Acompanhamento</h6>
-          <p class="qrc-acompanhamento-description">Escolha e selecione a quantidade</p>
+      <div class="qrc-bottom-area">
+        <v-bottom-navigation color="white" class="form-select">
+          <v-btn>
+            <font color="white">Adicionar</font>
+          </v-btn>
+        </v-bottom-navigation>
       </div>
-      <div>
-          <QrcSideDish :food="item.sidedish"/> 
-      </div>
-      <v-textarea class="qrc-input"
-        color="#E7E6E6"
-        label="Deixe uma observação"
-        rows="1"
-      ></v-textarea>
-      <button class="qrc-finish-button" type="button" onclick="alert('Hello world!')">Finalizar</button>
   </div>
 </template>
 
@@ -74,6 +82,38 @@ export default {
           description: "Molho de Tomate",
           value: 1.20,
           qtd: 0
+        }
+,
+        {
+          id: 2,
+          name: "Molho Especial",
+          description: "Molho de Tomate",
+          value: 1.20,
+          qtd: 0
+        }
+,
+        {
+          id: 2,
+          name: "Molho Especial",
+          description: "Molho de Tomate",
+          value: 1.20,
+          qtd: 0
+        }
+,
+        {
+          id: 2,
+          name: "Molho Especial",
+          description: "Molho de Tomate",
+          value: 1.20,
+          qtd: 0
+        }
+,
+        {
+          id: 2,
+          name: "Molho Especial",
+          description: "Molho de Tomate",
+          value: 1.20,
+          qtd: 0
         }],
       };
     }
@@ -100,18 +140,17 @@ export default {
 .qrc-input{
   margin: 4vw;
 }
-.qrc-finish-button{
+.form-select .v-btn {
+  max-width: none !important;
   width: 100%;
-  height: 50px;
-  font-family: 'Lexend Deca', 'Roboto', sans-serif;
-  color: white;
-  border-radius: 0px 20px 0px 0px;
-  background-color: #e18855;
-  position: fixed;
+}
+.qrc-bottom-area{
+  width: 100%;
+  position: sticky;
   bottom: 0;
 }
-
-.v-application--wrap{
+.qrc-color{
+  height: 100%;
   background-color: #efefef;
 }
 </style>
