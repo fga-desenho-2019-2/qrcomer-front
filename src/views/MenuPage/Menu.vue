@@ -12,7 +12,7 @@
         <div>
             <QrcCategoryItem @scrollCategory="scrollToPlace($event)" :categories="categories" :categoryTab="isIntersecting"/>
         </div>
-        <div  class="category-area" v-for="(category, index) in categories"
+        <div class="category-area" v-for="(category, index) in categories"
                     :key="category.id"
                     :id="category.name">
             <h5 v-intersect="onIntersect" :id="category.id" class="category-title">{{category.name}}</h5>

@@ -31,7 +31,7 @@ export default {
         },
         value: {
             required: true,
-            type: String
+            type: Number
         }
     }
 }
@@ -58,6 +58,7 @@ export default {
         margin: 0 4vw;
         padding-bottom: 10px;
         border-bottom: 1px solid #C7C7C7;
+        margin-bottom: 10px;
     }
     .qrc-style-detail{
         color: #797979;
