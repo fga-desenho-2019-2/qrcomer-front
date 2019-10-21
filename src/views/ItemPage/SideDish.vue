@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="qrc-organize-checkbox" v-for="card in food" :key="card.id">
+    <div class="qrc-organize-checkbox" v-for="(card, index) in food" :key="card.id">
       <div class="qrc-organize-descriptionbox">
-        <v-checkbox v-model="checkbox1" :value="card.name" color="#e18855" />
+        <v-checkbox v-model="checkbox1" :value="card" color="#e18855" />
         <div>
             <h6 class="qrc-sidedish-title">{{card.name}}</h6>
             <p class="qrc-sidedish-description">{{card.description}}</p>
@@ -10,11 +10,11 @@
         </div>
       </div>
       <div class="qrc-button-calc">
-        <v-btn class="mx-2" fab dark x-small color="#e18855">
+        <v-btn class="mx-2" @click.prevent="handleQtd('minus', index)" fab dark x-small color="#e18855">
             <v-icon dark>mdi-minus</v-icon>
         </v-btn>
-        <h6 class="qrc-button-calc__value">4</h6>
-        <v-btn class="mx-2" fab dark x-small color="#e18855">
+        <h6 class="qrc-button-calc__value">{{card.qtd}}</h6>
+        <v-btn class="mx-2" @click.prevent="handleQtd('plus', index)" fab dark x-small color="#e18855">
             <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </div>
@@ -27,21 +27,31 @@
 export default {
     data () {
         return {
-            checkbox1: [{}]
+            checkbox1: [],
         }
     },
     props: {
         food: {
-        required: true,
-        type: Array
+            required: true,
+            type: Array
         }
     },
-    mounted(){
+    created(){
         window.onclick = this.callConsole
     },
     methods: {
         callConsole(){
             console.log(this.checkbox1)
+        },
+        handleQtd(operation, index) {
+            if(operation === "plus"){
+                this.checkbox1[index].qtd++;
+                console.log(this.checkbox1[index].qtd)
+            }
+            else if(operation === "minus" && this.checkbox1[index].qtd > 0){
+                this.checkbox1[index].qtd--;
+                console.log(this.checkbox1[index].qtd)
+            }
         }
     }
 };

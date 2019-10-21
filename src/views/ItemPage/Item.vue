@@ -49,22 +49,25 @@ export default {
         img: require("@/assets/images/bigmac.svg"),
         category: "Hamburguer",
         sidedish: [{
-          id: 1,
+          id: 0,
           name: "Batata",
           description: "Batatas Fritas",
-          value: 3.20
+          value: 3.20,
+          qtd: 1
+        },
+        {
+          id: 1,
+          name: "Refrigerante",
+          description: "Coca Cola",
+          value: 5.20,
+          qtd: 1
         },
         {
           id: 2,
-          name: "Refrigerante",
-          description: "Coca Cola",
-          value: 5.20
-        },
-        {
-          id: 3,
           name: "Molho Especial",
           description: "Molho de Tomate",
-          value: 1.20
+          value: 1.20,
+          qtd: 0
         }],
       };
     }
