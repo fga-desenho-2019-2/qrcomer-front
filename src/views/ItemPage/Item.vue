@@ -1,21 +1,27 @@
 <template>
-  <div  class="qrc-color">
-    <div>
-      <QrcItemDescription
-        :key="item.id"
-        :img="item.img"
-        :name="item.name"
-        :details="item.details"
-        :value="item.value"
-      />
-    </div>
-    <div class="qrc-acompanhamento-area">
-        <h6 class="qrc-acompanhamento-title">Adicionar Acompanhamento</h6>
-        <p class="qrc-acompanhamento-description">Escolha e selecione a quantidade</p>
-    </div>
-    <div>
-        <QrcSideDish :food="item.sidedish"/> 
-    </div>
+  <div>
+      <div>
+        <QrcItemDescription
+          :key="item.id"
+          :img="item.img"
+          :name="item.name"
+          :details="item.details"
+          :value="item.value"
+        />
+      </div>
+      <div class="qrc-acompanhamento-area">
+          <h6 class="qrc-acompanhamento-title">Adicionar Acompanhamento</h6>
+          <p class="qrc-acompanhamento-description">Escolha e selecione a quantidade</p>
+      </div>
+      <div>
+          <QrcSideDish :food="item.sidedish"/> 
+      </div>
+      <v-textarea class="qrc-input"
+        color="#E7E6E6"
+        label="Deixe uma observação"
+        rows="1"
+      ></v-textarea>
+      <button class="qrc-finish-button" type="button" onclick="alert('Hello world!')">Finalizar</button>
   </div>
 </template>
 
@@ -76,9 +82,7 @@ export default {
 </script>
 
 <style lang="scss">
-.qrc-color {
-  background-color: #efefef;
-}
+
 .qrc-acompanhamento-area{
     background-color: #E7E6E6;
     padding: 4vw;
@@ -92,5 +96,22 @@ export default {
     font-size: 10px !important;
     color: #797979;
     margin-bottom: 0 !important;
+}
+.qrc-input{
+  margin: 4vw;
+}
+.qrc-finish-button{
+  width: 100%;
+  height: 50px;
+  font-family: 'Lexend Deca', 'Roboto', sans-serif;
+  color: white;
+  border-radius: 0px 20px 0px 0px;
+  background-color: #e18855;
+  position: fixed;
+  bottom: 0;
+}
+
+.v-application--wrap{
+  background-color: #efefef;
 }
 </style>

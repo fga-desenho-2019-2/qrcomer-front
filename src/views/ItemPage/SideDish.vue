@@ -36,21 +36,13 @@ export default {
             type: Array
         }
     },
-    created(){
-        window.onclick = this.callConsole
-    },
     methods: {
-        callConsole(){
-            console.log(this.checkbox1)
-        },
         handleQtd(operation, index) {
             if(operation === "plus"){
                 this.checkbox1[index].qtd++;
-                console.log(this.checkbox1[index].qtd)
             }
             else if(operation === "minus" && this.checkbox1[index].qtd > 0){
                 this.checkbox1[index].qtd--;
-                console.log(this.checkbox1[index].qtd)
             }
         }
     }
