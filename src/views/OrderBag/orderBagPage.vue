@@ -1,21 +1,21 @@
 <template>
   <v-content class="order-bag d-flex flex-column pt-0">
-    <div class="card">
-      <div class="card__image-area">
-        <img class="card__image-area__image" src="@/assets/images/place.svg" />
+    <div class="floating_card">
+      <div class="floating_card__image-area">
+        <img class="floating_card__image-area__image" src="@/assets/images/place.svg" />
       </div>
-      <div class="card__text-area">
-        <div class="card__text-area__text">
+      <div class="floating_card__text-area">
+        <div class="floating_card__text-area__text">
           <p id="shopping-name">Você está no {{ shopping.name }}</p>
           <p id="localization">{{ shopping.address }}</p>
         </div>
-        <div class="card__text-area__button">
+        <div class="floating_card__text-area__button">
           <a href="#">Não, estou em outro lugar</a>
         </div>
       </div>
     </div>
-    <div class="card" id="foods">
-      <div class="card__restaurant" id="items">
+    <div class="floating_card" id="foods">
+      <div class="floating_card__restaurant" id="items">
         <h5 class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
         <p>{{ restaurant.time }}min</p>
         <restaurantItem
@@ -27,35 +27,35 @@
         />
       </div>
 
-      <div class="card__price">
+      <div class="floating_card__price">
         <p>
           <a class="palanquin" v-bind:href="'/shopping/' + cnpj">
             <b>Adicionar mais itens</b>
           </a>
         </p>
-        <div class="card__price__total">
-          <div class="card__price__total__text">
+        <div class="floating_card__price__total">
+          <div class="floating_card__price__total__text">
             <p class="palanquin">Total</p>
           </div>
-          <div class="card__price__total__number">
+          <div class="floating_card__price__total__number">
             <p class="palanquin">R${{ total }}</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="card" id="payment">
-      <div class="card__payment-method">
-        <div class="card__payment-method__title">
+    <div class="floating_card" id="payment">
+      <div class="floating_card__payment-method">
+        <div class="floating_card__payment-method__title">
           <h6 class="mb-2">Forma de Pagamento</h6>
         </div>
-        <div class="card__payment-method__credit">
+        <div class="floating_card__payment-method__credit">
           <p>
             Cartão no app
             <br />****3387
           </p>
-          <a href="#" class="card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
+          <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
-        <div class="card__payment-method__cpf">
+        <div class="floating_card__payment-method__cpf">
           <div v-if="cpf.length >= 14">
             <span>CPF registrado: {{ cpf }}</span>
           </div>
@@ -174,7 +174,7 @@ export default {
   }
 }
 
-.card {
+.floating_card {
   width: 100%;
   background-color: $c-white;
   box-shadow: 0px 4px 10px #00000033;
@@ -324,11 +324,6 @@ export default {
 
 #payment {
   padding-top: 5px;
-}
-
-.v-input__control {
-  color: #eb4476;
-  font-family: "Palanquin", sans-serif;
 }
 
 .form-select .v-btn {

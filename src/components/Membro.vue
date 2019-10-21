@@ -17,7 +17,7 @@ export default {
     name: "Membro",
     props: {
         github: {
-            required: true,
+            required: false,
             type: String,
         },
         name: {

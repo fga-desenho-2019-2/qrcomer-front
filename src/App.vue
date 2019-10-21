@@ -2,6 +2,9 @@
   <v-app id="qrcomer">
     <router-view name="LandingPageHeader"></router-view>
 
+    <router-view name="LoggedUserHeader"></router-view>
+
+    <!-- router view default, do not remove it -->
     <router-view></router-view>
   </v-app>
 </template>
@@ -62,22 +65,6 @@ $second-font: "Lexend Deca", "Roboto", sans-serif;
   b {
     color: $main-color;
   }
-
-  @media screen and (max-width: 1920px) {
-    .container {
-      max-width: 1300px !important;
-    }
-  }
-
-  .palanquin {
-    font-family: $main-font !important;
-    font-weight: bold;
-  }
-
-  .lexend {
-    font-family: $second-font !important;
-  }
-
   @media screen and (max-width: 1920px) {
     .container {
       max-width: 1300px !important;
