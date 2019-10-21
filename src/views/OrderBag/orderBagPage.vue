@@ -51,7 +51,7 @@
         <div class="floating_card__payment-method__credit">
           <p>
             Cartão no app
-            <br />****3387
+            <br />**** 3387
           </p>
           <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
