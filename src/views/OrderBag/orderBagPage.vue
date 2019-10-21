@@ -56,14 +56,13 @@
           <a href="#" class="card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
         <div class="card__payment-method__cpf">
-          <!-- </div> -->
-          <div v-if="cpf">
+          <div v-if="cpf.length >= 14">
             <span>CPF registrado: {{ cpf }}</span>
           </div>
           <div v-else>
-            <v-form>
+            <v-form ref="form" v-model="valid">
               <v-col cols="12" md="6">
-                <v-text-field v-model="cpf" :rules="cpfRules" label="CPF" required color="#e18855"></v-text-field>
+                <v-text-field color="#e18855" v-model="cpf" :rules="cpfRules" label="CPF" required></v-text-field>
               </v-col>
             </v-form>
           </div>
@@ -87,6 +86,7 @@ export default {
   },
   data() {
     return {
+      valid: true,
       shopping: {},
       restaurant: {},
       items: [],
