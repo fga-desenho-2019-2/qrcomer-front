@@ -4,23 +4,23 @@
       <v-form>
         <v-container>
           <v-row>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="name" label="Nome" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="email" label="E-mail" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field type="password" v-model="password" label="Senha" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="telephone" label="Telefone" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="cpf" label="CPF" required color="#e18855"></v-text-field>
             </v-col>
           </v-row>
