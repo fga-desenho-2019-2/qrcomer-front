@@ -15,7 +15,7 @@
         <div class="category-area" v-for="(category, index) in categories"
                     :key="category.id"
                     :id="category.name">
-            <h5 v-intersect="onIntersect" :id="category.id" class="category-title">{{category.name}}</h5>
+            <h5 :id="category.id" class="category-title">{{category.name}}</h5>
             <div class="menu-itens">
                 <QrcCardItem
                         v-for="item in categoriesData[index]"
@@ -45,7 +45,6 @@ export default {
                 categories: [],
                 isIntersecting: false,
                 categoriesData: [],
-                takeIntersecting: null
             }
     },
     components: {
@@ -61,12 +60,6 @@ export default {
         });
     },
     methods: {
-        handleScroll() {
-            this.$emit('scrollItemCategory', this.isIntersecting);
-        },
-        onIntersect (entries) {
-            this.isIntersecting = entries[0].target.id
-        },
         scrollToPlace: function(id){
             let elmnt = document.getElementById(id)
             elmnt.scrollIntoView({behavior: "smooth"})

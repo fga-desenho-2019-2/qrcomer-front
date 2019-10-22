@@ -15,24 +15,15 @@ export default {
   data: () => ({
     active_tab: 0
   }),
-  created() {
-    window.onscroll = this.scrollOnActive;
-  },
   methods:{
       handleClick(name){
           this.$emit('scrollCategory', name)
       },
-      scrollOnActive(){
-        this.active_tab = parseInt(this.categoryTab);
-      }
   },
   props: {
     categories: {
       required: true
     },
-    categoryTab: {
-      required: true
-    }
   }
 };
 </script>
