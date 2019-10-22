@@ -10,6 +10,7 @@
               :class="`membro-${membro.id}`"
               :img="membro.img"
               :name="membro.name"
+              :hasLink="false"
             />
           </div>
         </v-col>
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-import Membro from "../../components/Membro.vue";
+import Membro from "../../components/Cards/MembroCard";
 
 export default {
   data() {

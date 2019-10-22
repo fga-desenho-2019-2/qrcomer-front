@@ -29,7 +29,7 @@
 
       <div class="floating_card__price">
         <p>
-          <a class="palanquin" v-bind:href="'/shopping/' + cnpj">
+          <a class="palanquin" v-bind:href="'/shopping/' + shoppingCNPJ">
             <b>Adicionar mais itens</b>
           </a>
         </p>
@@ -56,7 +56,7 @@
           <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
         <div class="floating_card__payment-method__cpf">
-          <div v-if="cpf.length >= 14">
+          <div v-if="cpf.length >= 11">
             <span>CPF registrado: {{ cpf }}</span>
           </div>
           <div v-else>
@@ -90,11 +90,13 @@ export default {
       shopping: {},
       restaurant: {},
       items: [],
-      cnpj: "",
+      shoppingCNPJ: "",
       cpf: "",
       cpfRules: [
         v => !!v || "Campo obrigatório",
-        v => (v && v.length >= 8) || "CPF deve ser maior do que 8 caracteres"
+        v =>
+          (v && v.length >= 11) ||
+          "CPF deve ser igual a 11 caracteres e não deve conter pontos ou traços"
       ]
     };
   },
@@ -104,14 +106,14 @@ export default {
     this.getItems();
   },
   mounted() {
-    if (localStorage.cnpj) {
-      this.cnpj = localStorage.cnpj;
+    if (localStorage.shoppingCNPJ) {
+      this.shoppingCNPJ = localStorage.shoppingCNPJ;
     }
     // axios.get("link-da-api").then(response => (this.cpf = response));
   },
   watch: {
-    cnpj(newCnpj) {
-      localStorage.cnpj = newCnpj;
+    shoppingCNPJ(newshoppingCNPJ) {
+      localStorage.shoppingCNPJ = newshoppingCNPJ;
     }
   },
   computed: {
