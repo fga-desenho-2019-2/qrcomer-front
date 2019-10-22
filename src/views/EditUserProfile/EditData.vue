@@ -1,26 +1,26 @@
 <template>
-  <v-content class="d-flex flex-column pt-0">
+  <v-content class="edit-user-page d-flex flex-column pt-0">
     <div>
       <v-form>
         <v-container>
           <v-row>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="name" label="Nome" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="email" label="E-mail" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field type="password" v-model="password" label="Senha" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="telephone" label="Telefone" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="cpf" label="CPF" required color="#e18855"></v-text-field>
             </v-col>
           </v-row>
@@ -109,6 +109,12 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lexend+Deca|Palanquin:100,300,400,500,700&display=swap");
+
+.edit-user-page .v-item-group.v-bottom-navigation .v-btn {
+  max-width: none;
+  width: 100%;
+}
+
 .v-content__wrap {
   display: flex;
   flex-direction: column;

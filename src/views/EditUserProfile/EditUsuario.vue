@@ -1,5 +1,5 @@
 <script>
-import Membro from "../../components/Membro.vue";
+import Membro from "../../components/Cards/MembroCard";
 
 export default {
   data() {

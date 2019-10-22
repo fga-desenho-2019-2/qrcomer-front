@@ -2,7 +2,7 @@
     <section id="nosso-time" class="nosso-time">
         <v-container>
             <div class="time-section">
-                <QrcMembro 
+                <membro-card 
                     v-for="membro in time"
                     :key="membro.id"
                     :class="`membro-${membro.id}`"
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Membro from '../../components/Membro.vue'
+import MembroCard from '../../components/Cards/MembroCard.vue'
 
 export default {
     data() {
@@ -85,7 +85,7 @@ export default {
         }
     },
     components: {
-        'QrcMembro': Membro,
+        'membro-card': MembroCard,
     }
 }
 </script>

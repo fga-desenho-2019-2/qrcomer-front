@@ -1,77 +1,33 @@
 <template>
-  <v-content class="d-flex flex-column pt-0">
+  <v-content class="user-page d-flex flex-column pt-0">
     <div>
       <v-container>
         <v-row>
-          <v-col cols="12" md="6">
-            <!-- <p class="card" id="app">
-              <div 
-                v-for="name in user"
-                class="name">
-                <span style="width: 50px;">{{ user.name }}</span>
-              </div>
-            </p>-->
-            <p class="card">
-              <span style="width: 50px;">{{ user.name }}</span>
-            </p>
+
+          <v-col cols="12" md="6" class="pb-0">
+            <v-text-field v-model="user.name" label="Nome" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
 
-          <v-col cols="12" md="6">
-            <!-- <p class="card" id="app">
-              <div 
-                v-for="email in user"
-                class="email">
-                <span style="width: 50px;">{{ user.email }}</span>
-              </div>
-            </p>-->
-            <p class="card">
-              <span style="width: 50px;">{{ user.email }}</span>
-            </p>
+          <v-col cols="12" md="6" class="pb-0">
+            <v-text-field v-model="user.email" label="E-mail" color="#e18855" readonly type="email"></v-text-field>
           </v-col>
 
-          <v-col cols="12" md="6">
-            <!-- <p class="card" id="app">
-              <div 
-                v-for="telephone in user"
-                class="telephone">
-                <span style="width: 50px;">{{ user.telephone }}</span>
-              </div>
-            </p>-->
-            <p class="card">
-              <span style="width: 50px;">{{ user.telephone }}</span>
-            </p>
+          <v-col cols="12" md="6" class="pb-0">
+            <v-text-field v-model="user.telephone" label="Telefone" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
 
-          <v-col cols="12" md="6">
-            <!-- <p class="card" id="app">
-              <div 
-                v-for="password in user"
-                class="password">
-                <span style="width: 50px;">{{ user.password }}</span>
-              </div>
-            </p>-->
-            <p class="card">
-              <span style="width: 50px;">{{ user.password }}</span>
-            </p>
+          <v-col cols="12" md="6" class="pb-0">
+            <v-text-field v-model="user.password" label="Senha" color="#e18855" readonly type="password"></v-text-field>
           </v-col>
 
-          <v-col cols="12" md="6">
-            <!-- <p class="card" id="app">
-              <div 
-                v-for="cpf in user"
-                class="cpf">
-                <span style="width: 50px;">{{ user.cpf }}</span>
-              </div>
-            </p>-->
-            <p class="card">
-              <span style="width: 50px;">{{ user.cpf }}</span>
-            </p>
+          <v-col cols="12" md="6" class="pb-0">
+            <v-text-field v-model="user.cpf" label="CPF" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
         </v-row>
       </v-container>
     </div>
 
-    <v-bottom-navigation v-model="activeBtn" :input-value="showNav" color="white">
+    <v-bottom-navigation class="user-bottom-navigation" v-model="activeBtn" :input-value="showNav" color="white">
       <v-btn to="./edit-user"><font color="white"><strong>ATUALIZAR</strong></font></v-btn>
     </v-bottom-navigation>
   </v-content>
@@ -79,12 +35,8 @@
 
 <script>
 export default {
-  // el: "#app",
   data() {
     return {
-      // user: null,
-      // loading: true,
-      // errored: false,
       activeBtn: 1,
       showNav: true,
       dialog: false,
@@ -129,6 +81,11 @@ export default {
 </script>
 
 <style lang="scss">
+.user-page .v-item-group.v-bottom-navigation .v-btn {
+  max-width: none;
+  width: 100%;
+}
+
 .v-content__wrap {
   display: flex;
   flex-direction: column;

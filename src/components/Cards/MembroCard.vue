@@ -1,20 +1,21 @@
 <template>
     <div class="qrc-membro">
-        <a 
+        <a
             :href="github" 
             target="_blank" 
-            class="qrc-membro-link">
+            class="qrc-membro-link"
+            :class="hoverEffect">
             <img 
                 :src="img" 
                 :alt="name">
-            <p class="qrc-membro-text">{{name}}</p>
+            <p v-if="hasLink" class="qrc-membro-text">{{name}}</p>
         </a>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Membro",
+    name: "MembroCard",
     props: {
         github: {
             required: false,
@@ -27,6 +28,15 @@ export default {
         img: {
             required: true,
             type: String,
+        },
+        hasLink: {
+            type: Boolean,
+            default: true
+        }
+    },
+    computed: {
+        hoverEffect: function () {
+            return this.hasLink ? 'qrc-membro-hover' : null
         }
     }
 }
@@ -39,8 +49,27 @@ export default {
     display: flex;
     justify-content: center;
     background: transparent !important;
-    margin: 20px;
+    margin: 10px;
     transition: all 0.5s;
+
+    .qrc-membro-hover {
+        &:hover {
+            transform: translate(0, -10px);
+            
+            img {
+                filter: brightness(0.25);
+                box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .qrc-membro-text {
+                opacity: 1;
+                &::before {
+                    background: linear-gradient(135deg, #eb4476, #e18855);
+                    transform: translateX(-50%) scale(1);
+                }
+                
+            }
+        }
+    }
     
     .qrc-membro-link {
         height: 100%;
@@ -57,24 +86,6 @@ export default {
         padding: 30px;
         background: transparent !important;
         transition: all 0.25s;
-
-        &:hover {
-            transform: translate(0, -10px);
-            
-            
-            img {
-                filter: brightness(0.25);
-                box-shadow: 0 15px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-            }
-            .qrc-membro-text {
-                opacity: 1;
-                &::before {
-                    background: linear-gradient(135deg, #eb4476, #e18855);
-                    transform: translateX(-50%) scale(1);
-                }
-                
-            }
-        }
 
         img {
             object-fit: cover;
@@ -113,8 +124,8 @@ export default {
 
 @media screen and (min-width: 360px) {
     .qrc-membro {
-        height: 140px;
-        width: 140px;
+        height: 130px;
+        width: 130px;
 
         .qrc-membro-text {
             font-size: 12px;

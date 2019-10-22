@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/LandingPage/Home.vue'
-import LandingPageHeader from '../views/LandingPage/Header.vue'
+import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
+import CategoriePage from '../views/CategoriePage.vue'
 import EditUser from '../views/EditUserProfile/EditUser.vue'
 import User from '../views/UserProfile/User.vue'
 import LoggedUserHeader from '../components/LoggedUserHeader.vue'
@@ -10,12 +11,26 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    routes: [{
+    routes: [
+        {
             path: '/',
             name: 'home',
             components: {
-                default: Home,
-                LandingPageHeader,
+                default: Home
+            }
+        },
+        {
+            path: '/shopping/:cnpj',
+            name: 'shopping',
+            components: {
+                default: ShoppingPage
+            }
+        },
+        {
+            path: '/categorie/:name',
+            name: 'categoria',
+            components: {
+                default: CategoriePage
             }
         },
         {
@@ -33,7 +48,7 @@ export default new Router({
             components: {
                 default: User,
                 LoggedUserHeader
-            }
+        }
         },
     ]
 })
