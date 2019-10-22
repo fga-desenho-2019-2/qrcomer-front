@@ -36,10 +36,11 @@ export default {
     }),
     methods: {
         routeTo(route) {
-            this.$router.push(route).catch(err => {});;
+            this.$router.push(route).catch(err => {
+                throw err
+            });
         },
         logout: function () {
-            console.log(this.state)
             this.$store.dispatch('auth/AUTH_LOGOUT')
                 .then(() => {
                     this.routeTo('/auth')

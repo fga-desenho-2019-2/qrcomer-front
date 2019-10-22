@@ -24,9 +24,9 @@ export default class HttpClientBuilder {
                         error.response.data = undefined;
                         return error.response;
                     }
-                    throw error;
+                    return error.response;
                 } else {
-                throw error;
+                    throw error;
                 }
             }
         );

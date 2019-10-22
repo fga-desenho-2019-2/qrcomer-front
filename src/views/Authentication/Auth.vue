@@ -50,6 +50,8 @@
                                     <v-text-field
                                         v-model="email"
                                         label="E-mail"
+                                        :error="!!errors.email"
+                                        :error-messages="errors.email"
                                         required
                                         :rules="emptyRule"
                                         background-color="#fff"
@@ -60,6 +62,8 @@
                                         v-model="password"
                                         label="Senha"
                                         required
+                                        :error="!!errors.password"
+                                        :error-messages="errors.password"
                                         :rules="emptyRule"
                                         type="password"
                                         background-color="#fff"
@@ -70,6 +74,8 @@
                                         v-model="cpf"
                                         label="CPF"
                                         required
+                                        :error="!!errors.cpf"
+                                        :error-messages="errors.cpf"
                                         :rules="emptyRule"
                                         background-color="#fff"
                                         class="mb-4"
@@ -86,6 +92,9 @@
                                                 v-model="birth_date"
                                                 label="Data de nascimento"
                                                 readonly
+                                                required
+                                                :error="!!errors.birth_date"
+                                                :error-messages="errors.birth_date"
                                                 background-color="#fff"
                                                 class="mb-4"
                                                 v-on="on"
@@ -101,6 +110,8 @@
                                     <v-select
                                         v-model="selectedSexo"
                                         :items="sexo"
+                                        :error="!!errors.sex"
+                                        :error-messages="errors.sex"
                                         label="Selecione o sexo"
                                     ></v-select>
 
@@ -154,19 +165,25 @@ export default {
             date: new Date().toISOString().substr(0, 7),
             menu: false,
             modal: false,
+            errors: {}
         }
     },
     methods: {
         routeTo(route) {
-            this.$router.push(route).catch(err => {});
+            this.$router.push(route).catch(err => {
+                throw err
+            });
         },
         async login() {
             if (this.$refs.form.validate()) {
                 if (this.loginType) {
                     this.loginUser();
                 } else {
-                    await this.registerUser();
-                    this.loginUser();
+                    try {
+                        await this.registerUser();
+                    } catch (err) {
+                        throw err
+                    }                    
                 }
             }
         },
@@ -186,16 +203,15 @@ export default {
                 first_name: this.first_name,
                 last_name: this.last_name,
             }
-            console.log(body)
-            try {
-                await auth.signUser(body)
-                this.routeTo('/')
-            } catch(err) {
+            let response = await auth.signUser(body)
+            
+            if (response.status >= 400) {
+                this.errors = response.data.Error
                 return
+            } else {
+                this.loginUser();
             }
-            
-            
-        }
+        },
     },
     watch: {
         '$route.query.loginType': {
