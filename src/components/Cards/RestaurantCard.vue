@@ -6,8 +6,8 @@
             </div>
             <div class="card-restaurant__content">
                 <p class='card-restaurant__content__title'>{{ title }}</p>
-                <p class='card-restaurant__content__desc'>{{ description || 'No description provided' }}</p>
-                <p class='card-restaurant__content__order-time'>{{ orderTime || '---' }}</p>
+                <p class='card-restaurant__content__desc'>{{ description }}</p>
+                <p class='card-restaurant__content__order-time'>{{ orderTime }}</p>
             </div>
         </div>
     </div>
@@ -23,11 +23,13 @@ export default {
         },
         description: {
             type: String,
-            required: true
+            required: true,
+            default: 'No description provided'
         },
         orderTime: {
             type: String,
-            required: true
+            required: true,
+            default: '---'
         },
         image: {
             type: String,
@@ -74,18 +76,16 @@ $desc-size: 12px;
         &__title {
             font-size: $title-size;
             contain: content;
+            margin-bottom: 5px;
         }
 
         &__desc {
             font-size: $desc-size;
             color: $c-gray70;
-            contain: content;
+            margin-bottom: 5px;
         }
 
         &__order-time {
-            position: absolute;
-            bottom: 5%;
-            right: 5%;
             font-size: $desc-size;
             color: $c-gray70;
             text-align: end;        

@@ -6,9 +6,9 @@
 
 <script>
 import RestaurantCardExpand from '../components/Cards/RestaurantCardExpand'
-import {getAllRestaurants} from '../services/restaurantService'
+//import { getAllRestaurants } from '../services/restaurantService'
 
-const placeholderImage = require('../assets/images/restaurant_placeholder.jpg')
+//const placeholderImage = require('../assets/images/restaurant_placeholder.jpg')
 
 export default {
     name: "CategoriePage",
@@ -22,11 +22,11 @@ export default {
         }
     },
     created () {
-        const shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
-        this.getRestaurants(shoppingCNPJ);
+        //const shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
+        this.getRestaurants();
     },
     methods: {
-        getRestaurants: function (shoppingCNPJ) {
+        getRestaurants: function () {
             this.restaurants = [
                 {
                     "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
@@ -65,22 +65,24 @@ export default {
                 }
             ]
 
-            getAllRestaurants()
-                .then(restaurants => {
-                    const all_restaurants = restaurants.data
+            // getAllRestaurants()
+            //     .then(restaurants => {
+            //         const all_restaurants = restaurants.data
                     
-                    this.restaurants = all_restaurants.filter(item => {
-                        return item.shopping == shoppingCNPJ
-                    })
-
-                    this.restaurants = this.restaurants.map(item => {
-                        if (!item.image) {
-                            item.image = placeholderImage
-                        }
-
-                        return item
-                    })
-                })
+            //         if(this.restaurants) {
+            //             this.restaurants = all_restaurants.filter(item => {
+            //                 return item.shopping == shoppingCNPJ
+            //             })
+    
+            //             this.restaurants = this.restaurants.map(item => {
+            //                 if (!item.image) {
+            //                     item.image = placeholderImage
+            //                 }
+    
+            //                 return item
+            //             })
+            //         }
+            //     })
         }
     }
 }

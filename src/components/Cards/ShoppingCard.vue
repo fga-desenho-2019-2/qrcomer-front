@@ -75,12 +75,14 @@ export default {
                     padding-bottom: 2%;
                     contain: content;
                     font-weight: bold;
+                    margin-bottom: 0;
                 }
 
                 &__desc {
                     font-size: 12px;
                     color: $c-gray70;
                     word-wrap: break-word;
+                    margin-bottom: 0px;
                 }
             }
         }
