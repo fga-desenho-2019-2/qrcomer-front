@@ -8,7 +8,6 @@
 export default {
   name: "App",
   components: {},
-
   data: () => ({
     //
   })
@@ -65,7 +64,6 @@ $second-font: "Lexend Deca", "Roboto", sans-serif;
   b {
     color: $main-color;
   }
-
   @media screen and (max-width: 1920px) {
     .container {
       max-width: 1300px !important;

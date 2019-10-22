@@ -48,21 +48,21 @@ export default {
   data: () => ({
     user: {},
     valid: true,
-    name: '',
+    name: "",
     nameRules: [v => !!v || "Campo obrigatório"],
-    email: '',
+    email: "",
     emailRules: [
       v => !!v || "Campo obrigatório",
       v => /.+@.+\..+/.test(v) || "E-mail deve ser válido"
     ],
-    password: '',
+    password: "",
     passwordRules: [
       v => !!v || "Campo obrigatório",
       v => (v && v.length >= 8) || "Senha deve ser maior do que 8 caracteres"
     ],
-    telephone: '',
+    telephone: "",
     telephoneRules: [v => !!v || "Campo obrigatório"],
-    cpf: '',
+    cpf: "",
     cpfRules: [v => !!v || "Campo obrigatório"]
   }),
   created() {
@@ -121,10 +121,6 @@ export default {
 }
 
 .v-text-field {
-  color: #eb4476;
-  font-family: "Palanquin", sans-serif;
-}
-.v-input__control {
   color: #eb4476;
   font-family: "Palanquin", sans-serif;
 }
