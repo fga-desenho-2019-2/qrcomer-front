@@ -1,5 +1,7 @@
 <template>
     <v-content class="d-flex flex-column pt-0">
+        <LandingPageHeader></LandingPageHeader>
+
         <div>
             <QrcBanner/>
 
@@ -19,6 +21,7 @@ import Banner from './Banner.vue'
 import Time from './Time.vue'
 import Funcionamento from './Funcionamento.vue'
 import Sobre from './Sobre.vue'
+import LandingPageHeader from './Header.vue'
 
 export default {
     components: {
@@ -27,6 +30,7 @@ export default {
         "QrcTime": Time,
         "QrcFooter": Footer,
         "QrcSobre": Sobre,
+        "LandingPageHeader": LandingPageHeader
     }
 }
 </script>
