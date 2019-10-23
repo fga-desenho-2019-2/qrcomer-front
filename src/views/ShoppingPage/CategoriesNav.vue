@@ -134,6 +134,7 @@ export default {
 
         &__text {
             font-size: 15px;
+            margin-bottom: 0;
         }
 
         &__arrow {
