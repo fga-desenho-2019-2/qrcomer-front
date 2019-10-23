@@ -1,0 +1,22 @@
+.v-input {
+    // Text input
+    &.v-text-field {
+
+        // Outlined
+        &.v-text-field--outlined {
+            .v-input__control {
+                .v-input__slot {
+                    border-radius: 0 20px;
+                }
+            }
+        }
+
+        &.input-shadow {
+            .v-input__control {
+                .v-input__slot {
+                    box-shadow: 1px 1px 6px -3px $c-gray70;
+                }
+            }
+        }
+    }
+}
