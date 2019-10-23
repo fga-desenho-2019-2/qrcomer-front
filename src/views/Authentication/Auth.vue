@@ -1,7 +1,7 @@
 <template>
     <v-content class="d-flex flex-column pt-0" id="auth">
             <transition name="slide-x-transition" mode="out-in" hide-on-leave>
-                <h3 v-if="loginType" key='loginText' class="main-color mb-0 mt-n2 text-center" style="width: 100%;">Faça o login</h3>
+                <h3 v-if="loginType" key='loginText' class="mb-0 mt-n2 text-center" style="width: 100%;">Faça o <span class="main-color">login</span> =)</h3>
                 <h3 v-else key="cadastroText" class="mb-0 mt-n2 text-center" style="width: 100%;">Faça seu <span class="main-color">cadastro</span> =)</h3>
             </transition>
 
@@ -74,6 +74,7 @@
                                         v-model="cpf"
                                         label="CPF"
                                         required
+                                        v-mask="'###.###.###-##'"
                                         :error="!!errors.cpf"
                                         :error-messages="errors.cpf"
                                         :rules="emptyRule"
