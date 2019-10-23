@@ -7,6 +7,8 @@ import CategoriePage from '../views/CategoriePage.vue'
 import EditUser from '../views/EditUserProfile/EditUser.vue'
 import User from '../views/UserProfile/User.vue'
 import LoggedUserHeader from '../components/LoggedUserHeader.vue'
+import Menu from '../views/MenuPage/Menu.vue'
+import Item from '../views/ItemPage/Item.vue'
 
 Vue.use(Router)
 
@@ -48,6 +50,20 @@ export default new Router({
             components: {
                 default: User,
                 LoggedUserHeader
+            }
+        },
+        {
+            path: '/menu-page',
+            name: 'menu',
+            components: {
+                default: Menu
+            }
+        },
+        {
+            path: '/item-page',
+            name: 'item',
+            components: {
+                default: Item
             }
         },
         {
