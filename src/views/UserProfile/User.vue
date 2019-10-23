@@ -1,7 +1,6 @@
 <template>
   <v-content class="d-flex flex-column pt-0">
     <div>
-      <QrcBanner />
 
       <QrcData />
     </div>

@@ -1,5 +1,6 @@
 <template>
   <v-content class="user-page d-flex flex-column pt-0">
+    <QrcBanner />
     <div>
       <v-container>
         <v-row>
@@ -34,32 +35,27 @@
 </template>
 
 <script>
+import Banner from "./Banner.vue";
+import Services from '../../services/ServicesFacade'
+
 export default {
+  components: {
+    QrcBanner: Banner
+  },
   data() {
     return {
       activeBtn: 1,
       showNav: true,
       dialog: false,
-      user: {
-        name: "username",
-        email: "user@email.com",
-        telephone: "(XX) XXXXX-XXXX",
-        password: "*********",
-        cpf: "XXX.XXX.XXX-XX"
-      }
+      user: {}
     };
   },
+  created () {
+    this.setUp()
+  },
   methods: {
-    edit() {
-      if (this.$refs.form.edit()) {
-        this.snackbar = true;
-      }
-    },
-    close() {
-      this.$refs.close();
-    },
-    vueDelete() {
-      this.$refs.delete();
+    setUp: async function () {
+      this.user = await Services.getUser()
     }
   }
   // mounted () {

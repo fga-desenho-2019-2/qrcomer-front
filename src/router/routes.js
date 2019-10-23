@@ -5,10 +5,10 @@ import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
 import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
 import CategoriePage from '../views/CategoriePage.vue'
 import EditUser from '../views/EditUserProfile/EditUser.vue'
-import User from '../views/UserProfile/User.vue'
 import LoggedUserHeader from '../components/LoggedUserHeader.vue'
 import Menu from '../views/MenuPage/Menu.vue'
 import Item from '../views/ItemPage/Item.vue'
+import UserPage from '../views/UserProfile/Data.vue'
 
 Vue.use(Router)
 
@@ -48,7 +48,7 @@ export default new Router({
             path: '/user',
             name: 'user',
             components: {
-                default: User,
+                default: UserPage,
                 LoggedUserHeader
             }
         },
