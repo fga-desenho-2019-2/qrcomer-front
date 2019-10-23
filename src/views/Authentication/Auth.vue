@@ -139,7 +139,8 @@
 </template>
 
 <script>
-import AuthService from '../../services/auth'
+import AuthService from '@/services/auth'
+import { validationUtil } from '@/utils/ValidationUtils.js'
 
 let auth = new AuthService();
 
@@ -196,7 +197,7 @@ export default {
         },
         async registerUser() {
             let body = {
-                cpf: this.cpf,
+                cpf: validationUtil.cleanMaskCpf(this.cpf),
                 password: this.password,
                 birth_date: this.birth_date,
                 sex: this.selectedSexo,
