@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/LandingPage/Home.vue'
-import LandingPageHeader from '../views/LandingPage/Header.vue'
+import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
+import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
+import CategoriePage from '../views/CategoriePage.vue'
 import EditUser from '../views/EditUserProfile/EditUser.vue'
 import User from '../views/UserProfile/User.vue'
 import LoggedUserHeader from '../components/LoggedUserHeader.vue'
@@ -16,8 +18,21 @@ export default new Router({
             path: '/',
             name: 'home',
             components: {
-                default: Home,
-                LandingPageHeader,
+                default: Home
+            }
+        },
+        {
+            path: '/shopping/:cnpj',
+            name: 'shopping',
+            components: {
+                default: ShoppingPage
+            }
+        },
+        {
+            path: '/categorie/:name',
+            name: 'categoria',
+            components: {
+                default: CategoriePage
             }
         },
         {
@@ -40,16 +55,23 @@ export default new Router({
         {
             path: '/menu-page',
             name: 'menu',
-            components:{
+            components: {
                 default: Menu
             }
         },
         {
             path: '/item-page',
             name: 'item',
-            components:{
+            components: {
                 default: Item
             }
-        }
+        },
+        {
+            path: '/orderbag',
+            name: 'order-bag',
+            components: {
+                default: OrderBagPage,
+            }
+        },
     ]
 })

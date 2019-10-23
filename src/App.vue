@@ -1,11 +1,6 @@
 <template>
-  <v-app id="qrcomer">
-    <router-view name="LandingPageHeader"></router-view>
-
-    <router-view name="LoggedUserHeader"></router-view>
-
-    <!-- router view default, do not remove it -->
-    <router-view></router-view>
+    <v-app id="qrcomer">
+        <router-view></router-view>
   </v-app>
 </template>
 
@@ -13,7 +8,6 @@
 export default {
   name: "App",
   components: {},
-
   data: () => ({
     //
   })
@@ -63,10 +57,13 @@ $second-font: "Lexend Deca", "Roboto", sans-serif;
     font-family: $second-font !important;
   }
 
+  body {
+      background-color: $c-white;
+  }
+  
   b {
     color: $main-color;
   }
-
   @media screen and (max-width: 1920px) {
     .container {
       max-width: 1300px !important;
