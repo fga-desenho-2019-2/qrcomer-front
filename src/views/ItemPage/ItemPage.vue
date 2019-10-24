@@ -78,7 +78,6 @@ export default {
       let itemsToSend = []
       let items = JSON.parse(window.localStorage.getItem("order-bag"));
       if(items) itemsToSend = items;
-      console.log(this.item)
       itemsToSend.push(this.item);
       window.localStorage.setItem("order-bag", JSON.stringify(itemsToSend));
       this.$router.replace({ path: '/sacola' })

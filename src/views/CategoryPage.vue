@@ -7,7 +7,6 @@
 <script>
 import RestaurantCardExpand from '../components/Cards/RestaurantCardExpand'
 import Services from '../services/ServicesFacade'
-//import { getAllRestaurants } from '../services/restaurantService'
 
 //const placeholderImage = require('../assets/images/restaurant_placeholder.jpg')
 
@@ -16,19 +15,14 @@ export default {
     components: {
         'restaurant-card': RestaurantCardExpand
     },
-    data () {
-        return {
-            categorie: this.$route.params.name,
-            restaurants: []
+    props: {
+        restaurants: {
+            required: true
         }
     },
-    created () {
-        //const shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
-        this.setUp()
-    },
-    methods: {
-        setUp: async function () {
-            this.restaurants = await Services.getRestaurantsByCategory()
+    data () {
+        return {
+            categorie: this.$route.params.name
         }
     }
 }

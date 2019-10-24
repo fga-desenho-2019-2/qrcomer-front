@@ -9,6 +9,7 @@ import LoggedUserHeader from '../components/LoggedUserHeader.vue'
 import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
 import ItemPage from '../views/ItemPage/ItemPage.vue'
 import UserProfile from '../views/UserProfile.vue'
+import HocComponent from '../components/HocComponent'
 
 Vue.use(Router)
 
@@ -25,21 +26,21 @@ export default new Router({
             path: '/shopping/:cnpj',
             name: 'shopping',
             components: {
-                default: ShoppingPage
+                default: HocComponent(ShoppingPage, ['shopping', 'restaurants'])
             }
         },
         {
             path: '/categoria/:name',
             name: 'categoria',
             components: {
-                default: CategoryPage
+                default: HocComponent(CategoryPage, ['restaurantsByCategory'])
             }
         },
         {
             path: '/editar-usuario',
             name: 'edit-user',
             components: {
-                default: EditUserProfile,
+                default: HocComponent(EditUserProfile),
                 LoggedUserHeader
 
             }
@@ -48,7 +49,7 @@ export default new Router({
             path: '/usuario',
             name: 'user',
             components: {
-                default: UserProfile,
+                default: HocComponent(UserProfile),
                 LoggedUserHeader
             }
         },
@@ -56,21 +57,21 @@ export default new Router({
             path: '/restaurante/:cnpj',
             name: 'menu',
             components: {
-                default: RestaurantMenu
+                default: HocComponent(RestaurantMenu)
             }
         },
         {
             path: '/item/:id',
             name: 'item',
             components: {
-                default: ItemPage
+                default: HocComponent(ItemPage)
             }
         },
         {
             path: '/sacola',
             name: 'order-bag',
             components: {
-                default: OrderBagPage,
+                default: HocComponent(OrderBagPage)
             }
         },
     ]

@@ -51,7 +51,6 @@ export default {
         },
         handleSelect: function() {
             this.checkbox = !this.checkbox;
-            console.log(this.checkbox)
         }
     }
 };
