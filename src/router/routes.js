@@ -64,7 +64,7 @@ export default new Router({
             path: '/item/:id',
             name: 'item',
             components: {
-                default: HocComponent(ItemPage, ['item'])
+                default: HocComponent(ItemPage, ['foodItem'])
             }
         },
         {

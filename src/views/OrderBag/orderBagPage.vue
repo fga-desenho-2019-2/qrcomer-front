@@ -15,16 +15,18 @@
       </div>
     </div>
     <div class="floating_card" id="foods">
-      <div v-if="restaurant" class="floating_card__restaurant" id="items">
-        <h5 class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
-        <p>{{ restaurant.orderTime }}</p>
-        <restaurantItem
-          v-for="(item, index) in items"
-          :key="index"
-          :name="item.name"
-          :ammount="item.ammount"
-          @changeQtd="handleAmmount($event, index)"
-        />
+      <div class="floating_card__restaurant" id="items">
+        <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
+        <p v-if="restaurant" >{{ restaurant.orderTime }}</p>
+        <div v-if="items">
+          <restaurantItem
+            v-for="(item, index) in items"
+            :key="index"
+            :name="item.name"
+            :ammount="item.ammount"
+            @changeQtd="handleAmmount($event, index)"
+          />
+        </div>
       </div>
 
       <div class="floating_card__price">

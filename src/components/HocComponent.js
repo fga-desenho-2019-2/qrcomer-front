@@ -64,14 +64,14 @@ const HocComponent = (component, neededSetups) => {
                         this.restaurantMenu = await Services.getRestaurantMenu(restaurantCNPJ)
                     }
                     if(neededSetups.find(element => element === 'restaurant')) {
-                        let restaurantCNPJ = this.$route.params.cnpj;
+                        let restaurantCNPJ = routeName === 'order-bag' ? localStorage.restaurantCNPJ : this.$route.params.cnpj;
                         this.restaurant = await Services.getRestaurant(restaurantCNPJ);
                     }
                     if(neededSetups.find(element => element === 'categories')) {
                         let restaurantCNPJ = this.$route.params.cnpj;
                         this.categories = await Services.getRestaurantCategories(restaurantCNPJ)
                     }
-                    if(neededSetups.find(element => element === 'item')) {
+                    if(neededSetups.find(element => element === 'foodItem')) {
                         let itemId = this.$route.params.id;
                         this.foodItem = await Services.getItem(itemId)
                     }
