@@ -270,3 +270,47 @@ export async function getRestaurantCategories() {
 
     return categories
 }
+
+export async function getItem(itemId) {
+    let itens = [
+        {
+            id: 1,
+            name: "Combo Big Mac",
+            description: "http://localhost:8080/",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.19,
+            img: require("@/assets/images/bigmac.svg"),
+            category: "Hamburguer",
+            sidedish: [{
+              id: 0,
+              name: "Batata",
+              description: "Batatas Fritas",
+              value: 3.20,
+              qtd: 1
+            },
+            {
+              id: 1,
+              name: "Refrigerante",
+              description: "Coca Cola",
+              value: 5.20,
+              qtd: 1
+            },
+            {
+              id: 2,
+              name: "Molho Especial",
+              description: "Molho de Tomate",
+              value: 1.20,
+              qtd: 0
+            }
+    ,
+            {
+              id: 3,
+              name: "Salada",
+              description: "Sala de Tomate",
+              value: 10.20,
+              qtd: 0
+            }],
+          }
+    ]
+    return itens[itemId]
+}

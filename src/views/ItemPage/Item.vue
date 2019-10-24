@@ -1,7 +1,7 @@
 <template>
   <div class="qrc-color">
     <div>
-        <div>
+        <div v-if="item">
           <QrcItemDescription
             :key="item.id"
             :img="item.img"
@@ -14,8 +14,12 @@
             <h6 class="qrc-acompanhamento-title">Adicionar Acompanhamento</h6>
             <p class="qrc-acompanhamento-description">Escolha e selecione a quantidade</p>
         </div>
-        <div>
-            <QrcSideDish :food="item.sidedish"/> 
+        <div v-if="item">
+            <QrcSideDish 
+              v-for="(sidedish, index) in item.sidedish"
+              :key="sidedish.id"
+              :food="sidedish"
+              @changeQtd="handleAmmount($event, index)"/> 
         </div>
         <v-textarea class="qrc-input"
           color="#E7E6E6"
@@ -37,61 +41,29 @@
 <script>
 import ItemDescription from "./ItemDescription.vue";
 import SideDish from "./SideDish.vue"
+import Services from '../../services/ServicesFacade'
 
 export default {
   data() {
     return {
-      item: null
+      item: null,
+      itemId: null
     };
   },
   components: {
     "QrcItemDescription": ItemDescription,
     "QrcSideDish": SideDish,
   },
-  props: {},
   created() {
-    this.getResult();
+    //this.itemId = this.$route.params.id;
+    this.setUp();
   },
   methods: {
-    getResult: function() {
-      this.item = {
-        id: 1,
-        name: "Combo Big Mac",
-        description: "http://localhost:8080/",
-        details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-        value: 22.19,
-        img: require("@/assets/images/bigmac.svg"),
-        category: "Hamburguer",
-        sidedish: [{
-          id: 0,
-          name: "Batata",
-          description: "Batatas Fritas",
-          value: 3.20,
-          qtd: 1
-        },
-        {
-          id: 1,
-          name: "Refrigerante",
-          description: "Coca Cola",
-          value: 5.20,
-          qtd: 1
-        },
-        {
-          id: 2,
-          name: "Molho Especial",
-          description: "Molho de Tomate",
-          value: 1.20,
-          qtd: 0
-        }
-,
-        {
-          id: 3,
-          name: "Salada",
-          description: "Sala de Tomate",
-          value: 10.20,
-          qtd: 0
-        }],
-      };
+    setUp: async function() {
+      this.item = await Services.getItem(0)
+    },
+    handleAmmount: function(qtd, index) {
+      this.item.sidedish[index].qtd = qtd;
     }
   }
 };
