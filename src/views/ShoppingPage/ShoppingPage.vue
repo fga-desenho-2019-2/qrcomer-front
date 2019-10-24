@@ -1,6 +1,12 @@
 <template>
     <div class="shopping">
-        <categories-nav v-if="restaurants" :navStatus="navStatus" :handleNav="handleNav" :restaurants="restaurants" />
+        <categories-nav 
+            v-if="restaurants && shoppingCategories"
+            :navStatus="navStatus"
+            :handleNav="handleNav"
+            :restaurants="restaurants"
+            :shoppingCategories="shoppingCategories"
+            @categoryClick="handleClick($event)"/>
         <v-btn
             @click="handleNav"
             min-width="250px"
@@ -34,6 +40,9 @@ export default {
         },
         restaurants: {
             required: true
+        },
+        shoppingCategories: {
+            required: true
         }
     },
     data() {
@@ -45,6 +54,9 @@ export default {
         handleNav: function () {
             if(this.navStatus === "open") this.navStatus = "closed"
             else if(this.navStatus === "closed") this.navStatus = "open"
+        },
+        handleClick: function (category) {
+            this.$router.replace({ path:`/categoria/${category}` })
         }
     },
 }

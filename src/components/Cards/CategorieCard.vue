@@ -1,5 +1,5 @@
 <template>
-    <div @click="goToPage()" class="categorie-card" >
+    <div @click="handleClick()" class="categorie-card" >
         <img class="categorie-card__image" :src='icon'>
         <div class="categorie-card__card">
             <div class="categorie-card__card__text">
@@ -26,6 +26,9 @@ export default {
         goToPage: function () {
             let url = "/categorie/" + this.title;
             this.$router.push(url);
+        },
+        handleClick: function () {
+            this.$emit('categoryClick', this.title)
         }
     }
 }

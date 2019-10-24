@@ -19,10 +19,11 @@
             </div>
             <div v-if="showCategories" class="restaurant-filtering__cards">
                 <CategorieCard
-                v-for="(category, index) in categories"
+                v-for="(category, index) in shoppingCategories"
                 :key="category.name + index" 
                 :title="category.name"
                 :icon="category.icon"
+                @categoryClick="handleClick($event)"
                 />
             </div>
             <div v-else class="restaurant-filtering__restaurants"> 
@@ -48,7 +49,6 @@ export default {
         },
         data() {
             return {
-                categories: [],
                 isFocused: false,
                 searchWords: "",
                 showCategories: true,
@@ -78,10 +78,11 @@ export default {
             restaurants: {
                 required: true,
                 type: Array
+            },
+            shoppingCategories: {
+                required: true,
+                type: Array
             }
-        },
-        created () {
-            this.getCategories();
         },
         methods: {
             filterRestaurants: function (search) {
@@ -94,25 +95,8 @@ export default {
             handleFocus: function () {
                 this.isFocused = !this.isFocused;
             },
-            getCategories: function () {
-                this.categories = [
-                    {
-                        name: "Fast Food",
-                        icon: require('../../assets/images/categories/fastfood.png')
-                    },
-                    {
-                        name: "Japonesa",
-                        icon: require('../../assets/images/categories/japones.png')
-                    },
-                    {
-                        name: "Mexicana",
-                        icon: require('../../assets/images/categories/mexicana.png')
-                    },
-                    {
-                        name: "Pizza",
-                        icon: require('../../assets/images/categories/pizzas.png')
-                    },
-                ]
+            handleClick: function (category) {
+                this.$emit('categoryClick', category)
             }
         }
 }

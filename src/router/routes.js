@@ -26,7 +26,7 @@ export default new Router({
             path: '/shopping/:cnpj',
             name: 'shopping',
             components: {
-                default: HocComponent(ShoppingPage, ['shopping', 'restaurants'])
+                default: HocComponent(ShoppingPage, ['shopping', 'restaurants', 'shoppingCategories'])
             }
         },
         {

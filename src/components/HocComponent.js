@@ -7,14 +7,16 @@ const HocComponent = (component, neededSetups) => {
             return createElement(component, {
                 props: {
                     shopping: this.shopping,
-                    restaurants: this.restaurants
+                    restaurants: this.restaurants,
+                    shoppingCategories: this.shoppingCategories
                 }
             })
         },
         data() {
             return {
                 shopping: null,
-                restaurants: null
+                restaurants: null,
+                shoppingCategories: null
             }
         },
         created() {
@@ -39,6 +41,10 @@ const HocComponent = (component, neededSetups) => {
                         let shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
                         let category = this.$route.params.name;
                         this.restaurants = await Services.getAllRestaurants(shoppingCNPJ, category);
+                    }
+                    if(neededSetups.find(element => element === 'shoppingCategories')) {
+                        let shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
+                        this.shoppingCategories = await Services.getShoppingCategories(shoppingCNPJ);
                     }
                 }
             }

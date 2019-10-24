@@ -317,3 +317,48 @@ export async function getItem(itemId) {
     ]
     return itens[itemId]
 }
+
+export async function getShopping() {
+    // let shopping = {}
+    // try {
+    //     if (!cnpj) throw 'cnpj value must be passed'
+    //     let route = API_URL + BASE_PATH + cnpj
+    //     shopping = await axios.get(route)
+    // } catch(err) {
+    //     return {
+    //         status: 'error',
+    //         payload: err
+    //     }
+    // }
+
+    let shopping = {
+        name: "Shopping do Zé",
+        city: "Brasília",
+        state: "DF",
+        neighborhood: "Rua do jão"
+    }
+
+    return shopping
+}
+
+export async function getShoppingCategories() {
+    let categories = [
+        {
+            name: "Fast Food",
+            icon: require('../assets/images/categories/fastfood.png')
+        },
+        {
+            name: "Japonesa",
+            icon: require('../assets/images/categories/japones.png')
+        },
+        {
+            name: "Mexicana",
+            icon: require('../assets/images/categories/mexicana.png')
+        },
+        {
+            name: "Pizza",
+            icon: require('../assets/images/categories/pizzas.png')
+        }
+    ]
+    return categories
+}
