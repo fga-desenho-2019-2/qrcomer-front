@@ -146,6 +146,7 @@ export async function getRestaurantMenu() {
         {
             id:1,
             name: 'Combo Big Mac',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.19,
             img: require('@/assets/images/bigmac.svg'),
@@ -154,6 +155,7 @@ export async function getRestaurantMenu() {
         {
             id:2,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -162,6 +164,7 @@ export async function getRestaurantMenu() {
         {
             id:3,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -178,6 +181,7 @@ export async function getRestaurantMenu() {
         {
             id:5,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -186,6 +190,7 @@ export async function getRestaurantMenu() {
         {
             id:6,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -202,6 +207,7 @@ export async function getRestaurantMenu() {
         {
             id:8,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -218,6 +224,7 @@ export async function getRestaurantMenu() {
         {
             id:10,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -226,6 +233,7 @@ export async function getRestaurantMenu() {
         {
             id:11,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -234,6 +242,7 @@ export async function getRestaurantMenu() {
         {
             id:12,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -242,6 +251,7 @@ export async function getRestaurantMenu() {
         {
             id:13,
             name: 'Quarteirão',
+            restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
             img: require('@/assets/images/bigmac.svg'),
@@ -278,6 +288,7 @@ export async function getItem(itemId) {
             name: "Combo Big Mac",
             details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
             value: 22.19,
+            restaurantCNPJ: '0',
             img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer",
             sidedish: [{

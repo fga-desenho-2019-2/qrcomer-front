@@ -1,43 +1,48 @@
 <template>
-  <div class="qrc-color">
-    <div>
-        <div v-if="item">
-          <QrcItemDescription
-            :key="item.id"
-            :img="item.img"
-            :name="item.name"
-            :details="item.details"
-            :value="item.value"
-          />
+    <div class="qrc-color">
+      <v-dialog v-model="invalidRestaurant" persistent max-width="290" light>
+        <v-card-title>Pedido inválido</v-card-title>
+        <v-card-text>Não é possível adicionar pedidos de restaurantes diferentes à sacola</v-card-text>
+        <v-btn @click="reset()" text>OK</v-btn>
+      </v-dialog>
+      <div>
+          <div v-if="item">
+            <QrcItemDescription
+              :key="item.id"
+              :img="item.img"
+              :name="item.name"
+              :details="item.details"
+              :value="item.value"
+            />
+          </div>
+          <div class="qrc-acompanhamento-area">
+              <h6 class="qrc-acompanhamento-title">Adicionar Acompanhamento</h6>
+              <p class="qrc-acompanhamento-description">Escolha e selecione a quantidade</p>
+          </div>
+          <div v-if="item">
+              <QrcSideDish 
+                v-for="(sidedish, index) in item.sidedish"
+                :key="sidedish.id"
+                :food="sidedish"
+                @changeQtd="handleAmmount($event, index)"
+                @changeSelect="handleSelect($event, index)"/> 
+          </div>
+          <v-textarea
+            v-model="observation"
+            class="qrc-input"
+            color="#E7E6E6"
+            label="Deixe uma observação"
+            rows="1"
+          ></v-textarea>
         </div>
-        <div class="qrc-acompanhamento-area">
-            <h6 class="qrc-acompanhamento-title">Adicionar Acompanhamento</h6>
-            <p class="qrc-acompanhamento-description">Escolha e selecione a quantidade</p>
+        <div class="qrc-bottom-area">
+          <v-bottom-navigation color="white" class="form-select">
+            <v-btn @click="addItem()">
+              <font color="white">Adicionar</font>
+            </v-btn>
+          </v-bottom-navigation>
         </div>
-        <div v-if="item">
-            <QrcSideDish 
-              v-for="(sidedish, index) in item.sidedish"
-              :key="sidedish.id"
-              :food="sidedish"
-              @changeQtd="handleAmmount($event, index)"
-              @changeSelect="handleSelect($event, index)"/> 
-        </div>
-        <v-textarea
-          v-model="observation"
-          class="qrc-input"
-          color="#E7E6E6"
-          label="Deixe uma observação"
-          rows="1"
-        ></v-textarea>
-      </div>
-      <div class="qrc-bottom-area">
-        <v-bottom-navigation color="white" class="form-select">
-          <v-btn @click="addItem()">
-            <font color="white">Adicionar</font>
-          </v-btn>
-        </v-bottom-navigation>
-      </div>
-  </div>
+    </div>
 </template>
 
 
@@ -47,25 +52,29 @@ import SideDish from "./SideDish.vue"
 import Services from '../../services/ServicesFacade'
 
 export default {
-  data() {
-    return {
-      item: null,
-      itemId: null,
-      observation: ''
-    };
-  },
   components: {
     "QrcItemDescription": ItemDescription,
     "QrcSideDish": SideDish,
   },
-  created() {
-    //this.itemId = this.$route.params.id;
-    this.setUp();
+  data() {
+    return {
+      item: null,
+      itemId: null,
+      observation: '',
+      invalidRestaurant: false
+    };
+  },
+  props: {
+    foodItem: {
+      required: true
+    }
+  },
+  watch: {
+    foodItem: function () {
+      this.item = this.foodItem
+    }
   },
   methods: {
-    setUp: async function() {
-      this.item = await Services.getItem(0)
-    },
     handleAmmount: function(qtd, index) {
       this.item.sidedish[index].qtd = qtd;
     },
@@ -73,20 +82,49 @@ export default {
       this.item.sidedish[index].selected = isSelected
     },
     addItem: function() {
-      this.item.observation = this.observation;
-      this.item.ammount = 1;
-      let itemsToSend = []
-      let items = JSON.parse(window.localStorage.getItem("order-bag"));
-      if(items) itemsToSend = items;
-      itemsToSend.push(this.item);
-      window.localStorage.setItem("order-bag", JSON.stringify(itemsToSend));
-      this.$router.replace({ path: '/sacola' })
+      let restaurantCNPJ = localStorage.restaurantCNPJ ? localStorage.restaurantCNPJ : null;
+      let items = window.localStorage.getItem("order-bag") ? JSON.parse(window.localStorage.getItem("order-bag")) : null;
+
+      if(!items) {
+        window.localStorage.setItem("restaurantCNPJ", this.item.restaurantCNPJ);
+        this.item.observation = this.observation;
+        this.item.ammount = 1;
+        let itemsToSend = [];
+        if(items) itemsToSend = items;
+        itemsToSend.push(this.item);
+        window.localStorage.setItem("order-bag", JSON.stringify(itemsToSend));
+        this.$router.replace({ path: '/sacola' })
+      }
+      else {
+        let restaurantCNPJ = localStorage.restaurantCNPJ;
+        this.invalidRestaurant = restaurantCNPJ === this.item.restaurantCNPJ ? false : true;
+      }
+  
+      if(!this.invalidRestaurant) {
+        this.item.observation = this.observation;
+        this.item.ammount = 1;
+        let itemsToSend = [];
+        if(items) itemsToSend = items;
+        itemsToSend.push(this.item);
+        window.localStorage.setItem("order-bag", JSON.stringify(itemsToSend));
+        this.$router.replace({ path: '/sacola' })
+      }
+    },
+    reset: function () {
+      this.invalidRestaurant = false;
     }
   }
 };
 </script>
 
 <style lang="scss">
+
+.v-dialog {
+  background-color: #efefef;
+}
+.v-dialog .v-btn {
+  color: $main-color
+}
 
 .qrc-acompanhamento-area{
     background-color: #E7E6E6;

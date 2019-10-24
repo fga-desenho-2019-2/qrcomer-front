@@ -9,7 +9,11 @@ const HocComponent = (component, neededSetups) => {
                     shopping: this.shopping,
                     restaurants: this.restaurants,
                     shoppingCategories: this.shoppingCategories,
-                    user: this.user
+                    user: this.user,
+                    restaurantMenu: this.restaurantMenu,
+                    restaurant: this.restaurant,
+                    categories: this.categories,
+                    foodItem: this.foodItem
                 }
             })
         },
@@ -18,7 +22,11 @@ const HocComponent = (component, neededSetups) => {
                 shopping: null,
                 restaurants: null,
                 shoppingCategories: null,
-                user: null
+                user: null,
+                restaurantMenu: null,
+                restaurant: null,
+                categories: null,
+                foodItem: null
             }
         },
         created() {
@@ -50,6 +58,22 @@ const HocComponent = (component, neededSetups) => {
                     }
                     if(neededSetups.find(element => element === 'user')) {
                         this.user = await Services.getUser();
+                    }
+                    if(neededSetups.find(element => element === 'restaurantMenu')) {
+                        let restaurantCNPJ = this.$route.params.cnpj;
+                        this.restaurantMenu = await Services.getRestaurantMenu(restaurantCNPJ)
+                    }
+                    if(neededSetups.find(element => element === 'restaurant')) {
+                        let restaurantCNPJ = this.$route.params.cnpj;
+                        this.restaurant = await Services.getRestaurant(restaurantCNPJ);
+                    }
+                    if(neededSetups.find(element => element === 'categories')) {
+                        let restaurantCNPJ = this.$route.params.cnpj;
+                        this.categories = await Services.getRestaurantCategories(restaurantCNPJ)
+                    }
+                    if(neededSetups.find(element => element === 'item')) {
+                        let itemId = this.$route.params.id;
+                        this.foodItem = await Services.getItem(itemId)
                     }
                 }
             }

@@ -1,17 +1,17 @@
 <template>
     <v-content class="d-flex flex-column pt-0" @scroll="handleScroll(isIntersecting)">
-        <div v-if="banner" >
+        <div v-if="restaurant" >
             <QrcMenuBanner
-                    :name="banner.name"
-                    :nota="banner.note"
-                    :type="banner.description"
-                    :time="banner.orderTime"
-                    :img="banner.image"/>
+                    :name="restaurant.name"
+                    :nota="restaurant.note"
+                    :type="restaurant.description"
+                    :time="restaurant.orderTime"
+                    :img="restaurant.image"/>
         </div>
-        <div v-if="categories.length > 0" class="qrc-tabs-sticky">
+        <div v-if="categories" class="qrc-tabs-sticky">
             <QrcCategoryNav @scrollCategory="scrollToPlace($event)" :categories="categories" :categoryTab="isIntersecting"/>
         </div>
-        <div>
+        <div v-if="categories && restaurantMenu">
             <div class="category-area" v-for="(category, index) in categories"
                         :key="category.id"
                         :id="category.name">
@@ -41,11 +41,19 @@ import CategoryNav from './CategoryNav.vue'
 import Services from '../../services/ServicesFacade'
 
 export default {
+    props: {
+        restaurantMenu: {
+            required: true
+        },
+        restaurant: {
+            required: true
+        },
+        categories: {
+            required: true
+        }
+    },
     data() {
             return {
-                menu: [],
-                banner: null,
-                categories: [],
                 isIntersecting: false,
                 categoriesData: [],
             }
@@ -55,14 +63,13 @@ export default {
         "QrcCategoryNav": CategoryNav,
         "QrcMenuBanner": MenuBanner,
     },
-    created(){
-        this.setUp();
+    watch: {
+        categories: function () {
+            this.arrangeItems()
+        }
     },
     methods: {
-        setUp: async function () {
-            this.menu = await Services.getRestaurantMenu();
-            this.banner = await Services.getRestaurant(0);
-            this.categories = await Services.getRestaurantCategories();
+        arrangeItems: async function () {
             this.categories.forEach(category => {
                 let categoryList = this.filterItens(category.name)
                 this.categoriesData.push(categoryList)
@@ -76,7 +83,7 @@ export default {
             elmnt.scrollIntoView({behavior: "smooth"})
         },
         filterItens: function(category){
-            let filteredMenu = this.menu.filter( (item) => {
+            let filteredMenu = this.restaurantMenu.filter( (item) => {
                 return item.category == category
             })
             return filteredMenu  

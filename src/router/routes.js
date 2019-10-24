@@ -57,21 +57,21 @@ export default new Router({
             path: '/restaurante/:cnpj',
             name: 'menu',
             components: {
-                default: HocComponent(RestaurantMenu)
+                default: HocComponent(RestaurantMenu, ['restaurant', 'restaurantMenu', 'categories'])
             }
         },
         {
             path: '/item/:id',
             name: 'item',
             components: {
-                default: HocComponent(ItemPage)
+                default: HocComponent(ItemPage, ['item'])
             }
         },
         {
             path: '/sacola',
             name: 'order-bag',
             components: {
-                default: HocComponent(OrderBagPage)
+                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user'])
             }
         },
     ]
