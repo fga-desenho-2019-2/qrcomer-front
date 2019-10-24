@@ -3,33 +3,33 @@
     <qrc-banner />
     <div>
       <v-container>
-        <v-row>
+        <v-row v-if="user">
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field v-model="user.name" label="Nome" color="#e18855" readonly type="text"></v-text-field>
+            <v-text-field value="user.name" label="Nome" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field v-model="user.email" label="E-mail" color="#e18855" readonly type="email"></v-text-field>
+            <v-text-field value="user.email" label="E-mail" color="#e18855" readonly type="email"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field v-model="user.telephone" label="Telefone" color="#e18855" readonly type="text"></v-text-field>
+            <v-text-field value="user.telephone" label="Telefone" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field v-model="user.password" label="Senha" color="#e18855" readonly type="password"></v-text-field>
+            <v-text-field value="user.password" label="Senha" color="#e18855" readonly type="password"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field v-model="user.cpf" label="CPF" color="#e18855" readonly type="text"></v-text-field>
+            <v-text-field value="user.cpf" label="CPF" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
         </v-row>
       </v-container>
     </div>
 
     <v-bottom-navigation class="user-bottom-navigation" v-model="activeBtn" :input-value="showNav" color="white">
-      <v-btn to="./edit-user"><font color="white"><strong>ATUALIZAR</strong></font></v-btn>
+      <v-btn to="./editar-usuario"><font color="white"><strong>ATUALIZAR</strong></font></v-btn>
     </v-bottom-navigation>
   </v-content>
 </template>
@@ -46,18 +46,14 @@ export default {
     return {
       activeBtn: 1,
       showNav: true,
-      dialog: false,
-      user: {}
+      dialog: false
     };
   },
-  created () {
-    this.setUp()
-  },
-  methods: {
-    setUp: async function () {
-      this.user = await Services.getUser()
+  props: {
+    user: {
+      required: true
     }
-  }
+  },
 };
 </script>
 

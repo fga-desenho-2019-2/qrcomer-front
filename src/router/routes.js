@@ -49,7 +49,7 @@ export default new Router({
             path: '/usuario',
             name: 'user',
             components: {
-                default: HocComponent(UserProfile),
+                default: HocComponent(UserProfile, ['user']),
                 LoggedUserHeader
             }
         },
