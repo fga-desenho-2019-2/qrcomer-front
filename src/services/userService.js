@@ -8,5 +8,16 @@ export async function getUser() {
         cpf: "XXX.XXX.XXX-XX"
       }
 
+  //   axios
+  //     .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+  //     .then(response => {
+  //       let user = response.data.bpi
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //       this.errored = true
+  //     })
+  //     .finally(() => this.loading = false)
+
     return user;
 }

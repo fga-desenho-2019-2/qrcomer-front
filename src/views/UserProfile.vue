@@ -1,6 +1,6 @@
 <template>
   <v-content class="user-page d-flex flex-column pt-0">
-    <QrcBanner />
+    <qrc-banner />
     <div>
       <v-container>
         <v-row>
@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import Banner from "./Banner.vue";
-import Services from '../../services/ServicesFacade'
+import UserBanner from '../components/UserBanner';
+import Services from '../services/ServicesFacade'
 
 export default {
   components: {
-    QrcBanner: Banner
+    "qrc-banner": UserBanner
   },
   data() {
     return {
@@ -58,21 +58,6 @@ export default {
       this.user = await Services.getUser()
     }
   }
-  // mounted () {
-  //   axios
-  //     .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-  //     .then(response => {
-  //       this.user = response.data.bpi
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //       this.errored = true
-  //     })
-  //     .finally(() => this.loading = false)
-  // },
-  //   components: {
-  //     QrcData: Data
-  //   }
 };
 </script>
 

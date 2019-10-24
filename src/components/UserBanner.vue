@@ -1,10 +1,10 @@
 <template>
-  <section id="banner" class="banner">
-    <v-container>
+  <section id="banner">
+    <v-container class="banner">
       <v-row>
         <v-col cols="12" sm="12" md="12" lg="12" class="col-banner">
           <div class="card-membro-section">
-            <QrcEditMembro
+            <QrcMembro
               v-for="membro in membro"
               :key="membro.id"
               :class="`membro-${membro.id}`"
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Membro from '../../components/Cards/MembroCard'
+import Membro from "./Cards/MembroCard";
 
 export default {
   data() {
@@ -35,7 +35,7 @@ export default {
     };
   },
   components: {
-    QrcEditMembro: Membro
+    QrcMembro: Membro
   }
 };
 </script>
@@ -49,15 +49,6 @@ export default {
   background-size: 125% auto;
   transition: 0.5s;
 
-  .banner {
-    &--title {
-      font-size: 48px;
-    }
-    &--subtitle {
-      font-size: 36px;
-      line-height: 36px;
-    }
-  }
   .col-banner {
     display: flex;
     flex-direction: column;
@@ -70,6 +61,16 @@ export default {
       filter: drop-shadow(0px 4px 4px $c-gray70);
     }
   }
+}
+
+.username {
+  margin: auto;
+  font-family: Palanquin Dark;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
 }
 
 .card-membro-section {
