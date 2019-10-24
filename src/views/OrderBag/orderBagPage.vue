@@ -17,7 +17,7 @@
     <div class="floating_card" id="foods">
       <div class="floating_card__restaurant" id="items">
         <h5 class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
-        <p>{{ restaurant.time }}min</p>
+        <p>{{ restaurant.orderTime }}</p>
         <restaurantItem
           v-for="(item, index) in items"
           :key="index"
@@ -56,10 +56,7 @@
           <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
         <div class="floating_card__payment-method__cpf">
-          <div v-if="cpf.length >= 11">
-            <span>CPF registrado: {{ cpf }}</span>
-          </div>
-          <div v-else>
+          <div v-if="user">
             <v-form ref="form" v-model="valid">
               <v-col cols="12" md="6">
                 <v-text-field color="#e18855" v-model="cpf" :rules="cpfRules" label="CPF" required></v-text-field>
@@ -79,6 +76,7 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
+import Services from '../../services/ServicesFacade'
 
 export default {
   components: {
@@ -91,6 +89,7 @@ export default {
       restaurant: {},
       items: [],
       shoppingCNPJ: "",
+      user: null,
       cpf: "",
       cpfRules: [
         v => !!v || "Campo obrigatório",
@@ -101,14 +100,13 @@ export default {
     };
   },
   created() {
-    this.getShopping();
-    this.getRestaurant();
-    this.getItems();
-  },
-  mounted() {
     if (localStorage.shoppingCNPJ) {
       this.shoppingCNPJ = localStorage.shoppingCNPJ;
     }
+    this.orderSetUp();
+    this.getItems();
+  },
+  mounted() {
     // axios.get("link-da-api").then(response => (this.cpf = response));
   },
   watch: {
@@ -128,6 +126,15 @@ export default {
     }
   },
   methods: {
+    setUp: async function() {
+      this.shopping = await Services.getShopping()
+      this.restaurant = await Services.getRestaurant(0)
+      this.user = await Services.getUser()
+    },
+    orderSetUp: async function() {
+      await this.setUp();
+      this.cpf = this.user.cpf
+    },
     handleAmmount(qtd, index) {
       this.items[index].ammount = qtd;
       window.localStorage.setItem("order-bag", JSON.stringify(this.items));
@@ -135,18 +142,6 @@ export default {
     getItems() {
       this.items = JSON.parse(window.localStorage.getItem("order-bag"));
     },
-    getShopping() {
-      this.shopping = {
-        name: "Shopping do seu zé",
-        address: "Rua do seu zé"
-      };
-    },
-    getRestaurant() {
-      this.restaurant = {
-        name: "McDonalds",
-        time: "30-40"
-      };
-    }
   }
 };
 </script>

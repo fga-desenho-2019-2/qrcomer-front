@@ -7,7 +7,7 @@ import CategoryPage from '../views/CategoryPage.vue'
 import EditUserProfile from '../views/EditUserProfile.vue'
 import LoggedUserHeader from '../components/LoggedUserHeader.vue'
 import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
-import Item from '../views/ItemPage/Item.vue'
+import ItemPage from '../views/ItemPage/ItemPage.vue'
 import UserProfile from '../views/UserProfile.vue'
 
 Vue.use(Router)
@@ -63,7 +63,7 @@ export default new Router({
             path: '/item/:id',
             name: 'item',
             components: {
-                default: Item
+                default: ItemPage
             }
         },
         {
