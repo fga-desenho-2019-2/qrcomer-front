@@ -8,7 +8,8 @@ const HocComponent = (component, neededSetups) => {
                 props: {
                     shopping: this.shopping,
                     restaurants: this.restaurants,
-                    shoppingCategories: this.shoppingCategories
+                    shoppingCategories: this.shoppingCategories,
+                    user: this.user
                 }
             })
         },
@@ -16,7 +17,8 @@ const HocComponent = (component, neededSetups) => {
             return {
                 shopping: null,
                 restaurants: null,
-                shoppingCategories: null
+                shoppingCategories: null,
+                user: null
             }
         },
         created() {
@@ -45,6 +47,9 @@ const HocComponent = (component, neededSetups) => {
                     if(neededSetups.find(element => element === 'shoppingCategories')) {
                         let shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
                         this.shoppingCategories = await Services.getShoppingCategories(shoppingCNPJ);
+                    }
+                    if(neededSetups.find(element => element === 'user')) {
+                        this.user = await Services.getUser();
                     }
                 }
             }

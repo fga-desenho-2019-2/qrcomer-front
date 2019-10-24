@@ -6,7 +6,6 @@
 
 <script>
 import RestaurantCardExpand from '../components/Cards/RestaurantCardExpand'
-import Services from '../services/ServicesFacade'
 
 //const placeholderImage = require('../assets/images/restaurant_placeholder.jpg')
 

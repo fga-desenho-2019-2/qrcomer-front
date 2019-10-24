@@ -40,7 +40,7 @@ export default new Router({
             path: '/editar-usuario',
             name: 'edit-user',
             components: {
-                default: HocComponent(EditUserProfile),
+                default: HocComponent(EditUserProfile, ['user']),
                 LoggedUserHeader
 
             }

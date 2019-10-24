@@ -4,7 +4,7 @@
     <div>
       <v-form>
         <v-container>
-          <v-row>
+          <v-row v-if="userCopy">
             <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="userCopy.name" label="Nome" required color="#e18855"></v-text-field>
             </v-col>
@@ -40,14 +40,12 @@
 
 <script>
 import UserBanner from "../components/UserBanner";
-import Services from '../services/ServicesFacade';
 
 export default {
   components: {
     "qrc-banner": UserBanner
   },
   data: () => ({
-    user: {},
     userCopy: {},
     valid: true,
     nameRules: [v => !!v || "Campo obrigatório"],
@@ -62,13 +60,19 @@ export default {
     telephoneRules: [v => !!v || "Campo obrigatório"],
     cpfRules: [v => !!v || "Campo obrigatório"]
   }),
-  created() {
-    this.setUp();
+  props: {
+    user: {
+      required: true
+    }
+  },
+  watch: {
+    user: function () {
+      this.userCopy = this.user;
+    }
   },
   methods: {
-    setUp: async function () {
-      this.user = await Services.getUser()
-      this.userCopy = this.user
+    copyUser: function () {
+      this.userCopy = this.user;
     },
     validate() {
       if (this.$refs.form.validate()) {
