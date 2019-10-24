@@ -32,7 +32,7 @@
       </div>
       <div class="qrc-bottom-area">
         <v-bottom-navigation color="white" class="form-select">
-          <v-btn>
+          <v-btn @click="addItem()">
             <font color="white">Adicionar</font>
           </v-btn>
         </v-bottom-navigation>
@@ -71,6 +71,17 @@ export default {
     },
     handleSelect: function(isSelected, index) {
       this.item.sidedish[index].selected = isSelected
+    },
+    addItem: function() {
+      this.item.observation = this.observation;
+      this.item.ammount = 1;
+      let itemsToSend = []
+      let items = JSON.parse(window.localStorage.getItem("order-bag"));
+      if(items) itemsToSend = items;
+      console.log(this.item)
+      itemsToSend.push(this.item);
+      window.localStorage.setItem("order-bag", JSON.stringify(itemsToSend));
+      this.$router.replace({ path: '/sacola' })
     }
   }
 };
