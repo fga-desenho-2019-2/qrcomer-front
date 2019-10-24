@@ -276,7 +276,6 @@ export async function getItem(itemId) {
         {
             id: 1,
             name: "Combo Big Mac",
-            description: "http://localhost:8080/",
             details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
             value: 22.19,
             img: require("@/assets/images/bigmac.svg"),
@@ -285,6 +284,7 @@ export async function getItem(itemId) {
               id: 0,
               name: "Batata",
               description: "Batatas Fritas",
+              selected: false,
               value: 3.20,
               qtd: 1
             },
@@ -292,6 +292,7 @@ export async function getItem(itemId) {
               id: 1,
               name: "Refrigerante",
               description: "Coca Cola",
+              selected: false,
               value: 5.20,
               qtd: 1
             },
@@ -299,6 +300,7 @@ export async function getItem(itemId) {
               id: 2,
               name: "Molho Especial",
               description: "Molho de Tomate",
+              selected: false,
               value: 1.20,
               qtd: 0
             }
@@ -307,6 +309,7 @@ export async function getItem(itemId) {
               id: 3,
               name: "Salada",
               description: "Sala de Tomate",
+              selected: false,
               value: 10.20,
               qtd: 0
             }],

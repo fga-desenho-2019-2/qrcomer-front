@@ -19,9 +19,12 @@
               v-for="(sidedish, index) in item.sidedish"
               :key="sidedish.id"
               :food="sidedish"
-              @changeQtd="handleAmmount($event, index)"/> 
+              @changeQtd="handleAmmount($event, index)"
+              @changeSelect="handleSelect($event, index)"/> 
         </div>
-        <v-textarea class="qrc-input"
+        <v-textarea
+          v-model="observation"
+          class="qrc-input"
           color="#E7E6E6"
           label="Deixe uma observação"
           rows="1"
@@ -47,7 +50,8 @@ export default {
   data() {
     return {
       item: null,
-      itemId: null
+      itemId: null,
+      observation: ''
     };
   },
   components: {
@@ -64,6 +68,9 @@ export default {
     },
     handleAmmount: function(qtd, index) {
       this.item.sidedish[index].qtd = qtd;
+    },
+    handleSelect: function(isSelected, index) {
+      this.item.sidedish[index].selected = isSelected
     }
   }
 };

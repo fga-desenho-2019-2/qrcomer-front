@@ -27,7 +27,7 @@
 export default {
     data () {
         return {
-            checkbox: [],
+            checkbox: this.food.selected,
             qtd: this.food.qtd
         }
     },
@@ -37,12 +37,21 @@ export default {
             type: Object
         }
     },
+    watch: {
+        checkbox: function () {
+            this.$emit('changeSelect', this.checkbox)
+        }
+    },
     methods: {
-        handleQtd(operation) {
+        handleQtd: function(operation) {
             if(operation === "plus") this.qtd++;
             else if(operation === "minus" && this.qtd > 0) this.qtd--;
 
             this.$emit('changeQtd', this.qtd);
+        },
+        handleSelect: function() {
+            this.checkbox = !this.checkbox;
+            console.log(this.checkbox)
         }
     }
 };
