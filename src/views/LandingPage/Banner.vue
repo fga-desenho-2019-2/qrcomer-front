@@ -7,12 +7,14 @@
                     <v-btn
                         href="#"
                         min-width="250px"
+                        @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
                         class="qrc-btn white mx-auto font-weigth-bold my-2">
                         <span class="mr-2">Login</span>
                     </v-btn>
                     <v-btn
                         href="#"
                         min-width="250px"
+                        @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
                         class="qrc-btn primary my-2 mx-auto">
                         <span class="mr-2">Cadastrar</span>
                     </v-btn>
@@ -21,6 +23,16 @@
         </v-container>
     </section>
 </template>
+
+<script>
+export default {
+    methods: {
+        routeTo(route) {
+            this.$router.push(route);
+        }
+    }
+}
+</script>
 
 <style lang="scss">
 #banner {
