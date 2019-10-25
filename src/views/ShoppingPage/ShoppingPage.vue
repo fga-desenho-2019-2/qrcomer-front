@@ -1,76 +1,99 @@
 <template>
-    <div class="shopping">
-        <categories-nav 
-            v-if="restaurants && shoppingCategories"
-            :navStatus="navStatus"
-            :handleNav="handleNav"
-            :restaurants="restaurants"
-            :shoppingCategories="shoppingCategories"
-            @categoryClick="handleClick($event)"/>
-        <v-btn
-            @click="handleNav"
-            min-width="250px"
-            class="qrc-btn white mx-auto font-weigth-bold my-2">
-            <span class="mr-2">Categorias</span>
-        </v-btn>
-        <shopping-card v-if="shopping" :title="shopping.name"  image='https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg' :city="shopping.city" :state="shopping.state" :neighborhood="shopping.neighborhood"/>
-        <div v-if="restaurants" class="shopping__restaurants">
-            <restaurant-card v-for="restaurant in restaurants" :key="restaurant.cnpj" :image='restaurant.image' :title="restaurant.name" :description="restaurant.description" :orderTime="restaurant.orderTime"/>
-        </div>
+  <div class="shopping">
+    <component
+      v-bind:is="component3"
+      v-if="restaurants && shoppingCategories"
+      :navStatus="navStatus"
+      :handleNav="handleNav"
+      :restaurants="restaurants"
+      :shoppingCategories="shoppingCategories"
+      @categoryClick="handleClick($event)"
+    />
+    <v-btn @click="handleNav" min-width="250px" class="qrc-btn white mx-auto font-weigth-bold my-2">
+      <span class="mr-2">Categorias</span>
+    </v-btn>
+    <component
+      v-bind:is="component1"
+      v-if="shopping"
+      :title="shopping.name"
+      image="https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg"
+      :city="shopping.city"
+      :state="shopping.state"
+      :neighborhood="shopping.neighborhood"
+    />
+    <div v-if="restaurants" class="shopping__restaurants">
+      <component
+        v-bind:is="component2"
+        v-for="restaurant in restaurants"
+        :key="restaurant.cnpj"
+        :image="restaurant.image"
+        :title="restaurant.name"
+        :description="restaurant.description"
+        :orderTime="restaurant.orderTime"
+      />
     </div>
+  </div>
 </template>
 
 <script>
-import ShoppingCard from '../../components/Cards/ShoppingCard'
-import RestaurantCard from '../../components/Cards/RestaurantCard'
-import CategoriesNav from './CategoriesNav'
+import ShoppingCard from "../../components/Cards/ShoppingCard";
+import RestaurantCard from "../../components/Cards/RestaurantCard";
+import CategoriesNav from "./CategoriesNav";
 
 //const placeholderImage = require('../../assets/images/restaurant_placeholder.jpg')
 
 export default {
-    name: "ShoppingPage",
-    components: {
-        'shopping-card': ShoppingCard,
-        'restaurant-card': RestaurantCard,
-        'categories-nav': CategoriesNav
+  name: "ShoppingPage",
+  components: {
+    ShoppingCard,
+    RestaurantCard,
+    CategoriesNav
+  },
+  computed: {
+    component1: function() {
+      return "ShoppingCard";
     },
-    props: {
-        shopping: {
-            required: true
-        },
-        restaurants: {
-            required: true
-        },
-        shoppingCategories: {
-            required: true
-        }
+    component2: function() {
+      return "RestaurantCard";
     },
-    data() {
-        return {
-            navStatus: "closed"
-        }
+    component3: function() {
+      return "CategoriesNav";
+    }
+  },
+  props: {
+    shopping: {
+      required: true
     },
-    methods: {
-        handleNav: function () {
-            if(this.navStatus === "open") this.navStatus = "closed"
-            else if(this.navStatus === "closed") this.navStatus = "open"
-        },
-        handleClick: function (category) {
-            this.$router.replace({ path:`/categoria/${category}` })
-        }
+    restaurants: {
+      required: true
     },
-}
+    shoppingCategories: {
+      required: true
+    }
+  },
+  data() {
+    return {
+      navStatus: "closed"
+    };
+  },
+  methods: {
+    handleNav: function() {
+      if (this.navStatus === "open") this.navStatus = "closed";
+      else if (this.navStatus === "closed") this.navStatus = "open";
+    },
+    handleClick: function(category) {
+      this.$router.replace({ path: `/categoria/${category}` });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-
 .shopping {
-    
-    &__restaurants {
-        flex-wrap: wrap;
-        display: flex;
-        justify-content: center;
-    }
+  &__restaurants {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+  }
 }
-
 </style>

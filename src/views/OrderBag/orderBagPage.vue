@@ -17,7 +17,7 @@
     <div class="floating_card" id="foods">
       <div class="floating_card__restaurant" id="items">
         <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
-        <p v-if="restaurant" >{{ restaurant.orderTime }}</p>
+        <p v-if="restaurant">{{ restaurant.orderTime }}</p>
         <div v-if="items">
           <restaurantItem
             v-for="(item, index) in items"
@@ -30,7 +30,7 @@
       </div>
 
       <div class="floating_card__price">
-        <p v-if="shoppingCNPJ" >
+        <p v-if="shoppingCNPJ">
           <a class="palanquin" v-bind:href="'/shopping/' + shoppingCNPJ">
             <b>Adicionar mais itens</b>
           </a>
@@ -78,7 +78,7 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
-import Services from '../../services/ServicesFacade'
+import Services from "../../services/ServicesFacade";
 
 export default {
   components: {
@@ -114,8 +114,8 @@ export default {
     this.getShoppingCNPJ();
   },
   watch: {
-    user: function () {
-      this.cpf = this.user.cpf
+    user: function() {
+      this.cpf = this.user.cpf;
     }
   },
   computed: {
@@ -137,9 +137,9 @@ export default {
     getItems() {
       this.items = JSON.parse(window.localStorage.getItem("order-bag"));
     },
-    getShoppingCNPJ : function () {
-      this.shoppingCNPJ = localStorage.shoppingCNPJ
-    } 
+    getShoppingCNPJ: function() {
+      this.shoppingCNPJ = localStorage.shoppingCNPJ;
+    }
   }
 };
 </script>
