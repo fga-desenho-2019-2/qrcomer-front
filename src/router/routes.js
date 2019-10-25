@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/LandingPage/Home.vue'
+import Home from '@/views/LandingPage/Home.vue'
+import Auth from '@/views/Authentication/Auth.vue'
+import AuthTest from '@/views/Authentication/AuthTest.vue'
+import AuthHeader from '@/views/Authentication/AuthHeader.vue'
+import store from '@/store/store'
 import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
 import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
 import CategoryPage from '../views/CategoryPage.vue'
@@ -10,6 +14,22 @@ import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
 import ItemPage from '../views/ItemPage/ItemPage.vue'
 import UserProfile from '../views/UserProfile.vue'
 import HocComponent from '../components/HocComponent'
+
+// const ifNotAuthenticated = (to, from, next) => {
+//     if (!store.getters.isAuthenticated) {
+//         next()
+//         return
+//     }
+//     next('/')
+// }
+
+const ifAuthenticated = (to, from, next) => {
+    if (store.getters['auth/isAuthenticated']) {
+        next()
+        return
+    }
+    next('/auth')
+}
 
 Vue.use(Router)
 
@@ -74,5 +94,22 @@ export default new Router({
                 default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user'])
             }
         },
+        {
+            path: '/auth',
+            name: 'auth',
+            components: {
+                default: Auth,
+                AuthHeader
+            }
+        },
+        {
+            path: '/auth_test',
+            name: 'auth_test',
+            components: {
+                default: AuthTest,
+                AuthHeader
+            },
+            beforeEnter: ifAuthenticated,
+        }
     ]
 })
