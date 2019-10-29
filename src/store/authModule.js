@@ -23,7 +23,7 @@ const authModule = {
         }
     },
     actions: {
-        AUTH_REQUEST: ({commit, dispatch}, user) => {
+        AUTH_REQUEST: ({commit}, user) => { // add dispatch variable in parameters
             return new Promise((resolve, reject) => { 
                 commit('AUTH_REQUEST')
                 // A rota está hard coded, temos que arrumar isso depois. E usar o http client ao invés do axios aqui
@@ -43,8 +43,8 @@ const authModule = {
                 })
             })
         },
-        AUTH_LOGOUT: ({commit, dispatch}) => {
-            return new Promise((resolve, reject) => {
+        AUTH_LOGOUT: ({commit}) => { // add dispatch variable in parameters
+            return new Promise((resolve) => { // add reject variable in parameters
                 commit('AUTH_LOGOUT')
                 localStorage.removeItem('user-token') // clear your user's token from localstorage
                 // remove the axios default header

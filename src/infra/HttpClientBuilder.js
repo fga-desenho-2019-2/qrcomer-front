@@ -1,5 +1,4 @@
 import axios from "axios";
-import Vue from "vue";
 
 export default class HttpClientBuilder {
     static buildClient(options) {
