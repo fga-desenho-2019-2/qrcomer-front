@@ -111,5 +111,6 @@ export default new Router({
             },
             beforeEnter: ifAuthenticated,
         }
+
     ]
 })
