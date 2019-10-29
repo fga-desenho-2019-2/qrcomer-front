@@ -78,7 +78,6 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
-import Services from "../../services/ServicesFacade";
 
 export default {
   components: {

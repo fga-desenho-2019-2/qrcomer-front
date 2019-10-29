@@ -49,7 +49,6 @@
 import ItemCard from "../../components/Cards/ItemCard";
 import MenuBanner from "./MenuBanner.vue";
 import CategoryNav from "./CategoryNav.vue";
-import Services from "../../services/ServicesFacade";
 
 export default {
   props: {

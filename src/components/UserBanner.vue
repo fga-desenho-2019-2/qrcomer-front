@@ -44,8 +44,8 @@ export default {
 #banner {
   margin: 0;
   min-height: 45vh;
-  background: linear-gradient(to bottom right, transparent 50%, #fafafa 40%),
-    linear-gradient(-40deg, #eb4476, #e18855) #fafafa;
+  background: linear-gradient(to bottom right, transparent 50%, #efefef 40%),
+    linear-gradient(-40deg, #eb4476, #e18855) #efefef;
   background-size: 125% auto;
   transition: 0.5s;
 

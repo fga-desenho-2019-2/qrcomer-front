@@ -6,23 +6,23 @@
         <v-row v-if="user">
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field value="user.name" label="Nome" color="#e18855" readonly type="text"></v-text-field>
+            <v-text-field :value="user.name" label="Nome" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field value="user.email" label="E-mail" color="#e18855" readonly type="email"></v-text-field>
+            <v-text-field :value="user.email" label="E-mail" color="#e18855" readonly type="email"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field value="user.telephone" label="Telefone" color="#e18855" readonly type="text"></v-text-field>
+            <v-text-field :value="user.telephone" label="Telefone" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field value="user.password" label="Senha" color="#e18855" readonly type="password"></v-text-field>
+            <v-text-field :value="user.password" label="Senha" color="#e18855" readonly type="password"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field value="user.cpf" label="CPF" color="#e18855" readonly type="text"></v-text-field>
+            <v-text-field :value="user.cpf" label="CPF" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
         </v-row>
       </v-container>
@@ -36,7 +36,6 @@
 
 <script>
 import UserBanner from '../components/UserBanner';
-import Services from '../services/ServicesFacade'
 
 export default {
   components: {
