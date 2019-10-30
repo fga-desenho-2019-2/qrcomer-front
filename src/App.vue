@@ -23,7 +23,7 @@ export default {
     }),
     created() {
         axios.interceptors.response.use(undefined, function (err) {
-            return new Promise(function (resolve, reject) {
+            return new Promise(function () { // add resolve and reject parameter
                 if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
                     // if you ever get an unauthorized, logout the user
                     this.$store.dispatch('auth/AUTH_LOGOUT')

@@ -49,7 +49,6 @@
 <script>
 import ItemDescription from "./ItemDescription.vue";
 import SideDish from "./SideDish.vue"
-import Services from '../../services/ServicesFacade'
 
 export default {
   components: {
@@ -82,7 +81,7 @@ export default {
       this.item.sidedish[index].selected = isSelected
     },
     addItem: function() {
-      let restaurantCNPJ = localStorage.restaurantCNPJ ? localStorage.restaurantCNPJ : null;
+      //let restaurantCNPJ = localStorage.restaurantCNPJ ? localStorage.restaurantCNPJ : null;
       let items = window.localStorage.getItem("order-bag") ? JSON.parse(window.localStorage.getItem("order-bag")) : null;
 
       if(!items) {
