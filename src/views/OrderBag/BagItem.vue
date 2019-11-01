@@ -1,68 +1,64 @@
 <template>
-    <div class="qrc-bag-item">
-        <p class="qrc-bag-item__text mb-0">{{ name }}</p>
-        <div class="qrc-bag-item__image">
-            <img @click="handleQtd('minus')" src="@/assets/images/minus.svg" class="qrc-bag-item__image__content"/>
-            <span>{{ qtd }}</span>
-            <img @click="handleQtd('plus')" src="@/assets/images/plus.svg" class="qrc-bag-item__image__content"/>
-        </div>
+  <div class="qrc-bag-item">
+    <p class="qrc-bag-item__text mb-0">{{ name }}</p>
+    <div class="qrc-bag-item__image">
+      <img @click="handleQtd" src="@/assets/images/minus.svg" class="qrc-bag-item__image__content" />
+      <span>{{ qtd }}</span>
+      <img @click="handleQtd" src="@/assets/images/plus.svg" class="qrc-bag-item__image__content" />
     </div>
+  </div>
 </template>
 
 <script>
-export default {
-    data () {
-        return {
-            qtd: this.ammount
-        }
-    },
-    props: {
-        name: {
-            required: true,
-            type: String
-        },
-        ammount: {
-            default: 1,
-            type: Number
-        }
-    },
-    methods: {
-        handleQtd(operation) {
-            if(operation === "plus") this.qtd++;
-            else if(operation === "minus" && this.qtd > 0) this.qtd--;
+import HandleQtdModel from "../../utils/CommandPattern/HandleQtdModel";
+import HandleQtd from "../../utils/CommandPattern/HandleQtd";
 
-            this.$emit('changeQtd', this.qtd);
-        }
+export default {
+  data() {
+    return HandleQtdModel;
+  },
+  props: {
+    name: {
+      required: true,
+      type: String
+    },
+    ammount: {
+      default: 1,
+      type: Number
     }
-    
-}
+  },
+  methods: {
+    handleQtd() {
+      this.$context.event.notify("handle.qtd");
+    }
+  }
+};
 </script>
 
 <style lang="scss">
+.qrc-bag-item {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  // margin-bottom: 5px;
 
-.qrc-bag-item{
-    width: 100%;    
-    height: 40px;
+  &__text {
+    width: 80%;
+    float: left;
+    color: #797979;
+  }
+
+  &__image {
+    width: 20%;
+    float: right;
     display: flex;
     align-items: center;
-    // margin-bottom: 5px;
+    justify-content: space-between;
 
-   &__text{
-        width: 80%;
-        float: left;
-        color: #797979;
+    &__content:active {
+      opacity: 0.6;
     }
-
-    &__image {
-        width: 20%;
-        float: right;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &__content:active {
-            opacity: 0.6;
-        }
-    }
+  }
 }
 </style>
