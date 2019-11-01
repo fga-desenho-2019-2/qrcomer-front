@@ -5,6 +5,7 @@ import router from './router/routes'
 import store from './store/store'
 import axios from 'axios'
 import VueTheMask from 'vue-the-mask'
+//import CommandUtils from './utils/CommandUtils';
 
 Vue.config.productionTip = false
 
@@ -20,5 +21,6 @@ new Vue({
     vuetify,
     router,
     store,
+    //  command: CommandUtils,
     render: h => h(App)
 }).$mount('#app')
