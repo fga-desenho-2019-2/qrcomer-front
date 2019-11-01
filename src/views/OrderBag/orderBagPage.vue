@@ -78,7 +78,7 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
-import HandleQtdModel from "../../utils/CommandPattern/HandleQtdModel.vue";
+import { handleAmmount, getItems } from "../../services/Commands/handleAmmount";
 
 export default {
   components: {
@@ -86,7 +86,6 @@ export default {
   },
   data() {
     return {
-      HandleQtdModel,
       valid: true,
       items: [],
       shoppingCNPJ: "",
@@ -131,13 +130,8 @@ export default {
     }
   },
   methods: {
-    handleAmmount(qtd, index) {
-      this.items[index].ammount = qtd;
-      window.localStorage.setItem("order-bag", JSON.stringify(this.items));
-    },
-    getItems() {
-      this.items = JSON.parse(window.localStorage.getItem("order-bag"));
-    },
+    handleAmmount,
+    getItems,
     getShoppingCNPJ: function() {
       this.shoppingCNPJ = localStorage.shoppingCNPJ;
     }
