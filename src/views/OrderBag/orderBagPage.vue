@@ -78,6 +78,7 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
+import HandleQtdModel from "../../utils/CommandPattern/HandleQtdModel.vue";
 
 export default {
   components: {
@@ -85,6 +86,7 @@ export default {
   },
   data() {
     return {
+      HandleQtdModel,
       valid: true,
       items: [],
       shoppingCNPJ: "",

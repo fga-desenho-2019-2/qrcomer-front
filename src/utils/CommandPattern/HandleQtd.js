@@ -1,13 +1,14 @@
-import HandleQtdModel from './HandleQtdModel';
+import HandleQtdModel from './HandleQtdModel.vue';
 
 export class QtdCommand {
-    constructor() {
+    constructor(e) {
         this.backup;
+        this.event = e;
     }
 
     execute(operation) {
-        if (operation === "plus") this.qtd++;
-        else if (operation === "minus" && this.qtd > 0) this.qtd--;
+        if (operation === "plus") HandleQtdModel.qtd++;
+        else if (operation === "minus" && HandleQtdModel.qtd > 0) HandleQtdModel.qtd--;
 
     }
 

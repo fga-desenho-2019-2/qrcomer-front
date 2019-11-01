@@ -10,26 +10,15 @@
 </template>
 
 <script>
-import HandleQtdModel from "../../utils/CommandPattern/HandleQtdModel";
-import HandleQtd from "../../utils/CommandPattern/HandleQtd";
+import HandleQtdModel from "../../utils/CommandPattern/HandleQtdModel.vue";
 
 export default {
   data() {
     return HandleQtdModel;
   },
-  props: {
-    name: {
-      required: true,
-      type: String
-    },
-    ammount: {
-      default: 1,
-      type: Number
-    }
-  },
   methods: {
     handleQtd() {
-      this.$context.event.notify("handle.qtd");
+      this.$context.events.notify("handle.qtd");
     }
   }
 };
