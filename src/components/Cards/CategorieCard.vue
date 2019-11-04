@@ -23,10 +23,6 @@ export default {
     }
   },
   methods: {
-    goToPage: function() {
-      let url = "/categorie/" + this.title;
-      this.$router.push(url);
-    },
     handleClick: function() {
       this.$emit("categoryClick", this.title);
     }
