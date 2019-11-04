@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { handleQtd } from "../../services/Commands/handleQtd";
+import { handleQtd } from "../../services/context";
 export default {
   data() {
     return {

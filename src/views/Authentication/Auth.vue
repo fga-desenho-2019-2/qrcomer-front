@@ -152,10 +152,12 @@
 </template>
 
 <script>
-import { routeTo } from "../../services/Commands/routeTo";
-import { login } from "../../services/Commands/login";
-import { loginUser } from "../../services/Commands/loginUser";
-import { registerUser } from "../../services/Commands/registerUser";
+import {
+  routeTo,
+  login,
+  loginUser,
+  registerUser
+} from "../../services/context";
 
 export default {
   data() {

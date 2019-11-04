@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { routeTo } from "../../services/Commands/routeTo";
+import { routeTo } from "../../services//context";
 
 export default {
   methods: {

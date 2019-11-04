@@ -78,7 +78,7 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
-import { handleAmmount, getItems } from "../../services/Commands/handleAmmount";
+import { handleAmmount, getItems } from "../../services/context";
 
 export default {
   components: {
