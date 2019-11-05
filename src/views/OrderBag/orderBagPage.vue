@@ -1,6 +1,6 @@
 <template>
   <v-content class="order-bag d-flex flex-column pt-0">
-    <div class="floating_card">
+    <div v-if="shopping" class="floating_card">
       <div class="floating_card__image-area">
         <img class="floating_card__image-area__image" src="@/assets/images/place.svg" />
       </div>
@@ -16,19 +16,21 @@
     </div>
     <div class="floating_card" id="foods">
       <div class="floating_card__restaurant" id="items">
-        <h5 class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
-        <p>{{ restaurant.time }}min</p>
-        <restaurantItem
-          v-for="(item, index) in items"
-          :key="index"
-          :name="item.name"
-          :ammount="item.ammount"
-          @changeQtd="handleAmmount($event, index)"
-        />
+        <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
+        <p v-if="restaurant">{{ restaurant.orderTime }}</p>
+        <div v-if="items">
+          <restaurantItem
+            v-for="(item, index) in items"
+            :key="index"
+            :name="item.name"
+            :ammount="item.ammount"
+            @changeQtd="handleAmmount($event, index)"
+          />
+        </div>
       </div>
 
       <div class="floating_card__price">
-        <p>
+        <p v-if="shoppingCNPJ">
           <a class="palanquin" v-bind:href="'/shopping/' + shoppingCNPJ">
             <b>Adicionar mais itens</b>
           </a>
@@ -55,11 +57,8 @@
           </p>
           <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
-        <div class="floating_card__payment-method__cpf">
-          <div v-if="cpf.length >= 11">
-            <span>CPF registrado: {{ cpf }}</span>
-          </div>
-          <div v-else>
+        <div v-if="cpf" class="floating_card__payment-method__cpf">
+          <div v-if="user">
             <v-form ref="form" v-model="valid">
               <v-col cols="12" md="6">
                 <v-text-field color="#e18855" v-model="cpf" :rules="cpfRules" label="CPF" required></v-text-field>
@@ -79,6 +78,7 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
+import { handleAmmount, getItems } from "../../services/context";
 
 export default {
   components: {
@@ -87,8 +87,6 @@ export default {
   data() {
     return {
       valid: true,
-      shopping: {},
-      restaurant: {},
       items: [],
       shoppingCNPJ: "",
       cpf: "",
@@ -100,20 +98,24 @@ export default {
       ]
     };
   },
-  created() {
-    this.getShopping();
-    this.getRestaurant();
-    this.getItems();
-  },
-  mounted() {
-    if (localStorage.shoppingCNPJ) {
-      this.shoppingCNPJ = localStorage.shoppingCNPJ;
+  props: {
+    shopping: {
+      required: true
+    },
+    restaurant: {
+      required: true
+    },
+    user: {
+      required: true
     }
-    // axios.get("link-da-api").then(response => (this.cpf = response));
+  },
+  created() {
+    this.getItems();
+    this.getShoppingCNPJ();
   },
   watch: {
-    shoppingCNPJ(newshoppingCNPJ) {
-      localStorage.shoppingCNPJ = newshoppingCNPJ;
+    user: function() {
+      this.cpf = this.user.cpf;
     }
   },
   computed: {
@@ -128,24 +130,10 @@ export default {
     }
   },
   methods: {
-    handleAmmount(qtd, index) {
-      this.items[index].ammount = qtd;
-      window.localStorage.setItem("order-bag", JSON.stringify(this.items));
-    },
-    getItems() {
-      this.items = JSON.parse(window.localStorage.getItem("order-bag"));
-    },
-    getShopping() {
-      this.shopping = {
-        name: "Shopping do seu zé",
-        address: "Rua do seu zé"
-      };
-    },
-    getRestaurant() {
-      this.restaurant = {
-        name: "McDonalds",
-        time: "30-40"
-      };
+    handleAmmount,
+    getItems,
+    getShoppingCNPJ: function() {
+      this.shoppingCNPJ = localStorage.shoppingCNPJ;
     }
   }
 };

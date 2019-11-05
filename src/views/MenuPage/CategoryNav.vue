@@ -11,7 +11,7 @@
 <script>
 
 export default {
-  name: "Category",
+  name: "CategoryNav",
   data: () => ({
     active_tab: 0
   }),

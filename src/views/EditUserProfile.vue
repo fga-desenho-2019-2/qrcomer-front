@@ -1,27 +1,28 @@
 <template>
   <v-content class="edit-user-page d-flex flex-column pt-0">
+    <qrc-banner />
     <div>
       <v-form>
         <v-container>
-          <v-row>
+          <v-row v-if="userCopy">
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="name" label="Nome" required color="#e18855"></v-text-field>
+              <v-text-field v-model="userCopy.name" label="Nome" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="email" label="E-mail" required color="#e18855"></v-text-field>
+              <v-text-field v-model="userCopy.email" label="E-mail" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field type="password" v-model="password" label="Senha" required color="#e18855"></v-text-field>
+              <v-text-field type="password" v-model="userCopy.password" label="Senha" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="telephone" label="Telefone" required color="#e18855"></v-text-field>
+              <v-text-field v-model="userCopy.telephone" label="Telefone" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="cpf" label="CPF" required color="#e18855"></v-text-field>
+              <v-text-field v-model="userCopy.cpf" label="CPF" required color="#e18855"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -38,37 +39,41 @@
 </template>
 
 <script>
+import UserBanner from "../components/UserBanner";
+
 export default {
-  // el: "#app",
-  // data() {
-  //     // user: null,
-  //     // loading: true,
-  //     // errored: false,
-  // },
+  components: {
+    "qrc-banner": UserBanner
+  },
   data: () => ({
-    user: {},
+    userCopy: {},
     valid: true,
-    name: "",
     nameRules: [v => !!v || "Campo obrigatório"],
-    email: "",
     emailRules: [
       v => !!v || "Campo obrigatório",
       v => /.+@.+\..+/.test(v) || "E-mail deve ser válido"
     ],
-    password: "",
     passwordRules: [
       v => !!v || "Campo obrigatório",
       v => (v && v.length >= 8) || "Senha deve ser maior do que 8 caracteres"
     ],
-    telephone: "",
     telephoneRules: [v => !!v || "Campo obrigatório"],
-    cpf: "",
     cpfRules: [v => !!v || "Campo obrigatório"]
   }),
-  created() {
-    this.getUserInfo();
+  props: {
+    user: {
+      required: true
+    }
+  },
+  watch: {
+    user: function () {
+      this.userCopy = this.user;
+    }
   },
   methods: {
+    copyUser: function () {
+      this.userCopy = this.user;
+    },
     validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
@@ -76,34 +81,8 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
-    getUserInfo() {
-      this.user = {
-        name: "username",
-        email: "email@email",
-        telephone: "1234",
-        password: "12345",
-        cpf: "123456"
-      };
-      this.name = this.user.name;
-      this.email = this.user.email;
-      this.password = this.user.password;
-      this.telephone = this.user.telephone;
-      this.cpf = this.user.cpf;
     }
   }
-  // mounted () {
-  //   axios
-  //     .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-  //     .then(response => {
-  //       this.user = response.data.bpi
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //       this.errored = true
-  //     })
-  //     .finally(() => this.loading = false)
-  // }
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="qrc-item">
-    <a :href="description" class="qrc-item-link">
+  <div class="qrc-item" @click="handleClick()">
+    <a class="qrc-item-link">
       <img :src="img" :alt="name" />
       <div class="qrc-item-details">
         <p class="qrc-item-name">{{name}}</p>
@@ -15,9 +15,9 @@
 export default {
   name: "Menu",
   props: {
-    description: {
+    id: {
       required: true,
-      type: String
+      type: Number
     },
     name: {
       required: true,
@@ -33,6 +33,11 @@ export default {
     details: {
       required: true,
       type: String
+    }
+  },
+  methods: {
+    handleClick: function () {
+      this.$emit('itemClick', this.id)
     }
   }
 };

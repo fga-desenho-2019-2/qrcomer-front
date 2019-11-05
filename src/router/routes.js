@@ -7,12 +7,13 @@ import AuthHeader from '@/views/Authentication/AuthHeader.vue'
 import store from '@/store/store'
 import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
 import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
-import CategoriePage from '../views/CategoriePage.vue'
-import EditUser from '../views/EditUserProfile/EditUser.vue'
-import User from '../views/UserProfile/User.vue'
+import CategoryPage from '../views/CategoryPage.vue'
+import EditUserProfile from '../views/EditUserProfile.vue'
 import LoggedUserHeader from '../components/LoggedUserHeader.vue'
-import Menu from '../views/MenuPage/Menu.vue'
-import Item from '../views/ItemPage/Item.vue'
+import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
+import ItemPage from '../views/ItemPage/ItemPage.vue'
+import UserProfile from '../views/UserProfile.vue'
+import HocComponent from '../components/HocComponent'
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -45,52 +46,52 @@ export default new Router({
             path: '/shopping/:cnpj',
             name: 'shopping',
             components: {
-                default: ShoppingPage
+                default: HocComponent(ShoppingPage, ['shopping', 'restaurants', 'shoppingCategories'])
             }
         },
         {
-            path: '/categorie/:name',
+            path: '/categoria/:name',
             name: 'categoria',
             components: {
-                default: CategoriePage
+                default: HocComponent(CategoryPage, ['restaurantsByCategory'])
             }
         },
         {
-            path: '/edit-user',
+            path: '/editar-usuario',
             name: 'edit-user',
             components: {
-                default: EditUser,
+                default: HocComponent(EditUserProfile, ['user']),
                 LoggedUserHeader
 
             }
         },
         {
-            path: '/user',
+            path: '/usuario',
             name: 'user',
             components: {
-                default: User,
+                default: HocComponent(UserProfile, ['user']),
                 LoggedUserHeader
             }
         },
         {
-            path: '/menu-page',
+            path: '/restaurante/:cnpj',
             name: 'menu',
             components: {
-                default: Menu
+                default: HocComponent(RestaurantMenu, ['restaurant', 'restaurantMenu', 'categories'])
             }
         },
         {
-            path: '/item-page',
+            path: '/item/:id',
             name: 'item',
             components: {
-                default: Item
+                default: HocComponent(ItemPage, ['foodItem'])
             }
         },
         {
-            path: '/orderbag',
+            path: '/sacola',
             name: 'order-bag',
             components: {
-                default: OrderBagPage,
+                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user'])
             }
         },
         {
@@ -110,5 +111,6 @@ export default new Router({
             },
             beforeEnter: ifAuthenticated,
         }
+
     ]
 })
