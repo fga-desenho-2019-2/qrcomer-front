@@ -48,14 +48,16 @@ export default new Router({
             path: '/shopping/:cnpj',
             name: 'shopping',
             components: {
-                default: HocComponent(ShoppingPage, ['shopping', 'restaurants', 'shoppingCategories'])
+                default: HocComponent(ShoppingPage, ['shopping', 'restaurants', 'shoppingCategories']),
+                Navbar
             }
         },
         {
             path: '/categoria/:name',
             name: 'categoria',
             components: {
-                default: HocComponent(CategoryPage, ['restaurantsByCategory'])
+                default: HocComponent(CategoryPage, ['restaurantsByCategory']),
+                Navbar
             }
         },
         {
@@ -86,7 +88,8 @@ export default new Router({
             path: '/item/:id',
             name: 'item',
             components: {
-                default: HocComponent(ItemPage, ['foodItem'])
+                default: HocComponent(ItemPage, ['foodItem']),
+                Navbar
             }
         },
         {

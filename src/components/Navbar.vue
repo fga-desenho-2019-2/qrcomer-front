@@ -61,6 +61,57 @@
         <v-app-bar-nav-icon
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
         ></v-app-bar-nav-icon>
+       </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='shopping'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-app-bar-nav-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+        ></v-app-bar-nav-icon>
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>Shopping</center>
+        </span>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='categoria'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-btn @click="routeTo('/shopping/'+ shoppingCNPJ)" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>Categoria</center>
+        </span>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='edit-user'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+        <v-btn @click="routeTo('/usuario')" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn> 
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='item'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-btn @click="routeTo('/restaurante/'+ restaurantCNPJ)" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>Item</center>
+        </span>
+        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
   </div>
@@ -75,12 +126,15 @@ export default {
     return {
       routeName: this.$router.currentRoute.name,
       white: false,
-      path: ""
+      shoppingCNPJ: ""
     };
   },
   computed: mapGetters({
     isAuthenticated: "auth/isAuthenticated"
   }),
+  created() {
+    this.getShoppingCNPJ();
+  },
   methods: {
     floatingNav() {
       if (window.scrollY > 5) {
@@ -94,6 +148,9 @@ export default {
       this.$store.dispatch("auth/AUTH_LOGOUT").then(() => {
         this.routeTo("/auth");
       });
+    },
+    getShoppingCNPJ: function() {
+      this.shoppingCNPJ = localStorage.shoppingCNPJ;
     }
   }
 };

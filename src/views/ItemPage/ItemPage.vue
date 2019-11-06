@@ -1,4 +1,6 @@
 <template>
+<v-content>
+  <Navbar />
     <div class="qrc-color">
       <v-dialog v-model="invalidRestaurant" persistent max-width="290" light>
         <v-card-title>Pedido inválido</v-card-title>
@@ -43,17 +45,20 @@
           </v-bottom-navigation>
         </div>
     </div>
+  </v-content>
 </template>
 
 
 <script>
 import ItemDescription from "./ItemDescription.vue";
-import SideDish from "./SideDish.vue"
+import SideDish from "./SideDish.vue";
+import Navbar from "../../components/Navbar.vue";
 
 export default {
   components: {
     "QrcItemDescription": ItemDescription,
     "QrcSideDish": SideDish,
+    Navbar
   },
   data() {
     return {
