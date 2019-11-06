@@ -1,5 +1,6 @@
 <template>
   <v-content class="user-page d-flex flex-column pt-0">
+  <Navbar />
     <qrc-banner />
     <div>
       <v-container>
@@ -36,10 +37,12 @@
 
 <script>
 import UserBanner from '../components/UserBanner';
+import Navbar from '../components/Navbar';
 
 export default {
   components: {
-    "qrc-banner": UserBanner
+    "qrc-banner": UserBanner,
+    Navbar
   },
   data() {
     return {

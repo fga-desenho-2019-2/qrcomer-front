@@ -42,6 +42,13 @@
         <v-spacer></v-spacer>
       </v-app-bar>
     </template>
+    <template v-else-if="routeName ==='user'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+        <v-app-bar-nav-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+        ></v-app-bar-nav-icon>
+       </v-app-bar>
+    </template>
     <template v-else-if="routeName ==='shopping'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
         <v-app-bar-nav-icon
@@ -75,7 +82,22 @@
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
+        </v-btn> 
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='item'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-btn @click="routeTo('/restaurante/'+ restaurantCNPJ)" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
         </v-btn>
+
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>Item</center>
+        </span>
+        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName === 'auth'">
@@ -93,6 +115,21 @@
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-close</v-icon>Deslogar
         </v-btn>
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='menu'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-btn @click="routeTo('/shopping/'+ shoppingCNPJ)" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>Restaurante</center>
+        </span>
+        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
   </div>
