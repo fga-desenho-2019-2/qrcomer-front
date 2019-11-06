@@ -21,3 +21,74 @@ export async function getUser() {
 
     return user;
 }
+
+export async function getCards() {
+  let cards = [
+    {
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    }
+  ]
+  return cards
+}
+
+export async function getSelectedCard() {
+  let card = {
+    "number": "256",
+    "cvv": "256",
+    "validation": "2020-02-20",
+    "holder_name": "teste",
+    "cpf_cnpj": "98652105",
+    "profile": [
+        1
+    ]
+  }
+
+  return card
+}
