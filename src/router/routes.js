@@ -72,6 +72,7 @@ export default new Router({
             name: 'user',
             components: {
                 default: HocComponent(UserProfile, ['user']),
+                Navbar
             }
         },
         {

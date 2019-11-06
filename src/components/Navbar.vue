@@ -56,6 +56,13 @@
         </v-btn>-->
       </v-app-bar>
     </template>
+    <template v-else-if="routeName ==='user'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+        <v-app-bar-nav-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+        ></v-app-bar-nav-icon>
+      </v-app-bar>
+    </template>
   </div>
 </template>
 
