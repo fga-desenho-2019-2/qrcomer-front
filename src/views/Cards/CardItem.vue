@@ -1,5 +1,5 @@
 <template>
-  <div class="card-item">
+  <div class="card-item" @click="handleClick" >
     <div class="card-item__text">
         <p class="mb-0" >Cartão de crédito</p>
         <p class="mb-0" id="card-number" >{{card.number}}</p>
@@ -15,6 +15,11 @@ export default {
             required: true,
             type: Object
         }
+    },
+    methods: {
+        handleClick: function () {
+            this.$emit('cardClick', this.card)
+        }
     }
 };
 </script>
@@ -27,6 +32,10 @@ export default {
     display: grid;
     grid-template-columns: 1fr 50px;
     align-items: center;
+
+    &:active {
+        opacity: 0.6;
+    }
 }
 
 #card-number {

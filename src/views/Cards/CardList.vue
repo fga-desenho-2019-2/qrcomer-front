@@ -6,7 +6,7 @@
       </p>
     </div>
     <div>
-      <CardItem v-for="(card, index) in cards" :key="card.number+index" :card="card" />
+      <CardItem v-for="(card, index) in cards" :key="card.number+index" :card="card" @cardClick="redirectPage($event)" />
     </div>
   </div>
 </template>
@@ -25,7 +25,13 @@ export default {
   },
   created() {
       console.log(this.cards)
-  } 
+  },
+  methods: {
+    redirectPage: function (card) {
+      console.log(card)
+      this.$router.push('/')
+    }
+  }
 };
 </script>
 
