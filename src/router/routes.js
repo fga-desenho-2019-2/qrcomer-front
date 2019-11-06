@@ -79,7 +79,7 @@ export default new Router({
                 default: HocComponent(RestaurantMenu, [
                     "restaurant",
                     "restaurantMenu",
-                    "categories"
+                    "categories",
                 ])
             }
         },
