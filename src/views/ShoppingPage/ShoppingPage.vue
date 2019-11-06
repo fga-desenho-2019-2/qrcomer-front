@@ -1,37 +1,48 @@
 <template>
-  <div class="shopping">
-    <component
-      v-bind:is="component3"
-      v-if="restaurants && shoppingCategories"
-      :navStatus="navStatus"
-      :handleNav="handleNav"
-      :restaurants="restaurants"
-      :shoppingCategories="shoppingCategories"
-      @categoryClick="handleClick($event)"
-    />
-    <v-btn @click="handleNav" min-width="250px" class="qrc-btn white mx-auto font-weigth-bold my-2">
-      <span class="mr-2">Categorias</span>
-    </v-btn>
-    <component
-      v-bind:is="component1"
-      v-if="shopping"
-      :title="shopping.name"
-      image="https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg"
-      :city="shopping.city"
-      :state="shopping.state"
-      :neighborhood="shopping.neighborhood"
-    />
-    <div v-if="restaurants" class="shopping__restaurants">
-      <component
-        v-bind:is="component2"
-        v-for="restaurant in restaurants"
-        :key="restaurant.cnpj"
-        :image="restaurant.image"
-        :title="restaurant.name"
-        :description="restaurant.description"
-        :orderTime="restaurant.orderTime"
-      />
-    </div>
+  <div>
+    <v-content>
+      <!-- <Navbar /> -->
+
+      <div class="shopping">
+        <component
+          v-bind:is="component3"
+          v-if="restaurants && shoppingCategories"
+          :navStatus="navStatus"
+          :handleNav="handleNav"
+          :restaurants="restaurants"
+          :shoppingCategories="shoppingCategories"
+          @categoryClick="handleClick($event)"
+        />
+        <v-btn
+          @click="handleNav"
+          min-width="250px"
+          class="qrc-btn white mx-auto font-weigth-bold my-2"
+        >
+          <span class="mr-2">Categorias</span>
+        </v-btn>
+        <component
+          v-bind:is="component1"
+          v-if="shopping"
+          :title="shopping.name"
+          image="https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg"
+          :city="shopping.city"
+          :state="shopping.state"
+          :neighborhood="shopping.neighborhood"
+        />
+        <div v-if="restaurants" class="shopping__restaurants">
+          <component
+            v-bind:is="component2"
+            v-for="restaurant in restaurants"
+            :key="restaurant.cnpj"
+            :image="restaurant.image"
+            :title="restaurant.name"
+            :description="restaurant.description"
+            :orderTime="restaurant.orderTime"
+            @click="routeTo('/restaurante')"
+          />
+        </div>
+      </div>
+    </v-content>
   </div>
 </template>
 
@@ -39,6 +50,8 @@
 import ShoppingCard from "../../components/Cards/ShoppingCard";
 import RestaurantCard from "../../components/Cards/RestaurantCard";
 import CategoriesNav from "./CategoriesNav";
+import Navbar from "../../components/Navbar";
+import { routeTo } from "../../services/context";
 
 //const placeholderImage = require('../../assets/images/restaurant_placeholder.jpg')
 
@@ -47,7 +60,8 @@ export default {
   components: {
     ShoppingCard,
     RestaurantCard,
-    CategoriesNav
+    CategoriesNav,
+    Navbar
   },
   computed: {
     component1: function() {
@@ -77,6 +91,7 @@ export default {
     };
   },
   methods: {
+    routeTo,
     handleNav: function() {
       if (this.navStatus === "open") this.navStatus = "closed";
       else if (this.navStatus === "closed") this.navStatus = "open";
@@ -90,6 +105,7 @@ export default {
 
 <style lang="scss" scoped>
 .shopping {
+  background: #efefee;
   &__restaurants {
     flex-wrap: wrap;
     display: flex;
