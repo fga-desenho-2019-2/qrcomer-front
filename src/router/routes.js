@@ -14,6 +14,7 @@ import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
 import ItemPage from '../views/ItemPage/ItemPage.vue'
 import UserProfile from '../views/UserProfile.vue'
 import HocComponent from '../components/HocComponent'
+import CardList from '../views/Cards/CardList.vue'
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -91,7 +92,7 @@ export default new Router({
             path: '/sacola',
             name: 'order-bag',
             components: {
-                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user'])
+                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user', 'selectedCard'])
             }
         },
         {
@@ -110,7 +111,20 @@ export default new Router({
                 AuthHeader
             },
             beforeEnter: ifAuthenticated,
-        }
-
+        },
+        {
+            path: '/cartoes',
+            name: 'card_list',
+            components: {
+                default: HocComponent(CardList, ['cards'])
+            }
+        },
+        // {
+        //     path: '/cartao/:id',
+        //     name: 'card',
+        //     components: {
+        //         default: HocComponent(, )
+        //     }
+        // },
     ]
 })
