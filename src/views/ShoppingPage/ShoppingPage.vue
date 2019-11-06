@@ -1,8 +1,6 @@
 <template>
   <div>
     <v-content>
-      <!-- <Navbar /> -->
-
       <div class="shopping">
         <component
           v-bind:is="component3"

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-content>
-      <qrheader />
+      <Navbar />
       <v-content class="order-bag d-flex flex-column pt-0">
         <div v-if="shopping" class="floating_card">
           <div class="floating_card__image-area">
@@ -89,13 +89,13 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
-import qrheader from "../../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { handleAmmount, getItems } from "../../services/context";
 
 export default {
   components: {
     restaurantItem,
-    qrheader
+    Navbar
   },
   data() {
     return {

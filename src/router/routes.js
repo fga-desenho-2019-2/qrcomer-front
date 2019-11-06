@@ -1,18 +1,17 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '@/views/LandingPage/Home.vue'
-import Auth from '@/views/Authentication/Auth.vue'
-import AuthTest from '@/views/Authentication/AuthTest.vue'
-import store from '@/store/store'
-import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
-import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
-import CategoryPage from '../views/CategoryPage.vue'
-import EditUserProfile from '../views/EditUserProfile.vue'
-import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
-import ItemPage from '../views/ItemPage/ItemPage.vue'
-import UserProfile from '../views/UserProfile.vue'
-import HocComponent from '../components/HocComponent'
-import Navbar from '../components/Navbar'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "@/views/LandingPage/Home.vue";
+import Auth from "@/views/Authentication/Auth.vue";
+import AuthTest from "@/views/Authentication/AuthTest.vue";
+import store from "@/store/store";
+import OrderBagPage from "../views/OrderBag/orderBagPage.vue";
+import ShoppingPage from "../views/ShoppingPage/ShoppingPage.vue";
+import CategoryPage from "../views/CategoryPage.vue";
+import EditUserProfile from "../views/EditUserProfile.vue";
+import RestaurantMenu from "../views/MenuPage/RestaurantMenu.vue";
+import ItemPage from "../views/ItemPage/ItemPage.vue";
+import UserProfile from "../views/UserProfile.vue";
+import HocComponent from "../components/HocComponent";
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -23,98 +22,95 @@ import Navbar from '../components/Navbar'
 // }
 
 const ifAuthenticated = (to, from, next) => {
-    if (store.getters['auth/isAuthenticated']) {
-        next()
-        return
+    if (store.getters["auth/isAuthenticated"]) {
+        next();
+        return;
     }
-    next('/auth')
-}
+    next("/auth");
+};
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-    mode: 'history',
+    mode: "history",
     routes: [{
-            path: '/',
-            name: 'home',
+            path: "/",
+            name: "home",
             components: {
-                default: Home,
-                Navbar
+                default: Home
             }
         },
         {
-            path: '/shopping/:cnpj',
-            name: 'shopping',
+            path: "/shopping/:cnpj",
+            name: "shopping",
             components: {
-                default: HocComponent(ShoppingPage, ['shopping', 'restaurants', 'shoppingCategories']),
-                Navbar
+                default: HocComponent(ShoppingPage, [
+                    "shopping",
+                    "restaurants",
+                    "shoppingCategories"
+                ])
             }
         },
         {
-            path: '/categoria/:name',
-            name: 'categoria',
+            path: "/categoria/:name",
+            name: "categoria",
             components: {
-                default: HocComponent(CategoryPage, ['restaurantsByCategory']),
-                Navbar
+                default: HocComponent(CategoryPage, ["restaurantsByCategory"])
             }
         },
         {
-            path: '/editar-usuario',
-            name: 'edit-user',
+            path: "/editar-usuario",
+            name: "edit-user",
             components: {
-                default: HocComponent(EditUserProfile, ['user']),
-                Navbar
+                default: HocComponent(EditUserProfile, ["user"])
             }
         },
         {
-            path: '/usuario',
-            name: 'user',
+            path: "/usuario",
+            name: "user",
             components: {
-                default: HocComponent(UserProfile, ['user']),
-                Navbar
+                default: HocComponent(UserProfile, ["user"])
             }
         },
         {
-            path: '/restaurante/:cnpj',
-            name: 'menu',
+            path: "/restaurante/:cnpj",
+            name: "menu",
             components: {
-                default: HocComponent(RestaurantMenu, ['restaurant', 'restaurantMenu', 'categories']),
-                Navbar
+                default: HocComponent(RestaurantMenu, [
+                    "restaurant",
+                    "restaurantMenu",
+                    "categories"
+                ])
             }
         },
         {
-            path: '/item/:id',
-            name: 'item',
+            path: "/item/:id",
+            name: "item",
             components: {
-                default: HocComponent(ItemPage, ['foodItem']),
-                Navbar
+                default: HocComponent(ItemPage, ["foodItem"])
             }
         },
         {
-            path: '/sacola',
-            name: 'order-bag',
+            path: "/sacola",
+            name: "order-bag",
             components: {
-                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user']),
-                Navbar
+                default: HocComponent(OrderBagPage, ["shopping", "restaurant", "user"])
             }
         },
         {
-            path: '/auth',
-            name: 'auth',
+            path: "/auth",
+            name: "auth",
             components: {
-                default: Auth,
-                Navbar
+                default: Auth
             }
         },
         {
-            path: '/auth_test',
-            name: 'auth_test',
+            path: "/auth_test",
+            name: "auth_test",
             components: {
-                default: AuthTest,
-                Navbar
+                default: AuthTest
             },
-            beforeEnter: ifAuthenticated,
+            beforeEnter: ifAuthenticated
         }
-
     ]
-})
+});
