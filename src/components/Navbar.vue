@@ -40,20 +40,6 @@
           <center>Sacola</center>
         </span>
         <v-spacer></v-spacer>
-        <!-- <v-btn @click="routeTo('/')" icon>
-        <v-icon
-          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-        >mdi-arrow-left</v-icon>
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <span>{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
-      <v-btn v-if="isAuthenticated" @click="logout" text>
-        <v-icon
-          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-        >mdi-close</v-icon>Deslogar
-        </v-btn>-->
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='user'">
@@ -112,6 +98,23 @@
           <center>Item</center>
         </span>
         <v-spacer></v-spacer>
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName === 'auth'">
+      <v-app-bar app absolute id="grey-header">
+        <v-btn @click="routeTo('/')" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <span>{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
+        <v-btn v-if="isAuthenticated" @click="logout" text>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-close</v-icon>Deslogar
+        </v-btn>
       </v-app-bar>
     </template>
   </div>
@@ -224,6 +227,19 @@ export default {
 
   .v-btn {
     color: $main-color;
+  }
+}
+#auth-page-header {
+  transition: all 0.3s ease;
+  z-index: 999;
+  background: white;
+  color: $c-gray90;
+
+  @media screen and (max-width: 1920px) {
+    .v-toolbar__content {
+      max-width: 1300px;
+      margin: 0px auto;
+    }
   }
 }
 </style>
