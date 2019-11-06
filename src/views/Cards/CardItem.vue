@@ -27,7 +27,7 @@ export default {
 <style lang="scss">
 
 .card-item {
-    height: 100px;
+    height: 80px;
     border-bottom: 1px solid $c-gray40;
     display: grid;
     grid-template-columns: 1fr 50px;

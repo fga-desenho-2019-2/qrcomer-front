@@ -5,8 +5,12 @@
         Escolha uma forma de pagamento 
       </p>
     </div>
-    <div>
+    <div class="cards-list__cards">
       <CardItem v-for="(card, index) in cards" :key="card.number+index" :card="card" @cardClick="redirectPage($event)" />
+    </div>
+    <div class="cards-list__add-card" @click="addCard()" >
+      <p class="mb-0" >Adicionar cartão</p>
+      <img class="cards-list__add-card__image" src="../../assets/images/plus_card.svg" />
     </div>
   </div>
 </template>
@@ -28,7 +32,9 @@ export default {
   },
   methods: {
     redirectPage: function (card) {
-      console.log(card)
+      this.$router.push('/')
+    },
+    addCard: function () {
       this.$router.push('/')
     }
   }
@@ -44,10 +50,29 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 80px;
     width: 100%;
     border-bottom: 1px solid $c-gray40;
     color: $c-gray60;
+  }
+
+  &__add-card {
+    height: 80px;
+    border-bottom: 1px solid $c-gray40;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $second-color;
+
+    &__image {
+      position: absolute;
+      right: 10px;
+    }
+
+    &:active {
+      opacity: 0.6;
+    }
   }
 }
 
