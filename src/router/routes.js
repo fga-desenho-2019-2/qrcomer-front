@@ -3,13 +3,11 @@ import Router from 'vue-router'
 import Home from '@/views/LandingPage/Home.vue'
 import Auth from '@/views/Authentication/Auth.vue'
 import AuthTest from '@/views/Authentication/AuthTest.vue'
-//import AuthHeader from '@/views/Authentication/AuthHeader.vue'
 import store from '@/store/store'
 import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
 import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
 import CategoryPage from '../views/CategoryPage.vue'
 import EditUserProfile from '../views/EditUserProfile.vue'
-import LoggedUserHeader from '../components/LoggedUserHeader.vue'
 import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
 import ItemPage from '../views/ItemPage/ItemPage.vue'
 import UserProfile from '../views/UserProfile.vue'
@@ -65,8 +63,7 @@ export default new Router({
             name: 'edit-user',
             components: {
                 default: HocComponent(EditUserProfile, ['user']),
-                LoggedUserHeader
-
+                Navbar
             }
         },
         {
@@ -74,20 +71,23 @@ export default new Router({
             name: 'user',
             components: {
                 default: HocComponent(UserProfile, ['user']),
+                Navbar
             }
         },
         {
             path: '/restaurante/:cnpj',
             name: 'menu',
             components: {
-                default: HocComponent(RestaurantMenu, ['restaurant', 'restaurantMenu', 'categories'])
+                default: HocComponent(RestaurantMenu, ['restaurant', 'restaurantMenu', 'categories']),
+                Navbar
             }
         },
         {
             path: '/item/:id',
             name: 'item',
             components: {
-                default: HocComponent(ItemPage, ['foodItem'])
+                default: HocComponent(ItemPage, ['foodItem']),
+                Navbar
             }
         },
         {
