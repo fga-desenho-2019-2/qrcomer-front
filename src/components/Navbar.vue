@@ -83,6 +83,15 @@
         <v-spacer></v-spacer>
       </v-app-bar>
     </template>
+    <template v-else-if="routeName ==='edit-user'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+        <v-btn @click="routeTo('/usuario')" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+      </v-app-bar>
+    </template>
   </div>
 </template>
 
