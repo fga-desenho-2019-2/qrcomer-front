@@ -1,9 +1,9 @@
 <template>
   <div>
     <template v-if="routeName === 'home'">
-      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="landing-page-header">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
         <v-app-bar-nav-icon
-          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
         ></v-app-bar-nav-icon>
         <img
           v-if="white"
@@ -31,9 +31,9 @@
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='order-bag'">
-      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="standard-header">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
         <v-app-bar-nav-icon
-          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
         ></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
         <span style="color:black">
@@ -42,7 +42,7 @@
         <v-spacer></v-spacer>
         <!-- <v-btn @click="routeTo('/')" icon>
         <v-icon
-          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
         >mdi-arrow-left</v-icon>
       </v-btn>
 
@@ -51,7 +51,7 @@
       <span>{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
       <v-btn v-if="isAuthenticated" @click="logout" text>
         <v-icon
-          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
         >mdi-close</v-icon>Deslogar
         </v-btn>-->
       </v-app-bar>
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss">
-#landing-page-header {
+#red-header {
   background: transparent;
   transition: all 0.3s ease;
   z-index: 999;
@@ -106,7 +106,7 @@ export default {
     .v-btn {
       color: $c-gray90;
 
-      &.landing-page-header--icon {
+      &.red-header--icon {
         color: $main-color;
       }
     }
@@ -149,7 +149,7 @@ export default {
   }
 }
 
-#standard-header {
+#gray-header {
   background: #efefef;
   z-index: 999;
   color: $c-white;
