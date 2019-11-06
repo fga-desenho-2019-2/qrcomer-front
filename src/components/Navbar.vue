@@ -1,43 +1,79 @@
 <template>
-  <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="landing-page-header">
-    <v-app-bar-nav-icon
-      class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
-    ></v-app-bar-nav-icon>
-    <img
-      v-if="white"
-      src="~@/assets/images/QRComer.png"
-      alt="Logo"
-      class="brand pr-5 d-none d-sm-none d-md-flex d-lg-flex"
-    />
-    <img
-      v-else
-      src="~@/assets/images/logo.svg"
-      alt="Logo"
-      class="brand pr-5 d-none d-sm-none d-md-flex d-lg-flex"
-    />
-    <v-toolbar-title class="text-uppercase d-none d-sm-none d-md-flex d-lg-flex text-shadow">
-      <span>QR</span>
-      <span class="font-weight-light">Comer</span>
-    </v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-btn text tile @click="routeTo({'path': '/auth', 'query': {'loginType':true}})" href="#">
-      <span class="mr-2 text-shadow">Login</span>
-    </v-btn>
-    <v-btn text tile @click="routeTo({'path': '/auth', 'query': {'loginType':false}})" href="#">
-      <span class="mr-2 text-shadow">Cadastrar</span>
-    </v-btn>
-  </v-app-bar>
+  <div>
+    <template v-if="routeName === 'home'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="landing-page-header">
+        <v-app-bar-nav-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+        ></v-app-bar-nav-icon>
+        <img
+          v-if="white"
+          src="~@/assets/images/QRComer.png"
+          alt="Logo"
+          class="brand pr-5 d-none d-sm-none d-md-flex d-lg-flex"
+        />
+        <img
+          v-else
+          src="~@/assets/images/logo.svg"
+          alt="Logo"
+          class="brand pr-5 d-none d-sm-none d-md-flex d-lg-flex"
+        />
+        <v-toolbar-title class="text-uppercase d-none d-sm-none d-md-flex d-lg-flex text-shadow">
+          <span>QR</span>
+          <span class="font-weight-light">Comer</span>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn text tile @click="routeTo({'path': '/auth', 'query': {'loginType':true}})" href="#">
+          <span class="mr-2 text-shadow">Login</span>
+        </v-btn>
+        <v-btn text tile @click="routeTo({'path': '/auth', 'query': {'loginType':false}})" href="#">
+          <span class="mr-2 text-shadow">Cadastrar</span>
+        </v-btn>
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='order-bag'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="standard-header">
+        <v-app-bar-nav-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+        ></v-app-bar-nav-icon>
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>Sacola</center>
+        </span>
+        <v-spacer></v-spacer>
+        <!-- <v-btn @click="routeTo('/')" icon>
+        <v-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+        >mdi-arrow-left</v-icon>
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <span>{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
+      <v-btn v-if="isAuthenticated" @click="logout" text>
+        <v-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow landing-page-header--icon"
+        >mdi-close</v-icon>Deslogar
+        </v-btn>-->
+      </v-app-bar>
+    </template>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { routeTo } from "../services/context";
 
 export default {
   data() {
     return {
-      white: false
+      routeName: this.$router.currentRoute.name,
+      white: false,
+      path: ""
     };
   },
+  computed: mapGetters({
+    isAuthenticated: "auth/isAuthenticated"
+  }),
   methods: {
     floatingNav() {
       if (window.scrollY > 5) {
@@ -46,7 +82,12 @@ export default {
         this.white = false;
       }
     },
-    routeTo
+    routeTo,
+    logout: function() {
+      this.$store.dispatch("auth/AUTH_LOGOUT").then(() => {
+        this.routeTo("/auth");
+      });
+    }
   }
 };
 </script>
@@ -105,6 +146,20 @@ export default {
       max-width: 1300px;
       margin: 0px auto;
     }
+  }
+}
+
+#standard-header {
+  background: #efefef;
+  z-index: 999;
+  color: $c-white;
+
+  &.v-app-bar--is-scrolled {
+    background: #efefef;
+  }
+
+  .v-btn {
+    color: $main-color;
   }
 }
 </style>

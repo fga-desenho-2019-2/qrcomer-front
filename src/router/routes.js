@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/LandingPage/Home.vue'
 import Auth from '@/views/Authentication/Auth.vue'
 import AuthTest from '@/views/Authentication/AuthTest.vue'
-import AuthHeader from '@/views/Authentication/AuthHeader.vue'
+//import AuthHeader from '@/views/Authentication/AuthHeader.vue'
 import store from '@/store/store'
 import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
 import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
@@ -14,6 +14,7 @@ import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
 import ItemPage from '../views/ItemPage/ItemPage.vue'
 import UserProfile from '../views/UserProfile.vue'
 import HocComponent from '../components/HocComponent'
+import Navbar from '../components/Navbar'
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -39,7 +40,8 @@ export default new Router({
             path: '/',
             name: 'home',
             components: {
-                default: Home
+                default: Home,
+                Navbar
             }
         },
         {
@@ -70,7 +72,6 @@ export default new Router({
             name: 'user',
             components: {
                 default: HocComponent(UserProfile, ['user']),
-                LoggedUserHeader
             }
         },
         {
@@ -91,7 +92,8 @@ export default new Router({
             path: '/sacola',
             name: 'order-bag',
             components: {
-                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user'])
+                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user']),
+                Navbar
             }
         },
         {
@@ -99,7 +101,7 @@ export default new Router({
             name: 'auth',
             components: {
                 default: Auth,
-                AuthHeader
+                Navbar
             }
         },
         {
@@ -107,7 +109,7 @@ export default new Router({
             name: 'auth_test',
             components: {
                 default: AuthTest,
-                AuthHeader
+                Navbar
             },
             beforeEnter: ifAuthenticated,
         }
