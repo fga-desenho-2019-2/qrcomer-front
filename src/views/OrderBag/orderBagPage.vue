@@ -68,11 +68,50 @@
         </div>
       </div>
     </div>
-    <v-bottom-navigation color="white" class="form-select">
-      <v-btn>
-        <font color="white">Finalizar Pedido - Total: R${{ total }}</font>
-      </v-btn>
-    </v-bottom-navigation>
+    <v-dialog v-model="dialog" width="500">
+      <template v-slot:activator="{ on }">
+        <v-bottom-navigation color="white" class="form-select">
+          <v-btn @click.stop="dialog = true">
+            <font color="white">Finalizar Pedido - Total: R${{ total }}</font>
+          </v-btn>
+        </v-bottom-navigation>
+      </template>
+      <div class="popup">
+        <v-card>
+          <div class="popup__title">
+            <v-card-title class="headline">Confirmar pedido</v-card-title>
+          </div>
+          <div class="popup__text">
+            <v-card-text>
+              <div class="popup__total">Você gostaria de confirmar seu pedido?</div>
+              <p></p>
+              <div class="popup__total">Total de: R${{ total }}</div>
+            </v-card-text>
+          </div>
+          <div class="popup__buttons">
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+              <v-btn
+                color="#ef596b"
+                text
+                @click="dialog = false"
+              >
+                Cancelar
+              </v-btn>
+
+              <v-btn
+                color="#ef596b"
+                text
+                @click="dialog = false"
+              >
+                Confirmar
+              </v-btn>
+            </v-card-actions>
+          </div>
+        </v-card>
+      </div>
+    </v-dialog>
   </v-content>
 </template>
 
@@ -95,7 +134,8 @@ export default {
         v =>
           (v && v.length >= 11) ||
           "CPF deve ser igual a 11 caracteres e não deve conter pontos ou traços"
-      ]
+      ],
+      dialog: false,
     };
   },
   props: {
@@ -320,4 +360,23 @@ export default {
   max-width: none !important;
   width: 100%;
 }
+
+.total-popup {
+  font-size: 20px;
+}
+
+.popup{
+
+  &__title{
+    justify-content: center;
+    display: flex;
+  }
+
+  &__buttons{
+    justify-content: center;
+    display: flex;
+  }
+}
+
+
 </style>
