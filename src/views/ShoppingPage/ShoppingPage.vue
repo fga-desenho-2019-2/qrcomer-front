@@ -1,46 +1,52 @@
 <template>
   <div>
-    <v-content>
-      <div class="shopping">
-        <component
-          v-bind:is="component3"
-          v-if="restaurants && shoppingCategories"
-          :navStatus="navStatus"
-          :handleNav="handleNav"
-          :restaurants="restaurants"
-          :shoppingCategories="shoppingCategories"
-          @categoryClick="handleClick($event)"
-        />
-        <v-btn
-          @click="handleNav"
-          min-width="250px"
-          class="qrc-btn white mx-auto font-weigth-bold my-2"
-        >
-          <span class="mr-2">Categorias</span>
-        </v-btn>
-        <component
-          v-bind:is="component1"
-          v-if="shopping"
-          :title="shopping.name"
-          image="https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg"
-          :city="shopping.city"
-          :state="shopping.state"
-          :neighborhood="shopping.neighborhood"
-        />
-        <div v-if="restaurants" class="shopping__restaurants">
+    <div>
+      <v-content>
+        <template v-if="navStatus === 'closed'">
+          <Navbar />
+          <!-- {{render === true ? (<div></div>) : 'Não logado'}} -->
+        </template>
+        <div class="shopping">
           <component
-            v-bind:is="component2"
-            v-for="restaurant in restaurants"
-            :key="restaurant.cnpj"
-            :image="restaurant.image"
-            :title="restaurant.name"
-            :description="restaurant.description"
-            :orderTime="restaurant.orderTime"
-            @click="routeTo('/restaurante')"
+            v-bind:is="component3"
+            v-if="restaurants && shoppingCategories"
+            :navStatus="navStatus"
+            :handleNav="handleNav"
+            :restaurants="restaurants"
+            :shoppingCategories="shoppingCategories"
+            @categoryClick="handleClick($event)"
           />
+          <v-btn
+            @click="handleNav"
+            min-width="250px"
+            class="qrc-btn white mx-auto font-weigth-bold my-2"
+          >
+            <span class="mr-2">Categorias</span>
+          </v-btn>
+          <component
+            v-bind:is="component1"
+            v-if="shopping"
+            :title="shopping.name"
+            image="https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg"
+            :city="shopping.city"
+            :state="shopping.state"
+            :neighborhood="shopping.neighborhood"
+          />
+          <div v-if="restaurants" class="shopping__restaurants">
+            <component
+              v-bind:is="component2"
+              v-for="restaurant in restaurants"
+              :key="restaurant.cnpj"
+              :image="restaurant.image"
+              :title="restaurant.name"
+              :description="restaurant.description"
+              :orderTime="restaurant.orderTime"
+              @click="routeTo('/restaurante')"
+            />
+          </div>
         </div>
-      </div>
-    </v-content>
+      </v-content>
+    </div>
   </div>
 </template>
 
