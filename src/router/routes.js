@@ -111,6 +111,13 @@ export default new Router({
                 default: AuthTest
             },
             beforeEnter: ifAuthenticated
-        }
+        },
+        {
+            path: "/sidebar-teste",
+            name: "sidebar",
+            components: {
+                default: Auth
+            }
+        },
     ]
 });

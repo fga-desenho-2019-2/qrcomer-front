@@ -1,5 +1,6 @@
 <template>
   <v-app id="qrcomer">
+    <Sidebar />
     <v-scroll-x-transition hide-on-leave mode="out-in">
       <router-view name="Navbar"></router-view>
     </v-scroll-x-transition>
@@ -11,11 +12,14 @@
 </template>
 
 <script>
+import Sidebar from "./components/Sidebar";
 import axios from "axios";
 
 export default {
   name: "App",
-  components: {},
+  components: {
+    Sidebar
+  },
   data: () => ({
     //
   }),
