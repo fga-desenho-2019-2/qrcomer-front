@@ -1,5 +1,6 @@
 <template>
 <v-content>
+  <Navbar />
   <v-app>
       <v-container>
         <v-row
@@ -19,10 +20,11 @@
         v-model="drawer"
         absolute
         temporary
+        color="#efefef"
       >
         <v-list-item>
-          <v-list-item-content class="sidebar-content">
-            <v-list-item-title><center>QR COMER</center></v-list-item-title>
+          <v-list-item-content>
+            <v-list-item-title style="color: black"><center>QR COMER</center></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
   
@@ -36,11 +38,11 @@
             link
           >
             <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon style="color: black">{{ item.icon }}</v-icon>
             </v-list-item-icon>
   
             <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title style="color: black">{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -50,13 +52,17 @@
 </template>
 
 <script>
+import Navbar from "./Navbar";
 export default {
   name: 'Sidebar',
+  components: {
+    Navbar
+  },
   data () {
     return {
       drawer: null,
       items: [
-        { title: 'shopping', icon: 'store', link: '/shopping/:cnpj' },
+        { title: 'Shopping', icon: 'store', link: '/shopping/:cnpj' },
         { title: 'Minha sacola', icon: 'shopping_cart', link: '/sacola' },
         { title: 'Meu perfil', icon: 'mdi-account', link: '/usuario' },
         { title: 'Sair', icon: 'logout', link: '/logout' }
@@ -85,8 +91,8 @@ export default {
 
 <style lang="scss">
 
-.sidebar-content{
-    color: green;
+.menu{
+    color: black;
 }
 
 </style>

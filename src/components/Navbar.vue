@@ -132,6 +132,21 @@
         <v-spacer></v-spacer>
       </v-app-bar>
     </template>
+    <template v-else-if="routeName ==='sidebar'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-btn @click="routeTo('/')" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>Menu</center>
+        </span>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+    </template>
   </div>
 </template>
 
