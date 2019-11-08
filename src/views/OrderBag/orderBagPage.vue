@@ -103,7 +103,7 @@
               <v-btn
                 color="#ef596b"
                 text
-                @click="dialog = false"
+                @click="requestOrder"
               >
                 Confirmar
               </v-btn>
@@ -118,6 +118,7 @@
 <script>
 import restaurantItem from "./BagItem.vue";
 import { handleAmmount, getItems } from "../../services/context";
+import axios from 'axios'
 
 export default {
   components: {
@@ -174,6 +175,16 @@ export default {
     getItems,
     getShoppingCNPJ: function() {
       this.shoppingCNPJ = localStorage.shoppingCNPJ;
+    },
+    requestOrder(){
+      this.dialog = false
+      axios.post('http://localhost:5002/api/order-bag',{
+        observation: "",
+        items: this.items
+      }).then(() => {})
+      .catch((e) => {
+        console.error(e)
+      })
     }
   }
 };
