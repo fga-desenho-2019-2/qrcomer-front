@@ -1,13 +1,12 @@
 <script>
-import UserBanner from '..components/Sidebar';
+import UserBanner from "../components/Sidebar";
 
 export default {
   components: {
     Sidebar
   },
   data() {
-    return {
-    };
-  },
+    return {};
+  }
 };
 </script>

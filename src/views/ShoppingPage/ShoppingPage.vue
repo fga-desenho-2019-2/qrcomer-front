@@ -4,7 +4,6 @@
       <v-content>
         <template v-if="navStatus === 'closed'">
           <Navbar />
-          <!-- {{render === true ? (<div></div>) : 'Não logado'}} -->
         </template>
         <div class="shopping">
           <component
@@ -41,7 +40,7 @@
               :title="restaurant.name"
               :description="restaurant.description"
               :orderTime="restaurant.orderTime"
-              @click="routeTo('/restaurante')"
+              @restaurantClick="routeTo({ path: '/usuario'})"
             />
           </div>
         </div>
@@ -89,6 +88,7 @@ export default {
       required: true
     }
   },
+
   data() {
     return {
       navStatus: "closed"

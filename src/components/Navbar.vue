@@ -37,7 +37,7 @@
         ></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
         <span style="color:black">
-          <center>Sacola</center>
+          <center>SACOLA</center>
         </span>
         <v-spacer></v-spacer>
       </v-app-bar>
@@ -47,7 +47,7 @@
         <v-app-bar-nav-icon
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
         ></v-app-bar-nav-icon>
-       </v-app-bar>
+      </v-app-bar>
     </template>
     <template v-else-if="routeName ==='shopping'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
@@ -56,7 +56,7 @@
         ></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
         <span style="color:black">
-          <center>Shopping</center>
+          <center>SHOPPING</center>
         </span>
         <v-spacer></v-spacer>
       </v-app-bar>
@@ -71,7 +71,7 @@
 
         <v-spacer></v-spacer>
         <span style="color:black">
-          <center>Categoria</center>
+          <center>CATEGORIA</center>
         </span>
         <v-spacer></v-spacer>
       </v-app-bar>
@@ -82,7 +82,7 @@
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
-        </v-btn> 
+        </v-btn>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='item'">
@@ -95,7 +95,7 @@
 
         <v-spacer></v-spacer>
         <span style="color:black">
-          <center>Item</center>
+          <center>ITEM</center>
         </span>
         <v-spacer></v-spacer>
       </v-app-bar>
@@ -127,7 +127,7 @@
 
         <v-spacer></v-spacer>
         <span style="color:black">
-          <center>Restaurante</center>
+          <center>RESTAURANTE</center>
         </span>
         <v-spacer></v-spacer>
       </v-app-bar>
@@ -142,7 +142,7 @@
 
         <v-spacer></v-spacer>
         <span style="color:black">
-          <center>Menu</center>
+          <center>MENU</center>
         </span>
         <v-spacer></v-spacer>
       </v-app-bar>
