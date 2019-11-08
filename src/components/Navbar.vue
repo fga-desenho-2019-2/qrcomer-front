@@ -6,6 +6,7 @@
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           @click="drawer = !drawer"
         ></v-app-bar-nav-icon>
+
         <img
           v-if="white"
           src="~@/assets/images/QRComer.png"
@@ -23,10 +24,28 @@
           <span class="font-weight-light">Comer</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn text tile @click="routeTo({'path': '/auth', 'query': {'loginType':true}})" href="#">
+        <span class="mr-2 text-shadow">{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
+        <v-btn class="mr-2 text-shadow" v-if="isAuthenticated" @click="logout" text>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-close</v-icon>Deslogar
+        </v-btn>
+        <v-btn
+          v-else-if="!isAuthenticated"
+          text
+          tile
+          @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
+          href="#"
+        >
           <span class="mr-2 text-shadow">Login</span>
         </v-btn>
-        <v-btn text tile @click="routeTo({'path': '/auth', 'query': {'loginType':false}})" href="#">
+        <v-btn
+          v-else-if="!isAuthenticated"
+          text
+          tile
+          @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
+          href="#"
+        >
           <span class="mr-2 text-shadow">Cadastrar</span>
         </v-btn>
       </v-app-bar>
@@ -136,22 +155,7 @@
         <v-spacer></v-spacer>
       </v-app-bar>
     </template>
-    <template v-else-if="routeName ==='sidebar'">
-      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
-        <v-btn @click="routeTo('/')" icon>
-          <v-icon
-            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-          >mdi-arrow-left</v-icon>
-        </v-btn>
-
-        <v-spacer></v-spacer>
-        <span style="color:black">
-          <center>MENU</center>
-        </span>
-        <v-spacer></v-spacer>
-      </v-app-bar>
-    </template>
-    <v-navigation-drawer app v-model="drawer" temporary color="#efefef">
+    <v-navigation-drawer app clipped v-model="drawer" temporary color="#efefef">
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title style="color: black">

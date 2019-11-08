@@ -9,6 +9,6 @@ export function loginUser() {
             password
         })
         .then(() => {
-            this.$router.push("/auth_test"); //Todo: redirecionar para outra página
+            this.$router.push("/"); //Todo: redirecionar para outra página
         });
 }
