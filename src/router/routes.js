@@ -12,7 +12,6 @@ import RestaurantMenu from "../views/MenuPage/RestaurantMenu.vue";
 import ItemPage from "../views/ItemPage/ItemPage.vue";
 import UserProfile from "../views/UserProfile.vue";
 import HocComponent from "../components/HocComponent";
-import Sidebar from "../components/Sidebar";
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -113,12 +112,6 @@ export default new Router({
             },
             beforeEnter: ifAuthenticated
         },
-        {
-            path: "/sidebar-teste",
-            name: "sidebar",
-            components: {
-                default: Sidebar
-            }
-        },
+
     ]
 });
