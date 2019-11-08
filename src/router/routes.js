@@ -38,7 +38,8 @@ export default new Router({
             name: "home",
             components: {
                 default: Home
-            }
+            },
+
         },
         {
             path: "/shopping/:cnpj",
@@ -49,28 +50,32 @@ export default new Router({
                     "restaurants",
                     "shoppingCategories"
                 ])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/categoria/:name",
             name: "categoria",
             components: {
                 default: HocComponent(CategoryPage, ["restaurantsByCategory"])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/editar-usuario",
             name: "edit-user",
             components: {
                 default: HocComponent(EditUserProfile, ["user"])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/usuario",
             name: "user",
             components: {
                 default: HocComponent(UserProfile, ["user"])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/restaurante/:cnpj",
@@ -81,37 +86,34 @@ export default new Router({
                     "restaurantMenu",
                     "categories",
                 ])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/item/:id",
             name: "item",
             components: {
                 default: HocComponent(ItemPage, ["foodItem"])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/sacola",
             name: "order-bag",
             components: {
                 default: HocComponent(OrderBagPage, ["shopping", "restaurant", "user"])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/auth",
             name: "auth",
             components: {
                 default: Auth
-            }
-        },
-        {
-            path: "/auth_test",
-            name: "auth_test",
-            components: {
-                default: AuthTest
             },
-            beforeEnter: ifAuthenticated
+
         },
+
 
     ]
 });
