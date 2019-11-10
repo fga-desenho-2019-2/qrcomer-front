@@ -1,7 +1,7 @@
 <template>
   <v-content class="user-page d-flex flex-column pt-0">
   <Navbar />
-    <qrc-banner />
+    <div style="z-index: 0"><qrc-banner /></div>
     <div>
       <v-container>
         <v-row v-if="user">
@@ -16,10 +16,6 @@
 
           <v-col cols="12" md="6" class="pb-0">
             <v-text-field :value="user.telephone" label="Telefone" color="#e18855" readonly type="text"></v-text-field>
-          </v-col>
-
-          <v-col cols="12" md="6" class="pb-0">
-            <v-text-field :value="user.password" label="Senha" color="#e18855" readonly type="password"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
