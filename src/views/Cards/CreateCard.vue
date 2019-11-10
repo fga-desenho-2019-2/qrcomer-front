@@ -4,7 +4,7 @@
       <div class="credit-card-area">
         <div class="credit-card-area__card"> 
           <img class="credit-card-area__card__chip" src="../../assets/images/chip.svg"/>
-          <h2 class="credit-card-area__card__number mb-0">{{creditCard.number}}</h2>
+          <h2 class="credit-card-area__card__number mb-0">{{formatedCardNumber}}</h2>
           <p class="credit-card-area__card__date mb-3"><span id="valid">Validade</span> {{creditCard.validation}}</p>
           <h3 class="credit-card-area__card__name mb-0">{{nameUpperCase}}</h3>
         </div>
@@ -13,23 +13,23 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field type="number" v-model="creditCard.number" label="Numero do Cartão" color="#e18855"></v-text-field>
+              <v-text-field type="number" :rules="cardNumberRules" v-model="creditCard.number" required label="Numero do Cartão" color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field type="number" v-model="creditCard.cpf_cnpj" label="CPF do Titular" color="#e18855"></v-text-field>
+              <v-text-field type="number" :rules="cpf_cnpjRules" v-model="creditCard.cpf_cnpj" label="CPF do Titular" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="8" md="1" class="pb-0">
-              <v-text-field type="number" v-model="creditCard.validation" label="Data de Validade" color="#e18855"></v-text-field>
+              <v-text-field type="month" :rules="expirationRules" v-model="creditCard.validation" required label="Data de Validade" color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="4" md="1" class="pb-0">
-              <v-text-field type="number" v-model="creditCard.cvv" label="CVV" color="#e18855"></v-text-field>
+              <v-text-field type="number" :rules="cvvRules" v-model="creditCard.cvv" label="CVV" required color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="creditCard.holderName" label="Nome do Titular" required color="#e18855"></v-text-field>
+              <v-text-field v-model="creditCard.holderName" :rules="holderNameRules" label="Nome do Titular" required color="#e18855"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -47,6 +47,37 @@
 
 <script>
 
+import { card, cvc, expiration } from 'creditcards/index'
+
+function holderRules() {
+  return [
+    value => !!value || "Campo obrigatório"
+  ]
+}
+const requiredField = value => !!value || "Campo obrigatório"
+
+const cardNumberRules = [
+  requiredField,
+  value => card.isValid(value) || "Número inválido"
+]
+
+const cpf_cnpjRules = [
+  requiredField
+]
+
+const cvvRules = [
+  requiredField,
+  value => cvc.isValid(value) || "CVV inválido"
+]
+
+const expirationRules = [
+  requiredField,
+  value => {
+    let expDate = new Date(value)
+    return !expiration.isPast(expDate.getUTCMonth(), expDate.getUTCFullYear()) || "Cartão expirado"
+  }
+]
+
 export default {
   components: {
   },
@@ -60,7 +91,11 @@ export default {
     },
     newCreditCard: {},
     valid: true,
-    holderNameRules: [v => !!v || "Campo obrigatório"],
+    holderNameRules: holderRules(),
+    cardNumberRules,
+    cpf_cnpjRules,
+    cvvRules,
+    expirationRules
   }),
   props: {},
   watch: {
@@ -74,14 +109,22 @@ export default {
         return this.creditCard.holderName.toUpperCase();
       else 
         return ''
+    },
+    formatedCardNumber: function () {
+      if(this.creditCard.number)
+        return card.format(this.creditCard.number, ' ');
+      else 
+        return ''
     }
   },
   methods: {
     copyCreditCard: function () {
       this.newCreditCard = this.creditCard;
+      console.log('SAY IT')
     },
     validate() {
       if (this.$refs.form.validate()) {
+        console.log(this.creditCard)
         this.snackbar = true;
       }
     },
