@@ -78,12 +78,12 @@ export async function getCards() {
   return cards
 }
 
-export async function getSelectedCard() {
+export async function getSelectedCard(id) {
   let card = {
-    "number": "256",
-    "cvv": "256",
+    "number": "**** **** **** 4242",
+    "cvv": "***",
     "validation": "2020-02-20",
-    "holder_name": "teste",
+    "holder_name": "Fred",
     "cpf_cnpj": "98652105",
     "profile": [
         1

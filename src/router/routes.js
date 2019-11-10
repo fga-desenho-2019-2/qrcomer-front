@@ -16,6 +16,7 @@ import UserProfile from '../views/UserProfile.vue'
 import HocComponent from '../components/HocComponent'
 import CardList from '../views/Cards/CardList.vue'
 import CreateCard from '../views/Cards/CreateCard.vue'
+import CardShow from '../views/Cards/CardShow.vue'
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -127,12 +128,12 @@ export default new Router({
                 default: CreateCard
             }
         },
-        // {
-        //     path: '/cartao/:id',
-        //     name: 'card',
-        //     components: {
-        //         default: HocComponent(, )
-        //     }
-        // },
+        {
+            path: '/cartao/:id',
+            name: 'card',
+            components: {
+                default: HocComponent(CardShow, ['selectedCard'])
+            }
+        },
     ]
 })

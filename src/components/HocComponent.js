@@ -83,7 +83,8 @@ const HocComponent = (component, neededSetups) => {
                         this.cards = await Services.getCards()
                     }
                     if(neededSetups.find(element => element === 'selectedCard')) {
-                        this.selectedCard = await Services.getSelectedCard()
+                        let id = this.$route.params.id
+                        this.selectedCard = await Services.getSelectedCard(id)
                     }
                 }
             }
