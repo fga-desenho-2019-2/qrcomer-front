@@ -1,7 +1,6 @@
 <template>
   <div>
-    <v-content>
-      <Navbar />
+  <Navbar />
       <v-content class="d-flex flex-column pt-0" id="auth">
         <transition name="slide-x-transition" mode="out-in" hide-on-leave>
           <h3 v-if="loginType" key="loginText" class="mb-0 mt-n2 text-center" style="width: 100%;">
@@ -164,7 +163,6 @@
           </v-col>
         </v-row>
       </v-content>
-    </v-content>
   </div>
 </template>
 

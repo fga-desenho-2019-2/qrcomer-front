@@ -24,7 +24,6 @@
           <span class="font-weight-light">Comer</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <span class="mr-2 text-shadow">{{isAuthenticated ? 'Logado' : ''}}</span>
         <v-btn class="mr-2 text-shadow" v-if="isAuthenticated" @click="logout" text>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"

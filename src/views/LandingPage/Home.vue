@@ -1,8 +1,8 @@
 <template>
   <v-content class="d-flex flex-column pt-0">
-    <LandingPageHeader></LandingPageHeader>
+    <LandingPageHeader />
 
-    <div>
+    <div style="z-index: 0">
       <QrcBanner />
 
       <QrcSobre />
