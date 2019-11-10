@@ -203,7 +203,7 @@ export default {
         },
         { title: "Minha sacola", icon: "mdi-shopping", link: "/sacola" },
         { title: "Meu perfil", icon: "mdi-account", link: "/usuario" },
-        { title: "Sair", icon: "mdi-logout", link: "/logout" }
+        // { title: "Sair", icon: "mdi-logout", link: "/logout" }
       ]
     };
   },

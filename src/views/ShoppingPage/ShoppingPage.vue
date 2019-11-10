@@ -40,7 +40,7 @@
               :title="restaurant.name"
               :description="restaurant.description"
               :orderTime="restaurant.orderTime"
-              @restaurantClick="routeTo({ path: '/usuario'})"
+              @restaurantClick="restaurantClick($event)"
             />
           </div>
         </div>
@@ -102,6 +102,9 @@ export default {
     },
     handleClick: function(category) {
       this.$router.replace({ path: `/categoria/${category}` });
+    },
+    restaurantClick: function(restaurant) {
+      this.$router.replace({ path: `/restaurante/${restaurant}` });
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card-restaurant">
+    <div @click="restaurantClick()" class="card-restaurant">
       <div class="card-restaurant__image">
         <img class="card-restaurant__image__content" :src="image" />
       </div>
@@ -37,10 +37,8 @@ export default {
     }
   },
   methods: {
-    methods: {
-      handleClick: function() {
-        this.$emit("restaurantClick", this.title);
-      }
+    restaurantClick: function(restaurant) {
+      this.$emit("restaurantClick", restaurant);
     }
   }
 };
