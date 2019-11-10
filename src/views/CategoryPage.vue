@@ -11,6 +11,7 @@
           :description="restaurant.description"
           :orderTime="restaurant.orderTime"
           :image="restaurant.image"
+          @restaurantClick="restaurantClick($event)"
         />
       </div>
     </v-content>
@@ -42,6 +43,11 @@ export default {
   computed: {
     component: function() {
       return "RestaurantCardExpand";
+    }
+  },
+  methods: {
+    restaurantClick: function(restaurant) {
+      this.$router.replace({ path: `/restaurante/${restaurant}` });
     }
   }
 };
