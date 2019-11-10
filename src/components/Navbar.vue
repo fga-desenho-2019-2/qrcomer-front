@@ -208,26 +208,6 @@ export default {
       ]
     };
   },
-  computed: {
-    home: function() {
-      return this.$t("Sidebar.home");
-    },
-    listShoppings: function() {
-      return this.$t("SideBar.shopping");
-    },
-
-    myBag: function() {
-      return this.$t("SideBar.sacola");
-    },
-
-    myProfile: function() {
-      return this.$t("SideBar.profile");
-    },
-
-    getOut: function() {
-      return this.$t("SideBar.logout");
-    }
-  },
   computed: mapGetters({
     isAuthenticated: "auth/isAuthenticated"
   }),

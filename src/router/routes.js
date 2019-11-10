@@ -2,7 +2,6 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/views/LandingPage/Home.vue";
 import Auth from "@/views/Authentication/Auth.vue";
-import AuthTest from "@/views/Authentication/AuthTest.vue";
 import store from "@/store/store";
 import OrderBagPage from "../views/OrderBag/orderBagPage.vue";
 import ShoppingPage from "../views/ShoppingPage/ShoppingPage.vue";
