@@ -190,7 +190,7 @@ export default {
       email: "",
       first_name: "",
       last_name: "",
-      emptyRule: [v => !!v || "Field is required"],
+      emptyRule: [v => !!v || "Campo obrigatório"],
       username: "",
       loginType: false,
       date: new Date().toISOString().substr(0, 7),
