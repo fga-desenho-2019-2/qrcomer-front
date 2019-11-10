@@ -5,7 +5,7 @@
         <div class="credit-card-area__card"> 
           <img class="credit-card-area__card__chip" src="../../assets/images/chip.svg"/>
           <h2 class="credit-card-area__card__number mb-0">{{formatedCardNumber}}</h2>
-          <p class="credit-card-area__card__date mb-3"><span id="valid">Validade</span> {{creditCard.validation}}</p>
+          <p class="credit-card-area__card__date mb-3"><span id="valid">Validade</span> {{formatedCardExpiration}}</p>
           <h3 class="credit-card-area__card__name mb-0">{{nameUpperCase}}</h3>
         </div>
       </div>
@@ -48,6 +48,7 @@
 <script>
 
 import { card, cvc, expiration } from 'creditcards/index'
+import moment from 'moment'
 
 function holderRules() {
   return [
@@ -73,8 +74,8 @@ const cvvRules = [
 const expirationRules = [
   requiredField,
   value => {
-    let expDate = new Date(value)
-    return !expiration.isPast(expDate.getUTCMonth(), expDate.getUTCFullYear()) || "Cartão expirado"
+    let expDate = moment(value)
+    return !expiration.isPast(expDate.month(), expDate.year()) || "Cartão expirado"
   }
 ]
 
@@ -108,19 +109,26 @@ export default {
       if(this.creditCard.holderName)
         return this.creditCard.holderName.toUpperCase();
       else 
-        return ''
+        return 'Nome do Titular'.toUpperCase()
     },
     formatedCardNumber: function () {
       if(this.creditCard.number)
         return card.format(this.creditCard.number, ' ');
       else 
         return ''
+    },
+    formatedCardExpiration: function () {
+      if(this.creditCard.validation) {
+        let exp = moment(this.creditCard.validation)
+        return exp.format('MM/YYYY')
+      } else {
+        return 'MM/YYYY'
+      }
     }
   },
   methods: {
     copyCreditCard: function () {
       this.newCreditCard = this.creditCard;
-      console.log('SAY IT')
     },
     validate() {
       if (this.$refs.form.validate()) {
