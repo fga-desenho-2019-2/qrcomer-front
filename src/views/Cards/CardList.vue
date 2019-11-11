@@ -27,15 +27,12 @@ export default {
         required: true
     }
   },
-  created() {
-      console.log(this.cards)
-  },
   methods: {
     redirectPage: function (card) {
-      this.$router.push('/')
+      this.$router.push('/cartao/' + card.id)
     },
     addCard: function () {
-      this.$router.push('/')
+      this.$router.push('/cartoes/new')
     }
   }
 };

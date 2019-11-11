@@ -25,6 +25,7 @@ export async function getUser() {
 export async function getCards() {
   let cards = [
     {
+      "id": 1,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -35,6 +36,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 2,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -45,6 +47,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 3,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -55,6 +58,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 4,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -65,6 +69,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 5,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",

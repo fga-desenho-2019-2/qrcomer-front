@@ -55,7 +55,7 @@
             Cartão no app
             <br />**** 3387
           </p>
-          <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
+          <a href="/cartoes" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
         <div v-if="cpf" class="floating_card__payment-method__cpf">
           <div v-if="user">
