@@ -43,7 +43,8 @@ export default {
 
 <style lang="scss">
 .cards-list {
-
+  background-color: $c-white;
+  height: 100%;
   padding: 10px;
 
   &__explanation {

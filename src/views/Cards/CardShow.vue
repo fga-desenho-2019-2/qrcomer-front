@@ -1,5 +1,5 @@
 <template>
-  <v-content class="create-card-page d-flex flex-column pt-0">
+  <v-content v-if="selectedCard" class="create-card-page d-flex flex-column pt-0">
     <div>
       <div class="credit-card-area">
         <div class="credit-card-area__card"> 

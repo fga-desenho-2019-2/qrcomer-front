@@ -78,7 +78,7 @@ export async function getCards() {
   return cards
 }
 
-export async function getSelectedCard(id) {
+export async function getSelectedCard() {
   let card = {
     "number": "**** **** **** 4242",
     "cvv": "***",
