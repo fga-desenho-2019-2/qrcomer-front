@@ -1,7 +1,5 @@
 <template>
     <v-content class="d-flex flex-column pt-0">
-        <LandingPageHeader></LandingPageHeader>
-
         <div>
             <QrcBanner/>
 
