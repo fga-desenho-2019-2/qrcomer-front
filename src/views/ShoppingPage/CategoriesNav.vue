@@ -1,10 +1,6 @@
 <template>
   <div class="overlay" :class="navStatus">
     <div class="filter-nav">
-      <v-app-bar-nav-icon
-        class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-        @click="drawer = !drawer"
-      ></v-app-bar-nav-icon>
       <img @click="handleNav" class="filter-nav__arrow" src="../../assets/images/arrow.svg" />
       <p class="filter-nav__text">FILTRO</p>
     </div>
