@@ -3,7 +3,7 @@
     <div>
       <v-content>
         <template v-if="navStatus === 'closed'">
-          <Navbar />
+          <Navbar @clickFilter="handleNav" />
         </template>
         <div class="shopping">
           <component
@@ -15,13 +15,6 @@
             :shoppingCategories="shoppingCategories"
             @categoryClick="handleClick($event)"
           />
-          <v-btn
-            @click="handleNav"
-            min-width="250px"
-            class="qrc-btn white mx-auto font-weigth-bold my-2"
-          >
-            <span class="mr-2">Categorias</span>
-          </v-btn>
           <component
             v-bind:is="component1"
             v-if="shopping"

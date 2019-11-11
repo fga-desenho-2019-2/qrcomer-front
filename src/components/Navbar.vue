@@ -81,6 +81,7 @@
           <center>SHOPPING</center>
         </span>
         <v-spacer></v-spacer>
+        <img @click="clickFilter" id="filter" src="~@/assets/images/filter.svg" />
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='categoria'">
@@ -214,6 +215,9 @@ export default {
     this.getShoppingCNPJ();
   },
   methods: {
+    clickFilter() {
+      this.$emit('clickFilter')
+    },
     floatingNav() {
       if (window.scrollY > 5) {
         this.white = true;
@@ -235,6 +239,10 @@ export default {
 </script>
 
 <style lang="scss">
+#filter {
+  width: 20px;
+}
+
 #red-header {
   background: transparent;
   transition: all 0.3s ease;
