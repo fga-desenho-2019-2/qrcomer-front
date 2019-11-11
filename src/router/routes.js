@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/LandingPage/Home.vue'
+import LandingPageHeader from '@/views/LandingPage/Header.vue'
 import Auth from '@/views/Authentication/Auth.vue'
 import AuthTest from '@/views/Authentication/AuthTest.vue'
 import AuthHeader from '@/views/Authentication/AuthHeader.vue'
@@ -14,6 +15,7 @@ import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
 import ItemPage from '../views/ItemPage/ItemPage.vue'
 import UserProfile from '../views/UserProfile.vue'
 import HocComponent from '../components/HocComponent'
+import OrderPage from '@/views/Order/Order'
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -35,11 +37,13 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    routes: [{
+    routes: [
+        {
             path: '/',
             name: 'home',
             components: {
-                default: Home
+                default: Home,
+                LandingPageHeader: LandingPageHeader
             }
         },
         {
@@ -92,6 +96,13 @@ export default new Router({
             name: 'order-bag',
             components: {
                 default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user'])
+            }
+        },
+        {
+            path: '/pedido',
+            name: 'order',
+            components: {
+                default: HocComponent(OrderPage, ['user'])
             }
         },
         {
