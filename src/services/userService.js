@@ -85,8 +85,9 @@ export async function getCards() {
 
 export async function getSelectedCard() {
   let card = {
-    "number": "**** **** **** 4242",
-    "cvv": "***",
+    "id": 25,
+    "number": "4242424242424242",
+    "cvv": "123",
     "validation": "2020-02-20",
     "holder_name": "Fred",
     "cpf_cnpj": "98652105",
@@ -94,6 +95,9 @@ export async function getSelectedCard() {
         1
     ]
   }
+
+  card.number = card.number.replace(/\d{12}/g, '**** **** **** ')
+  card.cvv = card.cvv.replace(/\d+/, '***')
 
   return card
 }

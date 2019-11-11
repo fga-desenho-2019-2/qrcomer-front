@@ -132,7 +132,6 @@ export default {
     },
     validate() {
       if (this.$refs.form.validate()) {
-        console.log(this.creditCard)
         this.snackbar = true;
       }
     },

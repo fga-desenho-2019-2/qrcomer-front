@@ -27,9 +27,13 @@ export default {
         required: true
     }
   },
+  created() {
+      // eslint-disable-next-line
+      console.log(this.cards)
+  },
   methods: {
     redirectPage: function (card) {
-      this.$router.push('/cartao/' + card.id)
+      this.$router.push(`/cartao/${card.id}`)
     },
     addCard: function () {
       this.$router.push('/cartoes/new')
