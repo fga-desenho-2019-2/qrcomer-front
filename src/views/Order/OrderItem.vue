@@ -1,0 +1,90 @@
+<template>
+    <div
+        class="orderItem">
+        <p>Seg, 22 de agosto de 2019</p>
+
+        <div class="orderItem__box">
+            <div class="orderItem__box__content">
+                <div class="orderItem__box__content__img">
+                    <img src="@/assets/images/bannermc.svg" alt="">
+                </div>
+                <div class="orderItem__box__content__content">
+                    <p class="px-3 mb-1">Mc Donalds</p>
+                    <ul class="px-3 small-item" style="list-style: none">
+                        <li>1x Mac Tast</li>
+                        <li>1x Sandue de chocolate</li>
+                    </ul>
+                    <div class="d-flex align-center stars">
+                        <p class="px-3 mb-0 small-item mr-auto">Avaliação:</p>
+                        <div class="d-flex pr-3">
+                            <v-icon color="yellow">mdi-star</v-icon>
+                            <v-icon color="yellow">mdi-star</v-icon>
+                            <v-icon color="yellow">mdi-star</v-icon>
+                            <v-icon color="yellow">mdi-star</v-icon>
+                            <v-icon color="#a0a0a0">mdi-star</v-icon>
+                        </div>
+                    </div>
+                </div>  
+            </div> 
+            <div class="orderItem__box__btn">
+                <v-btn 
+                    block 
+                    text
+                    large
+                    class="main-color">
+                    Ver recibo    
+                </v-btn>    
+            </div>    
+        </div>
+    </div>
+</template>
+
+<style lang="scss">
+.orderItem {
+    height: 100%;
+    &__box {
+        background: $c-true-white;
+        border-radius: 0 20px;
+        box-shadow: 0 4px 10px #00000040;
+        
+        overflow: hidden;
+
+        &__content {
+            width: 100%;
+            display: flex;
+        
+            .small-item {
+                font-size: 14px;
+                color: #808080;
+            }
+
+            &__img {
+                position: relative;
+                width: 30%;
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            &__content {
+                padding-top: 10px;
+                width: 70%;
+
+                .stars {
+                    margin-top: 5px;
+                    border-top: 1px solid rgba(0,0,0,0.1);
+                    border-bottom: 1px solid rgba(0,0,0,0.1);
+                    padding: 10px 0;
+                }
+            }   
+        }
+
+        
+    }
+}
+</style>
