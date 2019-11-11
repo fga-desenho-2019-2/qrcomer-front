@@ -25,24 +25,52 @@
                         </div>
                     </div>
                     <div class="d-flex align-center stars pa-0" v-else>
+                        <v-dialog v-model="dialog" persistent max-width="290">
+                        <template v-slot:activator="{ on }">
                         <v-btn 
                             block 
                             text
+                            v-on="on"
+                            large
                             class="main-color">
                             Acompanhar pedido  
-                        </v-btn>  
+                        </v-btn> 
+                        </template>
+                            <div>
+                                <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+                            </div>
+
+                        </v-dialog>
+
+                         
                      
                     </div>
                 </div>  
             </div> 
             <div class="orderItem__box__btn" v-if="status != 'AND' ">
-                <v-btn 
-                    block 
-                    text
-                    large
-                    class="main-color">
-                    Ver recibo    
-                </v-btn>    
+                  
+                <v-dialog v-model="dialog" persistent max-width="290">
+                <template v-slot:activator="{ on }">
+                   <v-btn 
+                        block 
+                        v-on="on"
+                        text
+                        large
+                        class="main-color"
+                    >
+                        Ver recibo    
+                    </v-btn>  
+                </template>
+                <v-card>
+                    <v-card-title class="headline">Use Google's location service?</v-card-title>
+                    <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+                    <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+                    <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
+                    </v-card-actions>
+                </v-card>
+                </v-dialog>
             </div>    
         </div>
     </div>
@@ -55,7 +83,12 @@ export default {
         restaurant: { type: String, required: true  },
         itens: { type: Array, required: true },
         // avaliacao: { type: Number, required: false }    
-    }
+    },
+    data () {
+      return {
+        dialog: false,
+      }
+    },
 }
 </script>
 

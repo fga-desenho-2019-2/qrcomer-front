@@ -21,22 +21,25 @@
                 <v-tab-item
                     value="anteriores">
                     <OrderItem 
-                        restaurant=""
-                        itens=""
-                        avaliacao=""/>
+                        status="INI"
+                        restaurant="Mc donalds"
+                        :itens="[32,65,7]"
+                        :avaliacao="3"/>
                     <OrderItem 
-                        restaurant=""
-                        itens=""
-                        avaliacao=""/>
+                        status="INI"
+                        restaurant="Mc donalds"
+                        :itens="[32,65,7]"
+                        :avaliacao="3"/>
                 </v-tab-item>
                     
                 <v-tab-item
                     value="andamento">
                     <OrderItem 
-                        restaurant=""
                         status="AND"
-                        itens=""
-                        avaliacao=""/>
+                        restaurant="Mc donalds"
+                        :itens="[32,65,7]"
+                        :avaliacao="3"
+                    />
                 </v-tab-item>
             </v-tabs-items>
         </div>
@@ -45,7 +48,7 @@
 </template>
 
 <script>
-import OrderItem from './OrderItem'
+import OrderItem from '@/components/Cards/OrderItem'
 
 export default {
     components: {
