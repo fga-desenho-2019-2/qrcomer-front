@@ -34,20 +34,13 @@
           </v-row>
         </v-container>
       </v-form>
-      <!-- <v-bottom-navigation color="white">
-        <v-btn @click="validate">
-          <font color="white">
-            <strong style="text-transform: uppercase;">Confirmar</strong>
-          </font>
-        </v-btn>
-      </v-bottom-navigation> -->
     </div>
   </v-content>
 </template>
 
 <script>
 
-import { card, cvc, expiration } from 'creditcards/index'
+import { card } from 'creditcards/index'
 import moment from 'moment'
 
 export default {
@@ -69,10 +62,11 @@ export default {
         return 'Nome do Titular'.toUpperCase()
     },
     formatedCardNumber: function () {
-      if(this.selectedCard.number)
+      if(this.selectedCard.number) {
         return card.format(this.selectedCard.number, ' ');
-      else 
+      } else {
         return ''
+      } 
     },
     formatedCardExpiration: function () {
       if(this.selectedCard.validation) {
@@ -83,20 +77,6 @@ export default {
       }
     }
   },
-//   methods: {
-//     copyCreditCard: function () {
-//       this.newCreditCard = this.creditCard;
-//     },
-//     validate() {
-//       if (this.$refs.form.validate()) {
-//         console.log(this.creditCard)
-//         this.snackbar = true;
-//       }
-//     },
-//     reset() {
-//       this.$refs.form.reset();
-//     }
-//   }
 };
 </script>
 

@@ -25,6 +25,7 @@ export async function getUser() {
 export async function getCards() {
   let cards = [
     {
+      "id": 1,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -35,6 +36,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 2,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -45,6 +47,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 3,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -55,6 +58,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 4,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -65,6 +69,7 @@ export async function getCards() {
       ]
     },
     {
+      "id": 5,
       "number": "256",
       "cvv": "256",
       "validation": "2020-02-20",
@@ -80,8 +85,9 @@ export async function getCards() {
 
 export async function getSelectedCard() {
   let card = {
-    "number": "**** **** **** 4242",
-    "cvv": "***",
+    "id": 25,
+    "number": "4242424242424242",
+    "cvv": "123",
     "validation": "2020-02-20",
     "holder_name": "Fred",
     "cpf_cnpj": "98652105",
@@ -89,6 +95,9 @@ export async function getSelectedCard() {
         1
     ]
   }
+
+  card.number = card.number.replace(/\d{12}/g, '**** **** **** ')
+  card.cvv = card.cvv.replace(/\d+/, '***')
 
   return card
 }
