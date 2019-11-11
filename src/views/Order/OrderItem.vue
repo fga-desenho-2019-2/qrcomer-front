@@ -1,7 +1,7 @@
 <template>
     <div
         class="orderItem">
-        <p>Seg, 22 de agosto de 2019</p>
+        <p class="mb-1 mt-6">Seg, 22 de agosto de 2019</p>
 
         <div class="orderItem__box">
             <div class="orderItem__box__content">
@@ -14,7 +14,7 @@
                         <li>1x Mac Tast</li>
                         <li>1x Sandue de chocolate</li>
                     </ul>
-                    <div class="d-flex align-center stars">
+                    <div class="d-flex align-center stars" v-if="status != 'AND' ">
                         <p class="px-3 mb-0 small-item mr-auto">Avaliação:</p>
                         <div class="d-flex pr-3">
                             <v-icon color="yellow">mdi-star</v-icon>
@@ -24,9 +24,18 @@
                             <v-icon color="#a0a0a0">mdi-star</v-icon>
                         </div>
                     </div>
+                    <div class="d-flex align-center stars pa-0" v-else>
+                        <v-btn 
+                            block 
+                            text
+                            class="main-color">
+                            Acompanhar pedido  
+                        </v-btn>  
+                     
+                    </div>
                 </div>  
             </div> 
-            <div class="orderItem__box__btn">
+            <div class="orderItem__box__btn" v-if="status != 'AND' ">
                 <v-btn 
                     block 
                     text
@@ -38,6 +47,17 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    props: {
+        status: { type: String, required: true },
+        restaurant: { type: String, required: true  },
+        itens: { type: Array, required: true },
+        // avaliacao: { type: Number, required: false }    
+    }
+}
+</script>
 
 <style lang="scss">
 .orderItem {

@@ -5,12 +5,12 @@
                 v-model="orderTab" 
                 class="orderTab"
                 grow>
-                <v-tabs-slider></v-tabs-slider>
-                <v-tab href="#anteriores">
+                <v-tabs-slider class="main-color"></v-tabs-slider>
+                <v-tab href="#anteriores" class="main-color">
                     Anteriores
                 </v-tab>
 
-                <v-tab href="#andamento">
+                <v-tab href="#andamento" class="main-color">
                     Em andamento
                 </v-tab>
             </v-tabs>
@@ -34,7 +34,7 @@
                     value="andamento">
                     <OrderItem 
                         restaurant=""
-                        status="andamento"
+                        status="AND"
                         itens=""
                         avaliacao=""/>
                 </v-tab-item>
