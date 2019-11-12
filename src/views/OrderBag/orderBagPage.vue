@@ -21,10 +21,11 @@
         <div v-if="items">
           <restaurantItem
             v-for="(item, index) in items"
-            :key="index"
+            :key="item.id"
             :name="item.name"
             :ammount="item.ammount"
             @changeQtd="handleAmmount($event, index)"
+            @deleteItem="deleteItem($event, index)"
           />
         </div>
       </div>
@@ -132,6 +133,10 @@ export default {
   methods: {
     handleAmmount,
     getItems,
+    deleteItem: function(item, index) {
+      this.items.splice(index, 1);
+      window.localStorage.setItem("order-bag", JSON.stringify(this.items));
+    },
     getShoppingCNPJ: function() {
       this.shoppingCNPJ = localStorage.shoppingCNPJ;
     }
