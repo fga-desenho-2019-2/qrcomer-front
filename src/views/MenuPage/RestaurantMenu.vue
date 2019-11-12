@@ -1,4 +1,6 @@
 <template>
+<v-content>
+  <Navbar />
   <v-content class="d-flex flex-column pt-0" @scroll="handleScroll(isIntersecting)">
     <div v-if="restaurant">
       <component
@@ -43,12 +45,14 @@
       </div>
     </div>
   </v-content>
+  </v-content>
 </template>
 
 <script>
 import ItemCard from "../../components/Cards/ItemCard";
 import MenuBanner from "./MenuBanner.vue";
 import CategoryNav from "./CategoryNav.vue";
+import Navbar from "../../components/Navbar";
 
 export default {
   props: {
@@ -71,7 +75,8 @@ export default {
   components: {
     ItemCard,
     CategoryNav,
-    MenuBanner
+    MenuBanner,
+    Navbar
   },
   watch: {
     categories: function() {
