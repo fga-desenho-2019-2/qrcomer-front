@@ -24,7 +24,7 @@
             <div v-if="items">
               <restaurantItem
                 v-for="(item, index) in items"
-                :key="item.id"
+                :key="item.index"
                 :name="item.name"
                 :ammount="item.ammount"
                 @changeQtd="handleAmmount($event, index)"
