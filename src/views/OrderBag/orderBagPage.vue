@@ -127,7 +127,7 @@ export default {
           sum += item.value * item.ammount;
         });
       }
-      return sum;
+      return sum.toFixed(2);
     }
   },
   methods: {
