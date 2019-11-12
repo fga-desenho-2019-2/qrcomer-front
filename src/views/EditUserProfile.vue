@@ -1,5 +1,6 @@
 <template>
   <v-content class="edit-user-page d-flex flex-column pt-0">
+    <Navbar />
     <qrc-banner />
     <div>
       <v-form>
@@ -14,7 +15,13 @@
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field type="password" v-model="userCopy.password" label="Senha" required color="#e18855"></v-text-field>
+              <v-text-field
+                type="password"
+                v-model="userCopy.password"
+                label="Senha"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
@@ -40,10 +47,12 @@
 
 <script>
 import UserBanner from "../components/UserBanner";
+import Navbar from "../components/Navbar";
 
 export default {
   components: {
-    "qrc-banner": UserBanner
+    "qrc-banner": UserBanner,
+    Navbar
   },
   data: () => ({
     userCopy: {},
@@ -66,12 +75,12 @@ export default {
     }
   },
   watch: {
-    user: function () {
+    user: function() {
       this.userCopy = this.user;
     }
   },
   methods: {
-    copyUser: function () {
+    copyUser: function() {
       this.userCopy = this.user;
     },
     validate() {

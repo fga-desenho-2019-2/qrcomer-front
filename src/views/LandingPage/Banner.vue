@@ -5,6 +5,7 @@
         <v-col cols="12" sm="12" md="12" lg="12" class="col-banner">
           <img src="~@/assets/images/logo2.svg" alt="Logo Qrcomer" class="col-banner--img mx-auto" />
           <v-btn
+            v-if="!isAuthenticated"
             href="#"
             min-width="250px"
             @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
@@ -13,12 +14,22 @@
             <span class="mr-2">Login</span>
           </v-btn>
           <v-btn
+            v-if="!isAuthenticated"
             href="#"
             min-width="250px"
             @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
             class="qrc-btn primary my-2 mx-auto"
           >
             <span class="mr-2">Cadastrar</span>
+          </v-btn>
+          <v-btn
+            v-else-if="isAuthenticated"
+            href="#"
+            min-width="250px"
+            @click="routeTo({'path': '/shopping/' + shoppingCNPJ})"
+            class="qrc-btn white mx-auto font-weigth-bold my-2"
+          >
+            <span class="mr-2">Shopping</span>
           </v-btn>
         </v-col>
       </v-row>
@@ -27,12 +38,27 @@
 </template>
 
 <script>
-import { routeTo } from "../../services//context";
+import { mapGetters } from "vuex";
+import { routeTo } from "../../services/context";
 
 export default {
+  data() {
+    return {
+      shoppingCNPJ: ""
+    };
+  },
+  created() {
+    this.getShoppingCNPJ();
+  },
   methods: {
-    routeTo
-  }
+    routeTo,
+    getShoppingCNPJ: function() {
+      this.shoppingCNPJ = localStorage.shoppingCNPJ;
+    }
+  },
+  computed: mapGetters({
+    isAuthenticated: "auth/isAuthenticated"
+  })
 };
 </script>
 
