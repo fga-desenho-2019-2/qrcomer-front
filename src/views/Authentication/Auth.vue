@@ -82,50 +82,6 @@
                   color="#e18855"
                 ></v-text-field>
 
-                <v-dialog
-                  ref="dialog"
-                  v-model="modal"
-                  :return-value.sync="date"
-                  persistent
-                  width="290px"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field
-                      v-model="birth_date"
-                      label="Data de nascimento"
-                      readonly
-                      required
-                      :error="!!errors.birth_date"
-                      :error-messages="errors.birth_date"
-                      background-color="#fff"
-                      class="mb-4"
-                      v-on="on"
-                      color="#e18855"
-                    ></v-text-field>
-                  </template>
-                  <v-date-picker
-                    v-model="birth_date"
-                    type="date"
-                    scrollable
-                    locale="pt-br"
-                    color="#e18855"
-                  >
-                    <div class="flex-grow-1"></div>
-                    <v-btn text color="#ef596b" @click="modal = false">Cancel</v-btn>
-                    <v-btn text color="#ef596b" @click="$refs.dialog.save(date)">OK</v-btn>
-                  </v-date-picker>
-                </v-dialog>
-
-                <v-select
-                  v-model="selectedSexo"
-                  :items="sexo"
-                  :error="!!errors.sex"
-                  :error-messages="errors.sex"
-                  label="Selecione o sexo"
-                  color="#e18855"
-                  item-color="white"
-                ></v-select>
-
                 <v-btn href="#" block x-large @click="login" class="qrc-btn primary my-2 mx-auto">
                   <span class="mr-2">Cadastrar</span>
                 </v-btn>

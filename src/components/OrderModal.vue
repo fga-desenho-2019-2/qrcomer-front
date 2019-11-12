@@ -1,7 +1,8 @@
 <template>
   <div
-    class="orderModal"
-  >
+    class="orderModal">
+
+    <p>Conteudo</p>
 
   </div>
 </template>
