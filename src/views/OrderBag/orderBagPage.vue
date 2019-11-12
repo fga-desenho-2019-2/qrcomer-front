@@ -15,19 +15,21 @@
       </div>
     </div>
     <div class="floating_card" id="foods">
-      <div class="floating_card__restaurant" id="items">
+      <div v-if="items != null" class="floating_card__restaurant" id="items">
         <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
         <p v-if="restaurant">{{ restaurant.orderTime }}</p>
         <div v-if="items">
           <restaurantItem
             v-for="(item, index) in items"
-            :key="item.id"
+            :key="index"
             :name="item.name"
             :ammount="item.ammount"
             @changeQtd="handleAmmount($event, index)"
-            @deleteItem="deleteItem($event, index)"
           />
         </div>
+      </div>
+      <div v-else-if="items == null" class="floating_card__restaurant" id="items">
+        <h5 class="mb-0" id="restaurant-title">Sacola vazia :(</h5>
       </div>
 
       <div class="floating_card__price">
@@ -79,7 +81,7 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
-import { handleAmmount, getItems } from "../../services/context";
+import { handleAmmount, getItems, removeItems } from "../../services/context";
 
 export default {
   components: {
@@ -133,6 +135,7 @@ export default {
   methods: {
     handleAmmount,
     getItems,
+    removeItems,
     deleteItem: function(item, index) {
       this.items.splice(index, 1);
       window.localStorage.setItem("order-bag", JSON.stringify(this.items));
