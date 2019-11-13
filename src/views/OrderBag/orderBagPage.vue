@@ -73,9 +73,9 @@
               </p>
               <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
             </div>
-            <div v-if="cpf" class="floating_card__payment-method__cpf">
+            <div class="floating_card__payment-method__cpf">
               <div v-if="user">
-                <v-form ref="form" v-model="valid">
+                <v-form ref="form" >
                   <v-col cols="12" md="6">
                     <v-text-field
                       color="#e18855"
