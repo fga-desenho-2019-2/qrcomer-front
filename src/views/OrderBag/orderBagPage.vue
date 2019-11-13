@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="floating_card" id="foods">
-          <div v-if="items != null" class="floating_card__restaurant" id="items">
+          <div v-if="items.length > 0" class="floating_card__restaurant" id="items">
             <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
             <p v-if="restaurant">{{ restaurant.orderTime }}</p>
             <div v-if="items">
@@ -32,7 +32,7 @@
               />
             </div>
           </div>
-          <div v-else-if="items == null" class="floating_card__restaurant" id="items">
+          <div v-else-if="items == null || items.length === 0" class="floating_card__restaurant" id="items">
             <h5 class="mb-0" id="restaurant-title">Sacola vazia :(</h5>
           </div>
           <div class="floating_card__price">
