@@ -1,5 +1,5 @@
 import { getAllRestaurants, getRestaurant, getRestaurantsByCategory, getRestaurantMenu, getRestaurantCategories, getItem, getShopping, getShoppingCategories } from './restaurantService'
-import { getUser, getCards, getSelectedCard } from './userService'
+import { getUser, getCards, getSelectedCard, deleteCard } from './userService'
 
 export default {
     getShopping,
@@ -12,5 +12,6 @@ export default {
     getItem,
     getShoppingCategories,
     getCards,
-    getSelectedCard
+    getSelectedCard,
+    deleteCard
 }

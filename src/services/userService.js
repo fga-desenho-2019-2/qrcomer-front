@@ -101,3 +101,7 @@ export async function getSelectedCard() {
 
   return card
 }
+
+export async function deleteCard() {
+  return true
+}

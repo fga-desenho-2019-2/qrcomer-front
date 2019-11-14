@@ -1,6 +1,5 @@
 <template>
   <v-content class="create-card-page d-flex flex-column pt-0">
-    <div>
       <div class="credit-card-area">
         <div class="credit-card-area__card"> 
           <img class="credit-card-area__card__chip" src="../../assets/images/chip.svg"/>
@@ -41,7 +40,6 @@
           </font>
         </v-btn>
       </v-bottom-navigation>
-    </div>
   </v-content>
 </template>
 
@@ -144,6 +142,10 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lexend+Deca|Palanquin:100,300,400,500,700&display=swap");
+
+.new-card-page {
+  height: 100%;
+}
 
 .credit-card-area {
   height: 60vw;

@@ -34,6 +34,13 @@
           </v-row>
         </v-container>
       </v-form>
+      <v-bottom-navigation color="white">
+        <v-btn @click="deleteCard">
+          <font color="white">
+            <strong style="text-transform: uppercase;">Deletar cartão</strong>
+          </font>
+        </v-btn>
+      </v-bottom-navigation>
     </div>
   </v-content>
 </template>
@@ -42,6 +49,7 @@
 
 import { card } from 'creditcards/index'
 import moment from 'moment'
+import services from '../../services/ServicesFacade'
 
 export default {
   components: {
@@ -52,6 +60,13 @@ export default {
   props: {
     selectedCard: {
         required: true
+    }
+  },
+  methods: {
+    deleteCard: async function() {
+      let isDeleted = await services.deleteCard()
+      if(isDeleted)
+        this.$router.go(-1)
     }
   },
   computed: {
