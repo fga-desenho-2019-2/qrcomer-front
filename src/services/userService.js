@@ -21,3 +21,87 @@ export async function getUser() {
 
     return user;
 }
+
+export async function getCards() {
+  let cards = [
+    {
+      "id": 1,
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "id": 2,
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "id": 3,
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "id": 4,
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    },
+    {
+      "id": 5,
+      "number": "256",
+      "cvv": "256",
+      "validation": "2020-02-20",
+      "holder_name": "teste",
+      "cpf_cnpj": "98652105",
+      "profile": [
+          1
+      ]
+    }
+  ]
+  return cards
+}
+
+export async function getSelectedCard() {
+  let card = {
+    "id": 25,
+    "number": "4242424242424242",
+    "cvv": "123",
+    "validation": "2020-02-20",
+    "holder_name": "Fred",
+    "cpf_cnpj": "98652105",
+    "profile": [
+        1
+    ]
+  }
+
+  card.number = card.number.replace(/\d{12}/g, '**** **** **** ')
+  card.cvv = card.cvv.replace(/\d+/, '***')
+
+  return card
+}
+
+export async function deleteCard() {
+  return true
+}

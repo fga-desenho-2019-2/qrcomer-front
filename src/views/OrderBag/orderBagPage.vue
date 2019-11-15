@@ -48,17 +48,17 @@
             </div>
           </div>
         </div>
-        <div class="floating_card" id="payment">
-          <div class="floating_card__payment-method">
-            <div class="floating_card__payment-method__title">
-              <h6 class="mb-2">Forma de Pagamento</h6>
-            </div>
-            <div class="floating_card__payment-method__credit">
-              <p>
-                Cartão no app
-                <br />**** 3387
-              </p>
-              <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
+    <div class="floating_card" id="payment">
+      <div class="floating_card__payment-method">
+        <div class="floating_card__payment-method__title">
+          <h6 class="mb-2">Forma de Pagamento</h6>
+        </div>
+        <div v-if="selectedCard" class="floating_card__payment-method__credit">
+          <p>
+            Cartão no app
+            <br />{{ selectedCard.number }}
+          </p>
+          <a href="/cartoes/bag" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
             </div>
             <div v-if="cpf" class="floating_card__payment-method__cpf">
               <div v-if="user">
@@ -120,6 +120,9 @@ export default {
     },
     user: {
       required: true
+    },
+    selectedCard: {
+      required: false
     }
   },
   created() {
