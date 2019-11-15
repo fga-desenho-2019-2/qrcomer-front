@@ -44,7 +44,7 @@ export default {
         this.$router.push(`/cartao/${card.id}`)
     },
     addCard: function () {
-      this.$router.push('/cartoes/new')
+      this.$router.push('/novo-cartao')
     }
   }
 };

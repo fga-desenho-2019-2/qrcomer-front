@@ -1,6 +1,7 @@
 <template>
   <v-content class="user-page d-flex flex-column pt-0">
-    <qrc-banner />
+  <Navbar />
+    <div style="z-index: 0"><qrc-banner /></div>
     <div>
       <v-container>
         <v-row v-if="user">
@@ -18,10 +19,6 @@
           </v-col>
 
           <v-col cols="12" md="6" class="pb-0">
-            <v-text-field :value="user.password" label="Senha" color="#e18855" readonly type="password"></v-text-field>
-          </v-col>
-
-          <v-col cols="12" md="6" class="pb-0">
             <v-text-field :value="user.cpf" label="CPF" color="#e18855" readonly type="text"></v-text-field>
           </v-col>
         </v-row>
@@ -36,10 +33,12 @@
 
 <script>
 import UserBanner from '../components/UserBanner';
+import Navbar from '../components/Navbar';
 
 export default {
   components: {
-    "qrc-banner": UserBanner
+    "qrc-banner": UserBanner,
+    Navbar
   },
   data() {
     return {

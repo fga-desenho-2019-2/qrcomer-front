@@ -1,50 +1,53 @@
 <template>
-  <v-content class="order-bag d-flex flex-column pt-0">
-    <div v-if="shopping" class="floating_card">
-      <div class="floating_card__image-area">
-        <img class="floating_card__image-area__image" src="@/assets/images/place.svg" />
-      </div>
-      <div class="floating_card__text-area">
-        <div class="floating_card__text-area__text">
-          <p id="shopping-name">Você está no {{ shopping.name }}</p>
-          <p id="localization">{{ shopping.address }}</p>
+  <div>
+    <v-content>
+      <Navbar />
+      <v-content class="order-bag d-flex flex-column pt-0">
+        <div v-if="shopping" class="floating_card">
+          <div class="floating_card__image-area">
+            <img class="floating_card__image-area__image" src="@/assets/images/place.svg" />
+          </div>
+          <div class="floating_card__text-area">
+            <div class="floating_card__text-area__text">
+              <p id="shopping-name">Você está no {{ shopping.name }}</p>
+              <p id="localization">{{ shopping.address }}</p>
+            </div>
+            <div class="floating_card__text-area__button">
+              <a href="#">Não, estou em outro lugar</a>
+            </div>
+          </div>
         </div>
-        <div class="floating_card__text-area__button">
-          <a href="#">Não, estou em outro lugar</a>
-        </div>
-      </div>
-    </div>
-    <div class="floating_card" id="foods">
-      <div class="floating_card__restaurant" id="items">
-        <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
-        <p v-if="restaurant">{{ restaurant.orderTime }}</p>
-        <div v-if="items">
-          <restaurantItem
-            v-for="(item, index) in items"
-            :key="index"
-            :name="item.name"
-            :ammount="item.ammount"
-            @changeQtd="handleAmmount($event, index)"
-          />
-        </div>
-      </div>
+        <div class="floating_card" id="foods">
+          <div class="floating_card__restaurant" id="items">
+            <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
+            <p v-if="restaurant">{{ restaurant.orderTime }}</p>
+            <div v-if="items">
+              <restaurantItem
+                v-for="(item, index) in items"
+                :key="index"
+                :name="item.name"
+                :ammount="item.ammount"
+                @changeQtd="handleAmmount($event, index)"
+              />
+            </div>
+          </div>
 
-      <div class="floating_card__price">
-        <p v-if="shoppingCNPJ">
-          <a class="palanquin" v-bind:href="'/shopping/' + shoppingCNPJ">
-            <b>Adicionar mais itens</b>
-          </a>
-        </p>
-        <div class="floating_card__price__total">
-          <div class="floating_card__price__total__text">
-            <p class="palanquin">Total</p>
-          </div>
-          <div class="floating_card__price__total__number">
-            <p class="palanquin">R${{ total }}</p>
+          <div class="floating_card__price">
+            <p v-if="shoppingCNPJ">
+              <a class="palanquin" v-bind:href="'/shopping/' + shoppingCNPJ">
+                <b>Adicionar mais itens</b>
+              </a>
+            </p>
+            <div class="floating_card__price__total">
+              <div class="floating_card__price__total__text">
+                <p class="palanquin">Total</p>
+              </div>
+              <div class="floating_card__price__total__number">
+                <p class="palanquin">R${{ total }}</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
     <div class="floating_card" id="payment">
       <div class="floating_card__payment-method">
         <div class="floating_card__payment-method__title">
@@ -56,33 +59,43 @@
             <br />{{ selectedCard.number }}
           </p>
           <a href="/cartoes/bag" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
-        </div>
-        <div v-if="cpf" class="floating_card__payment-method__cpf">
-          <div v-if="user">
-            <v-form ref="form" v-model="valid">
-              <v-col cols="12" md="6">
-                <v-text-field color="#e18855" v-model="cpf" :rules="cpfRules" label="CPF" required></v-text-field>
-              </v-col>
-            </v-form>
+            </div>
+            <div v-if="cpf" class="floating_card__payment-method__cpf">
+              <div v-if="user">
+                <v-form ref="form" v-model="valid">
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      color="#e18855"
+                      v-model="cpf"
+                      :rules="cpfRules"
+                      label="CPF"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-form>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <v-bottom-navigation color="white" class="form-select">
-      <v-btn>
-        <font color="white">Finalizar Pedido - Total: R${{ total }}</font>
-      </v-btn>
-    </v-bottom-navigation>
-  </v-content>
+        <v-bottom-navigation color="white" class="form-select">
+          <v-btn>
+            <font color="white">Finalizar Pedido - Total: R${{ total }}</font>
+          </v-btn>
+        </v-bottom-navigation>
+      </v-content>
+    </v-content>
+  </div>
 </template>
 
 <script>
 import restaurantItem from "./BagItem.vue";
+import Navbar from "../../components/Navbar";
 import { handleAmmount, getItems } from "../../services/context";
 
 export default {
   components: {
-    restaurantItem
+    restaurantItem,
+    Navbar
   },
   data() {
     return {
@@ -129,7 +142,7 @@ export default {
           sum += item.value * item.ammount;
         });
       }
-      return sum;
+      return sum.toFixed(2);
     }
   },
   methods: {
