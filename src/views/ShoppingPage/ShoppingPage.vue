@@ -97,7 +97,6 @@ export default {
       this.$router.replace({ path: `/categoria/${category}` });
     },
     restaurantClick: function(restaurant) {
-      console.log(restaurant)
       this.$router.replace({ path: `/restaurante/${restaurant}` });
     }
   }
