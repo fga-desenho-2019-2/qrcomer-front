@@ -1,97 +1,132 @@
 <template>
-  <v-content v-if="selectedCard" class="create-card-page d-flex flex-column pt-0">
-    <div>
-      <div class="credit-card-area">
-        <div class="credit-card-area__card"> 
-          <img class="credit-card-area__card__chip" src="../../assets/images/chip.svg"/>
-          <h2 class="credit-card-area__card__number mb-0">{{formatedCardNumber}}</h2>
-          <p class="credit-card-area__card__date mb-3"><span id="valid">Validade</span> {{formatedCardExpiration}}</p>
-          <h3 class="credit-card-area__card__name mb-0">{{nameUpperCase}}</h3>
+  <v-content>
+    <Navbar />
+    <v-content v-if="selectedCard" class="create-card-page d-flex flex-column pt-0">
+      <div>
+        <div class="credit-card-area">
+          <div class="credit-card-area__card">
+            <img class="credit-card-area__card__chip" src="../../assets/images/chip.svg" />
+            <h2 class="credit-card-area__card__number mb-0">{{formatedCardNumber}}</h2>
+            <p class="credit-card-area__card__date mb-3">
+              <span id="valid">Validade</span>
+              {{formatedCardExpiration}}
+            </p>
+            <h3 class="credit-card-area__card__name mb-0">{{nameUpperCase}}</h3>
+          </div>
         </div>
+        <v-form ref="form">
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="6" class="pb-0">
+                <v-text-field
+                  read-only
+                  disabled
+                  :value="selectedCard.number"
+                  label="Numero do Cartão"
+                  color="#e18855"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="6" class="pb-0">
+                <v-text-field
+                  read-only
+                  disabled
+                  :value="selectedCard.cpf_cnpj"
+                  label="CPF do Titular"
+                  color="#e18855"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="8" md="1" class="pb-0">
+                <v-text-field
+                  read-only
+                  disabled
+                  :value="formatedCardExpiration"
+                  label="Data de Validade"
+                  color="#e18855"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="4" md="1" class="pb-0">
+                <v-text-field
+                  read-only
+                  disabled
+                  :value="selectedCard.cvv"
+                  label="CVV"
+                  color="#e18855"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="6" class="pb-0">
+                <v-text-field
+                  read-only
+                  disabled
+                  :value="selectedCard.holder_name"
+                  label="Nome do Titular"
+                  color="#e18855"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
+        <v-bottom-navigation color="white">
+          <v-btn @click="deleteCard">
+            <font color="white">
+              <strong style="text-transform: uppercase;">Deletar cartão</strong>
+            </font>
+          </v-btn>
+        </v-bottom-navigation>
       </div>
-      <v-form ref="form">
-        <v-container>
-          <v-row>
-            <v-col cols="12" md="6" class="pb-0">
-              <v-text-field read-only disabled :value="selectedCard.number" label="Numero do Cartão" color="#e18855"></v-text-field>
-            </v-col>
-
-            <v-col cols="12" md="6" class="pb-0">
-              <v-text-field read-only disabled :value="selectedCard.cpf_cnpj" label="CPF do Titular" color="#e18855"></v-text-field>
-            </v-col>
-
-            <v-col cols="8" md="1" class="pb-0">
-              <v-text-field read-only disabled :value="formatedCardExpiration" label="Data de Validade" color="#e18855"></v-text-field>
-            </v-col>
-
-            <v-col cols="4" md="1" class="pb-0">
-              <v-text-field read-only disabled :value="selectedCard.cvv" label="CVV" color="#e18855"></v-text-field>
-            </v-col>
-
-            <v-col cols="12" md="6" class="pb-0">
-              <v-text-field read-only disabled :value="selectedCard.holder_name" label="Nome do Titular" color="#e18855"></v-text-field>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-form>
-      <v-bottom-navigation color="white">
-        <v-btn @click="deleteCard">
-          <font color="white">
-            <strong style="text-transform: uppercase;">Deletar cartão</strong>
-          </font>
-        </v-btn>
-      </v-bottom-navigation>
-    </div>
+    </v-content>
   </v-content>
 </template>
 
 <script>
-
-import { card } from 'creditcards/index'
-import moment from 'moment'
-import services from '../../services/ServicesFacade'
+import { card } from "creditcards/index";
+import moment from "moment";
+import services from "../../services/ServicesFacade";
+import Navbar from "../../components/Navbar";
 
 export default {
   components: {
+    Navbar
   },
   data: () => ({
-    valid: true,
+    valid: true
   }),
   props: {
     selectedCard: {
-        required: true
+      required: true
     }
   },
   methods: {
     deleteCard: async function() {
-      let isDeleted = await services.deleteCard()
-      if(isDeleted)
-        this.$router.go(-1)
+      let isDeleted = await services.deleteCard();
+      if (isDeleted) this.$router.go(-1);
     }
   },
   computed: {
-    nameUpperCase: function () {
-      if(this.selectedCard.holder_name)
+    nameUpperCase: function() {
+      if (this.selectedCard.holder_name)
         return this.selectedCard.holder_name.toUpperCase();
-      else 
-        return 'Nome do Titular'.toUpperCase()
+      else return "Nome do Titular".toUpperCase();
     },
-    formatedCardNumber: function () {
-      if(this.selectedCard.number) {
-        return card.format(this.selectedCard.number, ' ');
+    formatedCardNumber: function() {
+      if (this.selectedCard.number) {
+        return card.format(this.selectedCard.number, " ");
       } else {
-        return ''
-      } 
+        return "";
+      }
     },
-    formatedCardExpiration: function () {
-      if(this.selectedCard.validation) {
-        let exp = moment(this.selectedCard.validation)
-        return exp.format('MM/YYYY')
+    formatedCardExpiration: function() {
+      if (this.selectedCard.validation) {
+        let exp = moment(this.selectedCard.validation);
+        return exp.format("MM/YYYY");
       } else {
-        return 'MM/YYYY'
+        return "MM/YYYY";
       }
     }
-  },
+  }
 };
 </script>
 
@@ -111,7 +146,11 @@ export default {
     max-width: 500px;
     height: 100%;
     max-height: 300px;
-    background-image: linear-gradient(to bottom right, $main-color , $second-color);
+    background-image: linear-gradient(
+      to bottom right,
+      $main-color,
+      $second-color
+    );
     border-radius: 10px;
     color: $c-white;
     padding: 15px 15px 15px 15px;
@@ -143,7 +182,7 @@ export default {
 }
 
 #valid {
-  color: #975C3A;
+  color: #975c3a;
 }
 
 .create-card-page .v-item-group.v-bottom-navigation .v-btn {

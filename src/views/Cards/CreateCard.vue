@@ -1,10 +1,15 @@
 <template>
-  <v-content class="create-card-page d-flex flex-column pt-0">
+  <v-content>
+    <Navbar />
+    <v-content class="create-card-page d-flex flex-column pt-0">
       <div class="credit-card-area">
-        <div class="credit-card-area__card"> 
-          <img class="credit-card-area__card__chip" src="../../assets/images/chip.svg"/>
+        <div class="credit-card-area__card">
+          <img class="credit-card-area__card__chip" src="../../assets/images/chip.svg" />
           <h2 class="credit-card-area__card__number mb-0">{{formatedCardNumber}}</h2>
-          <p class="credit-card-area__card__date mb-3"><span id="valid">Validade</span> {{formatedCardExpiration}}</p>
+          <p class="credit-card-area__card__date mb-3">
+            <span id="valid">Validade</span>
+            {{formatedCardExpiration}}
+          </p>
           <h3 class="credit-card-area__card__name mb-0">{{nameUpperCase}}</h3>
         </div>
       </div>
@@ -12,23 +17,57 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field type="number" :rules="cardNumberRules" v-model="creditCard.number" required label="Numero do Cartão" color="#e18855"></v-text-field>
+              <v-text-field
+                type="number"
+                :rules="cardNumberRules"
+                v-model="creditCard.number"
+                required
+                label="Numero do Cartão"
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field type="number" :rules="cpf_cnpjRules" v-model="creditCard.cpf_cnpj" label="CPF do Titular" required color="#e18855"></v-text-field>
+              <v-text-field
+                type="number"
+                :rules="cpf_cnpjRules"
+                v-model="creditCard.cpf_cnpj"
+                label="CPF do Titular"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="8" md="1" class="pb-0">
-              <v-text-field type="month" :rules="expirationRules" v-model="creditCard.validation" required label="Data de Validade" color="#e18855"></v-text-field>
+              <v-text-field
+                type="month"
+                :rules="expirationRules"
+                v-model="creditCard.validation"
+                required
+                label="Data de Validade"
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="4" md="1" class="pb-0">
-              <v-text-field type="number" :rules="cvvRules" v-model="creditCard.cvv" label="CVV" required color="#e18855"></v-text-field>
+              <v-text-field
+                type="number"
+                :rules="cvvRules"
+                v-model="creditCard.cvv"
+                label="CVV"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="creditCard.holderName" :rules="holderNameRules" label="Nome do Titular" required color="#e18855"></v-text-field>
+              <v-text-field
+                v-model="creditCard.holderName"
+                :rules="holderNameRules"
+                label="Nome do Titular"
+                required
+                color="#e18855"
+              ></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -40,53 +79,50 @@
           </font>
         </v-btn>
       </v-bottom-navigation>
+    </v-content>
   </v-content>
 </template>
 
 <script>
-
-import { card, cvc, expiration } from 'creditcards/index'
-import moment from 'moment'
+import { card, cvc, expiration } from "creditcards/index";
+import moment from "moment";
+import Navbar from "../../components/Navbar";
 
 function holderRules() {
-  return [
-    value => !!value || "Campo obrigatório"
-  ]
+  return [value => !!value || "Campo obrigatório"];
 }
-const requiredField = value => !!value || "Campo obrigatório"
+const requiredField = value => !!value || "Campo obrigatório";
 
 const cardNumberRules = [
   requiredField,
   value => card.isValid(value) || "Número inválido"
-]
+];
 
-const cpf_cnpjRules = [
-  requiredField
-]
+const cpf_cnpjRules = [requiredField];
 
-const cvvRules = [
-  requiredField,
-  value => cvc.isValid(value) || "CVV inválido"
-]
+const cvvRules = [requiredField, value => cvc.isValid(value) || "CVV inválido"];
 
 const expirationRules = [
   requiredField,
   value => {
-    let expDate = moment(value)
-    return !expiration.isPast(expDate.month(), expDate.year()) || "Cartão expirado"
+    let expDate = moment(value);
+    return (
+      !expiration.isPast(expDate.month(), expDate.year()) || "Cartão expirado"
+    );
   }
-]
+];
 
 export default {
   components: {
+    Navbar
   },
   data: () => ({
     creditCard: {
-        number: null,
-        cpf_cnpj: null,
-        validation: "",
-        cvv: null,
-        holderName: null
+      number: null,
+      cpf_cnpj: null,
+      validation: "",
+      cvv: null,
+      holderName: null
     },
     newCreditCard: {},
     valid: true,
@@ -98,34 +134,32 @@ export default {
   }),
   props: {},
   watch: {
-    creditCard: function () {
+    creditCard: function() {
       this.newCreditCard = this.creditCard;
     }
   },
   computed: {
-    nameUpperCase: function () {
-      if(this.creditCard.holderName)
+    nameUpperCase: function() {
+      if (this.creditCard.holderName)
         return this.creditCard.holderName.toUpperCase();
-      else 
-        return 'Nome do Titular'.toUpperCase()
+      else return "Nome do Titular".toUpperCase();
     },
-    formatedCardNumber: function () {
-      if(this.creditCard.number)
-        return card.format(this.creditCard.number, ' ');
-      else 
-        return ''
+    formatedCardNumber: function() {
+      if (this.creditCard.number)
+        return card.format(this.creditCard.number, " ");
+      else return "";
     },
-    formatedCardExpiration: function () {
-      if(this.creditCard.validation) {
-        let exp = moment(this.creditCard.validation)
-        return exp.format('MM/YYYY')
+    formatedCardExpiration: function() {
+      if (this.creditCard.validation) {
+        let exp = moment(this.creditCard.validation);
+        return exp.format("MM/YYYY");
       } else {
-        return 'MM/YYYY'
+        return "MM/YYYY";
       }
     }
   },
   methods: {
-    copyCreditCard: function () {
+    copyCreditCard: function() {
       this.newCreditCard = this.creditCard;
     },
     validate() {
@@ -160,7 +194,11 @@ export default {
     max-width: 500px;
     height: 100%;
     max-height: 300px;
-    background-image: linear-gradient(to bottom right, $main-color , $second-color);
+    background-image: linear-gradient(
+      to bottom right,
+      $main-color,
+      $second-color
+    );
     border-radius: 10px;
     color: $c-white;
     padding: 15px 15px 15px 15px;
@@ -192,7 +230,7 @@ export default {
 }
 
 #valid {
-  color: #975C3A;
+  color: #975c3a;
 }
 
 .create-card-page .v-item-group.v-bottom-navigation .v-btn {
