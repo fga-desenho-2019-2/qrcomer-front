@@ -33,7 +33,7 @@
               :title="restaurant.name"
               :description="restaurant.description"
               :orderTime="restaurant.orderTime"
-              @restaurantClick="restaurantClick($event)"
+              @restaurantClick="restaurantClick(restaurant.cnpj)"
             />
           </div>
         </div>
@@ -97,6 +97,7 @@ export default {
       this.$router.replace({ path: `/categoria/${category}` });
     },
     restaurantClick: function(restaurant) {
+      console.log(restaurant)
       this.$router.replace({ path: `/restaurante/${restaurant}` });
     }
   }
