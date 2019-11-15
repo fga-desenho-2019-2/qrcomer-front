@@ -2,17 +2,19 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/LandingPage/Home.vue'
 import Auth from '@/views/Authentication/Auth.vue'
-import store from '@/store/store'
-import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
-import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
-import CategoryPage from '../views/CategoryPage.vue'
-import EditUserProfile from '../views/EditUserProfile.vue'
-import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
-import UserProfile from '../views/UserProfile.vue'
-import HocComponent from '../components/HocComponent'
+import store from '@/store/store'	
+import OrderBagPage from '../views/OrderBag/orderBagPage.vue'	
+import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'	
+import CategoryPage from '../views/CategoryPage.vue'	
+import EditUserProfile from '../views/EditUserProfile.vue'		
+import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'	
+import ItemPage from '../views/ItemPage/ItemPage.vue'	
+import UserProfile from '../views/UserProfile.vue'	
+import HocComponent from '../components/HocComponent'	
 import CardList from '../views/Cards/CardList.vue'
-import CreateCard from '../views/Cards/CreateCard.vue'
-import CardShow from '../views/Cards/CardShow.vue'
+import CardShow from '../views/Cards/CardShow'
+import CreateCard from '../views/Cards/CreateCard'
+
 
 // const ifNotAuthenticated = (to, from, next) => {
 //     if (!store.getters.isAuthenticated) {
@@ -94,7 +96,7 @@ export default new Router({
             path: "/item/:id",
             name: "item",
             components: {
-                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user', 'usingCard'])
+                default: HocComponent(ItemPage, ['foodItem'])
             }
         },
         {

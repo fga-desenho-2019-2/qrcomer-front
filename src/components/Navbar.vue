@@ -200,7 +200,7 @@ export default {
         {
           title: "Shopping",
           icon: "mdi-store",
-          link: "/shopping/:cnpj"
+          link: `/shopping`
         },
         { title: "Minha sacola", icon: "mdi-shopping", link: "/sacola" },
         { title: "Meu perfil", icon: "mdi-account", link: "/usuario" },
@@ -208,9 +208,15 @@ export default {
       ]
     };
   },
-  computed: mapGetters({
+  computed: 
+  mapGetters({
     isAuthenticated: "auth/isAuthenticated"
   }),
+  watch: {
+    shoppingCNPJ: function() {
+      this.items[1].link = `/shopping/${this.shoppingCNPJ}`
+    }
+  },
   created() {
     this.getShoppingCNPJ();
   },
