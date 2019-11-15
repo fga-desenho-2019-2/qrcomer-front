@@ -25,54 +25,45 @@
                         </div>
                     </div>
                     <div class="d-flex align-center stars pa-0" v-else>
-                        <v-dialog v-model="dialog" persistent >
-                        <template v-slot:activator="{ on }">
-                            <v-btn 
-                                block 
-                                text
-                                v-on="on"
-                                large
-                                class="main-color">
-                                Acompanhar pedido  
-                            </v-btn> 
-                        </template>
-                            <OrderModal 
-                                :restaurant="restaurant"
-                                :itens="itens"
-                                :avaliacao="avaliacao"
-                                :status="status"
-                                value="R$ 29,90"
-                                shopping="ParkShopping"
-                                @closeOrderModal=" dialog = false"/>
-
-                        </v-dialog>
+                        <v-btn 
+                            block 
+                            text
+                            large
+                            :id="id"
+                            class="main-color">
+                            Acompanhar pedido  
+                        </v-btn> 
                     </div>
                 </div>  
             </div> 
             <div class="orderItem__box__btn" v-if="status != 'AND' ">
-                  
-                <v-dialog v-model="dialog" persistent >
-                <template v-slot:activator="{ on }">
-                   <v-btn 
-                        block 
-                        v-on="on"
-                        text
-                        large
-                        class="main-color">
-                        Ver recibo    
-                    </v-btn>  
-                </template>
-                    <OrderModal 
-                        :restaurant="restaurant"
-                        :itens="itens"
-                        :avaliacao="avaliacao"
-                        :status="status"
-                        shopping="ParkShopping"
-                        value="R$ 29,90"
-                        @closeOrderModal=" dialog = false"/>
-                </v-dialog>
+                <v-btn 
+                    block 
+                    text
+                    large
+                    :id="id"
+                    class="main-color">
+                    Ver recibo    
+                </v-btn>  
             </div>    
+
+            <v-dialog 
+                v-model="dialog" 
+                persistent 
+                :activator="`#${id}`"
+                attach="#order">
+                <OrderModal 
+                    :restaurant="restaurant"
+                    :itens="itens"
+                    :avaliacao="avaliacao"
+                    :status="status"
+                    :password="password"
+                    value="R$ 29,90"
+                    shopping="ParkShopping"
+                    @closeOrderModal=" dialog = false"/>
+            </v-dialog>
         </div>
+        
     </div>
 </template>
 
@@ -84,7 +75,9 @@ export default {
         status: { type: String, required: true },
         restaurant: { type: String, required: true  },
         itens: { type: Array, required: true },
-        avaliacao: { type: Number, required: false }    
+        avaliacao: { type: Number, required: false },
+        id: { type: String },
+        password: {type: String}
     },
     components: {
         OrderModal,

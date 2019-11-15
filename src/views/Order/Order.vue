@@ -22,13 +22,15 @@
                     value="anteriores">
                     <OrderItem 
                         status="INI"
+                        id="id1"
                         restaurant="Mc donalds"
-                        :itens="[32,65,7]"
+                        :itens="['Sunday', 'Big Mac']"
                         :avaliacao="3"/>
                     <OrderItem 
                         status="INI"
+                        id="id2"
                         restaurant="Mc donalds"
-                        :itens="[32,65,7]"
+                        :itens="['Sunday', 'Big Mac']"
                         :avaliacao="3"/>
                 </v-tab-item>
                     
@@ -36,8 +38,10 @@
                     value="andamento">
                     <OrderItem 
                         status="AND"
+                        id="id3"
+                        password="3321"
                         restaurant="Mc donalds"
-                        :itens="[32,65,7]"
+                        :itens="['Sunday', 'Big Mac']"
                         :avaliacao="3"
                     />
                 </v-tab-item>
@@ -72,6 +76,10 @@ export default {
     .orderContent {
         background: transparent !important;
         padding: 0 10px;
+    }
+
+    .v-dialog {
+        border-radius: 0 30px ;
     }
 }
 </style>
