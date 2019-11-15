@@ -94,7 +94,7 @@ export default new Router({
             path: '/sacola',
             name: 'order-bag',
             components: {
-                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user', 'selectedCard'])
+                default: HocComponent(OrderBagPage, ['shopping', 'restaurant', 'user', 'usingCard'])
             }
         },
         {
@@ -115,7 +115,7 @@ export default new Router({
             beforeEnter: ifAuthenticated,
         },
         {
-            path: '/cartoes',
+            path: '/cartoes/:from?',
             name: 'card_list',
             components: {
                 default: HocComponent(CardList, ['cards'])

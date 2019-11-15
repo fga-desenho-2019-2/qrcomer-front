@@ -22,6 +22,9 @@ export default {
   components: {
     CardItem
   },
+  data: () => ({
+    from: null
+  }),
   props: {
     cards: {
         required: true
@@ -29,11 +32,16 @@ export default {
   },
   created() {
       // eslint-disable-next-line
-      console.log(this.cards)
+      this.from = this.$route.params.from
   },
   methods: {
     redirectPage: function (card) {
-      this.$router.push(`/cartao/${card.id}`)
+      if(this.from === 'bag') {
+        localStorage.setItem('card-id', card.id)
+        this.$router.push('/sacola')
+      }
+      else
+        this.$router.push(`/cartao/${card.id}`)
     },
     addCard: function () {
       this.$router.push('/cartoes/new')

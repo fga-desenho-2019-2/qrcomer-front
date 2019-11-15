@@ -86,6 +86,10 @@ const HocComponent = (component, neededSetups) => {
                         let id = this.$route.params.id
                         this.selectedCard = await Services.getSelectedCard(id)
                     }
+                    if(neededSetups.find(element => element === 'usingCard')) {
+                        let id = localStorage.getItem('card-id')
+                        this.selectedCard = await Services.getSelectedCard(id)
+                    }
                 }
             }
         }
