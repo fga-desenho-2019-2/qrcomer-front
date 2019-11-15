@@ -25,51 +25,51 @@
                         </div>
                     </div>
                     <div class="d-flex align-center stars pa-0" v-else>
-                        <v-dialog v-model="dialog" persistent max-width="290">
+                        <v-dialog v-model="dialog" persistent >
                         <template v-slot:activator="{ on }">
-                        <v-btn 
-                            block 
-                            text
-                            v-on="on"
-                            large
-                            class="main-color">
-                            Acompanhar pedido  
-                        </v-btn> 
+                            <v-btn 
+                                block 
+                                text
+                                v-on="on"
+                                large
+                                class="main-color">
+                                Acompanhar pedido  
+                            </v-btn> 
                         </template>
-                            <div>
-                                <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-                            </div>
+                            <OrderModal 
+                                :restaurant="restaurant"
+                                :itens="itens"
+                                :avaliacao="avaliacao"
+                                :status="status"
+                                value="R$ 29,90"
+                                shopping="ParkShopping"
+                                @closeOrderModal=" dialog = false"/>
 
                         </v-dialog>
-
-                         
-                     
                     </div>
                 </div>  
             </div> 
             <div class="orderItem__box__btn" v-if="status != 'AND' ">
                   
-                <v-dialog v-model="dialog" persistent max-width="290">
+                <v-dialog v-model="dialog" persistent >
                 <template v-slot:activator="{ on }">
                    <v-btn 
                         block 
                         v-on="on"
                         text
                         large
-                        class="main-color"
-                    >
+                        class="main-color">
                         Ver recibo    
                     </v-btn>  
                 </template>
-                <v-card>
-                    <v-card-title class="headline">Use Google's location service?</v-card-title>
-                    <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
-                    <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-                    <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
-                    </v-card-actions>
-                </v-card>
+                    <OrderModal 
+                        :restaurant="restaurant"
+                        :itens="itens"
+                        :avaliacao="avaliacao"
+                        :status="status"
+                        shopping="ParkShopping"
+                        value="R$ 29,90"
+                        @closeOrderModal=" dialog = false"/>
                 </v-dialog>
             </div>    
         </div>
@@ -77,12 +77,17 @@
 </template>
 
 <script>
+import OrderModal from "@/components/OrderModal"
+
 export default {
     props: {
         status: { type: String, required: true },
         restaurant: { type: String, required: true  },
         itens: { type: Array, required: true },
-        // avaliacao: { type: Number, required: false }    
+        avaliacao: { type: Number, required: false }    
+    },
+    components: {
+        OrderModal,
     },
     data () {
       return {
@@ -137,7 +142,9 @@ export default {
             }   
         }
 
-        
+        &__btn {
+            border-radius: 0 20px;
+        }   
     }
 }
 </style>
