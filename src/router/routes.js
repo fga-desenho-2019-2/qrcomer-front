@@ -105,6 +105,7 @@ export default new Router({
             components: {
                 default: HocComponent(OrderBagPage, ["shopping", "restaurant", "user"])
             },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/auth",
