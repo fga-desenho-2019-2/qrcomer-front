@@ -112,6 +112,30 @@
         </v-card>
       </div>
     </v-dialog>
+    <v-dialog
+      v-model="error"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Algo deu errado</v-card-title>
+
+        <v-card-text>
+          Não conseguimos concluir seu pedido
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            color="#ef596b"
+            text
+            @click="acceptError"
+          >
+            OK
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-content>
 </template>
 
@@ -130,6 +154,7 @@ export default {
       items: [],
       shoppingCNPJ: "",
       cpf: "",
+      error: false,
       cpfRules: [
         v => !!v || "Campo obrigatório",
         v =>
@@ -179,12 +204,15 @@ export default {
   methods: {
     handleAmmount,
     getItems,
+    acceptError: function () {
+      this.error = false;
+    },
     getShoppingCNPJ: function() {
       this.shoppingCNPJ = localStorage.shoppingCNPJ;
     },
     requestOrder: async function(){
       let order = {
-        cpf_user: this.user.cpf,
+        cpf_user: this.cpf,
         cnpj_restaurant: this.restaurant.cnpj,
         value: this.total,
         items: []
@@ -209,13 +237,13 @@ export default {
           }
         })
       })
-      let response = await services.requestOrder(order);
-      console.log(response)
-      if(response.status === 201) {
+      try {
+        await services.requestOrder(order);
         //redirecionar página
       }
-      else {
-        console.log('houve algum erro')
+      catch (error) {
+        this.dialog = false
+        this.error = true
       }
     }
   }
