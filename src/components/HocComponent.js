@@ -13,7 +13,9 @@ const HocComponent = (component, neededSetups) => {
                     restaurantMenu: this.restaurantMenu,
                     restaurant: this.restaurant,
                     categories: this.categories,
-                    foodItem: this.foodItem
+                    foodItem: this.foodItem,
+                    cards: this.cards,
+                    selectedCard: this.selectedCard
                 }
             })
         },
@@ -26,7 +28,9 @@ const HocComponent = (component, neededSetups) => {
                 restaurantMenu: null,
                 restaurant: null,
                 categories: null,
-                foodItem: null
+                foodItem: null,
+                cards: null,
+                selectedCard: null
             }
         },
         created() {
@@ -74,6 +78,17 @@ const HocComponent = (component, neededSetups) => {
                     if(neededSetups.find(element => element === 'foodItem')) {
                         let itemId = this.$route.params.id;
                         this.foodItem = await Services.getItem(itemId)
+                    }
+                    if(neededSetups.find(element => element === 'cards')) {
+                        this.cards = await Services.getCards()
+                    }
+                    if(neededSetups.find(element => element === 'selectedCard')) {
+                        let id = this.$route.params.id
+                        this.selectedCard = await Services.getSelectedCard(id)
+                    }
+                    if(neededSetups.find(element => element === 'usingCard')) {
+                        let id = localStorage.getItem('card-id')
+                        this.selectedCard = await Services.getSelectedCard(id)
                     }
                 }
             }

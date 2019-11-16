@@ -1,37 +1,36 @@
 <template>
-    <v-app id="qrcomer">
-        <v-scroll-x-transition hide-on-leave mode="out-in" >
-            <router-view name="LandingPageHeader"></router-view>
-            <router-view name="AuthHeader"></router-view>
-        </v-scroll-x-transition>
+  <v-app id="qrcomer">
+    <v-scroll-x-transition hide-on-leave mode="out-in">
+      <router-view name="Navbar"></router-view>
+    </v-scroll-x-transition>
 
-        <v-scroll-x-transition hide-on-leave mode="out-in" >
-            <router-view></router-view>
-        </v-scroll-x-transition>
-
-    </v-app>
+    <v-scroll-x-transition hide-on-leave mode="out-in">
+      <router-view></router-view>
+    </v-scroll-x-transition>
+  </v-app>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-    name: 'App',
-    components: {},
-    data: () => ({
-        //
-    }),
-    created() {
-        axios.interceptors.response.use(undefined, function (err) {
-            return new Promise(function () { // add resolve and reject parameter
-                if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-                    // if you ever get an unauthorized, logout the user
-                    this.$store.dispatch('auth/AUTH_LOGOUT')
-                }
-                throw err;
-            });
-        });
-    }
+  name: "App",
+  components: {},
+  data: () => ({
+    //
+  }),
+  created() {
+    axios.interceptors.response.use(undefined, function(err) {
+      return new Promise(function() {
+        // add resolve and reject parameter
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+          // if you ever get an unauthorized, logout the user
+          this.$store.dispatch("auth/AUTH_LOGOUT");
+        }
+        throw err;
+      });
+    });
+  }
 };
 </script>
 
@@ -39,7 +38,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Lexend+Deca|Palanquin:100,300,400,500,700&display=swap");
 @import "~@/assets/styles/buttons.scss";
 @import "~@/assets/styles/forms.scss";
-
 
 $main-font: "Palanquin", "Roboto", sans-serif;
 $second-font: "Lexend Deca", "Roboto", sans-serif;
@@ -81,9 +79,9 @@ $second-font: "Lexend Deca", "Roboto", sans-serif;
   }
 
   body {
-      background-color: $c-white;
+    background-color: $c-white;
   }
-  
+
   b {
     color: $main-color;
   }

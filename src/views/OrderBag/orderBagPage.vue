@@ -1,6 +1,7 @@
 <template>
   <v-content class="order-bag d-flex flex-column pt-0">
-    <div v-if="shopping" class="floating_card">
+    <Navbar />
+    <div v-if="shopping" class="floating_card" id="first-card">
       <div class="floating_card__image-area">
         <img class="floating_card__image-area__image" src="@/assets/images/place.svg" />
       </div>
@@ -141,12 +142,14 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
+import Navbar from "../../components/Navbar";
 import { handleAmmount, getItems } from "../../services/context";
 import services from '../../services/ServicesFacade'
 
 export default {
   components: {
-    restaurantItem
+    restaurantItem,
+    Navbar
   },
   data() {
     return {
@@ -173,6 +176,9 @@ export default {
     },
     user: {
       required: true
+    },
+    selectedCard: {
+      required: false
     }
   },
   created() {
@@ -198,7 +204,7 @@ export default {
           sum += itemTotal * item.ammount;
         });
       }
-      return sum;
+      return sum.toFixed(2);
     }
   },
   methods: {
@@ -251,6 +257,10 @@ export default {
 </script>
 
 <style lang="scss">
+#first-card {
+  margin-top: 56px;
+}
+
 .order-bag {
   .v-bottom-navigation {
     position: sticky;
