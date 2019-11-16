@@ -1,5 +1,6 @@
 import { getAllRestaurants, getRestaurant, getRestaurantsByCategory, getRestaurantMenu, getRestaurantCategories, getItem, getShopping, getShoppingCategories } from './restaurantService'
 import { getUser } from './userService'
+import { requestOrder } from './orderService'
 
 export default {
     getShopping,
@@ -10,5 +11,6 @@ export default {
     getRestaurantMenu,
     getRestaurantCategories,
     getItem,
-    getShoppingCategories
+    getShoppingCategories,
+    requestOrder
 }

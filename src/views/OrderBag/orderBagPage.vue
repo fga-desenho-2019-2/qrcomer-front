@@ -118,7 +118,7 @@
 <script>
 import restaurantItem from "./BagItem.vue";
 import { handleAmmount, getItems } from "../../services/context";
-import axios from 'axios'
+import services from '../../services/ServicesFacade'
 
 export default {
   components: {
@@ -164,7 +164,13 @@ export default {
       let sum = 0;
       if (this.items) {
         this.items.forEach(item => {
-          sum += item.value * item.ammount;
+          let itemTotal = item.value
+          item.sidedish.forEach(dish => {
+            if(dish.selected) {
+              itemTotal += dish.value * dish.qtd
+            }
+          })
+          sum += itemTotal * item.ammount;
         });
       }
       return sum;
@@ -176,15 +182,41 @@ export default {
     getShoppingCNPJ: function() {
       this.shoppingCNPJ = localStorage.shoppingCNPJ;
     },
-    requestOrder(){
-      this.dialog = false
-      axios.post('http://localhost:5002/api/order-bag',{
-        observation: "",
-        items: this.items
-      }).then(() => {})
-      .catch((e) => {
-        console.error(e)
+    requestOrder: async function(){
+      let order = {
+        cpf_user: this.user.cpf,
+        cnpj_restaurant: this.restaurant.cnpj,
+        value: this.total,
+        items: []
+      }
+      this.items.forEach((item) => {
+        let orderItem = {
+          name: item.name,
+          value: item.value,
+          observation: item.observation,
+          quantity: item.ammount
+        }
+        order.items.push(orderItem)
+        item.sidedish.forEach(dish => {
+          if(dish.selected) {
+            let dishItem = {
+              name: dish.name,
+              value: dish.value,
+              observation: "",
+              quantity: dish.qtd
+            }
+            order.items.push(dishItem)
+          }
+        })
       })
+      let response = await services.requestOrder(order);
+      console.log(response)
+      if(response.status === 201) {
+        //redirecionar página
+      }
+      else {
+        console.log('houve algum erro')
+      }
     }
   }
 };
