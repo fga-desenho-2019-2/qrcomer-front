@@ -2,15 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/LandingPage/Home.vue'
 import Auth from '@/views/Authentication/Auth.vue'
-import store from '@/store/store'	
-import OrderBagPage from '../views/OrderBag/orderBagPage.vue'	
-import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'	
-import CategoryPage from '../views/CategoryPage.vue'	
-import EditUserProfile from '../views/EditUserProfile.vue'		
-import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'	
-import ItemPage from '../views/ItemPage/ItemPage.vue'	
-import UserProfile from '../views/UserProfile.vue'	
-import HocComponent from '../components/HocComponent'	
+import store from '@/store/store'
+import OrderBagPage from '../views/OrderBag/orderBagPage.vue'
+import ShoppingPage from '../views/ShoppingPage/ShoppingPage.vue'
+import CategoryPage from '../views/CategoryPage.vue'
+import EditUserProfile from '../views/EditUserProfile.vue'
+import RestaurantMenu from '../views/MenuPage/RestaurantMenu.vue'
+import ItemPage from '../views/ItemPage/ItemPage.vue'
+import UserProfile from '../views/UserProfile.vue'
+import HocComponent from '../components/HocComponent'
 import CardList from '../views/Cards/CardList.vue'
 import CardShow from '../views/Cards/CardShow'
 import CreateCard from '../views/Cards/CreateCard'
@@ -54,7 +54,7 @@ export default new Router({
                     "shoppingCategories"
                 ])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/categoria/:name",
@@ -62,7 +62,7 @@ export default new Router({
             components: {
                 default: HocComponent(CategoryPage, ["restaurantsByCategory"])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/editar-usuario",
@@ -70,7 +70,7 @@ export default new Router({
             components: {
                 default: HocComponent(EditUserProfile, ["user"])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/usuario",
@@ -78,7 +78,7 @@ export default new Router({
             components: {
                 default: HocComponent(UserProfile, ["user"])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/restaurante/:cnpj",
@@ -113,7 +113,7 @@ export default new Router({
             components: {
                 default: Auth
             },
-            beforeEnter: ifAuthenticated,
+            //beforeEnter: ifAuthenticated,
         },
         {
             path: '/cartoes/:from?',

@@ -1,9 +1,12 @@
 <template>
   <div class="card-shopping">
-    <img class="card-shopping__image" src="../../assets/images/shopping-img.png" />
+    <img
+      class="card-shopping__image"
+      src="../../assets/images/shopping-img.png"
+    />
     <div class="card-shopping__card">
       <div class="card-shopping__card__text">
-        <p class="card-shopping__card__text__title">Você está no {{ title }}</p>
+        <p class="card-shopping__card__text__title">Você está no {{ name }}</p>
         <p class="card-shopping__card__text__desc">{{ city }} - {{ state }}</p>
         <p class="card-shopping__card__text__desc">{{ neighborhood }}</p>
       </div>
@@ -15,7 +18,7 @@
 export default {
   name: "ShoppingCard",
   props: {
-    title: {
+    name: {
       type: String,
       required: true
     },

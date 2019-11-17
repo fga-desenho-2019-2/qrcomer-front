@@ -1,7 +1,7 @@
-// import axios from 'axios'
-// import API_URL from './mainService'
+import axios from 'axios'
+import API_URL from './mainService'
 
-// const BASE_PATH = '/api/restaurant/'
+const BASE_PATH = '/api/restaurant/'
 
 export async function getAllRestaurants() {
     // Retrieves all restaurans from API
@@ -16,41 +16,25 @@ export async function getAllRestaurants() {
     //     }
     // }
 
-    let restaurants = [
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Mcdonalds",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
+    let restaurants = [{
+            "category": 1,
+            "cnpj": "743898765",
+            "description": "",
+            "image": [],
+            "name": "Mac Donalds",
+            "note": 4.6,
+            "shopping": "1232324",
+            "wait_time": "00:15:00"
         },
         {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345677",
-            "name": "Burguer King",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345676",
-            "name": "Girrafas",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345675",
-            "name": "Geleia",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345674",
-            "name": "Mcdonalds",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
+            "category": 1,
+            "cnpj": "743898766",
+            "description": "",
+            "image": [],
+            "name": "Mac Donalds",
+            "note": 4.6,
+            "shopping": "1232324",
+            "wait_time": "00:15:00"
         }
     ]
 
@@ -63,7 +47,7 @@ export async function getRestaurant(cnpjRestaurant) {
 
     // try {
     //     if (!cnpjRestaurant) throw "cnpj must be a valid number"
-        
+
     //     const route = API_URL + BASE_PATH + cnpjRestaurant
     //     restaurant = await axios.get(route)
 
@@ -74,77 +58,49 @@ export async function getRestaurant(cnpjRestaurant) {
     //     }
     // }
 
-    let restaurant = [
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "33345811000183",
-            "name": "Mcdonalds",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        }
-    ]
+    let restaurant = [{
+        "category": 1,
+        "cnpj": "743898765",
+        "description": "",
+        "image": "http://0.0.0.0:8001/api/restaurant-image/743898765",
+        "name": "Mac Donalds",
+        "note": 4.6,
+        "shopping": "1232324",
+        "wait_time": "00:15:00"
+    }]
 
     return restaurant[cnpjRestaurant]
 }
 
 export async function getRestaurantsByCategory() {
-    let restaurants = [
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Mcdonalds",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
+    let restaurants = [{
+            "category": 1,
+            "cnpj": "743898765",
+            "description": "",
+            "image": [],
+            "name": "Mac Donalds",
+            "note": 4.6,
+            "shopping": "1232324",
+            "wait_time": "00:15:00"
         },
         {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Burger King",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Girrafas",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Geleia",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Madero",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
+            "category": 1,
+            "cnpj": "743898766",
+            "description": "",
+            "image": [],
+            "name": "Mac Donalds",
+            "note": 4.6,
+            "shopping": "1232324",
+            "wait_time": "00:15:00"
+        }
     ]
 
     return restaurants
 }
 
 export async function getRestaurantMenu() {
-    let menu = [
-        {
-            id:1,
+    let menu = [{
+            id: 1,
             name: 'Combo Big Mac',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -153,7 +109,7 @@ export async function getRestaurantMenu() {
             category: "Hamburguer"
         },
         {
-            id:2,
+            id: 2,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -162,7 +118,7 @@ export async function getRestaurantMenu() {
             category: "Hamburguer"
         },
         {
-            id:3,
+            id: 3,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -171,7 +127,7 @@ export async function getRestaurantMenu() {
             category: "Hamburguer"
         },
         {
-            id:4,
+            id: 4,
             name: 'Quarteirão',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
@@ -179,7 +135,7 @@ export async function getRestaurantMenu() {
             category: "Hamburguer"
         },
         {
-            id:5,
+            id: 5,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -188,7 +144,7 @@ export async function getRestaurantMenu() {
             category: "Sorvete"
         },
         {
-            id:6,
+            id: 6,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -197,7 +153,7 @@ export async function getRestaurantMenu() {
             category: "Sorvete"
         },
         {
-            id:7,
+            id: 7,
             name: 'Quarteirão',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
@@ -205,7 +161,7 @@ export async function getRestaurantMenu() {
             category: "Sorvete"
         },
         {
-            id:8,
+            id: 8,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -214,7 +170,7 @@ export async function getRestaurantMenu() {
             category: "Sorvete"
         },
         {
-            id:9,
+            id: 9,
             name: 'Quarteirão',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
             value: 22.10,
@@ -222,7 +178,7 @@ export async function getRestaurantMenu() {
             category: "Bebida"
         },
         {
-            id:10,
+            id: 10,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -231,7 +187,7 @@ export async function getRestaurantMenu() {
             category: "Hamburguer"
         },
         {
-            id:11,
+            id: 11,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -240,7 +196,7 @@ export async function getRestaurantMenu() {
             category: "Sorvete"
         },
         {
-            id:12,
+            id: 12,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -249,7 +205,7 @@ export async function getRestaurantMenu() {
             category: "Sorvete"
         },
         {
-            id:13,
+            id: 13,
             name: 'Quarteirão',
             restaurantCNPJ: '0',
             details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
@@ -262,70 +218,38 @@ export async function getRestaurantMenu() {
     return menu;
 }
 
+
 export async function getRestaurantCategories() {
-    let categories = [
-        {
-            id: 0,
+    let categories = [{
+            id: 1,
             name: "Bebida"
         },
         {
-            id: 1,
-            name: "Hamburguer"
-        },
-        {
             id: 2,
-            name: "Sorvete"
-        }
+            name: "Sanduíches"
+        },
     ]
 
     return categories
 }
 
 export async function getItem(itemId) {
-    let itens = [
-        {
-            id: 1,
-            name: "Combo Big Mac",
-            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-            value: 22.19,
-            restaurantCNPJ: '0',
-            img: require("@/assets/images/bigmac.svg"),
-            category: "Hamburguer",
-            sidedish: [{
-              id: 0,
-              name: "Batata",
-              description: "Batatas Fritas",
-              selected: false,
-              value: 3.20,
-              qtd: 1
-            },
-            {
-              id: 1,
-              name: "Refrigerante",
-              description: "Coca Cola",
-              selected: false,
-              value: 5.20,
-              qtd: 1
-            },
-            {
-              id: 2,
-              name: "Molho Especial",
-              description: "Molho de Tomate",
-              selected: false,
-              value: 1.20,
-              qtd: 0
-            }
-    ,
-            {
-              id: 3,
-              name: "Salada",
-              description: "Sala de Tomate",
-              selected: false,
-              value: 10.20,
-              qtd: 0
-            }],
-          }
-    ]
+    let itens = [{
+        category: "Hamburguer",
+        details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+        id: 3,
+        image: "http://0.0.0.0:8001/api/item-image/3",
+        name: "Combo Big Mac",
+        restaurant_cnpj: "743898765",
+        sidedish: [{
+            description: "Batatas Fritas",
+            name: "Batata",
+            qtd: 1,
+            selected: false,
+            value: 3.2
+        }],
+        value: 22.19
+    }]
     return itens[itemId]
 }
 
@@ -353,8 +277,7 @@ export async function getShopping() {
 }
 
 export async function getShoppingCategories() {
-    let categories = [
-        {
+    let categories = [{
             name: "Fast Food",
             icon: require('../assets/images/categories/fastfood.png')
         },

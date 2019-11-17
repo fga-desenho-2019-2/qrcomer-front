@@ -5,9 +5,9 @@
         <img class="card-restaurant__image__content" :src="image" />
       </div>
       <div class="card-restaurant__content">
-        <p class="card-restaurant__content__title">{{ title }}</p>
+        <p class="card-restaurant__content__name">{{ name }}</p>
         <p class="card-restaurant__content__desc">{{ description }}</p>
-        <p class="card-restaurant__content__order-time">{{ orderTime }}</p>
+        <p class="card-restaurant__content__order-time">{{ wait_time }}</p>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
 export default {
   name: "RestaurantCard",
   props: {
-    title: {
+    name: {
       type: String,
       required: true
     },
@@ -26,13 +26,13 @@ export default {
       required: true,
       default: "No description provided"
     },
-    orderTime: {
+    wait_time: {
       type: String,
       required: true,
       default: "---"
     },
     image: {
-      type: String,
+      type: Array,
       required: true
     }
   },
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$title-size: 14px;
+$name-size: 14px;
 $desc-size: 12px;
 
 .card-restaurant {
@@ -77,8 +77,8 @@ $desc-size: 12px;
     box-shadow: 0 -1px 15px 1px $c-gray80;
     padding: 5%;
 
-    &__title {
-      font-size: $title-size;
+    &__name {
+      font-size: $name-size;
       contain: content;
       margin-bottom: 5px;
     }

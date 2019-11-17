@@ -3,7 +3,7 @@
     <img class="categorie-card__image" :src="icon" />
     <div class="categorie-card__card">
       <div class="categorie-card__card__text">
-        <p class="categorie-card__card__text__title">{{ title }}</p>
+        <p class="categorie-card__card__text__title">{{ name }}</p>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@ export default {
       type: String,
       required: true
     },
-    title: {
+    name: {
       type: String,
       required: true
     }
