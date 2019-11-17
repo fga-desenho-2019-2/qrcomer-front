@@ -176,7 +176,7 @@ export default {
       error: false,
       cpfRules: [
         v =>
-          (v && v.length >= 11) ||
+          (v && v.length >= 11 || v.length === 0) ||
           "CPF deve ser igual a 11 caracteres e não deve conter pontos ou traços"
       ],
       dialog: false,
