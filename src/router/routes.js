@@ -14,17 +14,13 @@ import HocComponent from '../components/HocComponent'
 import CardList from '../views/Cards/CardList.vue'
 import CardShow from '../views/Cards/CardShow'
 import CreateCard from '../views/Cards/CreateCard'
-
-
-// const ifNotAuthenticated = (to, from, next) => {
-//     if (!store.getters.isAuthenticated) {
-//         next()
-//         return
-//     }
-//     next('/')
-// }
+import OrderPage from '@/views/Order/Order'
 
 const ifAuthenticated = (to, from, next) => {
+    if(to.name === "shopping") {
+        localStorage.setItem('shoppingCNPJ', to.params.cnpj)
+    }
+
     if (store.getters["auth/isAuthenticated"]) {
         next();
         return;
@@ -62,7 +58,7 @@ export default new Router({
             components: {
                 default: HocComponent(CategoryPage, ["restaurantsByCategory"])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/editar-usuario",
@@ -70,7 +66,7 @@ export default new Router({
             components: {
                 default: HocComponent(EditUserProfile, ["user"])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/usuario",
@@ -78,7 +74,7 @@ export default new Router({
             components: {
                 default: HocComponent(UserProfile, ["user"])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/restaurante/:cnpj",
@@ -113,13 +109,20 @@ export default new Router({
             components: {
                 default: Auth
             },
-            beforeEnter: ifAuthenticated,
+            //beforeEnter: ifAuthenticated,
         },
         {
             path: '/cartoes/:from?',
             name: 'card_list',
             components: {
                 default: HocComponent(CardList, ['cards'])
+            }
+        },
+        {
+            path: '/pedido',
+            name: 'order',
+            components: {
+                default: HocComponent(OrderPage, ['user'])
             }
         },
         {
