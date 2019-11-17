@@ -19,7 +19,6 @@ import Banner from './Banner.vue'
 import Time from './Time.vue'
 import Funcionamento from './Funcionamento.vue'
 import Sobre from './Sobre.vue'
-import LandingPageHeader from './Header.vue'
 
 export default {
     components: {
@@ -27,8 +26,7 @@ export default {
         "QrcFuncionamento": Funcionamento,
         "QrcTime": Time,
         "QrcFooter": Footer,
-        "QrcSobre": Sobre,
-        "LandingPageHeader": LandingPageHeader
+        "QrcSobre": Sobre
     }
 }
 </script>

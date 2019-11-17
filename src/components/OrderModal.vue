@@ -24,7 +24,7 @@
                 @click="closeOrderModal">
                 <v-icon color="white">mdi-close</v-icon>
             </v-btn>
-            <h5 class="mb-0 flex-grow-1 flex-shrink-0 text-center" >{{restaurant}}</h5>
+            <h5 class="mb-0 flex-grow-1 flex-shrink-0 text-center" >{{restaurant.name}}</h5>
             <p class="mb-0" v-if="!avaliacao">
                 <v-icon color="yellow">mdi-star</v-icon>
                 {{avaliacao}}
@@ -32,13 +32,15 @@
         </div>
         
         <p class="text-center">Você estava no <b>{{shopping}}</b> quando fez esse pedido</p>
-        <p class="text-center mb-0"><a href="#" class="main-color" style="text-decoration:none">Ver o cardápio desse restaurante</a></p>
+        <p class="text-center mb-0"><a :href="`/restaurante/${restaurant.cnpj}`" class="main-color" style="text-decoration:none">Ver o cardápio desse restaurante</a></p>
     </div>
     <div class="itens hr">
         <div class="itensValue">
-            <p v-for="(item, index) in itens" :key="index">{{item}}</p>
+            <div v-for="(item, index) in itens" :key="index" class="d-flex justify-space-between">
+                <p>{{item.quantity}}x {{item.name}}</p>
+                <p class="itens__totalValue">{{ itemTotal(item) }}</p>
+            </div>
         </div>
-        <p class="itens__totalValue ml-auto">{{value}}</p>
     </div>
     <div class="itens" :class="password ? '' : 'hr'">
         <div class="itensValue" >
@@ -54,7 +56,8 @@
                 half-increments
                 class="text-center"
                 background-color="gray"
-                color="yellow">
+                color="#e18855"
+                @click.native="handleClick">
             </v-rating>
         </div>
     </div>
@@ -67,7 +70,7 @@
 export default {
     data() {
         return {
-            rating: 0
+            rating: this.avaliacao
         }
     },
     props: {
@@ -78,7 +81,7 @@ export default {
             type: String
         },
         restaurant: {
-            type: String,
+            type: Object,
             required: true
         },
         itens: {
@@ -86,7 +89,7 @@ export default {
             required: true
         },
         value: {
-            type: String,
+            type: Number,
             required: true
         },
         shopping: {
@@ -98,12 +101,25 @@ export default {
     methods: {
         closeOrderModal() {
             this.$emit('closeOrderModal');
+        },
+        itemTotal(item) {
+            let value = item.value*item.quantity
+            return value.toFixed(2)
+        },
+        handleClick() {
+            this.$emit('starChange', this.rating)
         }
+    },
+    computed: {
     }
 }
 </script>
 
 <style lang="scss">
+.itensValue {
+    width: 100%;
+}
+
 .orderModal {
     padding: 15px;
     border-radius: 20px 0;

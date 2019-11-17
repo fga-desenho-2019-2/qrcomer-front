@@ -1,27 +1,32 @@
 <template>
     <div
-        class="orderItem">
-        <p class="mb-1 mt-6">Seg, 22 de agosto de 2019</p>
+        class="orderItem mb-4">
+        <p class="mb-1 mt-6">{{ date }}</p>
 
         <div class="orderItem__box">
             <div class="orderItem__box__content">
                 <div class="orderItem__box__content__img">
                     <img src="@/assets/images/bannermc.svg" alt="">
                 </div>
-                <div class="orderItem__box__content__content">
-                    <p class="px-3 mb-1">Mc Donalds</p>
+                <div class="orderItem__box__content__content d-flex flex-column justify-space-between">
+                    <p class="px-3 mb-1">{{ restaurant.name }}</p>
                     <ul class="px-3 small-item" style="list-style: none">
-                        <li>1x Mac Tast</li>
-                        <li>1x Sandue de chocolate</li>
+                        <li 
+                            v-for="(item, index) in itens"
+                            :key="index">
+                            {{ item.quantity }}x {{ item.name }}</li>
                     </ul>
                     <div class="d-flex align-center stars" v-if="status != 'AND' ">
-                        <p class="px-3 mb-0 small-item mr-auto">Avaliação:</p>
-                        <div class="d-flex pr-3">
-                            <v-icon color="yellow">mdi-star</v-icon>
-                            <v-icon color="yellow">mdi-star</v-icon>
-                            <v-icon color="yellow">mdi-star</v-icon>
-                            <v-icon color="yellow">mdi-star</v-icon>
-                            <v-icon color="#a0a0a0">mdi-star</v-icon>
+                        <p class="mb-0 small-item mx-auto">Avaliação:</p>
+                        <div class="d-flex mx-auto">
+                            <v-rating 
+                                v-model="avaliacao"
+                                dense
+                                readonly
+                                half-increments
+                                background-color="gray"
+                                color="#e18855">
+                            </v-rating>
                         </div>
                     </div>
                     <div class="d-flex align-center stars pa-0" v-else>
@@ -58,9 +63,11 @@
                     :avaliacao="avaliacao"
                     :status="status"
                     :password="password"
-                    value="R$ 29,90"
-                    shopping="ParkShopping"
-                    @closeOrderModal=" dialog = false"/>
+                    :value="value"
+                    :shopping="shopping"
+                    @closeOrderModal=" dialog = false"
+                    @starChange="changeRating($event)"
+                    />
             </v-dialog>
         </div>
         
@@ -73,11 +80,19 @@ import OrderModal from "@/components/OrderModal"
 export default {
     props: {
         status: { type: String, required: true },
-        restaurant: { type: String, required: true  },
+        restaurant: { type: Object, required: true  },
         itens: { type: Array, required: true },
         avaliacao: { type: Number, required: false },
         id: { type: String },
-        password: {type: String}
+        password: {type: String},
+        shopping: {type: String},
+        value: {type: Number},
+        date: {type: String}
+    },
+    methods: {
+        changeRating(value) {
+            this.$emit('changeRating', value)
+        }
     },
     components: {
         OrderModal,
@@ -110,15 +125,14 @@ export default {
             }
 
             &__img {
-                position: relative;
                 width: 30%;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
                 img {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
+                    max-height: 100%;
                 }
             }
 
