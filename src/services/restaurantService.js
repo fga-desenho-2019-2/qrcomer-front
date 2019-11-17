@@ -1,7 +1,7 @@
-import axios from 'axios'
-import API_URL from './mainService'
+// import axios from "axios";
+// import API_URL from "./mainService";
 
-const BASE_PATH = '/api/restaurant/'
+// const BASE_PATH = "/api/restaurant/";
 
 export async function getAllRestaurants() {
     // Retrieves all restaurans from API
@@ -17,28 +17,28 @@ export async function getAllRestaurants() {
     // }
 
     let restaurants = [{
-            "category": 1,
-            "cnpj": "743898765",
-            "description": "",
-            "image": [],
-            "name": "Mac Donalds",
-            "note": 4.6,
-            "shopping": "1232324",
-            "wait_time": "00:15:00"
+            category: 1,
+            cnpj: "743898765",
+            description: "Burgers",
+            image: [],
+            name: "Mc'Donalds",
+            note: 4.6,
+            shopping: "1232324",
+            wait_time: "00:15:00"
         },
         {
-            "category": 1,
-            "cnpj": "743898766",
-            "description": "",
-            "image": [],
-            "name": "Mac Donalds",
-            "note": 4.6,
-            "shopping": "1232324",
-            "wait_time": "00:15:00"
+            category: 1,
+            cnpj: "743898766",
+            description: "Burgers",
+            image: [],
+            name: "Mc'Donalds",
+            note: 4.6,
+            shopping: "1232324",
+            wait_time: "00:15:00"
         }
-    ]
+    ];
 
-    return restaurants
+    return restaurants;
 }
 
 export async function getRestaurant(cnpjRestaurant) {
@@ -59,165 +59,164 @@ export async function getRestaurant(cnpjRestaurant) {
     // }
 
     let restaurant = [{
-        "category": 1,
-        "cnpj": "743898765",
-        "description": "",
-        "image": "http://0.0.0.0:8001/api/restaurant-image/743898765",
-        "name": "Mac Donalds",
-        "note": 4.6,
-        "shopping": "1232324",
-        "wait_time": "00:15:00"
-    }]
+        category: 1,
+        cnpj: "743898765",
+        description: "Burgers",
+        image: "http://0.0.0.0:8001/api/restaurant-image/743898765",
+        name: "Mc'Donalds",
+        note: 4.6,
+        shopping: "1232324",
+        wait_time: "00:15:00"
+    }];
 
-    return restaurant[cnpjRestaurant]
+    return restaurant[cnpjRestaurant];
 }
 
 export async function getRestaurantsByCategory() {
     let restaurants = [{
-            "category": 1,
-            "cnpj": "743898765",
-            "description": "",
-            "image": [],
-            "name": "Mac Donalds",
-            "note": 4.6,
-            "shopping": "1232324",
-            "wait_time": "00:15:00"
+            category: 1,
+            cnpj: "743898765",
+            description: "Burgers",
+            image: [],
+            name: "Mc'Donalds",
+            note: 4.6,
+            shopping: "1232324",
+            wait_time: "00:15:00"
         },
         {
-            "category": 1,
-            "cnpj": "743898766",
-            "description": "",
-            "image": [],
-            "name": "Mac Donalds",
-            "note": 4.6,
-            "shopping": "1232324",
-            "wait_time": "00:15:00"
+            category: 1,
+            cnpj: "743898766",
+            description: "Burgers",
+            image: [],
+            name: "Mc'Donalds",
+            note: 4.6,
+            shopping: "1232324",
+            wait_time: "00:15:00"
         }
-    ]
+    ];
 
-    return restaurants
+    return restaurants;
 }
 
 export async function getRestaurantMenu() {
     let menu = [{
             id: 1,
-            name: 'Combo Big Mac',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+            name: "Combo Big Mac",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
             value: 22.19,
-            img: require('@/assets/images/bigmac.svg'),
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
             id: 2,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
             id: 3,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
             id: 4,
-            name: 'Quarteirão',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
             id: 5,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
             id: 6,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
             id: 7,
-            name: 'Quarteirão',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
             id: 8,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
             id: 9,
-            name: 'Quarteirão',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Bebida"
         },
         {
             id: 10,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
             id: 11,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
             id: 12,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
             id: 13,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
-        },
-    ]
+        }
+    ];
 
     return menu;
 }
-
 
 export async function getRestaurantCategories() {
     let categories = [{
@@ -228,9 +227,13 @@ export async function getRestaurantCategories() {
             id: 2,
             name: "Sanduíches"
         },
-    ]
+        {
+            id: 3,
+            name: "Sorvetes"
+        }
+    ];
 
-    return categories
+    return categories;
 }
 
 export async function getItem(itemId) {
@@ -249,8 +252,8 @@ export async function getItem(itemId) {
             value: 3.2
         }],
         value: 22.19
-    }]
-    return itens[itemId]
+    }];
+    return itens[itemId];
 }
 
 export async function getShopping() {
@@ -271,28 +274,28 @@ export async function getShopping() {
         city: "Brasília",
         state: "DF",
         neighborhood: "Rua do jão"
-    }
+    };
 
-    return shopping
+    return shopping;
 }
 
 export async function getShoppingCategories() {
     let categories = [{
             name: "Fast Food",
-            icon: require('../assets/images/categories/fastfood.png')
+            icon: require("../assets/images/categories/fastfood.png")
         },
         {
             name: "Japonesa",
-            icon: require('../assets/images/categories/japones.png')
+            icon: require("../assets/images/categories/japones.png")
         },
         {
             name: "Mexicana",
-            icon: require('../assets/images/categories/mexicana.png')
+            icon: require("../assets/images/categories/mexicana.png")
         },
         {
             name: "Pizza",
-            icon: require('../assets/images/categories/pizzas.png')
+            icon: require("../assets/images/categories/pizzas.png")
         }
-    ]
-    return categories
+    ];
+    return categories;
 }
