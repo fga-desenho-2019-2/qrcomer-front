@@ -25,7 +25,7 @@ const ifAuthenticated = (to, from, next) => {
         next();
         return;
     }
-    next("/auth");
+    next("/auth/login");
 };
 
 Vue.use(Router);
@@ -104,12 +104,11 @@ export default new Router({
             //beforeEnter: ifAuthenticated
         },
         {
-            path: "/auth",
+            path: "/auth/:type",
             name: "auth",
             components: {
                 default: Auth
-            },
-            //beforeEnter: ifAuthenticated,
+            }
         },
         {
             path: '/cartoes/:from?',

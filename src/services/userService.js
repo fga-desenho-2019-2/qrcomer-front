@@ -105,3 +105,39 @@ export async function getSelectedCard() {
 export async function deleteCard() {
   return true
 }
+
+import HttpClientBuilder from "../infra/HttpClientBuilder.js";
+import API_URL from "./mainService.js";
+
+export default class UserService {
+    constructor() {
+        this.client = HttpClientBuilder.buildClient({
+            baseURL: API_URL
+        });
+    }
+
+    async getUser(cpf) {
+        let response = await this.client.get(`/get_user/${cpf}`);
+        return response;
+    }
+
+    async editUser(cpf, params) {
+        let body = {
+            cpf: params.cpf,
+            first_name: params.first_name,
+            last_name: params.last_name,
+            email: params.email
+        }
+        let response = await this.client.put(`/edit_user/${cpf}`,body);
+        return response;
+    }
+
+    async editUserImage(params) {
+        let body = {
+            cpf: params.cpf,
+            image: params.image
+        }
+        let response = await this.client.post(`/user/post_image`, body)
+        return response;
+    }
+}

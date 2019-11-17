@@ -7,7 +7,8 @@ export default class HttpClientBuilder {
         //default interceptor for request
         //TODO : refresh token
         client.interceptors.request.use(config => {
-        return config;
+            config.headers.authorization = localStorage.getItem("user-token");
+            return config;
         });
 
         //default interceptor for response

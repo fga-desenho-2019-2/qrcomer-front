@@ -22,6 +22,7 @@ linting:
   image: node:11
   before_script:
     - npm install @vue/cli
+    - npm install
   script:
     - npm run lint
   <<: *all_branches
