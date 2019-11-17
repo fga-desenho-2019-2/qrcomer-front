@@ -1,32 +1,38 @@
 <template>
-  <v-content class="edit-user-page d-flex flex-column pt-0">
+  <v-content class="edit-user-page d-flex flex-column">
     <Navbar />
-    <qrc-banner />
     <div>
-      <v-form>
-        <v-container>
-          <v-row v-if="userCopy">
+      <v-form ref="form">
+        <v-container style="overflow: hidden;" class="pt-0">
+            <div class="user-img" style="z-index: 0">
+                <div class="card-img">
+                    <img :src="image" alt="">
+                </div>
+                <v-btn 
+                    large
+                    id="user-file-img"
+                    icon>
+                    <v-icon>mdi-image-edit</v-icon>
+                    <input type="file"  @change="filePreview">
+                </v-btn>
+                
+            </div>
+          <v-row>
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="userCopy.name" label="Nome" required color="#e18855"></v-text-field>
+              <v-text-field v-model="userData.email" label="E-mail" disabled color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="userCopy.email" label="E-mail" required color="#e18855"></v-text-field>
+              <v-text-field v-model="userData.cpf" label="CPF" disabled color="#e18855"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field
-                type="password"
-                v-model="userCopy.password"
-                label="Senha"
-                required
-                color="#e18855"
-              ></v-text-field>
+              <v-text-field v-model="userData.first_name" label="Nome" required color="#e18855"></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6" class="pb-0">
+              <v-text-field v-model="userData.last_name" label="Sobrenome" required color="#e18855"></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="userCopy.cpf" label="CPF" required color="#e18855"></v-text-field>
-            </v-col>
           </v-row>
         </v-container>
       </v-form>
@@ -42,17 +48,22 @@
 </template>
 
 <script>
-import UserBanner from "../components/UserBanner";
+import { mapGetters } from "vuex";
 import Navbar from "../components/Navbar";
+import User from '../services/userService';
+import { validationUtil } from "../utils/ValidationUtils";
+import { routeTo } from "../services/context";
+
+let user = new User();
 
 export default {
   components: {
-    "qrc-banner": UserBanner,
     Navbar
   },
   data: () => ({
-    userCopy: {},
+    userData: {},
     valid: true,
+    udateImage: false,
     nameRules: [v => !!v || "Campo obrigatório"],
     emailRules: [
       v => !!v || "Campo obrigatório",
@@ -63,30 +74,54 @@ export default {
       v => (v && v.length >= 8) || "Senha deve ser maior do que 8 caracteres"
     ],
     telephoneRules: [v => !!v || "Campo obrigatório"],
-    cpfRules: [v => !!v || "Campo obrigatório"]
+    cpfRules: [v => !!v || "Campo obrigatório"],
+    image: require("@/assets/images/profile/blank-profile-picture-.png"),
   }),
-  props: {
-    user: {
-      required: true
-    }
-  },
-  watch: {
-    user: function() {
-      this.userCopy = this.user;
-    }
-  },
   methods: {
-    copyUser: function() {
-      this.userCopy = this.user;
-    },
-    validate() {
+    async validate() {
       if (this.$refs.form.validate()) {
-        this.snackbar = true;
+        let body = {
+            cpf: validationUtil.cleanMaskCpf(this.userData.cpf),
+            email: this.userData.email,
+            first_name: this.userData.first_name,
+            last_name: this.userData.last_name
+        };
+        let response = await user.editUser(body.cpf,body);
+        if (this.updateImage) {
+            const image2base64 = require('image-to-base64');
+            image2base64(this.image)
+                .then(async result => {
+                        await user.editUserImage({
+                            cpf: validationUtil.cleanMaskCpf(this.userData.cpf),
+                            image: result
+                        });
+                }).catch(error => {
+                    alert(error);
+                })
+        }
+        if (response.status >= 400) {
+            this.errors = response.data;
+            return;
+        } else {
+            routeTo('/usuario',this);
+        }
       }
     },
-    reset() {
-      this.$refs.form.reset();
+    filePreview(e) {
+      const file = e.target.files[0];
+      this.image = URL.createObjectURL(file);
+      this.updateImage = true;
     }
+  },
+  computed: mapGetters({
+    userCpf: "auth/userCpf"
+  }),
+  async created() {
+    let response = await user.getUser(this.userCpf)
+    this.userData = response.data
+    if (this.userData.image) {
+        this.image = this.userData.image
+    } 
   }
 };
 </script>
@@ -107,5 +142,46 @@ export default {
 .v-text-field {
   color: #eb4476;
   font-family: "Palanquin", sans-serif;
+}
+
+.user-img {
+    margin: 0 -15px;
+    position: relative;
+
+    .card-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 280px;
+        background: linear-gradient(to bottom right, transparent 50%, #efefef 40%), linear-gradient(-40deg, #eb4476, #e18855) #efefef;
+
+        img {
+            display: flex;
+            height: 250px;
+            width: 250px;
+            object-fit: cover;
+            border-radius: 0 30px;
+            box-shadow: 0 2px 7px -2px $c-gray60;
+        }
+    }
+
+    #user-file-img {
+        position: absolute;
+        left: 50%;
+        bottom: -7px;
+        transform: translateX(-50%);
+        background: $main-color;
+        color: $c-white;
+        box-shadow: 0px 2px 7px -2px $c-gray60;
+
+        input {
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: -7px;
+            width: 100%;
+            height: 38px;
+        }
+    }
 }
 </style>
