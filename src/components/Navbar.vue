@@ -30,6 +30,7 @@
             @click="logout" 
             icon>
           <v-icon>mdi-logout</v-icon>
+          Sair
         </v-btn>
         <template v-else-if="!isAuthenticated">
             <v-btn
@@ -241,6 +242,18 @@
             </v-list-item-content>
           </a>
         </v-list-item>
+        <v-list-item v-if="isAuthenticated" @click="logout"  link>
+          <a href="/" style="color: transparent">
+            <v-list-item-icon>
+              <v-icon style="color: black" @click="routeTo('/')">mdi-logout</v-icon>
+            </v-list-item-icon>
+          </a>
+          <a href="/" style="color: transparent">
+            <v-list-item-content>
+              <v-list-item-title style="color: black">Sair</v-list-item-title>
+            </v-list-item-content>
+          </a>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -271,7 +284,6 @@ export default {
           link: "/cartoes"
         },
         { title: "Meu perfil", icon: "mdi-account", link: "/usuario" }
-        // { title: "Sair", icon: "mdi-logout", link: "/logout" }
       ]
     };
   },
