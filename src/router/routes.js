@@ -90,7 +90,7 @@ export default new Router({
                     "categories",
                 ])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/item/:id",
