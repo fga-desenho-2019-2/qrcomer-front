@@ -24,6 +24,8 @@
                       label="E-mail"
                       required
                       :rules="emptyRule"
+                      :error="!!errors.email"
+                      :error-messages="errors"
                       background-color="#fff"
                       class="mb-4"
                       color="#e18855"
@@ -34,6 +36,7 @@
                       label="Senha"
                       required
                       :rules="emptyRule"
+                      :error="!!errors.password"
                       type="password"
                       background-color="#fff"
                       class="mb-4"
@@ -143,10 +146,9 @@ export default {
       emptyRule: [v => !!v || "Campo obrigatório"],
       username: "",
       loginType: false,
-      date: new Date().toISOString().substr(0, 7),
       menu: false,
       modal: false,
-      errors: {}
+      errors: []
     };
   },
   components: {
@@ -163,10 +165,7 @@ export default {
       handler: function(loginType) {
         this.loginType = loginType;
       },
-    },
-    // errors: () =>{
-    //     this.errors = this.login
-    // }
+    }
   },
   created() {
     this.$route.query.loginType
