@@ -1,6 +1,4 @@
-import {
-    validationUtil
-} from "../../utils/ValidationUtils";
+import { validationUtil } from "../../utils/ValidationUtils";
 import AuthService from "../../services/auth";
 
 let auth = new AuthService();
