@@ -1,102 +1,117 @@
-// import axios from "axios";
-// import API_URL from "./mainService";
+import axios from "axios";
+import API_URL from "./mainService";
 
-// const BASE_PATH = "/api/restaurant/";
+const BASE_PATH = "/api/restaurant/";
 
 export async function getAllRestaurants() {
     // Retrieves all restaurans from API
-    // let restaurants
-    // try {
-    //     const restaurantRoute = API_URL + BASE_PATH
-    //     restaurants = await axios.get(restaurantRoute)
-    // } catch (err) {
-    //     return {
-    //         status: 'error',
-    //         payload: err
-    //     }
-    // }
-
-    let restaurants = [{
-            category: 1,
-            cnpj: "743898765",
-            description: "Burgers",
-            image: [],
-            name: "Mc'Donalds",
-            note: 4.6,
-            shopping: "1232324",
-            wait_time: "00:15:00"
-        },
-        {
-            category: 1,
-            cnpj: "743898766",
-            description: "Burgers",
-            image: [],
-            name: "Mc'Donalds",
-            note: 4.6,
-            shopping: "1232324",
-            wait_time: "00:15:00"
+    let restaurants
+    try {
+        const restaurantRoute = API_URL + BASE_PATH
+        restaurants = await axios.get(restaurantRoute)
+    } catch (err) {
+        return {
+            status: 'error',
+            payload: err
         }
-    ];
+    }
+
+    // let restaurants = [{
+    //         category: 1,
+    //         cnpj: "743898765",
+    //         description: "Burgers",
+    //         image: [],
+    //         name: "Mc'Donalds",
+    //         note: 4.6,
+    //         shopping: "1232324",
+    //         wait_time: "00:15:00"
+    //     },
+    //     {
+    //         category: 1,
+    //         cnpj: "743898766",
+    //         description: "Burgers",
+    //         image: [],
+    //         name: "Mc'Donalds",
+    //         note: 4.6,
+    //         shopping: "1232324",
+    //         wait_time: "00:15:00"
+    //     }
+    // ];
 
     return restaurants;
 }
 
 export async function getRestaurant(cnpjRestaurant) {
     // Retrieve a single restaurant from API by restaurant_id
-    // let restaurant = {}
+    let restaurant = {}
 
-    // try {
-    //     if (!cnpjRestaurant) throw "cnpj must be a valid number"
+    try {
+        if (!cnpjRestaurant) throw "cnpj must be a valid number"
 
-    //     const route = API_URL + BASE_PATH + cnpjRestaurant
-    //     restaurant = await axios.get(route)
+        const route = API_URL + BASE_PATH + cnpjRestaurant
+        restaurant = await axios.get(route)
 
-    // } catch(err) {
-    //     return {
-    //         status: 'error',
-    //         payload: err
-    //     }
-    // }
+    } catch (err) {
+        return {
+            status: 'error',
+            payload: err
+        }
+    }
 
-    let restaurant = [{
-        category: 1,
-        cnpj: "743898765",
-        description: "Burgers",
-        image: "http://0.0.0.0:8001/api/restaurant-image/743898765",
-        name: "Mc'Donalds",
-        note: 4.6,
-        shopping: "1232324",
-        wait_time: "00:15:00"
-    }];
+    // let restaurant = [{
+    //     category: 1,
+    //     cnpj: "743898765",
+    //     description: "Burgers",
+    //     image: "http://0.0.0.0:8001/api/restaurant-image/743898765",
+    //     name: "Mc'Donalds",
+    //     note: 4.6,
+    //     shopping: "1232324",
+    //     wait_time: "00:15:00"
+    // }];
 
     return restaurant[cnpjRestaurant];
 }
 
-export async function getRestaurantsByCategory() {
-    let restaurants = [{
-            category: 1,
-            cnpj: "743898765",
-            description: "Burgers",
-            image: [],
-            name: "Mc'Donalds",
-            note: 4.6,
-            shopping: "1232324",
-            wait_time: "00:15:00"
-        },
-        {
-            category: 1,
-            cnpj: "743898766",
-            description: "Burgers",
-            image: [],
-            name: "Mc'Donalds",
-            note: 4.6,
-            shopping: "1232324",
-            wait_time: "00:15:00"
-        }
-    ];
+// export async function getRestaurantsByCategory() {
 
-    return restaurants;
-}
+//     let restaurants = {}
+
+//     try {
+//         if (!cnpjRestaurants) throw "cnpj must be a valid number"
+
+//         const route = API_URL + BASE_PATH + cnpjRestaurants
+//         restaurants = await axios.get(route)
+
+//     } catch (err) {
+//         return {
+//             status: 'error',
+//             payload: err
+//         }
+//     }
+//     // let restaurants = [{
+//     //         category: 1,
+//     //         cnpj: "743898765",
+//     //         description: "Burgers",
+//     //         image: [],
+//     //         name: "Mc'Donalds",
+//     //         note: 4.6,
+//     //         shopping: "1232324",
+//     //         wait_time: "00:15:00"
+//     //     },
+//     //     {
+//     //         category: 1,
+//     //         cnpj: "743898766",
+//     //         description: "Burgers",
+//     //         image: [],
+//     //         name: "Mc'Donalds",
+//     //         note: 4.6,
+//     //         shopping: "1232324",
+//     //         wait_time: "00:15:00"
+//     //     }
+//     // ];
+
+//     return restaurants;
+// }
 
 export async function getRestaurantMenu() {
     let menu = [{
@@ -220,15 +235,15 @@ export async function getRestaurantMenu() {
 
 export async function getRestaurantCategories() {
     let categories = [{
-            id: 1,
+            id: 0,
             name: "Bebida"
         },
         {
-            id: 2,
+            id: 1,
             name: "Sanduíches"
         },
         {
-            id: 3,
+            id: 2,
             name: "Sorvetes"
         }
     ];
@@ -257,24 +272,24 @@ export async function getItem(itemId) {
 }
 
 export async function getShopping() {
-    // let shopping = {}
-    // try {
-    //     if (!cnpj) throw 'cnpj value must be passed'
-    //     let route = API_URL + BASE_PATH + cnpj
-    //     shopping = await axios.get(route)
-    // } catch(err) {
-    //     return {
-    //         status: 'error',
-    //         payload: err
-    //     }
-    // }
+    let shopping = {}
+    try {
+        if (!cnpj) throw 'cnpj value must be passed'
+        let route = API_URL + BASE_PATH + cnpj
+        shopping = await axios.get(route)
+    } catch (err) {
+        return {
+            status: 'error',
+            payload: err
+        }
+    }
 
-    let shopping = {
-        name: "Shopping do Zé",
-        city: "Brasília",
-        state: "DF",
-        neighborhood: "Rua do jão"
-    };
+    // let shopping = {
+    //     name: "Shopping do Zé",
+    //     city: "Brasília",
+    //     state: "DF",
+    //     neighborhood: "Rua do jão"
+    // };
 
     return shopping;
 }
