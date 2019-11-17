@@ -90,7 +90,7 @@ export default new Router({
                     "categories",
                 ])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/item/:id",
@@ -103,9 +103,9 @@ export default new Router({
             path: "/sacola",
             name: "order-bag",
             components: {
-                default: HocComponent(OrderBagPage, ["shopping", "restaurant", "user"])
+                default: HocComponent(OrderBagPage, ["shopping", "restaurant", "user", "usingCard"])
             },
-            beforeEnter: ifAuthenticated
+            //beforeEnter: ifAuthenticated
         },
         {
             path: "/auth",

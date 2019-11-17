@@ -16,7 +16,10 @@
       </div>
     </div>
     <div class="floating_card" id="foods">
-      <div class="floating_card__restaurant" id="items">
+      <div v-if="items == null || items.length === 0" class="floating_card__restaurant" id="items">
+        <h5 class="mb-0" id="restaurant-title">Sacola vazia :(</h5>
+      </div>
+      <div v-else class="floating_card__restaurant" id="items">
         <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
         <p v-if="restaurant">{{ restaurant.orderTime }}</p>
         <div v-if="items">
@@ -26,16 +29,26 @@
             :name="item.name"
             :ammount="item.ammount"
             @changeQtd="handleAmmount($event, index)"
+            @deleteItem="deleteItem($event, index)"
           />
         </div>
       </div>
-
       <div class="floating_card__price">
-        <p v-if="shoppingCNPJ">
-          <a class="palanquin" v-bind:href="'/shopping/' + shoppingCNPJ">
-            <b>Adicionar mais itens</b>
-          </a>
-        </p>
+        <v-row id="buttons-row">
+          <v-spacer></v-spacer>
+          <p v-if="shoppingCNPJ">
+            <a class="palanquin" v-bind:href="'/shopping/' + shoppingCNPJ">
+              <b>Adicionar mais itens</b>
+            </a>
+          </p>
+          <v-spacer></v-spacer>
+          <p>
+            <a @click="removeItems()" class="palanquin">
+              <b>Esvaziar sacola</b>
+            </a>
+          </p>
+          <v-spacer></v-spacer>
+        </v-row>
         <div class="floating_card__price__total">
           <div class="floating_card__price__total__text">
             <p class="palanquin">Total</p>
@@ -51,18 +64,21 @@
         <div class="floating_card__payment-method__title">
           <h6 class="mb-2">Forma de Pagamento</h6>
         </div>
-        <div class="floating_card__payment-method__credit">
-          <p>
+        <div v-if="selectedCard" class="floating_card__payment-method__credit">
+          <p v-if="selectedCard">
             Cartão no app
-            <br />**** 3387
+            <br />{{ selectedCard.number }}
           </p>
-          <a href="#" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
+          <a href="æcartoes/bag" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
-        <div v-if="cpf" class="floating_card__payment-method__cpf">
+        <div v-else class="floating_card__payment-method__credit" id="no-card" @click="selectCard">
+          <b>Selecione a forma de pagamento</b>
+        </div>
+        <div class="floating_card__payment-method__cpf">
           <div v-if="user">
             <v-form ref="form" v-model="valid">
               <v-col cols="12" md="6">
-                <v-text-field color="#e18855" v-model="cpf" :rules="cpfRules" label="CPF" required></v-text-field>
+                <v-text-field color="#e18855" v-model="cpf" :rules="cpfRules" label="CPF"></v-text-field>
               </v-col>
             </v-form>
           </div>
@@ -142,8 +158,8 @@
 
 <script>
 import restaurantItem from "./BagItem.vue";
+import { handleAmmount, getItems, removeItems } from "../../services/context";
 import Navbar from "../../components/Navbar";
-import { handleAmmount, getItems } from "../../services/context";
 import services from '../../services/ServicesFacade'
 
 export default {
@@ -159,9 +175,8 @@ export default {
       cpf: "",
       error: false,
       cpfRules: [
-        v => !!v || "Campo obrigatório",
         v =>
-          (v && v.length >= 11) ||
+          (v && v.length >= 11 || v.length === 0) ||
           "CPF deve ser igual a 11 caracteres e não deve conter pontos ou traços"
       ],
       dialog: false,
@@ -210,6 +225,14 @@ export default {
   methods: {
     handleAmmount,
     getItems,
+    removeItems,
+    selectCard: function () {
+      this.$router.push('/cartoes/bag')
+    },
+    deleteItem: function(item, index) {
+      this.items.splice(index, 1);
+      window.localStorage.setItem("order-bag", JSON.stringify(this.items));
+    },
     acceptError: function () {
       this.error = false;
     },
@@ -218,7 +241,7 @@ export default {
     },
     requestOrder: async function(){
       let order = {
-        cpf_user: this.cpf,
+        cpf_user: this.user.cpf,
         cnpj_restaurant: this.restaurant.cnpj,
         value: this.total,
         items: []
@@ -257,8 +280,21 @@ export default {
 </script>
 
 <style lang="scss">
+#buttons-row {
+  max-width: 100vw;
+}
+
 #first-card {
   margin-top: 56px;
+}
+
+#no-card {
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+  color: $main-color;
 }
 
 .order-bag {
@@ -456,6 +492,7 @@ export default {
   &__buttons{
     justify-content: center;
     display: flex;
+    max-width: 100vw;
   }
 }
 

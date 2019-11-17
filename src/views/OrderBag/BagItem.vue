@@ -13,6 +13,10 @@
         src="@/assets/images/plus.svg"
         class="qrc-bag-item__image__content"
       />
+      <img
+        @click="handleDelete()"
+        src="@/assets/images/delete.svg"
+      />
     </div>
   </div>
 </template>
@@ -36,7 +40,10 @@ export default {
     }
   },
   methods: {
-    handleQtd
+    handleQtd,
+    handleDelete: function() {
+      this.$emit('deleteItem')
+    }
   }
 };
 </script>
@@ -54,7 +61,8 @@ export default {
     color: #797979;
   }
   &__image {
-    width: 20%;
+    width: 30%;
+    max-width: 100px;
     float: right;
     display: flex;
     align-items: center;

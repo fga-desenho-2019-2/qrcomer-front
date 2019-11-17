@@ -1,10 +1,11 @@
 import HttpClientBuilder from "../infra/HttpClientBuilder.js";
+import API_URL from './mainService'
 
 export default class AuthService {
     constructor() {
         this.client = HttpClientBuilder.buildClient({
             // TO-DO: remove hard coded
-            baseURL: 'http://0.0.0.0:8000/'
+            baseURL: API_URL
         });
     }
 
@@ -19,7 +20,7 @@ export default class AuthService {
             last_name: params.last_name,
         };
         
-        let response = await this.client.post(`api/user/`, body);
+        let response = await this.client.post(`/api/user/`, body);
         return response;
     }
 }
