@@ -241,7 +241,7 @@ export default {
     },
     requestOrder: async function(){
       let order = {
-        cpf_user: this.cpf,
+        cpf_user: this.user.cpf,
         cnpj_restaurant: this.restaurant.cnpj,
         value: this.total,
         items: []
