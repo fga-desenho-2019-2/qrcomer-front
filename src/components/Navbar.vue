@@ -24,29 +24,30 @@
           <span class="font-weight-light">Comer</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn class="mr-2 text-shadow" v-if="isAuthenticated" @click="logout" text>
-          <v-icon
-            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-          >mdi-close</v-icon>Deslogar
+        <v-btn 
+            class="mr-2 text-shadow" 
+            v-if="isAuthenticated" 
+            @click="logout" 
+            icon>
+          <v-icon>mdi-logout</v-icon>
         </v-btn>
-        <v-btn
-          v-else-if="!isAuthenticated"
-          text
-          tile
-          @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
-          href="#"
-        >
-          <span class="mr-2 text-shadow">Login</span>
-        </v-btn>
-        <v-btn
-          v-else-if="!isAuthenticated"
-          text
-          tile
-          @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
-          href="#"
-        >
-          <span class="mr-2 text-shadow">Cadastrar</span>
-        </v-btn>
+        <template v-else-if="!isAuthenticated">
+            <v-btn
+                text
+                tile
+                @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
+                href="#"
+                >
+                <span class="mr-2 text-shadow">Login</span>
+                </v-btn>
+                <v-btn
+                text
+                tile
+                @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
+                href="#">
+                <span class="mr-2 text-shadow">Cadastrar</span>
+            </v-btn>
+        </template>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='order-bag'">

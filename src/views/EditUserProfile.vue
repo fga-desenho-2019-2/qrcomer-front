@@ -25,10 +25,6 @@
             </v-col>
 
             <v-col cols="12" md="6" class="pb-0">
-              <v-text-field v-model="userCopy.telephone" label="Telefone" required color="#e18855"></v-text-field>
-            </v-col>
-
-            <v-col cols="12" md="6" class="pb-0">
               <v-text-field v-model="userCopy.cpf" label="CPF" required color="#e18855"></v-text-field>
             </v-col>
           </v-row>

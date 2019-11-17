@@ -12,11 +12,7 @@ export default class AuthService {
         let body = {
             cpf: params.cpf,
             password: params.password,
-            birth_date: params.birth_date,
-            sex: params.sex,
             email: params.email,
-            first_name: params.first_name,
-            last_name: params.last_name,
         };
         
         let response = await this.client.post(`api/user/`, body);

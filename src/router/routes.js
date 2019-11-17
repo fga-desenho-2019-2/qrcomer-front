@@ -112,8 +112,7 @@ export default new Router({
             name: "auth",
             components: {
                 default: Auth
-            },
-            beforeEnter: ifAuthenticated,
+            }
         },
         {
             path: '/cartoes/:from?',
