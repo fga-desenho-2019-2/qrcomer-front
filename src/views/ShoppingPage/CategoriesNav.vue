@@ -127,13 +127,13 @@ export default {
   z-index: 3;
 
   &__text {
-    font-size: 15px;
+    font-size: 16px;
     margin-bottom: 0;
   }
 
   &__arrow {
     position: absolute;
-    left: 10px;
+    right: 15px;
     transform: rotate(180deg);
   }
 }

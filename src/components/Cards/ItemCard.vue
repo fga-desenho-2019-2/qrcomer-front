@@ -111,18 +111,34 @@ export default {
     }
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 320px) {
   .qrc-item {
     .qrc-item-name {
-        font-size: 10px;
+        font-size: 12px;
     }
     
     .qrc-item-description{
-        font-size: 8px;
+        font-size: 9px;
     }
 
     .qrc-item-value{
         font-size: 10px;
+    }
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .qrc-item {
+    .qrc-item-name {
+        font-size: 12px;
+    }
+    
+    .qrc-item-description{
+        font-size: 10px;
+    }
+
+    .qrc-item-value{
+        font-size: 12px;
     }
   }
 }
