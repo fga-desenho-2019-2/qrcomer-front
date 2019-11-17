@@ -29,7 +29,7 @@ const ifAuthenticated = (to, from, next) => {
         next();
         return;
     }
-    next("/auth");
+    next("/auth?loginType=true");
 };
 
 Vue.use(Router);
