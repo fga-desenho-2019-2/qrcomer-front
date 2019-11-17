@@ -107,17 +107,17 @@ export async function deleteCard() {
 }
 
 import HttpClientBuilder from "../infra/HttpClientBuilder.js";
+import API_URL from "./mainService.js";
 
 export default class UserService {
     constructor() {
         this.client = HttpClientBuilder.buildClient({
-            // TO-DO: remove hard coded
-            baseURL: 'http://0.0.0.0:8000/'
+            baseURL: API_URL
         });
     }
 
     async getUser(cpf) {
-        let response = await this.client.get(`api/get_user/${cpf}`);
+        let response = await this.client.get(`/get_user/${cpf}`);
         return response;
     }
 
@@ -128,7 +128,7 @@ export default class UserService {
             last_name: params.last_name,
             email: params.email
         }
-        let response = await this.client.put(`api/edit_user/${cpf}`,body);
+        let response = await this.client.put(`/edit_user/${cpf}`,body);
         return response;
     }
 
@@ -137,7 +137,7 @@ export default class UserService {
             cpf: params.cpf,
             image: params.image
         }
-        let response = await this.client.post(`api/user/post_image`, body)
+        let response = await this.client.post(`/user/post_image`, body)
         return response;
     }
 }
