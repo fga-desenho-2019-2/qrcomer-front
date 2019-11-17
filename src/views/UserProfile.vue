@@ -24,10 +24,6 @@
         </v-row>
       </v-container>
     </div>
-
-    <v-bottom-navigation class="user-bottom-navigation" v-model="activeBtn" :input-value="showNav" color="white">
-      <v-btn to="./editar-usuario"><font color="white"><strong>ATUALIZAR</strong></font></v-btn>
-    </v-bottom-navigation>
   </v-content>
 </template>
 

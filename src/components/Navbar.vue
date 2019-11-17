@@ -64,11 +64,24 @@
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='user'">
-      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
         <v-app-bar-nav-icon
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           @click="drawer = !drawer"
         ></v-app-bar-nav-icon>
+        <v-spacer></v-spacer>   
+        <span style="color:black">
+          <center>MEU PERFIL</center>
+        </span>
+        <v-spacer></v-spacer>
+        <v-btn
+            icon
+            to="./editar-usuario">
+            <v-icon
+                class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+            >mdi-account-edit</v-icon>
+        </v-btn>
+        
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='shopping'">
@@ -101,12 +114,17 @@
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='edit-user'">
-      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
         <v-btn @click="routeTo('/usuario')" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
+        <v-spacer></v-spacer>   
+        <span style="color:black">
+          <center>EDITAR PERFIL</center>
+        </span>
+        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='item'">
