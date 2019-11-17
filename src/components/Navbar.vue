@@ -155,6 +155,49 @@
         <v-spacer></v-spacer>
       </v-app-bar>
     </template>
+    <template v-else-if="routeName ==='card_list'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-app-bar-nav-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          @click="drawer = !drawer"
+        ></v-app-bar-nav-icon>
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>CARTÕES</center>
+        </span>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='create_card'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-btn @click="routeTo('/cartoes')" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>NOVO CARTAO</center>
+        </span>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+    </template>
+    <template v-else-if="routeName ==='card'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-btn @click="routeTo('/cartoes')" icon>
+          <v-icon
+            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          >mdi-arrow-left</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <span style="color:black">
+          <center>CARTÃO</center>
+        </span>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+    </template>
     <v-navigation-drawer app clipped v-model="drawer" temporary color="#efefef">
       <v-list-item>
         <v-list-item-content>
@@ -200,10 +243,15 @@ export default {
         {
           title: "Shopping",
           icon: "mdi-store",
-          link: "/shopping/:cnpj"
+          link: `/shopping`
         },
         { title: "Minha sacola", icon: "mdi-shopping", link: "/sacola" },
-        { title: "Meu perfil", icon: "mdi-account", link: "/usuario" },
+        {
+          title: "Forma de pagamento",
+          icon: "mdi-card-bulleted",
+          link: "/cartoes"
+        },
+        { title: "Meu perfil", icon: "mdi-account", link: "/usuario" }
         // { title: "Sair", icon: "mdi-logout", link: "/logout" }
       ]
     };
@@ -211,12 +259,17 @@ export default {
   computed: mapGetters({
     isAuthenticated: "auth/isAuthenticated"
   }),
+  watch: {
+    shoppingCNPJ: function() {
+      this.items[1].link = `/shopping/${this.shoppingCNPJ}`;
+    }
+  },
   created() {
     this.getShoppingCNPJ();
   },
   methods: {
     clickFilter() {
-      this.$emit('clickFilter')
+      this.$emit("clickFilter");
     },
     floatingNav() {
       if (window.scrollY > 5) {
@@ -303,6 +356,7 @@ export default {
   background: #efefef;
   z-index: 999;
   color: $c-white;
+  max-width: 100vw;
 
   &.v-app-bar--is-scrolled {
     background: #efefef;

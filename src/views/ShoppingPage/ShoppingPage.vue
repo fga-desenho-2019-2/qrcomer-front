@@ -33,7 +33,7 @@
               :title="restaurant.name"
               :description="restaurant.description"
               :orderTime="restaurant.orderTime"
-              @restaurantClick="restaurantClick($event)"
+              @restaurantClick="restaurantClick(restaurant.cnpj)"
             />
           </div>
         </div>

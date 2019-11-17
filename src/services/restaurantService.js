@@ -77,7 +77,7 @@ export async function getRestaurant(cnpjRestaurant) {
     let restaurant = [
         {
             "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
+            "cnpj": "33345811000183",
             "name": "Mcdonalds",
             "description": "Burguer",
             "orderTime": "15-20 min",
