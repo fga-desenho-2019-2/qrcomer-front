@@ -150,14 +150,7 @@
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
-
         <v-spacer></v-spacer>
-        <span>{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
-        <v-btn v-if="isAuthenticated" @click="logout" text>
-          <v-icon
-            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-          >mdi-close</v-icon>Deslogar
-        </v-btn>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='menu'">
@@ -312,7 +305,7 @@ export default {
     routeTo,
     logout: function() {
       this.$store.dispatch("auth/AUTH_LOGOUT").then(() => {
-        this.routeTo("/auth");
+        this.routeTo("/auth/login");
       });
     },
     getShoppingCNPJ: function() {
