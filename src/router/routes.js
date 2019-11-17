@@ -16,16 +16,11 @@ import CardShow from '../views/Cards/CardShow'
 import CreateCard from '../views/Cards/CreateCard'
 import OrderPage from '@/views/Order/Order'
 
-
-// const ifNotAuthenticated = (to, from, next) => {
-//     if (!store.getters.isAuthenticated) {
-//         next()
-//         return
-//     }
-//     next('/')
-// }
-
 const ifAuthenticated = (to, from, next) => {
+    if(to.name === "shopping") {
+        localStorage.setItem('shoppingCNPJ', to.params.cnpj)
+    }
+
     if (store.getters["auth/isAuthenticated"]) {
         next();
         return;
