@@ -36,7 +36,7 @@
             <v-btn
                 text
                 tile
-                @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
+                @click="routeTo('/auth/login')"
                 href="#"
                 >
                 <span class="mr-2 text-shadow">Login</span>
@@ -44,7 +44,7 @@
                 <v-btn
                 text
                 tile
-                @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
+                @click="routeTo('/auth/register')"
                 href="#">
                 <span class="mr-2 text-shadow">Cadastrar</span>
             </v-btn>

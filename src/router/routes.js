@@ -108,7 +108,7 @@ export default new Router({
             beforeEnter: ifAuthenticated
         },
         {
-            path: "/auth",
+            path: "/auth/:type",
             name: "auth",
             components: {
                 default: Auth

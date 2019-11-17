@@ -110,12 +110,12 @@
               Talvez você esteja querendo
               <a
                 href="#"
-                @click="routeTo({ path: '/auth', query: { loginType: false }})"
+                @click="routeTo('/auth/register')"
                 v-if="loginType"
               >criar uma conta?</a>
               <a
                 href="#"
-                @click="routeTo({ path: '/auth', query: { loginType: true }})"
+                @click="routeTo('/auth/login')"
                 v-else
               >fazer login?</a>
             </p>
@@ -161,16 +161,18 @@ export default {
     registerUser
   },
   watch: {
-    "$route.query.loginType": {
+    "$route.params": {
       handler: function(loginType) {
         this.loginType = loginType;
       },
     }
   },
   created() {
-    this.$route.query.loginType
-      ? (this.loginType = true)
-      : (this.loginType = false);
+    if (this.$route.params.type === "login" ) {
+        this.loginType = true
+    }else {
+        this.loginType = false
+    }
   }
 };
 </script>
