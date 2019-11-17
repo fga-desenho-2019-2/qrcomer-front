@@ -14,17 +14,13 @@ import HocComponent from '../components/HocComponent'
 import CardList from '../views/Cards/CardList.vue'
 import CardShow from '../views/Cards/CardShow'
 import CreateCard from '../views/Cards/CreateCard'
-
-
-// const ifNotAuthenticated = (to, from, next) => {
-//     if (!store.getters.isAuthenticated) {
-//         next()
-//         return
-//     }
-//     next('/')
-// }
+import OrderPage from '@/views/Order/Order'
 
 const ifAuthenticated = (to, from, next) => {
+    if(to.name === "shopping") {
+        localStorage.setItem('shoppingCNPJ', to.params.cnpj)
+    }
+
     if (store.getters["auth/isAuthenticated"]) {
         next();
         return;
@@ -120,6 +116,13 @@ export default new Router({
             name: 'card_list',
             components: {
                 default: HocComponent(CardList, ['cards'])
+            }
+        },
+        {
+            path: '/pedido',
+            name: 'order',
+            components: {
+                default: HocComponent(OrderPage, ['user'])
             }
         },
         {
