@@ -57,11 +57,9 @@
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           @click="drawer = !drawer"
         ></v-app-bar-nav-icon>
-        <v-spacer></v-spacer>
-        <span style="color:black">
-          <center>SACOLA</center>
+        <span class="nav-name" style="color:black">
+          SACOLA
         </span>
-        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='user'">
@@ -91,11 +89,9 @@
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           @click="drawer = !drawer"
         ></v-app-bar-nav-icon>
-        <v-spacer></v-spacer>
-        <span style="color:black">
-          <center>SHOPPING</center>
-        </span>
-        <v-spacer></v-spacer>
+        <span class="nav-name" style="color:black">
+          SHOPPING
+          </span>
         <img @click="clickFilter" id="filter" src="~@/assets/images/filter.svg" />
       </v-app-bar>
     </template>
@@ -106,12 +102,9 @@
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
-
-        <v-spacer></v-spacer>
-        <span style="color:black">
-          <center>CATEGORIA</center>
+        <span class="nav-name" style="color:black">
+          CATEGORIA
         </span>
-        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='edit-user'">
@@ -136,11 +129,9 @@
           >mdi-arrow-left</v-icon>
         </v-btn>
 
-        <v-spacer></v-spacer>
-        <span style="color:black">
-          <center>ITEM</center>
+        <span class="nav-name" style="color:black">
+          ITEM
         </span>
-        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName === 'auth'">
@@ -160,12 +151,9 @@
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
-
-        <v-spacer></v-spacer>
-        <span style="color:black">
-          <center>RESTAURANTE</center>
+        <span class="nav-name" style="color:black">
+          RESTAURANTE
         </span>
-        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='card_list'">
@@ -174,11 +162,9 @@
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           @click="drawer = !drawer"
         ></v-app-bar-nav-icon>
-        <v-spacer></v-spacer>
-        <span style="color:black">
+        <span class="nav-name" style="color:black">
           <center>CARTÕES</center>
         </span>
-        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='create_card'">
@@ -188,12 +174,9 @@
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
-
-        <v-spacer></v-spacer>
-        <span style="color:black">
+        <span class="nav-name" style="color:black">
           <center>NOVO CARTAO</center>
         </span>
-        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='card'">
@@ -203,12 +186,9 @@
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
-
-        <v-spacer></v-spacer>
-        <span style="color:black">
+        <span class="nav-name" style="color:black">
           <center>CARTÃO</center>
         </span>
-        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <v-navigation-drawer app clipped v-model="drawer" temporary color="#efefef">
@@ -316,6 +296,13 @@ export default {
 </script>
 
 <style lang="scss">
+.nav-name {
+  color: black;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 #filter {
   width: 20px;
 }
@@ -380,6 +367,7 @@ export default {
   background: #efefef;
   z-index: 999;
   color: $c-white;
+  max-width: 100vw;
 
   &.v-app-bar--is-scrolled {
     background: #efefef;

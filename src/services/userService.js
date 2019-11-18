@@ -5,7 +5,7 @@ export async function getUser() {
         email: "user@email.com",
         telephone: "(XX) XXXXX-XXXX",
         password: "*********",
-        cpf: "XXX.XXX.XXX-XX"
+        cpf: "05333208107"
       }
 
   //   axios
