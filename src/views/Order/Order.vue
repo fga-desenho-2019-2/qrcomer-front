@@ -1,5 +1,6 @@
 <template >
     <v-content id="order">
+        <Navbar/>
         <div>
             <v-tabs 
                 v-model="orderTab" 
@@ -61,10 +62,12 @@
 <script>
 import OrderItem from '@/components/Cards/OrderItem'
 import services from '../../services/ServicesFacade'
+import Navbar from '@/components/Navbar'
 
 export default {
     components: {
-        OrderItem
+        OrderItem,
+        Navbar
     },
     data() {
         return {

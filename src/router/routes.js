@@ -15,6 +15,7 @@ import CardList from '../views/Cards/CardList.vue'
 import CardShow from '../views/Cards/CardShow'
 import CreateCard from '../views/Cards/CreateCard'
 import OrderPage from '@/views/Order/Order'
+import Navbar from '@/components/Navbar'
 
 const ifAuthenticated = (to, from, next) => {
     if(to.name === "shopping") {
@@ -122,7 +123,7 @@ export default new Router({
             path: '/pedido',
             name: 'order',
             components: {
-                default: HocComponent(OrderPage, ['user', "orders"])
+                default: HocComponent(OrderPage),
             }
         },
         {

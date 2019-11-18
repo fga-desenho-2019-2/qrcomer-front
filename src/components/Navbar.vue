@@ -60,6 +60,17 @@
         </span>
       </v-app-bar>
     </template>
+    <template v-else-if="routeName ==='order'">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
+        <v-app-bar-nav-icon
+          class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+          @click="drawer = !drawer"
+        ></v-app-bar-nav-icon>
+        <span class="nav-name" style="color:black">
+          PEDIDOS
+        </span>
+      </v-app-bar>
+    </template>
     <template v-else-if="routeName ==='user'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
         <v-app-bar-nav-icon
