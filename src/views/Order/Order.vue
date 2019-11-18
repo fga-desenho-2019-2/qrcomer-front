@@ -1,5 +1,5 @@
-<template>
-    <v-content id="order">
+<template >
+    <v-content id="order" >
         <div>
             <v-tabs 
                 v-model="orderTab" 
@@ -16,6 +16,7 @@
             </v-tabs>
 
             <v-tabs-items 
+                v-if="this.orders && this.orders[0].restaurant"
                 v-model="orderTab"
                 class="orderContent">
                 <v-tab-item
@@ -38,14 +39,6 @@
                     
                 <v-tab-item
                     value="andamento">
-                    <OrderItem 
-                        status="AND"
-                        id="id3"
-                        password="3321"
-                        restaurant="Mc donalds"
-                        :itens="['Sunday', 'Big Mac']"
-                        :avaliacao="3"
-                    />
                 </v-tab-item>
             </v-tabs-items>
         </div>
@@ -55,6 +48,7 @@
 
 <script>
 import OrderItem from '@/components/Cards/OrderItem'
+import services from '../../services/ServicesFacade'
 
 export default {
     components: {
@@ -63,40 +57,15 @@ export default {
     data() {
         return {
             orderTab: null,
-            orders: [
-                {
-                "cpf_user":"05333208107",
-                "cnpj_restaurant":"33345811000183",
-                "value":30.59,
-                "date": "Seg, 22 de agosto de 2019",
-                "restaurant": {
-                    name: "Mc Donalds",
-                    cnpj: 12345678
-                },
-                "shopping": "ParkShopping",
-                "note": 4.5,
-                "items":[
-                    {
-                    "name":"Combo Big Mac",
-                    "value":22.19,
-                    "observation":"sem pão",
-                    "quantity":1
-                    },
-                    {
-                    "name":"Batata",
-                    "value":3.2,
-                    "observation":"",
-                    "quantity":1
-                    },
-                    {
-                    "name":"Refrigerante",
-                    "value":5.2,
-                    "observation":"",
-                    "quantity":1
-                    }]
-                }
-            ]
+            orders: null
         }
+    },
+    async beforeCreate() {
+        this.orders = await services.getOrders()
+        Promise.all(this.orders.forEach(async order => {
+            order.restaurant = await services.getRestaurant(0)
+        }))
+        console.log(this.orders)
     },
     methods: {
         changeRating() {

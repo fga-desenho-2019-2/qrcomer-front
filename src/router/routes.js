@@ -122,7 +122,7 @@ export default new Router({
             path: '/pedido',
             name: 'order',
             components: {
-                default: HocComponent(OrderPage, ['user'])
+                default: HocComponent(OrderPage, ['user', "orders"])
             }
         },
         {

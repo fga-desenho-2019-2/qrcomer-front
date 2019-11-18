@@ -15,7 +15,8 @@ const HocComponent = (component, neededSetups) => {
                     categories: this.categories,
                     foodItem: this.foodItem,
                     cards: this.cards,
-                    selectedCard: this.selectedCard
+                    selectedCard: this.selectedCard,
+                    orders: this.orders
                 }
             })
         },
@@ -30,7 +31,8 @@ const HocComponent = (component, neededSetups) => {
                 categories: null,
                 foodItem: null,
                 cards: null,
-                selectedCard: null
+                selectedCard: null,
+                orders: null
             }
         },
         created() {
@@ -91,6 +93,12 @@ const HocComponent = (component, neededSetups) => {
                         if(id){
                             this.selectedCard = await Services.getSelectedCard(id)
                         }
+                    }
+                    if(neededSetups.find(element => element === 'orders')) {
+                        this.orders = await Services.getOrders()
+                        await this.orders.forEach(async order => {
+                            order.restaurant = await Services.getRestaurant(0)
+                        })
                     }
                 }
             }
