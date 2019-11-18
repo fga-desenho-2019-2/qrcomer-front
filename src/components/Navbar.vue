@@ -24,29 +24,31 @@
           <span class="font-weight-light">Comer</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn class="mr-2 text-shadow" v-if="isAuthenticated" @click="logout" text>
-          <v-icon
-            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-          >mdi-close</v-icon>Deslogar
+        <v-btn 
+            class="mr-2 text-shadow" 
+            v-if="isAuthenticated" 
+            @click="logout" 
+            icon>
+          <v-icon>mdi-logout</v-icon>
+          Sair
         </v-btn>
-        <v-btn
-          v-else-if="!isAuthenticated"
-          text
-          tile
-          @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
-          href="#"
-        >
-          <span class="mr-2 text-shadow">Login</span>
-        </v-btn>
-        <v-btn
-          v-else-if="!isAuthenticated"
-          text
-          tile
-          @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
-          href="#"
-        >
-          <span class="mr-2 text-shadow">Cadastrar</span>
-        </v-btn>
+        <template v-else-if="!isAuthenticated">
+            <v-btn
+                text
+                tile
+                @click="routeTo('/auth/login')"
+                href="#"
+                >
+                <span class="mr-2 text-shadow">Login</span>
+                </v-btn>
+                <v-btn
+                text
+                tile
+                @click="routeTo('/auth/register')"
+                href="#">
+                <span class="mr-2 text-shadow">Cadastrar</span>
+            </v-btn>
+        </template>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='order-bag'">
@@ -72,11 +74,24 @@
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='user'">
-      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
         <v-app-bar-nav-icon
           class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           @click="drawer = !drawer"
         ></v-app-bar-nav-icon>
+        <v-spacer></v-spacer>   
+        <span style="color:black">
+          <center>MEU PERFIL</center>
+        </span>
+        <v-spacer></v-spacer>
+        <v-btn
+            icon
+            to="./editar-usuario">
+            <v-icon
+                class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
+            >mdi-account-edit</v-icon>
+        </v-btn>
+        
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='shopping'">
@@ -104,12 +119,17 @@
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='edit-user'">
-      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="red-header">
+      <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
         <v-btn @click="routeTo('/usuario')" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
+        <v-spacer></v-spacer>   
+        <span style="color:black">
+          <center>EDITAR PERFIL</center>
+        </span>
+        <v-spacer></v-spacer>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='item'">
@@ -132,14 +152,7 @@
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
         </v-btn>
-
         <v-spacer></v-spacer>
-        <span>{{isAuthenticated ? 'Logado' : 'Não logado'}}</span>
-        <v-btn v-if="isAuthenticated" @click="logout" text>
-          <v-icon
-            class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
-          >mdi-close</v-icon>Deslogar
-        </v-btn>
       </v-app-bar>
     </template>
     <template v-else-if="routeName ==='menu'">
@@ -213,6 +226,18 @@
             </v-list-item-content>
           </a>
         </v-list-item>
+        <v-list-item v-if="isAuthenticated" @click="logout"  link>
+          <a href="/" style="color: transparent">
+            <v-list-item-icon>
+              <v-icon style="color: black" @click="routeTo('/')">mdi-logout</v-icon>
+            </v-list-item-icon>
+          </a>
+          <a href="/" style="color: transparent">
+            <v-list-item-content>
+              <v-list-item-title style="color: black">Sair</v-list-item-title>
+            </v-list-item-content>
+          </a>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -273,7 +298,7 @@ export default {
     routeTo,
     logout: function() {
       this.$store.dispatch("auth/AUTH_LOGOUT").then(() => {
-        this.routeTo("/auth");
+        this.routeTo("/auth/login");
       });
     },
     getShoppingCNPJ: function() {

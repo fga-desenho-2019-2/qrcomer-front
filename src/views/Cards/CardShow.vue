@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <Navbar />
-    <v-content v-if="selectedCard" class="create-card-page d-flex flex-column pt-0">
+    <v-content class="create-card-page d-flex flex-column pt-0">
       <div>
         <div class="credit-card-area">
           <div class="credit-card-area__card">
@@ -21,7 +21,7 @@
                 <v-text-field
                   read-only
                   disabled
-                  :value="selectedCard.number"
+                  :value="cardData.number"
                   label="Numero do Cartão"
                   color="#e18855"
                 ></v-text-field>
@@ -31,7 +31,7 @@
                 <v-text-field
                   read-only
                   disabled
-                  :value="selectedCard.cpf_cnpj"
+                  :value="cardData.cpf_cnpj"
                   label="CPF do Titular"
                   color="#e18855"
                 ></v-text-field>
@@ -51,7 +51,7 @@
                 <v-text-field
                   read-only
                   disabled
-                  :value="selectedCard.cvv"
+                  :value="cardData.cvv"
                   label="CVV"
                   color="#e18855"
                 ></v-text-field>
@@ -61,7 +61,7 @@
                 <v-text-field
                   read-only
                   disabled
-                  :value="selectedCard.holder_name"
+                  :value="cardData.holder_name"
                   label="Nome do Titular"
                   color="#e18855"
                 ></v-text-field>
@@ -84,43 +84,50 @@
 <script>
 import { card } from "creditcards/index";
 import moment from "moment";
-import services from "../../services/ServicesFacade";
 import Navbar from "../../components/Navbar";
+import User from "../../services/userService"
+import { routeTo } from "../../services/context";
+
+const user = new User();
 
 export default {
   components: {
     Navbar
   },
   data: () => ({
-    valid: true
+    valid: true,
+    cardData: []
   }),
-  props: {
-    selectedCard: {
-      required: true
-    }
-  },
   methods: {
     deleteCard: async function() {
-      let isDeleted = await services.deleteCard();
-      if (isDeleted) this.$router.go(-1);
+      let response = await user.deleteCard(this.$route.params.id)
+      if (response.data == 204) {
+          routeTo('/cartoes',this);
+      } else {
+          alert(response)
+      }
     }
+  },
+  async created() {
+      let response = await user.getCard(this.$route.params.id)
+      this.cardData =  response.data
   },
   computed: {
     nameUpperCase: function() {
-      if (this.selectedCard.holder_name)
-        return this.selectedCard.holder_name.toUpperCase();
+      if (this.cardData.holder_name)
+        return this.cardData.holder_name.toUpperCase();
       else return "Nome do Titular".toUpperCase();
     },
     formatedCardNumber: function() {
-      if (this.selectedCard.number) {
-        return card.format(this.selectedCard.number, " ");
+      if (this.cardData.number) {
+        return card.format(this.cardData.number, " ");
       } else {
         return "";
       }
     },
     formatedCardExpiration: function() {
-      if (this.selectedCard.validation) {
-        let exp = moment(this.selectedCard.validation);
+      if (this.cardData.validation) {
+        let exp = moment(this.cardData.validation);
         return exp.format("MM/YYYY");
       } else {
         return "MM/YYYY";
