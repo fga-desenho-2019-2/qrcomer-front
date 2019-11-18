@@ -58,7 +58,7 @@ export default new Router({
             components: {
                 default: HocComponent(CategoryPage, ["restaurantsByCategory"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/editar-usuario",
@@ -66,7 +66,7 @@ export default new Router({
             components: {
                 default: HocComponent(EditUserProfile, ["user"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/usuario",
@@ -74,7 +74,7 @@ export default new Router({
             components: {
                 default: HocComponent(UserProfile, ["user"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/restaurante/:cnpj",
@@ -86,22 +86,23 @@ export default new Router({
                     "categories",
                 ])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/item/:id",
             name: "item",
             components: {
                 default: HocComponent(ItemPage, ['foodItem'])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/sacola",
             name: "order-bag",
             components: {
-                default: HocComponent(OrderBagPage, ["shopping", "restaurant", "user", "usingCard"])
+                default: HocComponent(OrderBagPage, ["shopping", "restaurant", "usingCard"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/auth/:type",
@@ -115,28 +116,32 @@ export default new Router({
             name: 'card_list',
             components: {
                 default: HocComponent(CardList)
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: '/pedido',
             name: 'order',
             components: {
-                default: HocComponent(OrderPage, ['user'])
-            }
+                default: HocComponent(OrderPage),
+            },
+            beforeEnter: ifAuthenticated
         },
         {
-            path: '/novo-cartao',
+            path: '/novo-cartao/:from?',
             name: 'create_card',
             components: {
                 default: CreateCard
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: '/cartao/:id',
             name: 'card',
             components: {
                 default: HocComponent(CardShow, ['selectedCard'])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
     ]
 });

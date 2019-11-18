@@ -188,7 +188,10 @@ export default {
                 this.errors = response.data;
                 return;
             } else {
-                routeTo('/cartoes',this);
+                if(this.$route.params.from === 'bag')
+                  routeTo('/cartoes/bag',this);
+                else 
+                  routeTo('/cartoes',this);
             }
         }
     },

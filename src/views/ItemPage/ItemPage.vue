@@ -89,7 +89,7 @@ export default {
       //let restaurantCNPJ = localStorage.restaurantCNPJ ? localStorage.restaurantCNPJ : null;
       let items = window.localStorage.getItem("order-bag") ? JSON.parse(window.localStorage.getItem("order-bag")) : null;
 
-      if(!items) {
+      if(!items || items.lenght === 0) {
         window.localStorage.setItem("restaurantCNPJ", this.item.restaurantCNPJ);
         this.item.observation = this.observation;
         this.item.ammount = 1;
