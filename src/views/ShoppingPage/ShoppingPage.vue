@@ -18,7 +18,7 @@
           <component
             v-bind:is="component1"
             v-if="shopping"
-            :title="shopping.name"
+            :name="shopping.name"
             image="https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg"
             :city="shopping.city"
             :state="shopping.state"
@@ -29,10 +29,10 @@
               v-bind:is="component2"
               v-for="restaurant in restaurants"
               :key="restaurant.cnpj"
-              :image="restaurant.image"
-              :title="restaurant.name"
+              :name="restaurant.name"
+              :image="restaurantImage(restaurant)"
               :description="restaurant.description"
-              :orderTime="restaurant.orderTime"
+              :wait_time="restaurant.wait_time"
               @restaurantClick="restaurantClick(restaurant.cnpj)"
             />
           </div>
@@ -68,7 +68,8 @@ export default {
     },
     component3: function() {
       return "CategoriesNav";
-    }
+    },
+    
   },
   props: {
     shopping: {
@@ -98,6 +99,13 @@ export default {
     },
     restaurantClick: function(restaurant) {
       this.$router.replace({ path: `/restaurante/${restaurant}` });
+    },
+    restaurantImage: function(restaurant) {
+      console.log(restaurant)
+      console.log('=========================')
+      let imageUrl = 'http://restaurant.marques.rocks/api/restaurant-image/' + restaurant.cnpj
+      console.log(imageUrl)
+      return imageUrl
     }
   }
 };

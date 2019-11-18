@@ -7,9 +7,9 @@
           v-bind:is="component"
           v-for="restaurant in restaurants"
           :key="restaurant.cnpj"
-          :title="restaurant.name"
+          :name="restaurant.name"
           :description="restaurant.description"
-          :orderTime="restaurant.orderTime"
+          :wait_time="restaurant.wait_time"
           :image="restaurant.image"
           @restaurantClick="restaurantClick($event)"
         />

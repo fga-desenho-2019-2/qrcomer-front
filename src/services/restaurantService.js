@@ -1,375 +1,320 @@
-// import axios from 'axios'
-// import API_URL from './mainService'
+import axios from "axios";
+import API_URL from "./mainService";
 
-// const BASE_PATH = '/api/restaurant/'
+const BASE_PATH = "/api/restaurant/";
 
-export async function getAllRestaurants() {
+export async function getAllRestaurants(shoppingCnpj) {
     // Retrieves all restaurans from API
-    // let restaurants
-    // try {
-    //     const restaurantRoute = API_URL + BASE_PATH
-    //     restaurants = await axios.get(restaurantRoute)
-    // } catch (err) {
-    //     return {
-    //         status: 'error',
-    //         payload: err
-    //     }
-    // }
+    let restaurants
+    try {
+        const restaurantRoute = API_URL + '/api/restaurants'
+        restaurants = await axios.get(restaurantRoute)
+        restaurants = restaurants.data
+        restaurants = restaurants.filter(item => {
+            return item.shopping == shoppingCnpj
+        })
 
-    let restaurants = [
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Mcdonalds",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345677",
-            "name": "Burguer King",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345676",
-            "name": "Girrafas",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345675",
-            "name": "Geleia",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345674",
-            "name": "Mcdonalds",
-            "description": "$$ - Burguers",
-            "orderTime": "15-20 min"
+        console.log(restaurants)
+    } catch (err) {
+        return {
+            status: 'error',
+            payload: err
         }
-    ]
+    }
 
-    return restaurants
+    return restaurants;
 }
 
 export async function getRestaurant(cnpjRestaurant) {
     // Retrieve a single restaurant from API by restaurant_id
-    // let restaurant = {}
+    let restaurant = {}
 
-    // try {
-    //     if (!cnpjRestaurant) throw "cnpj must be a valid number"
-        
-    //     const route = API_URL + BASE_PATH + cnpjRestaurant
-    //     restaurant = await axios.get(route)
+    try {
+        if (!cnpjRestaurant) throw "cnpj must be a valid number"
 
-    // } catch(err) {
-    //     return {
-    //         status: 'error',
-    //         payload: err
-    //     }
-    // }
+        const route = API_URL + '/api/restaurant/' + cnpjRestaurant
+        restaurant = await axios.get(route)
 
-    let restaurant = [
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "33345811000183",
-            "name": "Mcdonalds",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
+    } catch (err) {
+        return {
+            status: 'error',
+            payload: err
         }
-    ]
+    }
 
-    return restaurant[cnpjRestaurant]
+    return restaurant.data;
 }
 
-export async function getRestaurantsByCategory() {
-    let restaurants = [
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Mcdonalds",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Burger King",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Girrafas",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Geleia",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-        {
-            "image": "https://nit.pt/wp-content/uploads/2019/04/5179b21fc1d50950b99b4eecaa48c614-754x394.jpg",
-            "cnpj": "12345678",
-            "name": "Madero",
-            "description": "Burguer",
-            "orderTime": "15-20 min",
-            "note": "4.8",
-            "price": "$$"
-        },
-    ]
+// export async function getRestaurantsByCategory() {
 
-    return restaurants
-}
+//     let restaurants = {}
 
-export async function getRestaurantMenu() {
-    let menu = [
-        {
-            id:1,
-            name: 'Combo Big Mac',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+//     try {
+//         if (!cnpjRestaurants) throw "cnpj must be a valid number"
+
+//         const route = API_URL + BASE_PATH + cnpjRestaurants
+//         restaurants = await axios.get(route)
+
+//     } catch (err) {
+//         return {
+//             status: 'error',
+//             payload: err
+//         }
+//     }
+//     // let restaurants = [{
+//     //         category: 1,
+//     //         cnpj: "743898765",
+//     //         description: "Burgers",
+//     //         image: [],
+//     //         name: "Mc'Donalds",
+//     //         note: 4.6,
+//     //         shopping: "1232324",
+//     //         wait_time: "00:15:00"
+//     //     },
+//     //     {
+//     //         category: 1,
+//     //         cnpj: "743898766",
+//     //         description: "Burgers",
+//     //         image: [],
+//     //         name: "Mc'Donalds",
+//     //         note: 4.6,
+//     //         shopping: "1232324",
+//     //         wait_time: "00:15:00"
+//     //     }
+//     // ];
+
+//     return restaurants;
+// }
+
+export async function getRestaurantMenu(cnpjRestaurant) {
+    let menu = [{
+            id: 1,
+            name: "Combo Big Mac",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
             value: 22.19,
-            img: require('@/assets/images/bigmac.svg'),
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
-            id:2,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 2,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
-            id:3,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 3,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
-            id:4,
-            name: 'Quarteirão',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 4,
+            name: "Quarteirão",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
-            id:5,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 5,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
-            id:6,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 6,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
-            id:7,
-            name: 'Quarteirão',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 7,
+            name: "Quarteirão",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
-            id:8,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 8,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
-            id:9,
-            name: 'Quarteirão',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 9,
+            name: "Quarteirão",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Bebida"
         },
         {
-            id:10,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 10,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Hamburguer"
         },
         {
-            id:11,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 11,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
-            id:12,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 12,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
         },
         {
-            id:13,
-            name: 'Quarteirão',
-            restaurantCNPJ: '0',
-            details: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-            value: 22.10,
-            img: require('@/assets/images/bigmac.svg'),
+            id: 13,
+            name: "Quarteirão",
+            restaurantCNPJ: "0",
+            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+            value: 22.1,
+            img: require("@/assets/images/bigmac.svg"),
             category: "Sorvete"
-        },
-    ]
+        }
+    ];
+
+    try {
+        let itens
+        let itemRoute = API_URL + '/api/items'
+        itens = await axios.get(itemRoute)
+        itens = itens.data
+        itens = itens.filter(item => {
+            return item.restaurant_cnpj == cnpjRestaurant
+        })
+        console.log(itens)
+        console.log('getRestaurantMenu')
+        return itens
+    } catch {
+        console.log('error')
+    }
 
     return menu;
 }
 
-export async function getRestaurantCategories() {
-    let categories = [
-        {
-            id: 0,
-            name: "Bebida"
-        },
-        {
-            id: 1,
-            name: "Hamburguer"
-        },
-        {
-            id: 2,
-            name: "Sorvete"
+export async function getRestaurantCategories(cnpjRestaurant) {
+    try {
+        let itens
+        let categories = []
+        let itemRoute = API_URL + '/api/items'
+        itens = await axios.get(itemRoute)
+        itens = itens.data
+        itens = itens.filter(item => {
+            return item.restaurant_cnpj == cnpjRestaurant
+        })
+        for(let item of itens) {
+            categories.push(item.category)
         }
-    ]
+        console.log(categories)
+        let categoryRoute = API_URL + '/api/item/category'
+        let allCategories = await axios.get(categoryRoute)
 
-    return categories
+        allCategories = allCategories.data
+        allCategories = allCategories.filter(item => {
+            return categories.find(i => i == item.id)
+        })
+
+        console.log(allCategories)
+        return allCategories
+    } catch {
+        console.log('error')
+    }
 }
 
 export async function getItem(itemId) {
-    let itens = [
-        {
-            id: 1,
-            name: "Combo Big Mac",
-            details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-            value: 22.19,
-            restaurantCNPJ: '0',
-            img: require("@/assets/images/bigmac.svg"),
-            category: "Hamburguer",
-            sidedish: [{
-              id: 0,
-              name: "Batata",
-              description: "Batatas Fritas",
-              selected: false,
-              value: 3.20,
-              qtd: 1
-            },
-            {
-              id: 1,
-              name: "Refrigerante",
-              description: "Coca Cola",
-              selected: false,
-              value: 5.20,
-              qtd: 1
-            },
-            {
-              id: 2,
-              name: "Molho Especial",
-              description: "Molho de Tomate",
-              selected: false,
-              value: 1.20,
-              qtd: 0
-            }
-    ,
-            {
-              id: 3,
-              name: "Salada",
-              description: "Sala de Tomate",
-              selected: false,
-              value: 10.20,
-              qtd: 0
-            }],
-          }
-    ]
-    return itens[itemId]
+    let itens = [{
+        category: "Hamburguer",
+        details: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+        id: 3,
+        image: "http://0.0.0.0:8001/api/item-image/3",
+        name: "Combo Big Mac",
+        restaurant_cnpj: "743898765",
+        sidedish: [{
+            description: "Batatas Fritas",
+            name: "Batata",
+            qtd: 1,
+            selected: false,
+            value: 3.2
+        }],
+        value: 22.19
+    }];
+    try {
+        let item
+        let route = API_URL + '/api/item/' + itemId
+        item = await axios.get(route)
+        console.log(item.data)
+        return item.data
+    } catch {
+        console.log('error')
+    }
+    return itens[itemId];
 }
 
-export async function getShopping() {
-    // let shopping = {}
-    // try {
-    //     if (!cnpj) throw 'cnpj value must be passed'
-    //     let route = API_URL + BASE_PATH + cnpj
-    //     shopping = await axios.get(route)
-    // } catch(err) {
-    //     return {
-    //         status: 'error',
-    //         payload: err
-    //     }
-    // }
-
-    let shopping = {
-        name: "Shopping do Zé",
-        city: "Brasília",
-        state: "DF",
-        neighborhood: "Rua do jão"
+export async function getShopping(cnpj) {
+    let shopping = {}
+    try {
+        if (!cnpj) {
+            throw 'cnpj value must be passed'
+        }
+        let route = API_URL + '/api/shopping/' + cnpj
+        shopping = await axios.get(route)
+        console.log(shopping.data)
+    } catch (err) {
+        return {
+            status: 'error',
+            payload: err
+        }
     }
 
-    return shopping
+    return shopping.data;
 }
 
 export async function getShoppingCategories() {
-    let categories = [
-        {
+    let categories = [{
             name: "Fast Food",
-            icon: require('../assets/images/categories/fastfood.png')
+            icon: require("../assets/images/categories/fastfood.png")
         },
         {
             name: "Japonesa",
-            icon: require('../assets/images/categories/japones.png')
+            icon: require("../assets/images/categories/japones.png")
         },
         {
             name: "Mexicana",
-            icon: require('../assets/images/categories/mexicana.png')
+            icon: require("../assets/images/categories/mexicana.png")
         },
         {
             name: "Pizza",
-            icon: require('../assets/images/categories/pizzas.png')
+            icon: require("../assets/images/categories/pizzas.png")
         }
-    ]
-    return categories
+    ];
+    return categories;
 }

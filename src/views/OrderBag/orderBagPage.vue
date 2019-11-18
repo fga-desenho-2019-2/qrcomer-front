@@ -21,7 +21,7 @@
       </div>
       <div v-else class="floating_card__restaurant" id="items">
         <h5 v-if="restaurant" class="mb-0" id="restaurant-title">{{ restaurant.name }}</h5>
-        <p v-if="restaurant">{{ restaurant.orderTime }}</p>
+        <p v-if="restaurant">{{ restaurant.wait_time }}</p>
         <div v-if="items">
           <restaurantItem
             v-for="(item, index) in items"

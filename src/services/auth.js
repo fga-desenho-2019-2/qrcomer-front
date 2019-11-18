@@ -1,5 +1,5 @@
 import HttpClientBuilder from "../infra/HttpClientBuilder.js";
-import API_URL from "./mainService" 
+import API_URL from "./mainService"
 
 export default class AuthService {
     constructor() {

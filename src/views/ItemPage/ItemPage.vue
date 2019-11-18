@@ -11,7 +11,7 @@
           <div v-if="item">
             <QrcItemDescription
               :key="item.id"
-              :img="item.img"
+              :img="itemImage(item)"
               :name="item.name"
               :details="item.details"
               :value="item.value"
@@ -86,11 +86,10 @@ export default {
       this.item.sidedish[index].selected = isSelected
     },
     addItem: function() {
-      //let restaurantCNPJ = localStorage.restaurantCNPJ ? localStorage.restaurantCNPJ : null;
       let items = window.localStorage.getItem("order-bag") ? JSON.parse(window.localStorage.getItem("order-bag")) : null;
 
       if(!items || items.lenght === 0) {
-        window.localStorage.setItem("restaurantCNPJ", this.item.restaurantCNPJ);
+        window.localStorage.setItem("restaurantCNPJ", this.item.restaurant_cnpj);
         this.item.observation = this.observation;
         this.item.ammount = 1;
         let itemsToSend = [];
@@ -101,7 +100,7 @@ export default {
       }
       else {
         let restaurantCNPJ = localStorage.restaurantCNPJ;
-        this.invalidRestaurant = restaurantCNPJ === this.item.restaurantCNPJ ? false : true;
+        this.invalidRestaurant = restaurantCNPJ === this.item.restaurant_cnpj ? false : true;
       }
   
       if(!this.invalidRestaurant) {
@@ -116,6 +115,10 @@ export default {
     },
     reset: function () {
       this.invalidRestaurant = false;
+    },
+    itemImage: function(item) {
+        let image = 'http://restaurant.marques.rocks/api/item-image/' + item.id
+        return image
     }
   }
 };

@@ -8,7 +8,7 @@
         :name="restaurant.name"
         :nota="restaurant.note"
         :type="restaurant.description"
-        :time="restaurant.orderTime"
+        :time="restaurant.wait_time"
         :img="restaurant.image"
       />
     </div>
@@ -35,7 +35,7 @@
             :key="item.id"
             :class="`item-${item.id}`"
             :id="item.id"
-            :img="item.img"
+            :img="itemImage(item)"
             :name="item.name"
             :details="item.details"
             :value="item.value"
@@ -97,12 +97,12 @@ export default {
   methods: {
     arrangeItems: async function() {
       this.categories.forEach(category => {
-        let categoryList = this.filterItens(category.name);
+        let categoryList = this.filterItens(category.id);
         this.categoriesData.push(categoryList);
       });
     },
     pageHandler: function(itemId) {
-      this.$router.replace({ path: `/item/${itemId}` });
+      this.$router.push(`/item/${itemId}`);
     },
     scrollToPlace: function(id) {
       let elmnt = document.getElementById(id);
@@ -113,6 +113,10 @@ export default {
         return item.category == category;
       });
       return filteredMenu;
+    },
+    itemImage: function(item) {
+        let image = 'http://restaurant.marques.rocks/api/item-image/' + item.id
+        return image
     }
   }
 };

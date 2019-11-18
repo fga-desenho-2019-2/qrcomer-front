@@ -1,7 +1,11 @@
 <template>
   <div class="overlay" :class="navStatus">
     <div class="filter-nav">
-      <img @click="handleNav" class="filter-nav__arrow" src="../../assets/images/arrow.svg" />
+      <img
+        @click="handleNav"
+        class="filter-nav__arrow"
+        src="../../assets/images/arrow.svg"
+      />
       <p class="filter-nav__text">FILTRO</p>
     </div>
     <div class="restaurant-filtering">
@@ -22,7 +26,7 @@
           v-bind:is="component"
           v-for="(category, index) in shoppingCategories"
           :key="category.name + index"
-          :title="category.name"
+          :name="category.name"
           :icon="category.icon"
           @categoryClick="handleClick($event)"
         />
@@ -33,10 +37,15 @@
           :key="restaurant.cnpj"
           class="restaurant-filtering__restaurants__restaurant"
         >
-          <p class="restaurant-filtering__restaurants__restaurant__name">{{ restaurant.name }}</p>
+          <p class="restaurant-filtering__restaurants__restaurant__name">
+            {{ restaurant.name }}
+          </p>
         </div>
       </div>
-      <div v-if="filteredRestaurants.length === 0" class="restaurant-filtering__warning">
+      <div
+        v-if="restaurants.length > 0 && filteredRestaurants.length === 0"
+        class="restaurant-filtering__warning"
+      >
         <h5>Não há restaurantes com esse nome</h5>
       </div>
     </div>

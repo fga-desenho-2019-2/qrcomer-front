@@ -5,9 +5,9 @@
         <img class="restaurant__content__img__content" :src="image" />
       </div>
       <div class="restaurant__content__text">
-        <p class="restaurant__content__text__title">{{ title }}</p>
+        <p class="restaurant__content__text__title">{{ name }}</p>
         <p class="restaurant__content__text__description">{{ description }}</p>
-        <p class="restaurant__content__text__orderTime">{{ orderTime }}</p>
+        <p class="restaurant__content__text__orderTime">{{ wait_time }}</p>
       </div>
       <div class="restaurant__content__arrow">
         <img src="../../assets/images/arrow-right.svg" />
@@ -20,7 +20,7 @@
 export default {
   name: "RestaurantCard",
   props: {
-    title: {
+    name: {
       type: String,
       required: true
     },
@@ -28,12 +28,12 @@ export default {
       type: String,
       required: true
     },
-    orderTime: {
+    wait_time: {
       type: String,
       required: true
     },
     image: {
-      type: String,
+      type: Array,
       required: true
     }
   },
