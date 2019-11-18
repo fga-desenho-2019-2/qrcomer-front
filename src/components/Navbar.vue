@@ -97,7 +97,7 @@
     </template>
     <template v-else-if="routeName ==='categoria'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
-        <v-btn @click="routeTo('/shopping/'+ shoppingCNPJ)" icon>
+        <v-btn @click="$router.go(-1)" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
@@ -109,7 +109,7 @@
     </template>
     <template v-else-if="routeName ==='edit-user'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
-        <v-btn @click="routeTo('/usuario')" icon>
+        <v-btn @click="$router.go(-1)" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
@@ -123,7 +123,7 @@
     </template>
     <template v-else-if="routeName ==='item'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
-        <v-btn @click="routeTo('/restaurante/'+ restaurantCNPJ)" icon>
+        <v-btn @click="$router.go(-1)" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
@@ -136,7 +136,7 @@
     </template>
     <template v-else-if="routeName === 'auth'">
       <v-app-bar app absolute id="grey-header">
-        <v-btn @click="routeTo('/')" icon>
+        <v-btn @click="$router.go(-1)" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
@@ -146,7 +146,7 @@
     </template>
     <template v-else-if="routeName ==='menu'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
-        <v-btn @click="routeTo('/shopping/'+ shoppingCNPJ)" icon>
+        <v-btn @click="$router.go(-1)" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
@@ -169,7 +169,7 @@
     </template>
     <template v-else-if="routeName ==='create_card'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
-        <v-btn @click="routeTo('/cartoes')" icon>
+        <v-btn @click="$router.go(-1)" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>
@@ -181,7 +181,7 @@
     </template>
     <template v-else-if="routeName ==='card'">
       <v-app-bar app elevate-on-scroll v-scroll="floatingNav" id="gray-header">
-        <v-btn @click="routeTo('/cartoes')" icon>
+        <v-btn @click="$router.go(-1)" icon>
           <v-icon
             class="d-flex d-sm-flex d-md-none d-lg-none text-shadow red-header--icon"
           >mdi-arrow-left</v-icon>

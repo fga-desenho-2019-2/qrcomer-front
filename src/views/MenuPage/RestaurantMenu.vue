@@ -102,7 +102,7 @@ export default {
       });
     },
     pageHandler: function(itemId) {
-      this.$router.replace({ path: `/item/${itemId}` });
+      this.$router.push(`/item/${itemId}`);
     },
     scrollToPlace: function(id) {
       let elmnt = document.getElementById(id);
