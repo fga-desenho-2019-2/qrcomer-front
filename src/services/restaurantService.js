@@ -3,12 +3,18 @@ import API_URL from "./mainService";
 
 const BASE_PATH = "/api/restaurant/";
 
-export async function getAllRestaurants() {
+export async function getAllRestaurants(shoppingCnpj) {
     // Retrieves all restaurans from API
     let restaurants
     try {
-        const restaurantRoute = API_URL + BASE_PATH
+        const restaurantRoute = API_URL + '/api/restaurants'
         restaurants = await axios.get(restaurantRoute)
+        restaurants = restaurants.data
+        restaurants = restaurants.filter(item => {
+            return item.shopping == shoppingCnpj
+        })
+
+        console.log(restaurants)
     } catch (err) {
         return {
             status: 'error',
@@ -271,12 +277,15 @@ export async function getItem(itemId) {
     return itens[itemId];
 }
 
-export async function getShopping() {
+export async function getShopping(cnpj) {
     let shopping = {}
     try {
-        if (!cnpj) throw 'cnpj value must be passed'
-        let route = API_URL + BASE_PATH + cnpj
+        if (!cnpj) {
+            throw 'cnpj value must be passed'
+        }
+        let route = API_URL + '/api/shopping/' + cnpj
         shopping = await axios.get(route)
+        console.log(shopping.data)
     } catch (err) {
         return {
             status: 'error',
@@ -284,14 +293,7 @@ export async function getShopping() {
         }
     }
 
-    // let shopping = {
-    //     name: "Shopping do Zé",
-    //     city: "Brasília",
-    //     state: "DF",
-    //     neighborhood: "Rua do jão"
-    // };
-
-    return shopping;
+    return shopping.data;
 }
 
 export async function getShoppingCategories() {

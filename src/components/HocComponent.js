@@ -45,6 +45,7 @@ const HocComponent = (component, neededSetups) => {
                             localStorage.setItem('shoppingCNPJ', this.$route.params.cnpj)
                         }
                         let shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
+                        console.log(shoppingCNPJ)
                         this.shopping = await Services.getShopping(shoppingCNPJ);
                     }
                     if(neededSetups.find(element => element === 'restaurants')) {

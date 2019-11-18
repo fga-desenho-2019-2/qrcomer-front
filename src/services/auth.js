@@ -1,5 +1,5 @@
 import HttpClientBuilder from "../infra/HttpClientBuilder.js";
-import API_URL from "./mainService" 
+import API_URL from "./mainService"
 
 export default class AuthService {
     constructor() {
@@ -14,8 +14,8 @@ export default class AuthService {
             password: params.password,
             email: params.email,
         };
-        
-        let response = await this.client.post(`/user`, body);
+
+        let response = await this.client.post(`/api/user/`, body);
         return response;
     }
 }
