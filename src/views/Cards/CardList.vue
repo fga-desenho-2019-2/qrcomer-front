@@ -45,7 +45,11 @@ export default {
     // eslint-disable-next-line
     this.from = this.$route.params.from;
     let response = await user.getCardsList(this.userCpf)
-    this.cards = response.data.data[0].cards
+    try {
+        this.cards = response.data.data[0].cards
+    } catch {(() => {
+        return
+    })}
 
   },
   methods: {
