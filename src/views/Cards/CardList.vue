@@ -8,7 +8,7 @@
       <div class="cards-list__cards">
         <CardItem
           v-for="(card, index) in cards"
-          :key="card.number+index"
+          :key="index"
           :card="card"
           @cardClick="redirectPage($event)"
         />
@@ -24,34 +24,40 @@
 <script>
 import CardItem from "./CardItem";
 import Navbar from "../../components/Navbar";
+import User from "../../services/userService"
+import { mapGetters } from "vuex";
+
+const user = new User();
 
 export default {
   components: {
     CardItem,
-    Navbar
+    Navbar,
   },
   data: () => ({
-    from: null
+    from: null,
+    cards: [],
   }),
-  props: {
-    cards: {
-      required: true
-    }
-  },
-  created() {
+  computed: mapGetters({
+    userCpf: "auth/userCpf"
+  }),
+  async created() {
     // eslint-disable-next-line
     this.from = this.$route.params.from;
+    let response = await user.getCardsList(this.userCpf)
+    this.cards = response.data.data[0].cards
+
   },
   methods: {
     redirectPage: function(card) {
       if (this.from === "bag") {
-        localStorage.setItem("card-id", card.id);
+        localStorage.setItem("card-id", card);
         this.$router.push("/sacola");
-      } else this.$router.push(`/cartao/${card.id}`);
+      } else this.$router.push(`/cartao/${card}`);
     },
     addCard: function() {
       this.$router.push("/novo-cartao");
-    }
+    },
   }
 };
 </script>
