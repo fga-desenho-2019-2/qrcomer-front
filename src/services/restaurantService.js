@@ -267,6 +267,15 @@ export async function getItem(itemId) {
         }],
         value: 22.19
     }];
+    try {
+        let item
+        let route = API_URL + '/api/item/' + itemId
+        item = await axios.get(route)
+        console.log(item.data)
+        return item.data
+    } catch {
+        console.log('error')
+    }
     return itens[itemId];
 }
 

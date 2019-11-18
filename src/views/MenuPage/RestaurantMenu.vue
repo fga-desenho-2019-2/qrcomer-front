@@ -110,16 +110,12 @@ export default {
     },
     filterItens: function(category) {
       let filteredMenu = this.restaurantMenu.filter(item => {
-        console.log('AAAAAAAAAAAAAAAAAAAAA')
-        console.log(item)
-        console.log(category)
         return item.category == category;
       });
       return filteredMenu;
     },
     itemImage: function(item) {
         let image = 'http://restaurant.marques.rocks/api/item-image/' + item.id
-        console.log(image)
         return image
     }
   }

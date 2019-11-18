@@ -11,7 +11,7 @@
           <div v-if="item">
             <QrcItemDescription
               :key="item.id"
-              :img="item.img"
+              :img="itemImage(item)"
               :name="item.name"
               :details="item.details"
               :value="item.value"
@@ -116,6 +116,10 @@ export default {
     },
     reset: function () {
       this.invalidRestaurant = false;
+    },
+    itemImage: function(item) {
+        let image = 'http://restaurant.marques.rocks/api/item-image/' + item.id
+        return image
     }
   }
 };
