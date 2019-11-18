@@ -83,7 +83,7 @@ export default {
         itens: { type: Array, required: true },
         avaliacao: { type: Number, required: false },
         id: { type: String },
-        password: {type: String},
+        password: {type: [Number, String]},
         value: {type: Number},
         date: {type: String}
     },

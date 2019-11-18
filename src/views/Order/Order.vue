@@ -50,6 +50,7 @@
                         :avaliacao="order.note"
                         :value="order.value"
                         :date="order.date"
+                        :password="order.cod"
                         @changeRating="changeRating($event)"
                     />
                 </v-tab-item>

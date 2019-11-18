@@ -45,7 +45,7 @@
         <div class="itensValue" >
             <p>TOTAL:</p>
         </div>
-        <p class="itens__totalValue ml-auto">{{value}}</p>
+        <p class="itens__totalValue ml-auto">R${{value}}</p>
     </div>
     <div class="avaliacao pt-3" v-if="!password">
         <h6 class="text-center text-uppercase mb-0">Avaliar esse pedido</h6>
@@ -77,7 +77,7 @@ export default {
             type: Number
         },
         password: {
-            type: String
+            type: [Number, String]
         },
         restaurant: {
             type: Object,
