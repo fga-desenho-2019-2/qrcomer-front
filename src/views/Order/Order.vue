@@ -1,5 +1,5 @@
 <template >
-    <v-content id="order" >
+    <v-content id="order">
         <div>
             <v-tabs 
                 v-model="orderTab" 
@@ -16,21 +16,20 @@
             </v-tabs>
 
             <v-tabs-items 
-                v-if="this.orders && this.orders[0].restaurant"
+                v-if="canRender"
                 v-model="orderTab"
                 class="orderContent">
                 <v-tab-item
                     value="anteriores">
 
                     <OrderItem 
-                        v-for="(order, index) in orders"
+                        v-for="(order, index) in before"
                         status="INI"
                         :key="index"
                         :id="`id${index}`"
                         :restaurant="order.restaurant"
                         :itens="order.items"
                         :avaliacao="order.note"
-                        :shopping="order.shopping"
                         :value="order.value"
                         :date="order.date"
                         @changeRating="changeRating($event)"
@@ -39,6 +38,19 @@
                     
                 <v-tab-item
                     value="andamento">
+
+                    <OrderItem 
+                        v-for="(order, index) in onGoing"
+                        status="AND"
+                        :key="index"
+                        :id="`id${index}`"
+                        :restaurant="order.restaurant"
+                        :itens="order.items"
+                        :avaliacao="order.note"
+                        :value="order.value"
+                        :date="order.date"
+                        @changeRating="changeRating($event)"
+                    />
                 </v-tab-item>
             </v-tabs-items>
         </div>
@@ -56,15 +68,25 @@ export default {
     },
     data() {
         return {
+            canRender: false,
             orderTab: null,
-            orders: null
+            orders: null,
+            before: null,
+            onGoing: null
         }
     },
     async beforeCreate() {
         this.orders = await services.getOrders()
-        Promise.all(this.orders.forEach(async order => {
+        await Promise.all(this.orders.map(async order => {
             order.restaurant = await services.getRestaurant(0)
         }))
+        this.before = this.orders.filter(order => {
+            return order.status == 7
+        })
+        this.onGoing = this.orders.filter(order => {
+            return order.status != 7
+        })
+        this.canRender = true
         console.log(this.orders)
     },
     methods: {

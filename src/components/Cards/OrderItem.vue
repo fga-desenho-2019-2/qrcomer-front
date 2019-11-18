@@ -64,7 +64,6 @@
                     :status="status"
                     :password="password"
                     :value="value"
-                    :shopping="shopping"
                     @closeOrderModal=" dialog = false"
                     @starChange="changeRating($event)"
                     />
@@ -85,7 +84,6 @@ export default {
         avaliacao: { type: Number, required: false },
         id: { type: String },
         password: {type: String},
-        shopping: {type: String},
         value: {type: Number},
         date: {type: String}
     },

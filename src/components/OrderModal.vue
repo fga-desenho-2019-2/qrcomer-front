@@ -31,7 +31,6 @@
             </p>
         </div>
         
-        <p class="text-center">Você estava no <b>{{shopping}}</b> quando fez esse pedido</p>
         <p class="text-center mb-0"><a :href="`/restaurante/${restaurant.cnpj}`" class="main-color" style="text-decoration:none">Ver o cardápio desse restaurante</a></p>
     </div>
     <div class="itens hr">
@@ -91,11 +90,7 @@ export default {
         value: {
             type: Number,
             required: true
-        },
-        shopping: {
-            type: String,
-            required: true
-        },
+        }
         
     },
     methods: {
