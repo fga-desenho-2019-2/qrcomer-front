@@ -32,7 +32,7 @@ export default {
       default: "---"
     },
     image: {
-      type: Array,
+      type: String,
       required: true
     }
   },

@@ -8,7 +8,7 @@
         :name="restaurant.name"
         :nota="restaurant.note"
         :type="restaurant.description"
-        :wait_time="restaurant.wait_time"
+        :time="restaurant.wait_time"
         :img="restaurant.image"
       />
     </div>

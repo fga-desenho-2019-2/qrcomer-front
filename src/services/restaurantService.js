@@ -22,28 +22,6 @@ export async function getAllRestaurants(shoppingCnpj) {
         }
     }
 
-    // let restaurants = [{
-    //         category: 1,
-    //         cnpj: "743898765",
-    //         description: "Burgers",
-    //         image: [],
-    //         name: "Mc'Donalds",
-    //         note: 4.6,
-    //         shopping: "1232324",
-    //         wait_time: "00:15:00"
-    //     },
-    //     {
-    //         category: 1,
-    //         cnpj: "743898766",
-    //         description: "Burgers",
-    //         image: [],
-    //         name: "Mc'Donalds",
-    //         note: 4.6,
-    //         shopping: "1232324",
-    //         wait_time: "00:15:00"
-    //     }
-    // ];
-
     return restaurants;
 }
 
@@ -54,7 +32,7 @@ export async function getRestaurant(cnpjRestaurant) {
     try {
         if (!cnpjRestaurant) throw "cnpj must be a valid number"
 
-        const route = API_URL + BASE_PATH + cnpjRestaurant
+        const route = API_URL + '/api/restaurant/' + cnpjRestaurant
         restaurant = await axios.get(route)
 
     } catch (err) {
@@ -64,18 +42,7 @@ export async function getRestaurant(cnpjRestaurant) {
         }
     }
 
-    // let restaurant = [{
-    //     category: 1,
-    //     cnpj: "743898765",
-    //     description: "Burgers",
-    //     image: "http://0.0.0.0:8001/api/restaurant-image/743898765",
-    //     name: "Mc'Donalds",
-    //     note: 4.6,
-    //     shopping: "1232324",
-    //     wait_time: "00:15:00"
-    // }];
-
-    return restaurant[cnpjRestaurant];
+    return restaurant.data;
 }
 
 // export async function getRestaurantsByCategory() {
@@ -119,7 +86,7 @@ export async function getRestaurant(cnpjRestaurant) {
 //     return restaurants;
 // }
 
-export async function getRestaurantMenu() {
+export async function getRestaurantMenu(cnpjRestaurant) {
     let menu = [{
             id: 1,
             name: "Combo Big Mac",
@@ -236,25 +203,51 @@ export async function getRestaurantMenu() {
         }
     ];
 
+    try {
+        let itens
+        let itemRoute = API_URL + '/api/items'
+        itens = await axios.get(itemRoute)
+        itens = itens.data
+        itens = itens.filter(item => {
+            return item.restaurant_cnpj == cnpjRestaurant
+        })
+        console.log(itens)
+        console.log('getRestaurantMenu')
+        return itens
+    } catch {
+        console.log('error')
+    }
+
     return menu;
 }
 
-export async function getRestaurantCategories() {
-    let categories = [{
-            id: 0,
-            name: "Bebida"
-        },
-        {
-            id: 1,
-            name: "Sanduíches"
-        },
-        {
-            id: 2,
-            name: "Sorvetes"
+export async function getRestaurantCategories(cnpjRestaurant) {
+    try {
+        let itens
+        let categories = []
+        let itemRoute = API_URL + '/api/items'
+        itens = await axios.get(itemRoute)
+        itens = itens.data
+        itens = itens.filter(item => {
+            return item.restaurant_cnpj == cnpjRestaurant
+        })
+        for(let item of itens) {
+            categories.push(item.category)
         }
-    ];
+        console.log(categories)
+        let categoryRoute = API_URL + '/api/item/category'
+        let allCategories = await axios.get(categoryRoute)
 
-    return categories;
+        allCategories = allCategories.data
+        allCategories = allCategories.filter(item => {
+            return categories.find(i => i == item.id)
+        })
+
+        console.log(allCategories)
+        return allCategories
+    } catch {
+        console.log('error')
+    }
 }
 
 export async function getItem(itemId) {
