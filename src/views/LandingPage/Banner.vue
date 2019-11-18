@@ -8,7 +8,7 @@
             v-if="!isAuthenticated"
             href="#"
             min-width="250px"
-            @click="routeTo({'path': '/auth', 'query': {'loginType':true}})"
+            @click="routeTo('/auth/login')"
             class="qrc-btn white mx-auto font-weigth-bold my-2"
           >
             <span class="mr-2">Login</span>
@@ -17,7 +17,7 @@
             v-if="!isAuthenticated"
             href="#"
             min-width="250px"
-            @click="routeTo({'path': '/auth', 'query': {'loginType':false}})"
+            @click="routeTo('/auth/register')"
             class="qrc-btn primary my-2 mx-auto"
           >
             <span class="mr-2">Cadastrar</span>

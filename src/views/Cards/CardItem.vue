@@ -2,7 +2,7 @@
   <div class="card-item" @click="handleClick" >
     <div class="card-item__text">
         <p class="mb-0" >Cartão de crédito</p>
-        <p class="mb-0" id="card-number" >{{card.number}}</p>
+        <p class="mb-0" id="card-number" >{{masked}}</p>
     </div>
     <img class="card-item__image" src="../../assets/images/credit_card.svg"/>
   </div>
@@ -12,13 +12,17 @@
 export default {
     props: {
         card: {
-            required: true,
-            type: Object
+            required: true
         }
     },
     methods: {
         handleClick: function () {
             this.$emit('cardClick', this.card)
+        }
+    },
+    computed: {
+        masked: function() {
+            return this.card.substring(0, 4) + "********" + this.card.substring(12);
         }
     }
 };

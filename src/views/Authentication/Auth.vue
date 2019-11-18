@@ -24,6 +24,8 @@
                       label="E-mail"
                       required
                       :rules="emptyRule"
+                      :error="!!errors.email"
+                      :error-messages="errors"
                       background-color="#fff"
                       class="mb-4"
                       color="#e18855"
@@ -34,6 +36,7 @@
                       label="Senha"
                       required
                       :rules="emptyRule"
+                      :error="!!errors.password"
                       type="password"
                       background-color="#fff"
                       class="mb-4"
@@ -90,50 +93,6 @@
                       color="#e18855"
                     ></v-text-field>
 
-                    <v-dialog
-                      ref="dialog"
-                      v-model="modal"
-                      :return-value.sync="date"
-                      persistent
-                      width="290px"
-                    >
-                      <template v-slot:activator="{ on }">
-                        <v-text-field
-                          v-model="birth_date"
-                          label="Data de nascimento"
-                          readonly
-                          required
-                          :error="!!errors.birth_date"
-                          :error-messages="errors.birth_date"
-                          background-color="#fff"
-                          class="mb-4"
-                          v-on="on"
-                          color="#e18855"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker
-                        v-model="birth_date"
-                        type="date"
-                        scrollable
-                        locale="pt-br"
-                        color="#e18855"
-                      >
-                        <div class="flex-grow-1"></div>
-                        <v-btn text color="#ef596b" @click="modal = false">Cancel</v-btn>
-                        <v-btn text color="#ef596b" @click="$refs.dialog.save(date)">OK</v-btn>
-                      </v-date-picker>
-                    </v-dialog>
-
-                    <v-select
-                      v-model="selectedSexo"
-                      :items="sexo"
-                      :error="!!errors.sex"
-                      :error-messages="errors.sex"
-                      label="Selecione o sexo"
-                      color="#e18855"
-                      item-color="white"
-                    ></v-select>
-
                     <v-btn
                       href="#"
                       block
@@ -151,12 +110,12 @@
               Talvez você esteja querendo
               <a
                 href="#"
-                @click="routeTo({ path: '/auth', query: { loginType: false }})"
+                @click="routeTo('/auth/register')"
                 v-if="loginType"
               >criar uma conta?</a>
               <a
                 href="#"
-                @click="routeTo({ path: '/auth', query: { loginType: true }})"
+                @click="routeTo('/auth/login')"
                 v-else
               >fazer login?</a>
             </p>
@@ -181,22 +140,15 @@ export default {
       valid: false,
       cpf: "",
       password: "",
-      birth_date: "",
-      selectedSexo: {},
-      sexo: [
-        { text: "Masculino", value: "m" },
-        { text: "Feminino", value: "f" }
-      ],
       email: "",
       first_name: "",
       last_name: "",
       emptyRule: [v => !!v || "Campo obrigatório"],
       username: "",
       loginType: false,
-      date: new Date().toISOString().substr(0, 7),
       menu: false,
       modal: false,
-      errors: {}
+      errors: []
     };
   },
   components: {
@@ -209,20 +161,21 @@ export default {
     registerUser
   },
   watch: {
-    "$route.query.loginType": {
+    "$route.params": {
       handler: function(loginType) {
         this.loginType = loginType;
-      }
+      },
     }
   },
   created() {
-    this.$route.query.loginType
-      ? (this.loginType = true)
-      : (this.loginType = false);
+    if (this.$route.params.type === "login" ) {
+        this.loginType = true
+    }else {
+        this.loginType = false
+    }
   }
 };
 </script>
-
 <style lang="scss">
 #auth {
   background: $c-true-white;

@@ -1,11 +1,9 @@
 <template>
   <v-app id="qrcomer">
-    <v-scroll-x-transition hide-on-leave mode="out-in">
-      <router-view name="Navbar"></router-view>
-    </v-scroll-x-transition>
+    <router-view name="Navbar"></router-view>
 
-    <v-scroll-x-transition hide-on-leave mode="out-in">
-      <router-view></router-view>
+    <v-scroll-x-transition mode="out-in" appear>
+        <router-view :key="$route.fullPath"></router-view>
     </v-scroll-x-transition>
   </v-app>
 </template>

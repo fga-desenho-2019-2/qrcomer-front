@@ -1,57 +1,75 @@
 <template>
-  <v-content class="user-page d-flex flex-column pt-0">
+  <v-content class="user-page d-flex flex-column">
   <Navbar />
-    <div style="z-index: 0"><qrc-banner /></div>
     <div>
-      <v-container>
-        <v-row v-if="user">
+      <v-container class="pt-0" style="overflow: hidden;">
+          <div class="user-img" style="z-index: 0">
+                <div class="card-img">
+                    <img :src="image" alt="">
+                </div>
+            </div>
+        <v-row v-if="user" class="user-data">
 
-          <v-col cols="12" md="6" class="pb-0">
-            <v-text-field :value="user.name" label="Nome" color="#e18855" readonly type="text"></v-text-field>
+          <v-col cols="12" md="6" class="user-item">
+            <p class="label">Email:</p>
+            <p class="value">{{userData.email || "--"}}</p>
+          </v-col>
+          
+          <v-col cols="12" md="6" class="user-item">
+            <p class="label">CPF:</p>
+            <p class="value">{{userData.cpf || "--"}}</p>
           </v-col>
 
-          <v-col cols="12" md="6" class="pb-0">
-            <v-text-field :value="user.email" label="E-mail" color="#e18855" readonly type="email"></v-text-field>
+          <v-col cols="12" md="6" class="user-item">
+            <p class="label">Nome:</p>
+            <p class="value">{{userData.first_name || "--"}}</p>
           </v-col>
-
-          <v-col cols="12" md="6" class="pb-0">
-            <v-text-field :value="user.telephone" label="Telefone" color="#e18855" readonly type="text"></v-text-field>
-          </v-col>
-
-          <v-col cols="12" md="6" class="pb-0">
-            <v-text-field :value="user.cpf" label="CPF" color="#e18855" readonly type="text"></v-text-field>
+          
+          <v-col cols="12" md="6" class="user-item">
+            <p class="label">Sobrenome:</p>
+            <p class="value">{{userData.last_name || "--"}}</p>
           </v-col>
         </v-row>
       </v-container>
     </div>
-
-    <v-bottom-navigation class="user-bottom-navigation" v-model="activeBtn" :input-value="showNav" color="white">
-      <v-btn to="./editar-usuario"><font color="white"><strong>ATUALIZAR</strong></font></v-btn>
-    </v-bottom-navigation>
   </v-content>
 </template>
 
 <script>
-import UserBanner from '../components/UserBanner';
+import { mapGetters } from "vuex";
 import Navbar from '../components/Navbar';
+import User from '../services/userService';
+
+let user = new User();
 
 export default {
   components: {
-    "qrc-banner": UserBanner,
     Navbar
   },
   data() {
     return {
       activeBtn: 1,
       showNav: true,
-      dialog: false
+      dialog: false,
+      userData: {},
+      image: require("@/assets/images/profile/blank-profile-picture-.png"),
     };
   },
   props: {
     user: {
       required: true
-    }
+    },
   },
+  computed: mapGetters({
+    userCpf: "auth/userCpf"
+  }),
+  async created() {
+    let response = await user.getUser(this.userCpf)
+    this.userData = response.data
+    if (this.userData.image) {
+        this.image = this.userData.image
+    } 
+  }
 };
 </script>
 
@@ -72,5 +90,43 @@ export default {
   padding-bottom: 8px;
   padding-top: 8px;
   margin: auto;
+}
+
+.user-data {
+    .user-item {
+        border-bottom: 1px solid #e18855;
+        padding: 10px;
+        .label {
+            color: $c-gray60;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        .value {
+            font-size: 14px;
+            margin-bottom: 0;
+            
+        }
+    }
+}
+.user-img {
+    margin: 0 -15px;
+
+    .card-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 280px;
+        background: linear-gradient(to bottom right, transparent 50%, #efefef 40%), linear-gradient(-40deg, #eb4476, #e18855) #efefef;
+
+        img {
+            display: flex;
+            height: 250px;
+            object-fit: cover;
+            width: 250px;
+            border-radius: 0 30px;
+            box-shadow: 0 2px 7px -2px $c-gray60;
+        }
+    }
 }
 </style>
