@@ -43,7 +43,7 @@
         </div>
       </div>
       <div
-        v-if="filteredRestaurants.length === 0"
+        v-if="restaurants.length > 0 && filteredRestaurants.length === 0"
         class="restaurant-filtering__warning"
       >
         <h5>Não há restaurantes com esse nome</h5>

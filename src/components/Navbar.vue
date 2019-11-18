@@ -304,7 +304,8 @@ export default {
 }
 
 #filter {
-  width: 20px;
+  position: absolute;
+  right: 15px;
 }
 
 #red-header {
