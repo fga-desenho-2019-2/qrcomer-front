@@ -118,7 +118,7 @@ export default new Router({
             path: '/cartoes/:from?',
             name: 'card_list',
             components: {
-                default: HocComponent(CardList, ['cards'])
+                default: HocComponent(CardList)
             }
         },
         {

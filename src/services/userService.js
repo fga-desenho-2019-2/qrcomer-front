@@ -140,4 +140,31 @@ export default class UserService {
         let response = await this.client.post(`/user/post_image`, body)
         return response;
     }
+
+    async createCard(cpf, params) {
+        let body = {
+            number: params.number,
+            cvv: params.cvv,
+            validation: params.validation,
+            holder_name: params.holder_name,
+            cpf_cnpj: params.cpf_cnpj,
+        }
+        let response = await this.client.post(`/user/card/${cpf}`, body)
+        return response;
+    }
+    
+    async getCardsList(cpf) {
+        let response = await this.client.get(`/user/user_cards/${cpf}`)
+        return response;
+    }
+
+    async getCard(number) {
+        let response = await this.client.get(`/user/card/${number}`)
+        return response;
+    }
+
+    async deleteCard(number) {
+        let response = await this.client.delete(`/user/delete_card/${number}`)
+        return response;
+    }
 }
