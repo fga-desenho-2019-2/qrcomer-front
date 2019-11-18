@@ -50,7 +50,7 @@ export default new Router({
                     "shoppingCategories"
                 ])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/categoria/:name",
