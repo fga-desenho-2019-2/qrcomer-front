@@ -1,5 +1,6 @@
-<template>
+<template >
     <v-content id="order">
+        <Navbar/>
         <div>
             <v-tabs 
                 v-model="orderTab" 
@@ -16,35 +17,40 @@
             </v-tabs>
 
             <v-tabs-items 
+                v-if="canRender"
                 v-model="orderTab"
                 class="orderContent">
                 <v-tab-item
                     value="anteriores">
 
                     <OrderItem 
-                        v-for="(order, index) in orders"
+                        v-for="(order, index) in before"
                         status="INI"
                         :key="index"
-                        :id="`id${index}`"
+                        :id="`ant-${index}`"
                         :restaurant="order.restaurant"
                         :itens="order.items"
-                        :avaliacao="order.note"
-                        :shopping="order.shopping"
+                        :avaliacao="order.avaliation_number"
                         :value="order.value"
                         :date="order.date"
-                        @changeRating="changeRating($event)"
+                        @changeRating="changeRating($event, order.id, index)"
                     />
                 </v-tab-item>
                     
                 <v-tab-item
                     value="andamento">
+
                     <OrderItem 
+                        v-for="(order, index) in onGoing"
                         status="AND"
-                        id="id3"
-                        password="3321"
-                        restaurant="Mc donalds"
-                        :itens="['Sunday', 'Big Mac']"
-                        :avaliacao="3"
+                        :key="index"
+                        :id="`and-${index}`"
+                        :restaurant="order.restaurant"
+                        :itens="order.items"
+                        :avaliacao="order.note"
+                        :value="order.value"
+                        :date="order.date"
+                        :password="order.cod"
                     />
                 </v-tab-item>
             </v-tabs-items>
@@ -55,53 +61,52 @@
 
 <script>
 import OrderItem from '@/components/Cards/OrderItem'
+import services from '../../services/ServicesFacade'
+import Navbar from '@/components/Navbar'
 
 export default {
     components: {
-        OrderItem
+        OrderItem,
+        Navbar
     },
     data() {
         return {
+            canRender: false,
             orderTab: null,
-            orders: [
-                {
-                "cpf_user":"05333208107",
-                "cnpj_restaurant":"33345811000183",
-                "value":30.59,
-                "date": "Seg, 22 de agosto de 2019",
-                "restaurant": {
-                    name: "Mc Donalds",
-                    cnpj: 12345678
-                },
-                "shopping": "ParkShopping",
-                "note": 4.5,
-                "items":[
-                    {
-                    "name":"Combo Big Mac",
-                    "value":22.19,
-                    "observation":"sem pão",
-                    "quantity":1
-                    },
-                    {
-                    "name":"Batata",
-                    "value":3.2,
-                    "observation":"",
-                    "quantity":1
-                    },
-                    {
-                    "name":"Refrigerante",
-                    "value":5.2,
-                    "observation":"",
-                    "quantity":1
-                    }]
-                }
-            ]
+            orders: null,
+            before: null,
+            onGoing: null
         }
     },
+    async beforeCreate() {
+        let response = await services.getOrders()
+        this.orders = response.data
+        this.orders.sort((a, b) => {
+            if(a.id > b.id) return 1
+            else if(a.id < b.id) return -1
+            else return 0
+        })
+        if(this.orders.length > 0){
+            await Promise.all(this.orders.map(async order => {
+                order.restaurant = await services.getRestaurant(0)
+            }))
+            this.before = this.orders.filter(order => {
+                return order.status == 7
+            })
+            this.onGoing = this.orders.filter(order => {
+                return order.status != 7
+            })
+        }
+        this.canRender = true
+    },
     methods: {
-        changeRating() {
-            //put order
-            //update component
+        async changeRating(value, id, index) {
+            let body = {
+                avaliation_number: value,
+                avaliation_description: ""
+            }
+            await services.changeRating(id, body)
+            this.before[index].avaliation_number = value
         }
     }
 }

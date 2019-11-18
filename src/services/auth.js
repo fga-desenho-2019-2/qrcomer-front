@@ -14,8 +14,8 @@ export default class AuthService {
             password: params.password,
             email: params.email,
         };
-
-        let response = await this.client.post(`/api/user/`, body);
+        
+        let response = await this.client.post(`/user`, body);
         return response;
     }
 }

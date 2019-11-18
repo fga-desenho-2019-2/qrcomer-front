@@ -31,7 +31,6 @@
             </p>
         </div>
         
-        <p class="text-center">Você estava no <b>{{shopping}}</b> quando fez esse pedido</p>
         <p class="text-center mb-0"><a :href="`/restaurante/${restaurant.cnpj}`" class="main-color" style="text-decoration:none">Ver o cardápio desse restaurante</a></p>
     </div>
     <div class="itens hr">
@@ -46,14 +45,13 @@
         <div class="itensValue" >
             <p>TOTAL:</p>
         </div>
-        <p class="itens__totalValue ml-auto">{{value}}</p>
+        <p class="itens__totalValue ml-auto">R${{value}}</p>
     </div>
     <div class="avaliacao pt-3" v-if="!password">
         <h6 class="text-center text-uppercase mb-0">Avaliar esse pedido</h6>
         <div class="stars">
             <v-rating 
                 v-model="rating"
-                half-increments
                 class="text-center"
                 background-color="gray"
                 color="#e18855"
@@ -78,7 +76,7 @@ export default {
             type: Number
         },
         password: {
-            type: String
+            type: [Number, String]
         },
         restaurant: {
             type: Object,
@@ -91,11 +89,7 @@ export default {
         value: {
             type: Number,
             required: true
-        },
-        shopping: {
-            type: String,
-            required: true
-        },
+        }
         
     },
     methods: {

@@ -29,7 +29,8 @@
 
             <v-col cols="12" md="6" class="pb-0">
               <v-text-field
-                type="number"
+                type="text"
+                v-mask="['###.###.###-##']"
                 :rules="cpf_cnpjRules"
                 v-model="creditCard.cpf_cnpj"
                 label="CPF do Titular"
@@ -40,7 +41,7 @@
 
             <v-col cols="8" md="1" class="pb-0">
               <v-text-field
-                type="month"
+                type="date"
                 :rules="expirationRules"
                 v-model="creditCard.validation"
                 required
@@ -51,7 +52,8 @@
 
             <v-col cols="4" md="1" class="pb-0">
               <v-text-field
-                type="number"
+                type="text"
+                v-mask="'###'"
                 :rules="cvvRules"
                 v-model="creditCard.cvv"
                 label="CVV"
@@ -87,6 +89,12 @@
 import { card, cvc, expiration } from "creditcards/index";
 import moment from "moment";
 import Navbar from "../../components/Navbar";
+import { mapGetters } from "vuex";
+import User from '../../services/userService';
+import { routeTo } from "../../services/context";
+import { validationUtil } from "../../utils/ValidationUtils";
+
+let user = new User();
 
 function holderRules() {
   return [value => !!value || "Campo obrigatório"];
@@ -139,6 +147,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+        userCpf: "auth/userCpf"
+    }),    
     nameUpperCase: function() {
       if (this.creditCard.holderName)
         return this.creditCard.holderName.toUpperCase();
@@ -162,10 +173,27 @@ export default {
     copyCreditCard: function() {
       this.newCreditCard = this.creditCard;
     },
-    validate() {
-      if (this.$refs.form.validate()) {
-        this.snackbar = true;
-      }
+    async validate() {
+        if (this.$refs.form.validate()) {
+            let body = {
+                number: this.creditCard.number,
+                cvv: this.creditCard.cvv,
+                validation: this.creditCard.validation,
+                holder_name: this.creditCard.holderName,
+                cpf_cnpj: validationUtil.cleanMaskCpf(this.creditCard.cpf_cnpj),
+            };
+            let response = await user.createCard(this.userCpf, body);
+
+            if (response.status >= 400) {
+                this.errors = response.data;
+                return;
+            } else {
+                if(this.$route.params.from === 'bag')
+                  routeTo('/cartoes/bag',this);
+                else 
+                  routeTo('/cartoes',this);
+            }
+        }
     },
     reset() {
       this.$refs.form.reset();

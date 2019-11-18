@@ -23,7 +23,6 @@
                                 v-model="avaliacao"
                                 dense
                                 readonly
-                                half-increments
                                 background-color="gray"
                                 color="#e18855">
                             </v-rating>
@@ -64,7 +63,6 @@
                     :status="status"
                     :password="password"
                     :value="value"
-                    :shopping="shopping"
                     @closeOrderModal=" dialog = false"
                     @starChange="changeRating($event)"
                     />
@@ -84,8 +82,7 @@ export default {
         itens: { type: Array, required: true },
         avaliacao: { type: Number, required: false },
         id: { type: String },
-        password: {type: String},
-        shopping: {type: String},
+        password: {type: [Number, String]},
         value: {type: Number},
         date: {type: String}
     },

@@ -32,7 +32,7 @@ const authModule = {
             return new Promise((resolve, reject) => { 
                 commit('AUTH_REQUEST')
                 // A rota está hard coded, temos que arrumar isso depois. E usar o http client ao invés do axios aqui
-                axios({url: API_URL + '/api/token/', data: user, method: 'POST' })
+                axios({url: API_URL + '/auth/login', data: user, method: 'POST' })
                     .then(resp => {
                         const data = {
                             token: resp.data.access,

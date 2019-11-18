@@ -88,7 +88,7 @@ export default {
     addItem: function() {
       let items = window.localStorage.getItem("order-bag") ? JSON.parse(window.localStorage.getItem("order-bag")) : null;
 
-      if(!items) {
+      if(!items || items.lenght === 0) {
         window.localStorage.setItem("restaurantCNPJ", this.item.restaurant_cnpj);
         this.item.observation = this.observation;
         this.item.ammount = 1;
