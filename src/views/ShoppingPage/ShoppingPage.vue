@@ -30,7 +30,7 @@
               v-for="restaurant in restaurants"
               :key="restaurant.cnpj"
               :name="restaurant.name"
-              :image="restaurant.image"
+              :image="restaurantImage(restaurant)"
               :description="restaurant.description"
               :wait_time="restaurant.wait_time"
               @restaurantClick="restaurantClick(restaurant.cnpj)"
@@ -68,7 +68,8 @@ export default {
     },
     component3: function() {
       return "CategoriesNav";
-    }
+    },
+    
   },
   props: {
     shopping: {
@@ -98,6 +99,13 @@ export default {
     },
     restaurantClick: function(restaurant) {
       this.$router.replace({ path: `/restaurante/${restaurant}` });
+    },
+    restaurantImage: function(restaurant) {
+      console.log(restaurant)
+      console.log('=========================')
+      let imageUrl = 'http://restaurant.marques.rocks/api/restaurant-image/' + restaurant.cnpj
+      console.log(imageUrl)
+      return imageUrl
     }
   }
 };
