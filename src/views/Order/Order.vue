@@ -105,9 +105,8 @@ export default {
                 avaliation_number: value,
                 avaliation_description: ""
             }
-            let response = await services.changeRating(id, body)
+            await services.changeRating(id, body)
             this.before[index].avaliation_number = value
-            //update component
         }
     }
 }

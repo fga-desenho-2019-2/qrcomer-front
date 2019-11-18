@@ -15,7 +15,6 @@ import CardList from '../views/Cards/CardList.vue'
 import CardShow from '../views/Cards/CardShow'
 import CreateCard from '../views/Cards/CreateCard'
 import OrderPage from '@/views/Order/Order'
-import Navbar from '@/components/Navbar'
 
 const ifAuthenticated = (to, from, next) => {
     if(to.name === "shopping") {
@@ -94,7 +93,8 @@ export default new Router({
             name: "item",
             components: {
                 default: HocComponent(ItemPage, ['foodItem'])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/sacola",
@@ -116,28 +116,32 @@ export default new Router({
             name: 'card_list',
             components: {
                 default: HocComponent(CardList)
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: '/pedido',
             name: 'order',
             components: {
                 default: HocComponent(OrderPage),
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: '/novo-cartao/:from?',
             name: 'create_card',
             components: {
                 default: CreateCard
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
         {
             path: '/cartao/:id',
             name: 'card',
             components: {
                 default: HocComponent(CardShow, ['selectedCard'])
-            }
+            },
+            beforeEnter: ifAuthenticated
         },
     ]
 });

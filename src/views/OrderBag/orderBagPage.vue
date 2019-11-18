@@ -260,7 +260,6 @@ export default {
           }
         })
       })
-      console.log(JSON.stringify(order))
       try {
         let response = await services.requestOrder(order);
         if(response.status === 201) {

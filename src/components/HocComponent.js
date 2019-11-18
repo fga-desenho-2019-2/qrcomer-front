@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Services from '../services/ServicesFacade'
-import User from '../services/userService'
 
 const HocComponent = (component, neededSetups) => {
     return Vue.component("HocComponent", {
