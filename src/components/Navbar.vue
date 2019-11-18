@@ -242,7 +242,8 @@ export default {
           icon: "mdi-card-bulleted",
           link: "/cartoes"
         },
-        { title: "Meu perfil", icon: "mdi-account", link: "/usuario" }
+        { title: "Meu perfil", icon: "mdi-account", link: "/usuario" },
+        { title: "Meus pedidos", icon: "mdi-food", link: "/pedido" }
         // { title: "Sair", icon: "mdi-logout", link: "/logout" }
       ]
     };
