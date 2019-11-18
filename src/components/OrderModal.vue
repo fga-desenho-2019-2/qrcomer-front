@@ -52,7 +52,6 @@
         <div class="stars">
             <v-rating 
                 v-model="rating"
-                half-increments
                 class="text-center"
                 background-color="gray"
                 color="#e18855"

@@ -30,10 +30,10 @@
                         :id="`ant-${index}`"
                         :restaurant="order.restaurant"
                         :itens="order.items"
-                        :avaliacao="order.note"
+                        :avaliacao="order.avaliation_number"
                         :value="order.value"
                         :date="order.date"
-                        @changeRating="changeRating($event)"
+                        @changeRating="changeRating($event, order.id, index)"
                     />
                 </v-tab-item>
                     
@@ -51,7 +51,6 @@
                         :value="order.value"
                         :date="order.date"
                         :password="order.cod"
-                        @changeRating="changeRating($event)"
                     />
                 </v-tab-item>
             </v-tabs-items>
@@ -82,6 +81,11 @@ export default {
     async beforeCreate() {
         let response = await services.getOrders()
         this.orders = response.data
+        this.orders.sort((a, b) => {
+            if(a.id > b.id) return 1
+            else if(a.id < b.id) return -1
+            else return 0
+        })
         if(this.orders.length > 0){
             await Promise.all(this.orders.map(async order => {
                 order.restaurant = await services.getRestaurant(0)
@@ -96,8 +100,13 @@ export default {
         this.canRender = true
     },
     methods: {
-        changeRating() {
-            //put order
+        async changeRating(value, id, index) {
+            let body = {
+                avaliation_number: value,
+                avaliation_description: ""
+            }
+            let response = await services.changeRating(id, body)
+            this.before[index].avaliation_number = value
             //update component
         }
     }

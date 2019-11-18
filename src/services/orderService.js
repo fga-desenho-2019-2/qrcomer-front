@@ -17,6 +17,11 @@ export async function getOrders() {
   return response
 }
 
+export async function changeRating(id, avaliation) {
+  let response = await client.put('/api/update-avaliation-order/' + id, avaliation)
+  return response
+}
+
 // export async function getOrders() {
 //     let orders = [
 //         {

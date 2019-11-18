@@ -23,7 +23,6 @@
                                 v-model="avaliacao"
                                 dense
                                 readonly
-                                half-increments
                                 background-color="gray"
                                 color="#e18855">
                             </v-rating>
