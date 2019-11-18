@@ -80,18 +80,20 @@ export default {
         }
     },
     async beforeCreate() {
-        this.orders = await services.getOrders()
-        await Promise.all(this.orders.map(async order => {
-            order.restaurant = await services.getRestaurant(0)
-        }))
-        this.before = this.orders.filter(order => {
-            return order.status == 7
-        })
-        this.onGoing = this.orders.filter(order => {
-            return order.status != 7
-        })
+        let response = await services.getOrders()
+        this.orders = response.data
+        if(this.orders.length > 0){
+            await Promise.all(this.orders.map(async order => {
+                order.restaurant = await services.getRestaurant(0)
+            }))
+            this.before = this.orders.filter(order => {
+                return order.status == 7
+            })
+            this.onGoing = this.orders.filter(order => {
+                return order.status != 7
+            })
+        }
         this.canRender = true
-        console.log(this.orders)
     },
     methods: {
         changeRating() {

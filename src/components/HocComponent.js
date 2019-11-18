@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Services from '../services/ServicesFacade'
+import User from '../services/userService'
 
 const HocComponent = (component, neededSetups) => {
     return Vue.component("HocComponent", {
@@ -62,9 +63,6 @@ const HocComponent = (component, neededSetups) => {
                         let shoppingCNPJ = localStorage.getItem('shoppingCNPJ');
                         this.shoppingCategories = await Services.getShoppingCategories(shoppingCNPJ);
                     }
-                    if(neededSetups.find(element => element === 'user')) {
-                        this.user = await Services.getUser();
-                    }
                     if(neededSetups.find(element => element === 'restaurantMenu')) {
                         let restaurantCNPJ = this.$route.params.cnpj;
                         this.restaurantMenu = await Services.getRestaurantMenu(restaurantCNPJ)
@@ -93,12 +91,6 @@ const HocComponent = (component, neededSetups) => {
                         if(id){
                             this.selectedCard = await Services.getSelectedCard(id)
                         }
-                    }
-                    if(neededSetups.find(element => element === 'orders')) {
-                        this.orders = await Services.getOrders()
-                        await this.orders.forEach(async order => {
-                            order.restaurant = await Services.getRestaurant(0)
-                        })
                     }
                 }
             }

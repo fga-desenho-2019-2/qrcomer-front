@@ -60,7 +60,10 @@ export default {
       } else this.$router.push(`/cartao/${card}`);
     },
     addCard: function() {
-      this.$router.push("/novo-cartao");
+      if(this.from === "bag")
+        this.$router.push("/novo-cartao/bag");
+      else
+        this.$router.push("/novo-cartao");
     },
   }
 };

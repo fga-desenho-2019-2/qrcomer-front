@@ -69,13 +69,13 @@
             Cartão no app
             <br />{{ selectedCard.number }}
           </p>
-          <a href="æcartoes/bag" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
+          <a href="/cartoes/bag" class="floating_card__payment-method__credit__link mb-0 mt-0">ALTERAR</a>
         </div>
         <div v-else class="floating_card__payment-method__credit" id="no-card" @click="selectCard">
           <b>Selecione a forma de pagamento</b>
         </div>
         <div class="floating_card__payment-method__cpf">
-          <div v-if="user">
+          <div v-if="userCPF">
             <v-form ref="form" v-model="valid">
               <v-col cols="12" md="6">
                 <v-text-field color="#e18855" v-model="cpf" :rules="cpfRules" label="CPF"></v-text-field>
@@ -180,6 +180,7 @@ export default {
           "CPF deve ser igual a 11 caracteres e não deve conter pontos ou traços"
       ],
       dialog: false,
+      userCPF: null
     };
   },
   props: {
@@ -189,9 +190,6 @@ export default {
     restaurant: {
       required: true
     },
-    user: {
-      required: true
-    },
     selectedCard: {
       required: false
     }
@@ -199,11 +197,7 @@ export default {
   created() {
     this.getItems();
     this.getShoppingCNPJ();
-  },
-  watch: {
-    user: function() {
-      this.cpf = this.user.cpf;
-    }
+    this.userCPF = localStorage.getItem('user-cpf')
   },
   computed: {
     total: function() {
@@ -241,7 +235,7 @@ export default {
     },
     requestOrder: async function(){
       let order = {
-        cpf_user: this.user.cpf,
+        cpf_user: this.userCPF,
         cnpj_restaurant: this.restaurant.cnpj,
         value: this.total,
         items: []
@@ -266,9 +260,13 @@ export default {
           }
         })
       })
+      console.log(JSON.stringify(order))
       try {
-        await services.requestOrder(order);
-        //redirecionar página
+        let response = await services.requestOrder(order);
+        if(response.status === 201) {
+          window.localStorage.setItem("order-bag", JSON.stringify([]));
+          this.$router.push('/pedido')
+        }
       }
       catch (error) {
         this.dialog = false

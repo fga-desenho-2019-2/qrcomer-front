@@ -59,7 +59,7 @@ export default new Router({
             components: {
                 default: HocComponent(CategoryPage, ["restaurantsByCategory"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/editar-usuario",
@@ -67,7 +67,7 @@ export default new Router({
             components: {
                 default: HocComponent(EditUserProfile, ["user"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/usuario",
@@ -75,7 +75,7 @@ export default new Router({
             components: {
                 default: HocComponent(UserProfile, ["user"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/restaurante/:cnpj",
@@ -87,7 +87,7 @@ export default new Router({
                     "categories",
                 ])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/item/:id",
@@ -100,9 +100,9 @@ export default new Router({
             path: "/sacola",
             name: "order-bag",
             components: {
-                default: HocComponent(OrderBagPage, ["shopping", "restaurant", "user", "usingCard"])
+                default: HocComponent(OrderBagPage, ["shopping", "restaurant", "usingCard"])
             },
-            //beforeEnter: ifAuthenticated
+            beforeEnter: ifAuthenticated
         },
         {
             path: "/auth/:type",
@@ -126,7 +126,7 @@ export default new Router({
             }
         },
         {
-            path: '/novo-cartao',
+            path: '/novo-cartao/:from?',
             name: 'create_card',
             components: {
                 default: CreateCard
